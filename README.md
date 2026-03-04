@@ -23,13 +23,13 @@ The name blends **Mermaid** (the diagram syntax) and **Zen** (simplicity). Desig
 The diagrams below were exported directly from MermZen in hand-drawn style. The exported SVG can be pasted straight into any HTML page — or embed a live, interactive diagram via `<iframe>`:
 
 <p align="center">
-  <img src="assets/preview-flowchart.svg" alt="Flowchart — user login flow (hand-drawn)" width="46%" />
+  <img src="assets/preview-flowchart-en.svg" alt="Flowchart — user login flow (hand-drawn)" width="46%" />
   &nbsp;
-  <img src="assets/preview-class.svg" alt="Class diagram — e-commerce order model (hand-drawn)" width="46%" />
+  <img src="assets/preview-class-en.svg" alt="Class diagram — e-commerce order model (hand-drawn)" width="46%" />
 </p>
 
 <p align="center">
-  <img src="assets/preview-sequence.svg" alt="Sequence diagram — HTTP login API chain (hand-drawn)" width="94%" />
+  <img src="assets/preview-sequence-en.svg" alt="Sequence diagram — HTTP login API chain (hand-drawn)" width="94%" />
 </p>
 
 ---

@@ -36,6 +36,11 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install chromium --with-deps
 
+      - name: Install CJK font tools
+        run: |
+          pip3 install fonttools brotli
+          sudo apt-get install -y fonts-noto-cjk
+
       - name: Start local HTTP server
         run: |
           python3 -m http.server 8766 &

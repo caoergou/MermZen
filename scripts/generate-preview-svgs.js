@@ -2,9 +2,11 @@
  * 使用 Playwright 渲染 Mermaid 手绘风格图表，导出 SVG 文件到 assets/
  * 用法：node scripts/generate-preview-svgs.js
  * 依赖：本地 http-server 需在项目根目录以 8766 端口运行
+ *       pip3 install fonttools brotli  （用于 CJK 字体子集嵌入）
  */
 
 const { chromium } = require('@playwright/test');
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
@@ -16,13 +18,24 @@ function encodeForEmbed(code) {
   return compressed.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
 }
 
-const BASE_URL = 'http://localhost:8766';
+// 生成后调用 Python 脚本为含 CJK 字符的 SVG 嵌入字体子集
+function embedCjkFont(svgPath) {
+  const script = path.join(__dirname, 'embed-cjk-font.py');
+  try {
+    execFileSync('python3', [script, svgPath], { stdio: 'inherit' });
+  } catch (e) {
+    console.warn(`  ⚠ Font embedding failed (non-fatal): ${e.message}`);
+  }
+}
 
+const BASE_URL = 'http://localhost:8766';
 const ASSETS_DIR = path.join(__dirname, '..', 'assets');
 
-const diagrams = [
+// ── 中文图表（用于 README.zh.md）───────────────────────────────────────────
+const ZH_DIAGRAMS = [
   {
     name: 'preview-flowchart',
+    embedFont: true,
     code: `graph TD
     A([开始]) --> B[用户输入账号 / 密码]
     B --> C{账号是否存在?}
@@ -39,6 +52,7 @@ const diagrams = [
   },
   {
     name: 'preview-sequence',
+    embedFont: true,
     code: `sequenceDiagram
     participant User as 用户
     participant Browser as 浏览器
@@ -67,6 +81,7 @@ const diagrams = [
   },
   {
     name: 'preview-class',
+    embedFont: true,
     code: `classDiagram
     class User {
         +int id
@@ -97,6 +112,87 @@ const diagrams = [
   },
 ];
 
+// ── 英文图表（用于 README.md）──────────────────────────────────────────────
+const EN_DIAGRAMS = [
+  {
+    name: 'preview-flowchart-en',
+    embedFont: false,
+    code: `graph TD
+    A([Start]) --> B[Enter username / password]
+    B --> C{Account exists?}
+    C -->|No| D[Account not found]
+    D --> B
+    C -->|Yes| E{Password correct?}
+    E -->|No| F[Record failure count]
+    F --> G{Failures >= 3?}
+    G -->|Yes| H[Lock account 30 min]
+    G -->|No| B
+    E -->|Yes| I[Generate Session Token]
+    I --> J[Redirect to home]
+    J --> K([End])`,
+  },
+  {
+    name: 'preview-sequence-en',
+    embedFont: false,
+    code: `sequenceDiagram
+    participant User
+    participant Browser
+    participant API as API Server
+    participant Redis
+    participant MySQL
+
+    User->>Browser: Enter credentials & login
+    Browser->>API: POST /api/login
+
+    API->>Redis: GET login_fail:username
+    Redis-->>API: Failure count (0)
+
+    API->>MySQL: SELECT user WHERE username=?
+    MySQL-->>API: User record
+
+    alt Password correct
+        API->>Redis: SET session:token 7d
+        API-->>Browser: 200 OK + Token
+        Browser-->>User: Redirect to home
+    else Wrong password
+        API->>Redis: INCR login_fail:username
+        API-->>Browser: 401 Unauthorized
+        Browser-->>User: Show error
+    end`,
+  },
+  {
+    name: 'preview-class-en',
+    embedFont: false,
+    code: `classDiagram
+    class User {
+        +int id
+        +String name
+        +String email
+        +placeOrder() Order
+    }
+    class Order {
+        +int id
+        +Date createdAt
+        +String status
+        +calcTotal() float
+    }
+    class OrderItem {
+        +int quantity
+        +float unitPrice
+        +getSubtotal() float
+    }
+    class Product {
+        +int id
+        +String name
+        +float price
+        +int stock
+    }
+    User "1" --> "0..*" Order : places
+    Order "1" *-- "1..*" OrderItem : contains
+    OrderItem "*..*" --> "1" Product : references`,
+  },
+];
+
 async function generateSVGs() {
   if (!fs.existsSync(ASSETS_DIR)) fs.mkdirSync(ASSETS_DIR, { recursive: true });
 
@@ -104,8 +200,10 @@ async function generateSVGs() {
   const page = await browser.newPage();
   await page.setViewportSize({ width: 1400, height: 900 });
 
-  for (const { name, code } of diagrams) {
-    console.log(`Rendering ${name}...`);
+  const allDiagrams = [...ZH_DIAGRAMS, ...EN_DIAGRAMS];
+
+  for (const { name, code, embedFont } of allDiagrams) {
+    console.log(`\nRendering ${name}...`);
 
     const encoded = encodeForEmbed(code);
     const url = `${BASE_URL}/embed.html#${encoded}`;
@@ -113,9 +211,7 @@ async function generateSVGs() {
     await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
 
     try {
-      // embed.html 渲染完成后 SVG 会出现
       await page.waitForSelector('#diagram svg', { timeout: 30000 });
-      // 额外等待 roughjs 动画/路径计算完成
       await page.waitForTimeout(800);
     } catch {
       console.error(`  ✗ Timeout waiting for SVG: ${name}`);
@@ -130,17 +226,22 @@ async function generateSVGs() {
       return svgEl.outerHTML;
     });
 
-    if (svgContent) {
-      const outPath = path.join(ASSETS_DIR, `${name}.svg`);
-      fs.writeFileSync(outPath, svgContent, 'utf-8');
-      console.log(`  ✓ Saved ${name}.svg`);
-    } else {
+    if (!svgContent) {
       console.error(`  ✗ No SVG found for ${name}`);
+      continue;
+    }
+
+    const outPath = path.join(ASSETS_DIR, `${name}.svg`);
+    fs.writeFileSync(outPath, svgContent, 'utf-8');
+    console.log(`  ✓ Saved ${name}.svg`);
+
+    if (embedFont) {
+      embedCjkFont(outPath);
     }
   }
 
   await browser.close();
-  console.log('\nDone! SVGs saved to assets/');
+  console.log('\nAll SVGs generated.');
 }
 
 generateSVGs().catch(e => {
