@@ -1,12 +1,17 @@
 import { basicSetup, EditorView } from "codemirror";
-import { EditorState } from "@codemirror/state";
+import { EditorState, Compartment } from "@codemirror/state";
 import { linter, lintGutter, setDiagnostics } from "@codemirror/lint";
 import { keymap } from "@codemirror/view";
 import { mermaid as mermaidLang } from "codemirror-lang-mermaid";
 import { oneDark } from "@codemirror/theme-one-dark";
+import { LanguageSupport } from "@codemirror/language";
 import { state } from './store.js';
 import { dom } from './dom.js';
 import { formatMermaidCode } from './formatter.js';
+import { mermaidExtHighlight } from './mermaid-highlight-ext.js';
+
+// 语言支持 Compartment，用于动态切换
+const languageCompartment = new Compartment();
 
 let currentDiagnostics = [];
 let lintTimer = null;
@@ -119,6 +124,24 @@ function buildEditorTheme(dark) {
 }
 
 /**
+ * 检测图表类型是否需要扩展高亮
+ */
+function needsExtHighlight(code) {
+  const firstLine = code.trim().split('\n')[0];
+  return /^(classDiagram|erDiagram|stateDiagram|gitGraph|timeline|xychart|architecture|block)/i.test(firstLine);
+}
+
+/**
+ * 获取当前应使用的语言支持
+ */
+function getLanguageSupport(code) {
+  if (needsExtHighlight(code)) {
+    return new LanguageSupport(mermaidExtHighlight());
+  }
+  return mermaidLang();
+}
+
+/**
  * 创建编辑器实例
  * @param {string} initialCode - 初始代码
  * @param {(doc: string) => void} onDocChange - 文档变更回调
@@ -126,7 +149,7 @@ function buildEditorTheme(dark) {
 export function createEditor(initialCode, onDocChange) {
   const extensions = [
     basicSetup,
-    mermaidLang(),
+    languageCompartment.of(getLanguageSupport(initialCode)),
     oneDark,
     buildEditorTheme(true),
     lintGutter(),
@@ -140,7 +163,15 @@ export function createEditor(initialCode, onDocChange) {
     }]),
     EditorView.updateListener.of(update => {
       if (update.docChanged) {
-        onDocChange(update.state.doc.toString());
+        const code = update.state.doc.toString();
+        
+        // 动态切换语言支持
+        const currentLang = getLanguageSupport(code);
+        update.view.dispatch({
+          effects: languageCompartment.reconfigure(currentLang)
+        });
+        
+        onDocChange(code);
       }
     }),
   ];
