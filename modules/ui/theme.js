@@ -34,6 +34,17 @@ export function toggleUiTheme() {
  */
 export function toggleHandDrawn() {
   state.handDrawn = !state.handDrawn;
+  syncHandDrawnUI();
+  saveHandDrawnPrefs();
+  initMermaid();
+  renderDiagram();
+  updateHash(getCode());
+}
+
+/**
+ * 同步手绘按钮 UI 状态
+ */
+export function syncHandDrawnUI() {
   if (dom.handDrawnBtn) {
     dom.handDrawnBtn.classList.toggle('active', state.handDrawn);
     dom.handDrawnBtn.setAttribute('aria-pressed', state.handDrawn ? 'true' : 'false');
@@ -42,10 +53,6 @@ export function toggleHandDrawn() {
     dom.handDrawnToggleQuick.classList.toggle('active', state.handDrawn);
     dom.handDrawnToggleQuick.setAttribute('aria-pressed', state.handDrawn ? 'true' : 'false');
   }
-  saveHandDrawnPrefs();
-  initMermaid();
-  renderDiagram();
-  updateHash(getCode());
 }
 
 /**

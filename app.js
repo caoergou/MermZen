@@ -1,6 +1,6 @@
 import { state } from './modules/store.js';
 import { updateEditorStatus, setRenderStatus, closeHelp, showToast } from './modules/utils.js';
-import { applyUiTheme, initPreviewPills, switchPreviewBg, switchTheme } from './modules/ui/theme.js';
+import { applyUiTheme, initPreviewPills, switchPreviewBg, switchTheme, syncHandDrawnUI } from './modules/ui/theme.js';
 import { applyI18n } from './modules/i18n.js';
 import { DEFAULT_CODE } from './modules/examples.js';
 import { createEditor, scheduleLint, formatCode } from './modules/editor.js';
@@ -25,6 +25,7 @@ initLayout();
 initZoom();
 initPreviewPills();
 initMobileUI();
+syncHandDrawnUI();
 
 // 帮助弹窗：关闭按钮、确定按钮、重新引导、点击遮罩关闭
 const helpModal = document.getElementById('help-modal');
