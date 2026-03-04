@@ -10,6 +10,8 @@ slug: sequence
 <span class="post-meta">2026-03-04 · MermZen 教程
 
 时序图（Sequence Diagram）描述多个参与者之间**按时间顺序**发生的消息交互。与流程图不同，时序图的核心问题是：**谁在什么时候向谁发送了什么**。适合展示 API 调用链路、用户与系统的交互、微服务通信等场景。
+<iframe src="https://eric.run.place/MermZen/embed.html#jZJtSxtBEMff-ykGX2lRTKVWOFARez5VjeYOfFmWZA1Hz7v09kQkHFRBDaJEUEtSChrwCR8aS9Wg1vbT7N3mW7jZxXA2p-29OnbmN_-Z_wzBn-awlcTvDJR20GwT8A8lXduBYPvYz1XEQwY5rpE0Mshywb_Ks6McLR43RPonR_xvG3StFBVM4JRBgl9b9LzQEBtf0KbGmsSzFG3v7a3LKEBLp3SlyC4Pab5CyyvB3iK9uQ6WbujqXVC8o_c7gqwDHA53osBkXNOhA2WMDtNOGxZk5wh2LDSL23gXhMzbTsqT6mGOlwn1rMCQqoPgP8wgw1TqRTxBhlLbGxqg-z_Y5YF_VvJ3LqAl1hopJkxQQFPH1AEdXsFgIj4ONREC08NqQoVHwZ4-gYv8Ri1pIPt-UfNFbtN0QdpWPVln5cXq56_sz6oIRbTxd7VdP7cJo9M66PZHbEHLsNbZ9bb1OfqJYxp3jGBCDNtSsm4N96A7FY0-3XhnLAbx9yChNjG5V-fCiw5fyXmBLh_wFSWRqfH7RWkcgXBGOqQAq_xk92fVwy_V0pXIxCbBj05tF1m5_F9TjkwMJF44jH9M-ib2GrLYcWxHgeawdrP3cvd-4Xewfytz_fwm_5czWKkH" width="100%" height="500" frameborder="0"></iframe>
+
 
 ## 声明图表与参与者
 

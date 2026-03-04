@@ -10,6 +10,8 @@ slug: flowchart
 <span class="post-meta">2026-03-04 · MermZen Tutorial
 
 Flowcharts visualize process steps and decision paths, making them ideal for user flows, approval processes, or algorithm descriptions. Mermaid uses either `graph` or `flowchart` keywords for flow diagrams.
+<iframe src="https://eric.run.place/MermZen/embed.html#Sy9KLMhQCHHhUgACx-hn03Y-W9gWC-Y5aTyd0_Zi-SSImCZYzLn6Rf_Gp3sX1YJ5LhogJUCuJkTWVSP62ZK1QKFYCN8tOvrp2gnPV3Q_3dUPMhZirnu0xrOpG571rnu6a7ImRMjD7tmC9mebVzybPv3pjjmxAA" width="100%" height="600" frameborder="0"></iframe>
+
 
 ## Declaring a Chart
 

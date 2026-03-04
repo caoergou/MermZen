@@ -8,6 +8,8 @@ slug: class
 ## 什么是类图？
 
 类图（Class Diagram）是 UML 中最常用的图表之一，用于描述系统中类的结构（属性和方法）以及类之间的关系（继承、关联、组合等）。适合系统设计、数据建模、团队协作讨论等场景。
+<iframe src="https://eric.run.place/MermZen/embed.html#lZGxSgQxEIb7e4ohla7soe0VgnCNlQenDzDOxiWYzZ7JpBCxtFLBwnsHwRew8HFcfA2zcx5ZPTwwzZAvf-YjE7IYwtRg7bEZQVrUAzgL2sONgH7tGcdgqryfszeuBoeN3oC6QWMzXVgkfeIr7Xd2Qaqc3Y4GOsHbfFNkDeR1KtURbygDI8eQMaGl05bRJuWFbZH_UB6zbn5rryI6NnydqXSA6AzPvKHBg2vN83jO20Uz31aR-N_TXFkXP439zcAtXQ498lnqQEFZHoLaH48L9T3RCXy83XePS4mtUJ8ryjLVnJMxTKB7uOueXnNWsCokJ63T1fVrUvp9-fn88gU" width="100%" height="600" frameborder="0"></iframe>
+
 
 ## 基本语法
 

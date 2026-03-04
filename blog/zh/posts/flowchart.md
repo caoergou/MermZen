@@ -11,6 +11,8 @@ slug: flowchart
 
 流程图用于描述一个过程的步骤与决策路径，适合展示用户操作流程、业务审批逻辑、算法流程等场景。Mermaid 使用 `graph` 或 `flowchart` 关键字声明流程图，纯文本书写，无需绘图工具。
 
+<iframe src="https://eric.run.place/MermZen/embed.html#Sy9KLMhQCHHhUgACR43op3sani7vjtVU0NW1U3CKfj5lxbOO7S_2TX7auvTFlmVP-7cr6Cs8Xd_2fEFjLFiLE1ihczVE8tmM9U8nLHu6dsbTOSvsa8EKnEEKaoCiNQou0c_6Jzxfsgui9smOXohCiEEuEBuR9AANq1FwrYbYBjH52drFzxeug5rsijDZLfrFug1P9059umTjiy1Ln61Z-GzqBoixbmBj3auRZRQedS5VMIaa4o6wyyP65ZTGp-tmQT1qbKDwtKPt5aT5sUgKwdY5IdkP1ukJDKj5zzomKASnFhdn5ucphORnp-ZB9HmCXeAV_WL75hd717xcNu3lwq0QGS-wjLdG9PPdk5_NnR-rCQA" width="100%" height="600" frameborder="0"></iframe>
+
 ## 声明图表
 
 使用 `graph` 或 `flowchart` 关键字，后接方向参数：

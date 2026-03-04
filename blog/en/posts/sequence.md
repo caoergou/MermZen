@@ -10,6 +10,8 @@ slug: sequence
 <span class="post-meta">2026-03-04 · MermZen Tutorial
 
 Sequence diagrams show interactions between participants over time. They answer the question: **Who sends what to whom at which moment?** Perfect for API flows, user-system interaction, and microservice communication.
+<iframe src="https://eric.run.place/MermZen/embed.html#K04tLE3NS051yUxML0rM5VIAgpz8_AKFZ-v7X86aomBsoPB8-SSwMAg8XbfoWcf256vX69rZPZvT-7Rr4dOZK6wUnu5vfrF987PFDc-2dsPVwuV1gYrhGq0UCvLz0sGKUvNSAA" width="100%" height="500" frameborder="0"></iframe>
+
 
 ## Declaring Participants
 

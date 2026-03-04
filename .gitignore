@@ -15,3 +15,9 @@ blog/en/*.html
 # SEO: generated at deploy time (see scripts/generate-sitemap.sh)
 /sitemap.xml
 /robots.txt
+
+# Development and temporary files
+.dev/
+.playwright-mcp/
+*.png
+test-highlight.html
