@@ -135,6 +135,9 @@ export function initMenu() {
   const menuZoomReset = document.getElementById('menu-zoom-reset');
   if (menuZoomReset) menuZoomReset.addEventListener('click', () => { closeAllMenus(); zoomResetView(); });
 
+  const menuBlog = document.getElementById('menu-blog');
+  if (menuBlog) menuBlog.addEventListener('click', () => { closeAllMenus(); window.open(`blog/${state.currentLang}/index.html`, '_blank'); });
+
   const menuGithub = document.getElementById('menu-github');
   if (menuGithub) menuGithub.addEventListener('click', () => { closeAllMenus(); window.open('https://github.com/caoergou/mermaid-pic', '_blank'); });
 
