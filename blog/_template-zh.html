@@ -49,36 +49,5 @@
   <footer class="blog-footer">
     <p>用 <a href="../../index.html">MermZen</a> 在线编辑 Mermaid 图表 · 无广告 · 无需登录</p>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
-  <script>
-    const EDITOR_BASE = 'https://caoergou.github.io/mermzen/';
-
-    function encodeCode(code) {
-      const bytes = new TextEncoder().encode(code);
-      const compressed = pako.deflate(bytes);
-      let binary = '';
-      for (let i = 0; i < compressed.length; i++) binary += String.fromCharCode(compressed[i]);
-      return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const MERMAID_TYPES = new Set(['graph','flowchart','sequenceDiagram','gantt','classDiagram','pie','erDiagram','stateDiagram','stateDiagram-v2','gitGraph','mindmap','timeline']);
-      document.querySelectorAll('.blog-post pre code').forEach(code => {
-        const text = code.textContent.trim();
-        const firstWord = text.split(/[\s{]/)[0];
-        if (!MERMAID_TYPES.has(firstWord)) return;
-
-        const encoded = encodeCode(text);
-        const a = document.createElement('a');
-        a.href = EDITOR_BASE + '#' + encoded;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.className = 'try-in-editor';
-        a.textContent = '在 MermZen 中试试 →';
-        code.closest('pre').insertAdjacentElement('afterend', a);
-      });
-    });
-  </script>
 </body>
 </html>
