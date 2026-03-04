@@ -147,7 +147,7 @@ async function fetchWoff2UrlFromCss(cssUrl) {
  */
 async function buildInlineFontCss() {
   if (!state.handDrawn) return '';
-  const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.virgil;
+  const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
   let fontUrl = preset.url;
   if (!fontUrl && preset.cssUrl) {
     fontUrl = await fetchWoff2UrlFromCss(preset.cssUrl);

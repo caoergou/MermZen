@@ -1,8 +1,8 @@
-// ── 手绘字体预设配置 ──────────────────────────────────────────
+// ── 手绘字体预设配置（顺序即菜单与命令面板中的显示顺序）──────────────────────────────────────────
 export const HAND_FONTS = {
+  kalam:   { label: 'Kalam',   family: "'Kalam'",   url: null, cssUrl: 'https://fonts.googleapis.com/css2?family=Kalam:wght@400&display=swap' },
   virgil:  { label: 'Virgil',  family: "'Virgil'",  url: 'https://cdn.jsdelivr.net/gh/excalidraw/virgil/Virgil.woff2', cssUrl: null },
   caveat:  { label: 'Caveat',  family: "'Caveat'",  url: null, cssUrl: 'https://fonts.googleapis.com/css2?family=Caveat:wght@400&display=swap' },
-  kalam:   { label: 'Kalam',   family: "'Kalam'",   url: null, cssUrl: 'https://fonts.googleapis.com/css2?family=Kalam:wght@400&display=swap' },
 };
 
 /**
@@ -24,7 +24,7 @@ export const state = {
   handDrawn: _hdPrefs.enabled !== false,
   handDrawnSeedMode: _hdPrefs.seedMode || 'fixed',
   handDrawnSeed: 42,
-  handDrawnFont: (_hdPrefs.font && _hdPrefs.font !== 'xiaolai' && HAND_FONTS[_hdPrefs.font]) ? _hdPrefs.font : 'virgil',
+  handDrawnFont: (_hdPrefs.font && _hdPrefs.font !== 'xiaolai' && HAND_FONTS[_hdPrefs.font]) ? _hdPrefs.font : 'kalam',
   handDrawnFontSize: _hdPrefs.fontSize || 'medium',
   renderTimeout: null,
   renderCounter: 0,
@@ -60,7 +60,7 @@ export function saveHandDrawnPrefs() {
  * 获取当前手绘字体的 CSS font-family 字符串
  */
 export function getHandDrawnFontFamily() {
-  const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.virgil;
+  const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
   return preset.family + ", 'Xiaolai SC', cursive";
 }
 
