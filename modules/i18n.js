@@ -132,6 +132,8 @@ export function applyI18n() {
     const theme = el.getAttribute('data-i18n-theme');
     el.textContent = s['theme' + theme.charAt(0).toUpperCase() + theme.slice(1)];
   });
+  const themeLabel = document.getElementById('theme-dropdown-label');
+  if (themeLabel) themeLabel.textContent = s['theme' + state.currentTheme.charAt(0).toUpperCase() + state.currentTheme.slice(1)];
 
   // 背景下拉框
   document.querySelectorAll('[data-i18n-bg]').forEach(el => {
