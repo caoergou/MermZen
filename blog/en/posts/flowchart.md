@@ -7,7 +7,7 @@ slug: flowchart
 
 # How to Draw Flowcharts in Mermaid
 
-<span class="post-meta">2026-03-04 · MermZen Tutorial</span>
+<span class="post-meta">2026-03-04 · MermZen Tutorial
 
 Flowcharts visualize process steps and decision paths, making them ideal for user flows, approval processes, or algorithm descriptions. Mermaid uses either `graph` or `flowchart` keywords for flow diagrams.
 
@@ -16,6 +16,7 @@ Flowcharts visualize process steps and decision paths, making them ideal for use
 ```
 graph TD
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHEBAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 Direction parameters:
 
@@ -38,6 +39,7 @@ graph TD
     F[[Subroutine]]
     G[(Database)]
 ```
+<a href="https://caoergou.github.io/mermzen/#JYwxDsIwDEV3TuHRmTgDNMDeslkZ3MYqltKkSpMJcXeq5G_vPemvmfcPvO0Fzt1olKVwXIO4Ju44phq9eMhnMM0NX6u8peh_DS3ioHkJYnp-IE2FvdYNrrBrCK77J9FU55xq0Siu378ILRee-RDj_g" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | Syntax | Shape | Usage |
 |--------|-------|-------|
@@ -58,6 +60,7 @@ graph LR
     A --label--> F
     A -->|label| G
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQ8AniUgACRwVdXTsFJzhbV8EZxtYDSrhAOba2dgqucEU5iUmpOSB9bggzasCCNQruAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | Syntax | Meaning |
 |--------|---------|
@@ -79,6 +82,7 @@ graph TD
     end
     B --> C
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHHhUgCC4tKkdDDfrSg_ryQ1LwUsCgKO0aGeCj6JlalFsQq6unYKTtFhiTmZKYklmfl5sWBVMNVwM5wSk7ORjXCOdgzwhOh2iXZJLElMSixORdXrBJZ1BgA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## Full Example: User Login Flow
 
@@ -97,6 +101,7 @@ graph TD
     I --> J[Redirect to dashboard]
     J --> K([End])
 ```
+<a href="https://caoergou.github.io/mermzen/#TY5LTsMwEIb3nGKW7aISUvegpnmQghAiZYGsLIw9baymNpoxFCnhAByEi3ESXCeCzGo08_2PPcnXBrbpBYRZzUTlJfl6DovFFSTiiZEArUdiUIQ6rEa2XEc6idC6Wynl3qwH_DDs-fozPtfnZ3_vekhF1bgTIJGjQZgO7hPuGbmHrHuQzCdHGt5la_TolP055aK0ocUxtICdNC3E3MEzj55Fl4c7w8_XNyxHffGfcCPunDqAHAsvL-FobD2hzinJJDWqSlGgRZIeoUJm4yxs3QFHYRmDN-IRtSFUHrwDLbl5cZL0gGwicjsTmdX1_Bc" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ---
 

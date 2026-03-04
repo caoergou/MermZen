@@ -1,15 +1,8 @@
----
-title: 如何用 Mermaid 画甘特图
-description: 完整的 Mermaid 甘特图教程，涵盖任务声明、日期格式、依赖关系、关键路径、里程碑语法，附完整项目计划示例。
-date: 2026-03-04
-slug: gantt
----
 
-<div class="lang zh">
 
 # 如何用 Mermaid 画甘特图
 
-<span class="post-meta">2026-03-04 · MermZen 教程</span>
+<span class="post-meta">2026-03-04 · MermZen 教程
 
 甘特图（Gantt Chart）以横向条形展示项目任务的时间安排，直观呈现任务的开始时间、持续时长和相互依赖关系。适合项目管理、迭代排期、发布计划等场景。
 
@@ -24,6 +17,7 @@ gantt
     section 第一阶段
     任务名称 : 2026-03-01, 5d
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCCksySnFSFZx0Tn89qeblw5_PZ616sW_i0YxJYMiWxJNUtvyg3sUQhEgh0fX11XVzAMsWpySWZ-XkKz9esebKj4eWMbc_WbQVLPNm9-2nXwqcTep8v36BgpWBkYGSma2Csa2Coo2CaAgA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 - `title` — 图表标题（可选）
 - `dateFormat` — 日期格式，**必须与任务日期格式一致**
@@ -51,6 +45,7 @@ gantt
     需求分析 : 2026-03-01, 3d
     UI 设计  : 2026-03-04, 5d
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLFKcml2Tm5yk83dPwtH8iWOjlnIZnG5uedrQ9mzdBwUrByMDITNfAWNfAUEfBOAWsItRT4cW6fS_WLVRAljfRUTBNAQA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 持续时长单位：`d`（天）、`w`（周）、`h`（小时）
 
@@ -64,6 +59,7 @@ gantt
     前端开发  : after be, 5d
     联调测试  : after 前端开发, 3d
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLFKcml2Tm5yk83dPwtH8iWOjphL7nq9dDBBQUrBSSUnUUjAyMzHQNjHUNDHUUzFMgyjp7UZQlppWkFoEVm0IUvGic8mJD87Ot3S_WT0UoQNamo2CcAgA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 `after 任务名` 表示在指定任务完成后才开始，实现依赖链。给任务指定 ID（如 `be`），方便其他任务引用。
 
@@ -79,6 +75,7 @@ gantt
     关键路径    : crit,   2026-03-09, 3d
     关键且进行中: crit, active, 2026-03-09, 3d
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLFKcml2Tm5ym82D_76a5lYKGn2zc9XdfzrGPCk927n3YtVFCwUkjJz0vVAUoZGRiZ6RoY6xoY6igYp4BVAzW-WNjzZMdahOpEoJFlQPVw1SY6CqYQ1c9mrnvZMOvpvtanXfNAfCsFGIArttRRMIEoftq6-eWUdS-2r3-6rwWiOLkos0QHTbExsuInO6bAHQRTjuEcsCYA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | 状态标记 | 视觉效果 |
 |---------|---------|
@@ -97,6 +94,7 @@ gantt
     开发完成    : milestone, m1, 2026-03-15, 0d
     上线发布    : milestone, m2, 2026-03-20, 0d
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLFKcml2Tm5yk87Z_4dEczWOjpngYQb13Ps44JIL6VQm5mTmpxSX5eqo5CrqGOgpGBkZmugbGuoamOgkEKWM-THV3Pd-2HGIKpxwihx8gApAcA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 里程碑用 `0d` 持续时间表示一个时间点，而非时间段。
 
@@ -108,6 +106,7 @@ gantt
     excludes weekends
     excludes 2026-04-04, 2026-04-05
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLpFYk55SmpBYrlKemZqfmpRSjihoZGJnpGpgAkQ6CbQoA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 `excludes weekends` 自动排除周六周日，也可以指定具体假期日期。
 
@@ -134,6 +133,7 @@ gantt
     性能检查        : crit,           after test, 1d
     正式上线        : milestone,      after 性能检查, 0d
 ```
+<a href="https://caoergou.github.io/mermzen/#hZHNTsJAEMfvPMU8QGtKMRy8GYkJB44e9NbQ1TSWou2CHhsVNBAgmkiiURGJ0cRY4sEEDcjLsG15C5ediggH57Kbmfn952tHsyiNATdqUJNAhti5LWIBq10z74FVWuHxAIrxJQVCr83OLkSqrlGynrdzGoVNbnImI6dSIkIOs2ZBJw4cELJLLN2JCbdDstTIWzC-cf23o1GvHnpfXE_E0Bd2T5jXhshWQM9bROI_m-xPHlAVNSkrCVmJS6DqAtxIA6u32F0VxebAgiE40LYpsSOZBIKYP18xZ5jEoRE9BVFG0f_Owfoua5wLFy7Kf277t0N0o5zGM4tci-6Z0rzcMvbhN0-Dl3tWLjHvI-g3WfkK0R_TbLqAJhFdFX04sJaGcakWDLwZLPtncqyvzg3gv1fD7iU_xKhXCT6HOIk4NkZ-15K1DdEF5cuRpqpYI9qn7z5NwI7rtx4Xwek02I6QiUfga4f1G9jCf4eYLSLxg3wD" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## 速查表
 
@@ -156,13 +156,13 @@ gantt
 
 了解甘特图后，继续学习 [Mermaid 类图](class.html)，用于描述面向对象的系统结构。
 
-</div>
 
-<div class="lang en">
+
+
 
 # Mermaid Gantt Chart Tutorial
 
-<span class="post-meta">2026-03-04 · MermZen Tutorials</span>
+<span class="post-meta">2026-03-04 · MermZen Tutorials
 
 A Gantt chart visualizes project tasks as horizontal bars showing their start time, duration, and dependencies. It's ideal for project management, sprint planning, and release scheduling.
 
@@ -177,6 +177,7 @@ gantt
     section Phase 1
     Task name : 2026-03-01, 5d
 ```
+<a href="https://caoergou.github.io/mermzen/#HYo7DoAgEAV7T_EOIAlitLA2diQUNpYb3fiHBLbx9hKmnJmdvEiFjJzyMOwHF8PFq8A95EvZSHgK8SXBklHWqnEsJeXvDB7uoMRoipsp3fD0MgYYbXqlW6WbGt32Aw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 - `title` — Chart title (optional)
 - `dateFormat` — Date format; **must match the dates used in tasks**
@@ -204,6 +205,7 @@ gantt
     Requirements : 2026-03-01, 3d
     UI Design    : 2026-03-04, 5d
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLFKcml2Tm5ym4pJal5uQX5KbmQXQEpRaWZhalgvjFClYKRgZGZroGxroGhjoKxilgFaGeQE3Fmel5IA6SChMdBdMUAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 Duration units: `d` (days), `w` (weeks), `h` (hours)
 
@@ -217,6 +219,7 @@ gantt
     Frontend : after be, 5d
     QA       : after Frontend, 3d
 ```
+<a href="https://caoergou.github.io/mermzen/#NYvBDoIwEAXvfsX7gDYpECXhhmm4ceDocaWLMcrW1I3fD7ZhrjPzIFE9YSeQ8hDTSorbjh1H6302X571GQWef_yOn5WlHFeaXywB6HBng9rVF-sa6yqDNuRiSFH0n3SgRTnl7lzc1KNwuCM2aMIG" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 `after taskId` starts a task immediately after another finishes. Assign an ID (e.g., `be`) so other tasks can reference it.
 
@@ -232,6 +235,7 @@ gantt
     Critical    : crit,          2026-03-09, 3d
     Crit+active : crit, active,  2026-03-09, 3d
 ```
+<a href="https://caoergou.github.io/mermzen/#bc7BCsMgDAbg-54i9yl0tRus15bCDoXBTjuKBhFaLZrt-ScKlo39J2O-hBjpiA6QoiXh5MMqCZ4pfJ75OOZOREXWO3iQpFfMX4NftwUJdXr3oL1DBjVt0154I3hzYiB09jcHW_AmYIzJy7TvvU9U3zE4F39Hp60zud3DT6q_MuiKH4Ilq-RSvEoV--_F7o_ljOrrVd_-Aw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | Marker | Visual style |
 |--------|-------------|
@@ -250,6 +254,7 @@ gantt
     Dev Complete : milestone, m1, 2026-03-15, 0d
     Go Live      : milestone, m2, 2026-03-20, 0d
 ```
+<a href="https://caoergou.github.io/mermzen/#VcuxCsIwFIXh3ac4D5BAGqmDq0GXdnHrGOxBAkmumEuf35pF_Mdz-J6xqh6wt0blVd4lKpY9O882hP40PjRJxZ2ZsbFvgRsuUl6ZSpxRUmZTqTQog4F3_mTd0Q6jgVs7uAmmtBG9f-B_wLsv-AA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 Use `0d` duration to mark a point in time rather than a span.
 
@@ -261,6 +266,7 @@ gantt
     excludes weekends
     excludes 2026-04-04, 2026-04-05
 ```
+<a href="https://caoergou.github.io/mermzen/#S0_MKynhUgCClMSSVLf8otzEEoVIIND19dV1cQHLpFYk55SmpBYrlKemZqfmpRSjihoZGJnpGpgAkQ6CbQoA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 `excludes weekends` skips Saturdays and Sundays automatically. You can also list specific holidays.
 
@@ -287,6 +293,7 @@ gantt
     Performance check   : crit,          after test, 1d
     Production launch   : milestone,     after 性能检查, 0d
 ```
+<a href="https://caoergou.github.io/mermzen/#dZKxTsMwEIZ3nuImpgSlKerQrVBVqkQlQDDAZtmX1Kpjp_Ylha0SD8KAEE_B61Q8Bo6TAI3EDY505--__87JmSY6AR8kSSGs0BaPqOFCmRwWyKiyCPXoLAl3BCNcGFswggcf8WoVz-ehgk9cVQId7BA3qIU7CWmHnKTRMEcncx1St7itpMUCNTmwWEvcwRSE0Rj5qsVt80mTdBIn4zgZRZCKwN0vobSGDD2XUucQ4perZHMCywhtJzJuubY1NEdssqzjCqnQUQf3XCuSiKH3GpUpG8MhH1ZDWJTKbwME1kGQ-cu1V6NSRQPB89bIzJLkfsU7K6mfYAp9MEtDbtJxwYaDy6W3RFV5zPG_g7fN08EAd37SpuEpXLFK83Uo3sz8DO7HSOeGe2-NXlOKetW2RbfOa7RZ8wdojsDXyDdHXD9M6yaIjDrOGlG1flRw8f8zHPYfXy-fh7f94fU98s_xDQ" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## Quick Reference
 
@@ -309,7 +316,7 @@ gantt
 
 After Gantt charts, learn [Mermaid Class Diagrams](class.html) to describe object-oriented system structures.
 
-</div>
+
 
 ---
 

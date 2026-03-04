@@ -1,15 +1,8 @@
----
-title: 如何用 Mermaid 画流程图
-description: 完整的 Mermaid 流程图教程，包含节点形状、连线类型、条件判断、子图等语法详解，附开箱即用示例。
-date: 2026-03-04
-slug: flowchart
----
 
-<div class="lang zh">
 
 # 如何用 Mermaid 画流程图
 
-<span class="post-meta">2026-03-04 · MermZen 教程</span>
+<span class="post-meta">2026-03-04 · MermZen 教程
 
 流程图用于描述一个过程的步骤与决策路径，适合展示用户操作流程、业务审批逻辑、算法流程等场景。Mermaid 使用 `graph` 或 `flowchart` 关键字声明流程图，纯文本书写，无需绘图工具。
 
@@ -20,6 +13,7 @@ slug: flowchart
 ```
 graph TD
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHEBAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | 方向参数 | 含义 | 效果 |
 |---------|------|------|
@@ -43,6 +37,7 @@ graph TD
     G[(数据库)]
     H>标注旗帜]
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHHhUgACx-hn03Y-W9gWC-Y5aTyd0_Zi-SSImCZYzLn6Rf_Gp3sX1YJ5LhogJUCuJkTWVSP62ZK1QKFYCN8tOvrp2gnPV3Q_3dUPMhZirnu0xrOpG571rnu6a7ImRMjD7tmC9mebVzybPv3pjjmxAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | 语法 | 形状 | 典型用途 |
 |------|------|---------|
@@ -67,6 +62,7 @@ graph LR
     A --文字--> F
     A -->|标签| G
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQ8AniUgACRwVdXTsFJzhbV8EZxtYDSrhAOba2dgqucEXPprU_XTsdpNENYUjNswXtz9fuq1FwBwA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | 语法 | 含义 |
 |------|------|
@@ -93,6 +89,7 @@ graph TD
     end
     B --> C
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHHhUgCC4tKkdDD_aWfv89XrwWIg4Bj9fMqKZx3bn0_teTl3UayCrq6dglP0i4UrnvZOfbmq58X6xliw2tS8FDRzJvQhm-Mc7RjgqfB878SnrZshprhEP5u64Vnvuqe7JqMa4QSWdgYA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## 完整示例：用户登录流程
 
@@ -111,6 +108,7 @@ graph TD
     I --> J[跳转首页]
     J --> K([结束])
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHHhUgACR43op3sani7vjtVU0NW1U3CKfj5lxbOO7S_2TX7auvTFlmVP-7cr6Cs8Xd_2fEFjLFiLE1ihczVE8tmM9U8nLHu6dsbTOSvsa8EKnEEKaoCiNQou0c_6Jzxfsgui9smOXohCiEEuEBuR9AANq1FwrYbYBjH52drFzxeug5rsijDZLfrFug1P9059umTjiy1Ln61Z-GzqBoixbmBj3auRZRQedS5VMIaa4o6wyyP65ZTGp-tmQT1qbKDwtKPt5aT5sUgKwdY5IdkP1ukJDKj5zzomKASnFhdn5ucphORnp-ZB9HmCXeAV_WL75hd717xcNu3lwq0QGS-wjLdG9PPdk5_NnR-rCQA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## 速查表
 
@@ -131,13 +129,13 @@ graph TD
 
 掌握流程图后，继续学习 [Mermaid 时序图](sequence.html)，用于描述系统之间的交互顺序。
 
-</div>
 
-<div class="lang en">
+
+
 
 # Mermaid Flowchart Tutorial
 
-<span class="post-meta">2026-03-04 · MermZen Tutorials</span>
+<span class="post-meta">2026-03-04 · MermZen Tutorials
 
 Flowcharts describe the steps and decision paths of a process — perfect for user journeys, approval workflows, and algorithm logic. Mermaid uses the `graph` or `flowchart` keyword to declare a flowchart in plain text, no drawing tools required.
 
@@ -148,6 +146,7 @@ Use `graph` or `flowchart` followed by a direction parameter:
 ```
 graph TD
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHEBAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | Direction | Meaning | Best for |
 |-----------|---------|---------|
@@ -170,6 +169,7 @@ graph TD
     F[[Subroutine]]
     G[(Database)]
 ```
+<a href="https://caoergou.github.io/mermzen/#JYwxDsIwDEV3TuHRmTgDNMDeslkZ3MYqltKkSpMJcXeq5G_vPemvmfcPvO0Fzt1olKVwXIO4Ju44phq9eMhnMM0NX6u8peh_DS3ioHkJYnp-IE2FvdYNrrBrCK77J9FU55xq0Siu378ILRee-RDj_g" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | Syntax | Shape | Typical use |
 |--------|-------|------------|
@@ -194,6 +194,7 @@ graph LR
     A --label--> F
     A -->|label| G
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQ8AniUgACRwVdXTsFJzhbV8EZxtYDSrhAOba2dgqucEU5iUmpOSB9bggzasCCNQruAA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 | Syntax | Meaning |
 |--------|---------|
@@ -220,6 +221,7 @@ graph TD
     end
     B --> C
 ```
+<a href="https://caoergou.github.io/mermzen/#Sy9KLMhQCHHhUgCC4tKkdDDfrSg_ryQ1LwUsCgKO0aGeCj6JlalFsQq6unYKTtFu-UW5CmGJOZkpiSWZ-XmxYKUwLXCDnBKTs5HNcY52DPBUcE8sSS1PrIQY5RLtkliSmJRYnIpqhhNY1hkA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## Full Example: User Login Flow
 
@@ -238,6 +240,7 @@ graph TD
     I --> J[Redirect to dashboard]
     J --> K([End])
 ```
+<a href="https://caoergou.github.io/mermzen/#TY9NT8MwDIbv_Aoft8MkpJ0ZWtcPOhBCdBxQ1EOWmDXamiA7aEgt_500raA-RfbzfuRE8rOBQ3oDYbYLUXlJvl7CarWBRLwxEqD1SAyKUIenkReuI51EaNdtlXJf1gN-G_Z8_xOPu-HYP7seUlE17gpI5AhaZJYnHA3SMWXGvyP3kHUvkvnqSINyRKj85Jn9eeaitKFPG_rAhzQXiA1G1zy6Fl0e9gybO1hP8uI_4kE8OXUGOTVf30JrbD2jhpBkFhpVpSjQIkmPUIV_GGfh4M44CcuYuxevqM1QGrwDLbk5Okl6RPYReVyIzOp6-Qs" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## Quick Reference
 
@@ -258,7 +261,7 @@ graph TD
 
 After flowcharts, learn [Mermaid Sequence Diagrams](sequence.html) to visualize interactions between systems over time.
 
-</div>
+
 
 ---
 
