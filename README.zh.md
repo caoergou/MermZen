@@ -4,11 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/caoergou/mermzen)](https://github.com/caoergou/mermzen/stargazers)
 
-**MermZen** 是一个简洁无广告的 Mermaid 图表编辑器，专注于提供纯粹的创作体验。名称源于 **Mermaid**（图表语法）和 **Zen**（禅意）的结合，象征着简单、专注的设计理念。
+**MermZen** 是简洁无广告的在线 Mermaid 图表编辑器，名称取自 **Mermaid**（图表语法）与 **Zen**（专注），无需登录、无需安装，打开即用。
 
-无广告、界面简洁的在线 Mermaid 图表编辑器，无需安装，打开即用。
-
-**在线体验：[MermZen](https://eric.run.place/mermzen/)**
+**在线体验：[MermZen](https://eric.run.place/MermZen/)**
 
 [English](README.md)
 
@@ -34,7 +32,7 @@
 
 | 操作 | 快捷键 |
 | --- | --- |
-| 保存图表（选择格式）| `Ctrl+S` |
+| 保存（选格式） | `Ctrl+S` |
 | 复制 PNG | `Ctrl+Shift+C` |
 | 格式化代码 | `Ctrl+Shift+F` |
 | 命令面板 | `Ctrl+K` |
@@ -43,11 +41,11 @@
 
 ## 本地运行
 
-无需安装 Node.js 或任何包管理器：
+无需构建与包管理器，用静态服务器即可：
 
 ```bash
 python3 -m http.server
 # 访问 http://localhost:8000
 ```
 
-也可以直接在浏览器中打开 `index.html`。
+或直接在浏览器中打开 `index.html`。
