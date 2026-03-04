@@ -143,10 +143,9 @@ async function fetchWoff2UrlFromCss(cssUrl) {
 }
 
 /**
- * 构建内联字体 CSS
+ * 构建内联字体 CSS（英文手绘字体）
  */
 async function buildInlineFontCss() {
-  if (!state.handDrawn) return '';
   const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
   let fontUrl = preset.url;
   if (!fontUrl && preset.cssUrl) {
@@ -176,9 +175,9 @@ export async function inlineFontsIntoSvg(svgEl) {
     s.textContent = s.textContent.replace(/url\(['"]?(https?:\/\/[^'")]+)['"]?\)/g, '');
   }
 
-  // 并行构建：手绘字体（条件性） + 小赖 CJK 字体（始终检测）
+  // 并行构建：手绘字体（始终嵌入以支持 SVG） + 小赖 CJK 字体（始终检测）
   const [fontCss, xiaolaiCss] = await Promise.all([
-    state.handDrawn ? buildInlineFontCss() : Promise.resolve(''),
+    buildInlineFontCss(),
     buildXiaolaiCssForSvg(svgEl),
   ]);
 
@@ -219,7 +218,7 @@ export async function inlineFontsIntoSvg(svgEl) {
  * @param {number} scale - 缩放比例
  */
 export function svgToPngBlob(svgEl, scale) {
-  scale = scale || 4;
+  scale = scale || 6;
   return new Promise((resolve, reject) => {
     inlineFontsIntoSvg(svgEl).then(cloned => {
       const images = cloned.querySelectorAll('image');
@@ -255,7 +254,9 @@ export function svgToPngBlob(svgEl, scale) {
         const canvas = document.createElement('canvas');
         canvas.width = width * scale;
         canvas.height = height * scale;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { willReadFrequently: false, alpha: bg === 'transparent' });
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
         const bg = getExportBgColor();
         if (bg !== 'transparent') {
           ctx.fillStyle = bg;
@@ -264,22 +265,9 @@ export function svgToPngBlob(svgEl, scale) {
         ctx.scale(scale, scale);
         ctx.drawImage(img, 0, 0, width, height);
         URL.revokeObjectURL(url);
-        try {
-          canvas.toBlob(blob => {
-            blob ? resolve(blob) : reject(new Error('Canvas toBlob failed'));
-          }, 'image/png');
-        } catch (e) {
-          console.warn('Canvas toBlob failed (tainted), using fallback');
-          try {
-            const dataURL = canvas.toDataURL('image/png');
-            const byteString = atob(dataURL.split(',')[1]);
-            const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-            const ab = new ArrayBuffer(byteString.length);
-            const ia = new Uint8Array(ab);
-            for (let j = 0; j < byteString.length; j++) ia[j] = byteString.charCodeAt(j);
-            resolve(new Blob([ab], { type: mimeString }));
-          } catch (fallbackErr) { reject(fallbackErr); }
-        }
+        canvas.toBlob(blob => {
+          blob ? resolve(blob) : reject(new Error('Canvas toBlob failed'));
+        }, 'image/png');
       };
       img.onerror = e => { URL.revokeObjectURL(url); console.error('Image load error', e); reject(new Error('Failed to load SVG')); };
       img.src = url;
