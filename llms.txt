@@ -2,27 +2,46 @@
 
 Clean, ad-free online Mermaid diagram editor. No backend, no login, no ads.
 
-URL: https://caoergou.github.io/mermzen/
+URL: https://eric.run.place/MermZen/
 
 ## Opening a diagram via URL
 
-Base64-encode the Mermaid code and pass it as a `?code=` query parameter:
+Encode the Mermaid code as **pako deflate + base64** (URL-safe: `+`→`-`, `/`→`_`, strip `=` padding). Pass it as `?code=` or as the hash (fragment):
 
 ```
-https://caoergou.github.io/mermzen/?code={base64(mermaid_code)}
+https://eric.run.place/MermZen/?code={encoded}
+https://eric.run.place/MermZen/#{encoded}
 ```
+
+### Encoding format
+
+1. UTF-8 bytes of the Mermaid source
+2. Compress with deflate (e.g. pako.deflate / zlib.deflate)
+3. Base64-encode the compressed bytes, then make URL-safe: replace `+` with `-`, `/` with `_`, and remove trailing `=`
 
 ### Encoding examples
 
-JavaScript:
+JavaScript (browser, with pako):
 ```js
-const url = `https://caoergou.github.io/mermzen/?code=${btoa(unescape(encodeURIComponent(code)))}`;
+const bytes = new TextEncoder().encode(code);
+const compressed = pako.deflate(bytes);
+let binary = '';
+for (let i = 0; i < compressed.length; i++) binary += String.fromCharCode(compressed[i]);
+const encoded = btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const url = `https://eric.run.place/MermZen/?code=${encoded}`;
 ```
 
-Python:
+Python (zlib format matches pako.deflate):
 ```python
+import zlib
 import base64
-url = "https://caoergou.github.io/mermzen/?code=" + base64.b64encode(code.encode()).decode()
+
+def encode_code(code: str) -> str:
+    raw = code.encode('utf-8')
+    compressed = zlib.compress(raw)
+    b64 = base64.b64encode(compressed).decode()
+    return b64.replace('+', '-').replace('/', '_').rstrip('=')
+url = "https://eric.run.place/MermZen/?code=" + encode_code(mermaid_code)
 ```
 
 ## Supported diagram types
