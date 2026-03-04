@@ -8,7 +8,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/caoergou/mermzen)](https://github.com/caoergou/mermzen/stargazers)
 
-**MermZen** is a clean, ad-free Mermaid diagram editor — no login, no build, no distractions. The name combines **Mermaid** (the diagram syntax) and **Zen** (simplicity), representing a focus on a pure, focused creation experience.
+**MermZen** is a clean, lightweight Mermaid diagram editor. Open it, write syntax, see your diagram — that's the whole experience. No setup, no friction, just the diagram.
+
+The name blends **Mermaid** (the diagram syntax) and **Zen** (simplicity). Design and lightness are the point.
 
 **Live demo: [MermZen](https://eric.run.place/MermZen/)**
 
@@ -16,19 +18,42 @@
 
 ---
 
+## Why MermZen
+
+Mermaid's official live editor handles quick sketches, but falls short when you need a real editing environment — proper syntax feedback, keyboard-driven workflow, theme control, or a way to share diagrams without hosting anything.
+
+MermZen fills that gap: a CodeMirror 6 editor with Mermaid-aware syntax highlighting, inline error hints with line numbers, and a full keyboard shortcut system. Diagrams are encoded directly in the URL hash, so sharing requires no backend, no account, and no expiring links — just copy the URL.
+
+The entire application is plain HTML + CSS + JS, served as static files. No build pipeline, no framework, no deployment complexity. Fork it, host it anywhere, or run it locally with a single command.
+
+---
+
 ## Features
 
-- Live preview with 300ms debounce
+**Editor**
+- CodeMirror 6 with Mermaid syntax highlighting and autocomplete
+- Inline error display pinpointed to the exact line
+- Code formatter and command palette (`Ctrl+K`)
+- Full keyboard shortcut system
+
+**Preview**
+- Live rendering as you type (300ms debounce)
 - 11 diagram types: flowchart, sequence, class, Gantt, pie, mindmap, ER, state, architecture, gitGraph, block-beta
-- Export SVG / PNG (PNG at 2x resolution)
-- Copy PNG image to clipboard
-- Shareable URL (diagram encoded in hash)
-- Hand-drawn style mode
+- Pan, zoom, and checkerboard background for transparent diagrams
+- Right-click context menu for quick export
+
+**Output**
+- Export SVG or PNG (PNG rendered at 2× resolution)
+- Copy PNG directly to clipboard
+- Shareable URL — diagram state encoded in the URL hash, no server needed
+
+**Appearance**
+- Hand-drawn style mode (with Chinese handwriting font support)
 - 5 Mermaid themes + dark / light UI toggle
-- Pan, zoom, and checkerboard background in preview
-- Inline syntax error with line number hint
-- Built-in example templates and interactive tour
-- Right-click context menu on preview: quick download or copy PNG/SVG
+
+**Onboarding**
+- Built-in example templates
+- Interactive tour for first-time users
 
 ---
 
