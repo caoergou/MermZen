@@ -7,6 +7,33 @@ import { getCode, clearDiagnostics, pushDiagnosticFromError, scrollToLine } from
 // ── Mermaid 初始化 ──────────────────────────────────────────
 const NORMAL_FONT = "system-ui, -apple-system, sans-serif";
 
+// 已注入过的手绘字体 key 集合，避免重复插入 DOM
+const _injectedFonts = new Set(['kalam']); // kalam 已在 HTML 中全局预加载
+
+/**
+ * 按需懒加载手绘字体（Caveat / Virgil）。
+ * Kalam 和小赖在页面初始化时已全局预加载，无需处理。
+ */
+function ensureHandDrawnFont(fontKey) {
+  if (_injectedFonts.has(fontKey)) return;
+  const preset = HAND_FONTS[fontKey];
+  if (!preset) return;
+
+  if (preset.url) {
+    // woff2 直链（Virgil）：注入 @font-face
+    const style = document.createElement('style');
+    style.textContent = `@font-face{font-family:'${preset.label}';src:url('${preset.url}')format('woff2');font-display:swap;}`;
+    document.head.appendChild(style);
+  } else if (preset.cssUrl) {
+    // Google Fonts CSS（Caveat 等）：注入 <link>
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = preset.cssUrl;
+    document.head.appendChild(link);
+  }
+  _injectedFonts.add(fontKey);
+}
+
 /**
  * 初始化 Mermaid 配置
  */
@@ -73,6 +100,7 @@ export async function renderDiagram() {
   if (state.handDrawn && !noHandDrawn) {
     document.documentElement.style.setProperty('--mermaid-font', hdFont);
     const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
+    ensureHandDrawnFont(state.handDrawnFont);
     try { await document.fonts.load('16px ' + (preset.label === 'Virgil' ? 'Virgil' : preset.label)); } catch (e) {}
     try { await document.fonts.load('16px "Xiaolai SC"'); } catch (e) {}
   } else {

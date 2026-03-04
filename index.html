@@ -20,15 +20,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=LXGW+WenKai+TC&family=Caveat:wght@400;700&family=Kalam:wght@400;700&display=swap">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" as="script">
+  <link rel="preconnect" href="https://esm.sh">
+  <!-- 优先加载 UI 字体和默认手绘字体 Kalam，Caveat/Virgil/LXGW 按需懒加载 -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Kalam:wght@400;700&display=swap">
+  <!-- 小赖（中文手绘字体）优先加载 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css">
-  <style>
-    @font-face {
-      font-family: 'Virgil';
-      src: url('https://cdn.jsdelivr.net/gh/excalidraw/virgil/Virgil.woff2') format('woff2');
-      font-display: swap;
-    }
-  </style>
   <link rel="stylesheet" href="style.css">
   <script type="importmap">
   {
@@ -383,8 +381,8 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
   <script type="module" src="app.js"></script>
 </body>
 </html>
