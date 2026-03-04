@@ -105,10 +105,22 @@ def embed_font(svg_path: str) -> bool:
         '\n}'
     )
 
-    # 把 @font-face 插在 mermaid-svg 样式前，并把 NotoSansCJK 加到 font-family 列表首位
+    # 先把 NotoSansCJK 插入已有 font-family（sans-serif 之前），再插入 @font-face
+    # 用 ,sans-serif 为锚点，避免误匹配 @font-face 内部的 font-family 声明
+    def inject_before_sansserif(m):
+        full = m.group(0)
+        if 'NotoSansCJK' in full:
+            return full
+        return m.group(1) + ',"NotoSansCJK",sans-serif' + m.group(2)
+
+    svg_content = re.sub(
+        r'(font-family:[^;{}]*?),\s*sans-serif\b([\s;{}])',
+        inject_before_sansserif,
+        svg_content,
+    )
     svg_content = svg_content.replace(
         '#mermaid-svg{font-family:',
-        font_face + '\n#mermaid-svg{font-family:"NotoSansCJK",',
+        font_face + '\n#mermaid-svg{font-family:',
         1,
     )
 

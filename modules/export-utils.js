@@ -162,6 +162,9 @@ async function buildInlineFontCss() {
 
 /**
  * 将字体内联到 SVG 中
+ * - 手绘预设字体（Kalam 等）：仅在 handDrawn 模式下嵌入
+ * - 小赖字体（CJK）：只要 SVG 含有中文字符，始终按 unicode-range 分片嵌入，
+ *   并将 "Xiaolai SC" 注入 font-family，确保字符能被正确渲染
  */
 export async function inlineFontsIntoSvg(svgEl) {
   const clone = svgEl.cloneNode(true);
@@ -173,19 +176,38 @@ export async function inlineFontsIntoSvg(svgEl) {
     s.textContent = s.textContent.replace(/url\(['"]?(https?:\/\/[^'")]+)['"]?\)/g, '');
   }
 
-  if (state.handDrawn) {
-    // 并行嵌入手绘预设字体和小赖字体（中文）
-    const [fontCss, xiaolaiCss] = await Promise.all([
-      buildInlineFontCss(),
-      buildXiaolaiCssForSvg(svgEl),
-    ]);
-    const combinedCss = [fontCss, xiaolaiCss].filter(Boolean).join('\n');
-    if (combinedCss) {
-      const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
-      styleEl.textContent = combinedCss;
-      clone.insertBefore(styleEl, clone.firstChild);
+  // 并行构建：手绘字体（条件性） + 小赖 CJK 字体（始终检测）
+  const [fontCss, xiaolaiCss] = await Promise.all([
+    state.handDrawn ? buildInlineFontCss() : Promise.resolve(''),
+    buildXiaolaiCssForSvg(svgEl),
+  ]);
+
+  const combinedCss = [fontCss, xiaolaiCss].filter(Boolean).join('\n');
+  if (combinedCss) {
+    const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    styleEl.textContent = combinedCss;
+    clone.insertBefore(styleEl, clone.firstChild);
+  }
+
+  // 如果嵌入了小赖字体，将其注入到 SVG 所有 font-family 声明中
+  // 放在英文字体之后、sans-serif 之前，使 CJK 字符自动 fallback 到它
+  if (xiaolaiCss) {
+    for (const s of clone.querySelectorAll('style')) {
+      s.textContent = s.textContent.replace(
+        /font-family:([^;}"]+)/g,
+        (match, families) => {
+          if (families.includes('Xiaolai')) return match; // 避免重复
+          const updated = families.trimEnd().replace(
+            /,?\s*sans-serif\b/,
+            ',"Xiaolai SC",sans-serif',
+          );
+          // 若没有 sans-serif，直接追加
+          return 'font-family:' + (updated.includes('Xiaolai') ? updated : families.trimEnd() + ',"Xiaolai SC"');
+        },
+      );
     }
   }
+
   return clone;
 }
 

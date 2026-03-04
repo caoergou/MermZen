@@ -197,13 +197,15 @@ async function generateSVGs() {
   if (!fs.existsSync(ASSETS_DIR)) fs.mkdirSync(ASSETS_DIR, { recursive: true });
 
   const browser = await chromium.launch();
-  const page = await browser.newPage();
-  await page.setViewportSize({ width: 1400, height: 900 });
 
   const allDiagrams = [...ZH_DIAGRAMS, ...EN_DIAGRAMS];
 
   for (const { name, code, embedFont } of allDiagrams) {
     console.log(`\nRendering ${name}...`);
+
+    // 每个图表使用独立 page，避免同域哈希跳转不重载页面的问题
+    const page = await browser.newPage();
+    await page.setViewportSize({ width: 1400, height: 900 });
 
     const encoded = encodeForEmbed(code);
     const url = `${BASE_URL}/embed.html#${encoded}`;
@@ -215,6 +217,7 @@ async function generateSVGs() {
       await page.waitForTimeout(800);
     } catch {
       console.error(`  ✗ Timeout waiting for SVG: ${name}`);
+      await page.close();
       continue;
     }
 
@@ -228,12 +231,14 @@ async function generateSVGs() {
 
     if (!svgContent) {
       console.error(`  ✗ No SVG found for ${name}`);
+      await page.close();
       continue;
     }
 
     const outPath = path.join(ASSETS_DIR, `${name}.svg`);
     fs.writeFileSync(outPath, svgContent, 'utf-8');
     console.log(`  ✓ Saved ${name}.svg`);
+    await page.close();
 
     if (embedFont) {
       embedCjkFont(outPath);
