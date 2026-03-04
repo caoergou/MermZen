@@ -16,8 +16,7 @@
   <meta property="og:description" content="MermZen — Clean, ad-free Mermaid editor. Live preview, one-click PNG/SVG export, hand-drawn style. No login, no build, no ads.">
   <meta property="og:url" content="https://eric.run.place/MermZen/">
 
-  <!-- Favicon: Mermaid-style graph icon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23333'/><circle cx='16' cy='7' r='3' fill='%2300b4d8'/><circle cx='7' cy='25' r='3' fill='%2300b4d8'/><circle cx='25' cy='25' r='3' fill='%2300b4d8'/><line x1='16' y1='10' x2='7' y2='22' stroke='%2300b4d8' stroke-width='2'/><line x1='16' y1='10' x2='25' y2='22' stroke='%2300b4d8' stroke-width='2'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,8 +53,8 @@
 <body>
   <header class="toolbar">
     <h1 class="toolbar__title">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>
-      MermZen
+      <img src="logo.svg" alt="" class="toolbar__logo">
+      <span class="toolbar__title-text">MermZen</span>
     </h1>
 
     <select id="theme-select" style="display:none">
@@ -136,12 +135,12 @@
       <div class="menubar__item" data-menu="help">
         <button class="menubar__trigger">帮助<span class="menubar__hotkey">H</span></button>
         <div class="menubar__dropdown">
-          <a href="blog/zh/index.html" target="_blank" style="display:flex;align-items:center;padding:5px 10px;color:var(--btn-text);text-decoration:none;font-size:13px;gap:7px;" onmouseover="this.style.background='var(--btn-hover)'" onmouseout="this.style.background=''"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Mermaid 教程</a>
+          <button id="menu-blog" data-menu-action><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Mermaid 教程</span></button>
           <div class="menubar__sep"></div>
           <button id="btn-help" data-menu-action><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="6" y1="16" x2="18" y2="16"/></svg>快捷键</span></button>
           <button id="btn-cmd-palette" data-menu-action><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>命令面板</span><kbd>⌘K</kbd></button>
           <div class="menubar__sep"></div>
-          <button id="menu-github" data-menu-action><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</span></button>
+          <button id="menu-github" data-menu-action><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</span><span class="menu-github-star">★ Star</span></button>
           <button id="btn-restart-tour-menu" data-menu-action><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>重新引导</span></button>
         </div>
       </div>

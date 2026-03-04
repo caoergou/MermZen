@@ -26,7 +26,7 @@
   }
   </script>
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23333'/><circle cx='16' cy='7' r='3' fill='%2300b4d8'/><circle cx='7' cy='25' r='3' fill='%2300b4d8'/><circle cx='25' cy='25' r='3' fill='%2300b4d8'/><line x1='16' y1='10' x2='7' y2='22' stroke='%2300b4d8' stroke-width='2'/><line x1='16' y1='10' x2='25' y2='22' stroke='%2300b4d8' stroke-width='2'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="../../logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=LXGW+WenKai+TC&display=swap">
@@ -49,5 +49,16 @@
   <footer class="blog-footer">
     <p>用 <a href="../../index.html">MermZen</a> 在线编辑 Mermaid 图表 · 无广告 · 无需登录</p>
   </footer>
+  <script>
+    (function () {
+      var h1 = document.querySelector('.blog-post h1');
+      if (!h1) return;
+      var img = document.createElement('img');
+      img.src = '../../logo.svg';
+      img.alt = '';
+      img.className = 'blog-h1-icon';
+      h1.insertBefore(img, h1.firstChild);
+    })();
+  </script>
 </body>
 </html>

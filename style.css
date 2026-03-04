@@ -107,17 +107,18 @@ body {
 }
 
 .toolbar__title {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 500;
   margin: 0;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  gap: 6px;
-  color: var(--text-secondary);
+  gap: 8px;
+  color: var(--text-primary);
   -webkit-app-region: drag;
 }
-.toolbar__title svg { color: var(--accent); flex-shrink: 0; }
+.toolbar__title .toolbar__logo { color: var(--accent); flex-shrink: 0; width: 1em; height: 1em; }
+.toolbar__title-text { letter-spacing: 0.02em; }
 
 .toolbar__spacer { flex: 1; }
 
@@ -233,6 +234,18 @@ body {
 .menubar__item.open .menubar__hotkey { opacity: 0.6; }
 
 .menubar__sep { height: 1px; background: var(--border-color); margin: 4px 0; }
+
+.menu-github-star {
+  font-size: 11px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  margin-left: auto;
+  padding-right: 4px;
+}
+.menubar__dropdown button[data-menu-action]:hover .menu-github-star {
+  color: rgba(255,255,255,0.75);
+  opacity: 1;
+}
 
 .menubar__label {
   font-size: 10px; font-weight: 600; text-transform: uppercase;
