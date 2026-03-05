@@ -97,7 +97,7 @@ export async function copyPng() {
 export async function downloadSvg() {
   const svgEl = dom.preview.querySelector('svg');
   if (!svgEl) { showToast(STRINGS[state.currentLang].toastNoDiagram); return; }
-  const cloned = await inlineFontsIntoSvg(svgEl);
+  const cloned = await inlineFontsIntoSvg(svgEl, true); // 确保应用背景
   const rawSvg = new XMLSerializer().serializeToString(cloned);
   const optimized = optimizeSvg(rawSvg);
   const blob = new Blob([optimized], { type: 'image/svg+xml' });
