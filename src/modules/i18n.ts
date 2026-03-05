@@ -31,6 +31,11 @@ export const STRINGS = {
     toastLinkCopied: '链接已复制',
     toastNoDiagram: '没有可操作的图表',
     toastFailed: '操作失败',
+    ctxDownloadPng: '下载 PNG',
+    ctxDownloadSvg: '下载 SVG',
+    ctxCopyPng: '复制 PNG',
+    ctxNoDiagram: '暂无图表',
+    ctxFailed: '失败: ',
     editorStatusTpl(lines, chars) { return lines + ' 行 · ' + chars + ' 字符'; },
     modalTitle: '快捷键',
     modalSectionFile: '文件操作',
@@ -108,6 +113,12 @@ export const STRINGS = {
     cmdBackground: '背景',
     cmdNoCommands: '无匹配命令',
     cmdPlaceholder: '输入命令或搜索...',
+    cmdThemePrefix: '主题: ',
+    cmdHandFontPrefix: '手绘字体: ',
+    cmdBgWhite: '白色背景',
+    cmdBgBlack: '黑色背景',
+    cmdBgChecker: '透明背景',
+    cmdBgGrid: '网格背景',
   },
   en: {
     editorPanel: 'Editor',
@@ -138,6 +149,11 @@ export const STRINGS = {
     toastLinkCopied: 'Link copied',
     toastNoDiagram: 'No diagram to act on',
     toastFailed: 'Operation failed',
+    ctxDownloadPng: 'Download PNG',
+    ctxDownloadSvg: 'Download SVG',
+    ctxCopyPng: 'Copy PNG',
+    ctxNoDiagram: 'No diagram',
+    ctxFailed: 'Failed: ',
     editorStatusTpl(lines, chars) { return lines + ' lines · ' + chars + ' chars'; },
     modalTitle: 'Shortcuts',
     modalSectionFile: 'File',
@@ -215,6 +231,12 @@ export const STRINGS = {
     cmdBackground: 'Background',
     cmdNoCommands: 'No matching commands',
     cmdPlaceholder: 'Type a command or search...',
+    cmdThemePrefix: 'Theme: ',
+    cmdHandFontPrefix: 'Hand font: ',
+    cmdBgWhite: 'White background',
+    cmdBgBlack: 'Black background',
+    cmdBgChecker: 'Transparent background',
+    cmdBgGrid: 'Grid background',
   },
 };
 
@@ -259,6 +281,27 @@ export function applyI18n() {
   const cmdInput = document.getElementById('cmd-palette-input');
   if (cmdInput) {
     cmdInput.placeholder = s.cmdPlaceholder;
+  }
+
+  // 移动端菜单翻译
+  const mobileMenuKeys = ['menuShareLink', 'menuDownloadPng', 'menuDownloadSvg', 'menuShortcuts'];
+  mobileMenuKeys.forEach(key => {
+    const element = document.querySelector(`#mobile-overflow-menu [data-i18n="${key}"]`);
+    if (element) {
+      element.textContent = s[key];
+    }
+  });
+
+  // 命令面板按钮翻译
+  const cmdPaletteQuick = document.querySelector('.btn-cmdk__text');
+  if (cmdPaletteQuick) {
+    cmdPaletteQuick.textContent = s.menuCommandPalette;
+  }
+
+  // 示例下拉菜单翻译
+  const exampleDropdown = document.querySelector('#example-dropdown-trigger span');
+  if (exampleDropdown) {
+    exampleDropdown.textContent = s.cmdExamples;
   }
 
   document.getElementById('modal-title').textContent = s.modalTitle;

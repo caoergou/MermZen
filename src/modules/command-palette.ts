@@ -63,7 +63,7 @@ function getCmdCommands() {
   ['default', 'dark', 'forest', 'neutral', 'base'].forEach(t => {
     cmds.push({
       group: s.cmdTheme,
-      label: (state.currentLang === 'zh' ? '主题: ' : 'Theme: ') + t.charAt(0).toUpperCase() + t.slice(1),
+      label: s.cmdThemePrefix + t.charAt(0).toUpperCase() + t.slice(1),
       icon: 'theme',
       action() { switchTheme(t); initMermaid(); renderDiagram(); },
     });
@@ -72,7 +72,7 @@ function getCmdCommands() {
   Object.keys(HAND_FONTS).forEach(key => {
     cmds.push({
       group: s.cmdHanddrawn,
-      label: (state.currentLang === 'zh' ? '手绘字体: ' : 'Hand font: ') + HAND_FONTS[key].label,
+      label: s.cmdHandFontPrefix + HAND_FONTS[key].label,
       icon: 'pencil',
       action() { state.handDrawnFont = key; saveHandDrawnPrefs(); initMermaid(); renderDiagram(); },
     });
@@ -94,10 +94,10 @@ function getCmdCommands() {
   });
 
   const bgLabels = {
-    white: state.currentLang === 'zh' ? '白色背景' : 'White background',
-    black: state.currentLang === 'zh' ? '黑色背景' : 'Black background',
-    checker: state.currentLang === 'zh' ? '透明背景' : 'Transparent background',
-    grid: state.currentLang === 'zh' ? '网格背景' : 'Grid background',
+    white: s.cmdBgWhite,
+    black: s.cmdBgBlack,
+    checker: s.cmdBgChecker,
+    grid: s.cmdBgGrid,
   };
   const bgKeys = { white: 'Alt+1', black: 'Alt+2', checker: 'Alt+3', grid: 'Alt+4' };
   Object.keys(bgLabels).forEach(key => {

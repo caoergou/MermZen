@@ -1,6 +1,8 @@
 import { dom as domEls } from '../dom';
 import { copyPng, downloadSvg, downloadPng } from '../export';
 import { showToast } from '../utils';
+import { state } from '../store';
+import { STRINGS } from '../i18n';
 
 let ctxMenu = null;
 
@@ -18,6 +20,7 @@ export function hideCtxMenu() {
  */
 function showCtxMenu(x, y) {
   hideCtxMenu();
+  const s = STRINGS[state.currentLang];
   const svgEl = domEls.preview.querySelector('svg');
   ctxMenu = document.createElement('div');
   ctxMenu.className = 'context-menu';
@@ -35,14 +38,14 @@ function showCtxMenu(x, y) {
   const iconCopy = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
 
   if (svgEl) {
-    ctxMenu.appendChild(item(iconDl, '下载 PNG', () => { downloadPng().catch(e => { showToast('失败: ' + e.message); }); }));
-    ctxMenu.appendChild(item(iconDl, '下载 SVG', () => { downloadSvg().catch(e => { showToast('失败: ' + e.message); }); }));
+    ctxMenu.appendChild(item(iconDl, s.ctxDownloadPng, () => { downloadPng().catch(e => { showToast(s.ctxFailed + e.message); }); }));
+    ctxMenu.appendChild(item(iconDl, s.ctxDownloadSvg, () => { downloadSvg().catch(e => { showToast(s.ctxFailed + e.message); }); }));
     ctxMenu.appendChild(sep());
-    ctxMenu.appendChild(item(iconCopy, '复制 PNG', () => { copyPng().catch(e => { showToast('失败: ' + e.message); }); }));
+    ctxMenu.appendChild(item(iconCopy, s.ctxCopyPng, () => { copyPng().catch(e => { showToast(s.ctxFailed + e.message); }); }));
   } else {
     const empty = document.createElement('div');
     empty.className = 'context-menu__label';
-    empty.textContent = '暂无图表';
+    empty.textContent = s.ctxNoDiagram;
     ctxMenu.appendChild(empty);
   }
 

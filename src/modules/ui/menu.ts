@@ -124,12 +124,12 @@ export function initMenu() {
   // 菜单动作绑定
   dom.btnCopyPng.addEventListener('click', () => {
     closeAllMenus();
-    copyPng().catch(e => { showToast('复制失败 · ' + e.message); });
+    copyPng().catch(e => { showToast(STRINGS[state.currentLang].toastFailed + ': ' + e.message); });
   });
   dom.btnDownloadSvg.addEventListener('click', () => { closeAllMenus(); downloadSvg(); });
   dom.btnDownloadPng.addEventListener('click', () => {
     closeAllMenus();
-    downloadPng().catch(e => { showToast('下载失败 · ' + e.message); });
+    downloadPng().catch(e => { showToast(STRINGS[state.currentLang].toastFailed + ': ' + e.message); });
   });
 
   const menuZoomReset = document.getElementById('menu-zoom-reset');
