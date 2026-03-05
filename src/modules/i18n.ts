@@ -119,6 +119,9 @@ export const STRINGS = {
     cmdBgBlack: '黑色背景',
     cmdBgChecker: '透明背景',
     cmdBgGrid: '网格背景',
+    cmdNav: '导航',
+    cmdExec: '执行',
+    cmdClose: '关闭',
   },
   en: {
     editorPanel: 'Editor',
@@ -237,6 +240,9 @@ export const STRINGS = {
     cmdBgBlack: 'Black background',
     cmdBgChecker: 'Transparent background',
     cmdBgGrid: 'Grid background',
+    cmdNav: 'Navigate',
+    cmdExec: 'Execute',
+    cmdClose: 'Close',
   },
 };
 
@@ -303,6 +309,11 @@ export function applyI18n() {
   if (exampleDropdown) {
     exampleDropdown.textContent = s.cmdExamples;
   }
+
+  // 命令面板底部提示翻译
+  document.querySelectorAll('[data-i18n="cmdNav"]').forEach(el => { el.textContent = s.cmdNav; });
+  document.querySelectorAll('[data-i18n="cmdExec"]').forEach(el => { el.textContent = s.cmdExec; });
+  document.querySelectorAll('[data-i18n="cmdClose"]').forEach(el => { el.textContent = s.cmdClose; });
 
   document.getElementById('modal-title').textContent = s.modalTitle;
   const sectionH3s = document.querySelectorAll('.help-section h3');
