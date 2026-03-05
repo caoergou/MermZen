@@ -7,7 +7,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     target: 'esnext',
-    cssMinify: true,
+    cssMinify: 'esbuild',
+    minify: 'esbuild',
+    sourcemap: false,
     rollupOptions: {
       input: { main: 'index.html', embed: 'embed.html' },
       output: {
@@ -25,10 +27,21 @@ export default defineConfig({
           if (id.includes('node_modules'))
             return 'vendor';
         },
+        chunkFileNames: 'assets/[name]-[hash:6].js',
+        entryFileNames: 'assets/[name]-[hash:6].js',
+        assetFileNames: 'assets/[name]-[hash:6].[ext]',
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
   optimizeDeps: {
     include: ['mermaid', 'pako'],
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+  server: {
+    port: 56324,
+    open: true,
   },
 });

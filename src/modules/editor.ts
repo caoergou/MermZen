@@ -147,6 +147,7 @@ function getLanguageSupport(code) {
  * @param {(doc: string) => void} onDocChange - 文档变更回调
  */
 export function createEditor(initialCode, onDocChange) {
+  // 只在需要时添加扩展，减少初始化时间
   const extensions = [
     basicSetup,
     languageCompartment.of(getLanguageSupport(initialCode)),
@@ -164,22 +165,25 @@ export function createEditor(initialCode, onDocChange) {
     EditorView.updateListener.of(update => {
       if (update.docChanged) {
         const code = update.state.doc.toString();
-        
+
         // 动态切换语言支持
         const currentLang = getLanguageSupport(code);
         update.view.dispatch({
           effects: languageCompartment.reconfigure(currentLang)
         });
-        
+
         onDocChange(code);
       }
     }),
   ];
 
-  state.editorView = new EditorView({
-    state: EditorState.create({ doc: initialCode, extensions }),
-    parent: dom.editorContainer,
-  });
+  // 延迟创建编辑器实例，让浏览器先处理其他任务
+  setTimeout(() => {
+    state.editorView = new EditorView({
+      state: EditorState.create({ doc: initialCode, extensions }),
+      parent: dom.editorContainer,
+    });
+  }, 50);
 }
 
 /**

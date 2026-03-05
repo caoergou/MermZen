@@ -18,8 +18,15 @@
 
   <link rel="icon" type="image/svg+xml" href="logo.svg">
 
+  <!-- 关键资源预连接和预加载 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
   <!-- 小赖（中文手绘字体）保持 CDN 懒加载，仅 SVG 导出时使用 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css"></noscript>
+
+  <link rel="preload" href="logo.svg" as="image" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -131,7 +138,7 @@
 
     <button id="btn-cmd-palette-quick" class="btn-cmdk" title="命令面板 (Ctrl+K)">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span class="btn-cmdk__text">命令面板</span>
+      <span class="btn-cmdk__text" data-i18n="menuCommandPalette">命令面板</span>
       <kbd>⌘K</kbd>
     </button>
 
@@ -157,7 +164,7 @@
         <div class="example-dropdown" id="example-dropdown">
           <button class="example-dropdown__trigger" id="example-dropdown-trigger" title="加载示例模板">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-            <span>示例</span>
+            <span data-i18n="cmdExamples">示例</span>
             <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="example-dropdown__panel" id="example-dropdown-panel"></div>
@@ -239,26 +246,26 @@
   </div>
 
   <!-- Mobile overflow menu -->
-  <div id="mobile-overflow-menu" class="mobile-overflow-menu">
+    <div id="mobile-overflow-menu" class="mobile-overflow-menu">
     <div class="mobile-overflow-menu__backdrop" id="mobile-overflow-backdrop"></div>
     <div class="mobile-overflow-menu__panel">
       <button class="mobile-overflow-menu__item" id="mob-btn-share">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        分享链接
+        <span data-i18n="menuShareLink">分享链接</span>
       </button>
       <div class="mobile-overflow-menu__sep"></div>
       <button class="mobile-overflow-menu__item" id="mob-btn-download-png">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        下载 PNG
+        <span data-i18n="menuDownloadPng">下载 PNG</span>
       </button>
       <button class="mobile-overflow-menu__item" id="mob-btn-download-svg">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        下载 SVG
+        <span data-i18n="menuDownloadSvg">下载 SVG</span>
       </button>
       <div class="mobile-overflow-menu__sep"></div>
       <button class="mobile-overflow-menu__item" id="mob-btn-help">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        快捷键
+        <span data-i18n="menuShortcuts">快捷键</span>
       </button>
     </div>
   </div>

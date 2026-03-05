@@ -86,26 +86,40 @@ export async function renderDiagram() {
 
   const hdFont = getHandDrawnFontFamily();
   const hdSize = getHandDrawnFontSizePx();
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: state.currentTheme as any,
-    look: (state.handDrawn && !noHandDrawn) ? 'handDrawn' : 'classic',
-    securityLevel: 'loose',
-    handDrawnSeed: resolveHandDrawnSeed(),
-    themeVariables: {
-      fontFamily: state.handDrawn ? hdFont : NORMAL_FONT,
-      fontSize: state.handDrawn ? hdSize : '14px',
-    },
-  });
+
+  // 仅在配置发生变化时重新初始化 Mermaid
+  const currentLook = (state.handDrawn && !noHandDrawn) ? 'handDrawn' : 'classic';
+  if (
+    mermaid.config.theme !== state.currentTheme ||
+    mermaid.config.look !== currentLook ||
+    mermaid.config.themeVariables.fontFamily !== (state.handDrawn ? hdFont : NORMAL_FONT) ||
+    mermaid.config.themeVariables.fontSize !== (state.handDrawn ? hdSize : '14px')
+  ) {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: state.currentTheme as any,
+      look: currentLook,
+      securityLevel: 'loose',
+      handDrawnSeed: resolveHandDrawnSeed(),
+      themeVariables: {
+        fontFamily: state.handDrawn ? hdFont : NORMAL_FONT,
+        fontSize: state.handDrawn ? hdSize : '14px',
+      },
+    });
+  }
+
+  dom.preview.style.fontFamily = state.handDrawn ? hdFont : '';
+  if (state.handDrawn) {
+    document.documentElement.style.setProperty('--mermaid-font', hdFont);
+  } else {
+    document.documentElement.style.removeProperty('--mermaid-font');
+  }
 
   if (state.handDrawn && !noHandDrawn) {
-    document.documentElement.style.setProperty('--mermaid-font', hdFont);
     const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
     ensureHandDrawnFont(state.handDrawnFont);
     try { await document.fonts.load('16px ' + (preset.label === 'Virgil' ? 'Virgil' : preset.label)); } catch (e) {}
     try { await document.fonts.load('16px "Xiaolai SC"'); } catch (e) {}
-  } else {
-    document.documentElement.style.removeProperty('--mermaid-font');
   }
 
   try {

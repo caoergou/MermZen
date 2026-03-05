@@ -1,10 +1,13 @@
-@import '@fontsource-variable/outfit';
-@import '@fontsource-variable/jetbrains-mono';
-@import '@fontsource/kalam/400.css';
-@import '@fontsource/caveat/400.css';
+/* 优化字体加载策略 */
+@import '@fontsource-variable/outfit?display=swap';
+@import '@fontsource-variable/jetbrains-mono?display=swap';
+@import '@fontsource/kalam/400.css?display=swap';
+@import '@fontsource/caveat/400.css?display=swap';
 
 @font-face {
   font-family: 'Virgil';
   src: url('/fonts/Virgil.woff2') format('woff2');
   font-display: swap;
+  font-weight: 400;
+  font-style: normal;
 }
