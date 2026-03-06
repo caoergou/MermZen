@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/MermZen/',
+  base: process.env.CF_PAGES ? '/' : '/MermZen/',
   root: '.',
   publicDir: 'public',
   build: {
