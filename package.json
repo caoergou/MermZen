@@ -1,7 +1,7 @@
 {
   "name": "mermzen",
   "version": "1.0.0",
-  "description": "[![Deploy to GitHub Pages](https://github.com/caoergou/mermzen/actions/workflows/deploy.yml/badge.svg)](https://github.com/caoergou/mermzen/actions/workflows/deploy.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![GitHub stars](https://img.shields.io/github/stars/caoergou/mermzen)](https://github.com/caoergou/mermzen/stargazers)",
+  "description": "A clean, lightweight Mermaid diagram editor with hand-drawn style support",
   "type": "module",
   "main": "src/app.ts",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/caoergou/MermZen/issues"
   },
@@ -32,7 +32,8 @@
     "marked": "^17.0.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "wait-on": "^8.0.3"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.1",

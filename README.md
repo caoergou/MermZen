@@ -20,6 +20,16 @@ The name blends **Mermaid** (the diagram syntax) and **Zen** (simplicity). Desig
 
 ## Preview
 
+### Editor Interface
+
+<p align="center">
+  <img src="assets/editor-en.png" alt="MermZen editor in light mode" width="46%" />
+  &nbsp;
+  <img src="assets/editor-en-dark.png" alt="MermZen editor in dark mode" width="46%" />
+</p>
+
+### Diagram Examples
+
 The diagrams below were exported directly from MermZen in hand-drawn style. The exported SVG can be pasted straight into any HTML page — or embed a live, interactive diagram via `<iframe>`:
 
 <p align="center">

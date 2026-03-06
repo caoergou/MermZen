@@ -36,6 +36,21 @@ jobs:
       - name: Build app (Vite)
         run: npm run build
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+
+      - name: Start preview server
+        run: npx vite preview --port 8766 &
+
+      - name: Wait for server ready
+        run: npx wait-on http://localhost:8766
+
+      - name: Generate preview images
+        run: |
+          npm run build:svgs
+          npm run build:pngs
+          npx tsx scripts/generate-editor-screenshots.ts
+
       - name: Build blog posts (zh + en)
         run: npx tsx scripts/build-blog.ts
 

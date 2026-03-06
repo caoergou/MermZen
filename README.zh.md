@@ -20,6 +20,16 @@
 
 ## 效果预览
 
+### 编辑器界面
+
+<p align="center">
+  <img src="assets/editor-zh.png" alt="MermZen 编辑器浅色模式" width="46%" />
+  &nbsp;
+  <img src="assets/editor-zh-dark.png" alt="MermZen 编辑器深色模式" width="46%" />
+</p>
+
+### 图表示例
+
 下方图表均由 MermZen 导出（手绘风格）。导出的 SVG 可直接嵌入 HTML 页面，也可通过 `<iframe>` 嵌入实时交互图表：
 
 <p align="center">

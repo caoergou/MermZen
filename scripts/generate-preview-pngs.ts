@@ -24,7 +24,7 @@ function encodeForEmbed(code: string): string {
   return compressed.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
 }
 
-const BASE_URL = 'http://localhost:8766';
+const BASE_URL = 'http://localhost:8766/MermZen';
 const ASSETS_DIR = path.join(__dirname, '..', 'assets');
 
 const DIAGRAMS: DiagramDef[] = [
@@ -188,8 +188,12 @@ async function generatePNGs(): Promise<void> {
   for (const { name, code, width, height } of DIAGRAMS) {
     console.log(`\nRendering ${name}.png...`);
 
-    const page = await browser.newPage();
-    await page.setViewportSize({ width: width + 100, height: height + 100 });
+    // Use deviceScaleFactor: 2 for high-DPI screenshots
+    const context = await browser.newContext({
+      viewport: { width: width + 100, height: height + 100 },
+      deviceScaleFactor: 2,
+    });
+    const page = await context.newPage();
 
     const encoded = encodeForEmbed(code);
     const url = `${BASE_URL}/embed.html#${encoded}`;
@@ -213,9 +217,10 @@ async function generatePNGs(): Promise<void> {
     }
 
     const outPath = path.join(ASSETS_DIR, `${name}.png`);
-    await svgElement.screenshot({ path: outPath, scale: 'device' });
+    await svgElement.screenshot({ path: outPath });
     console.log(`  ✓ Saved ${name}.png`);
     await page.close();
+    await context.close();
   }
 
   await browser.close();

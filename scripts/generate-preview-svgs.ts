@@ -38,7 +38,7 @@ function embedCjkFont(svgPath: string): void {
   }
 }
 
-const BASE_URL = 'http://localhost:8766';
+const BASE_URL = 'http://localhost:8766/MermZen';
 const ASSETS_DIR = path.join(__dirname, '..', 'assets');
 
 // ── 中文图表（用于 README.zh.md）───────────────────────────────────────────
