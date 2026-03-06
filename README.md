@@ -1,7 +1,7 @@
 # MermZen
 
 <p align="center">
-  <img src="logo.svg" alt="MermZen Logo" width="96" height="96" />
+  <img src="logo.svg" alt="MermZen Logo" width="160" height="160" />
 </p>
 
 [![Deploy to GitHub Pages](https://github.com/caoergou/mermzen/actions/workflows/deploy.yml/badge.svg)](https://github.com/caoergou/mermzen/actions/workflows/deploy.yml)
