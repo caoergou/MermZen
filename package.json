@@ -13,7 +13,8 @@
     "build:blog": "tsx scripts/build-blog.ts",
     "build:svgs": "tsx scripts/generate-preview-svgs.ts",
     "build:pngs": "tsx scripts/generate-preview-pngs.ts",
-    "build:all": "npm run build && npm run build:blog"
+    "build:screenshots": "tsx scripts/build-screenshots.ts",
+    "build:all": "npm run build && npm run build:screenshots && npm run build:blog"
   },
   "repository": {
     "type": "git",

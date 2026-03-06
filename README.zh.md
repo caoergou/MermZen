@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/caoergou/mermzen)](https://github.com/caoergou/mermzen/stargazers)
 
-**MermZen** 是一款纯粹的 Mermaid 图表编辑器。打开即写，实时渲染，零干扰。
+**MermZen** 是一款开箱即用的 Mermaid 图表编辑器。打开即写，实时渲染，零干扰。
 
 名字源于 **Mermaid**（图表语法）+ **Zen**（禅），追求极简设计与轻量体验。
 
@@ -23,24 +23,61 @@
 ### 编辑器界面
 
 <p align="center">
-  <img src="assets/editor-zh.png" alt="MermZen 编辑器浅色模式" width="46%" />
+  <a href="assets/editor-zh.png"><img src="assets/editor-zh.png" alt="MermZen 编辑器浅色模式" width="46%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy" /></a>
   &nbsp;
-  <img src="assets/editor-zh-dark.png" alt="MermZen 编辑器深色模式" width="46%" />
+  <a href="assets/editor-zh-dark.png"><img src="assets/editor-zh-dark.png" alt="MermZen 编辑器深色模式" width="46%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy" /></a>
 </p>
 
-### 图表示例
+### 功能展示
 
-下方图表均由 MermZen 导出（手绘风格）。导出的 SVG 可直接嵌入 HTML 页面，也可通过 `<iframe>` 嵌入实时交互图表：
+MermZen 支持丰富的主题和风格组合，轻松满足不同场景需求：
 
-<p align="center">
-  <img src="assets/preview-flowchart.png" alt="流程图 — 用户登录流程（手绘风格）" width="46%" />
-  &nbsp;
-  <img src="assets/preview-class.png" alt="类图 — 电商订单模型（手绘风格）" width="46%" />
-</p>
+<div style="display: flex; align-items: center; gap: 24px; margin-bottom: 40px;">
+  <div style="flex: 1; text-align: center;">
+    <img src="assets/preview-flowchart.png" alt="手绘风格 + 默认主题" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy">
+  </div>
+  <div style="flex: 1;">
+    <h4>🎨 <a href="https://eric.run.place/MermZen/#H4sIAAAAAAAAA4WQwU7DMBhF7/sVqk4Q0gO6UKAig4cO3Qp07dJqm1aJtCVLSkX17pS2HcTBnfI43vOe83Bk11LpZqVQo15IatnMkYIYjTCZUK61M41aFZaqxR31xT8a29u52XbQpZ1s9YbUMjMpiSMx1sZtLc4kQzS8u3qRv2qXz90S2l856X02N9H1L2e25hW9TqL9e/2Wz7/LWx9n8k8X8zrP8/yeX8fnP8/rf8/1f8/2f8/3f8/7f8/9f8/8f8//5/8f8//8fAPn8p8f8KAHwAA" target="_blank">手绘风格 + 默认主题</a></h4>
+    <ul>
+      <li>流畅的手绘线条，自带设计感</li>
+      <li>内置中英文手写字体支持</li>
+      <li>适合PPT演示、博客插图、个人笔记等场景</li>
+      <li>导出的图片和SVG均包含内嵌字体，随处可正常显示</li>
+    </ul>
+  </div>
+</div>
 
-<p align="center">
-  <img src="assets/preview-sequence.png" alt="时序图 — HTTP 登录接口调用链（手绘风格）" width="94%" />
-</p>
+<div style="display: flex; align-items: center; gap: 24px; margin-bottom: 40px;">
+  <div style="flex: 1;">
+    <h4>🌲 <a href="https://eric.run.place/MermZen/#H4sIAAAAAAAAA52QXU7DMBiF9/kVM6wRBO0gVJBAgcOHTgU6dOk1TatEmxKlpCR9O9K2DcTBnfI43vOe83Bo11LpZqVQo15IatnMkYIYjTCZUK61M41aFZaqxR31xT8a29u52XbQpZ1s9YbUMjMpiSMx1sZtLc4kQzS8u3qRv2qXz90S2l856X02N9H1L2e25hW9TqL9e/2Wz7/LWx9n8k8X8zrP8/yeX8fnP8/rf8/1f8/2f8/3f8/7f8/9f8/8f8//5/8f8//8fAPn8p8f8KAHwAA?theme=forest&handDrawn=false" target="_blank">标准风格 + 森林主题</a></h4>
+    <ul>
+      <li>专业清晰的标准线条风格</li>
+      <li>森林绿色主题，护眼且美观</li>
+      <li>适合技术文档、企业架构图、正式报告等场景</li>
+      <li>支持5种官方主题，可自由切换</li>
+    </ul>
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <img src="assets/preview-architecture.png" alt="标准风格 + 森林主题" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); filter: hue-rotate(80deg) saturate(0.7);" loading="lazy">
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 24px; margin-bottom: 20px;">
+  <div style="flex: 1; text-align: center;">
+    <img src="assets/preview-sequence.png" alt="手绘风格 + 网格背景" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); background-image: linear-gradient(#f0f0f0 1px, transparent 1px), linear-gradient(90deg, #f0f0f0 1px, transparent 1px); background-size: 20px 20px;" loading="lazy">
+  </div>
+  <div style="flex: 1;">
+    <h4>🧩 <a href="https://eric.run.place/MermZen/#H4sIAAAAAAAAA61TTY/TMBD9K5RXQQgJCQA0gEC6oBqL1ddNlTpLqk90xYbEtluyrEiv99xO2kS7dOGFjJmff9+bN39swYbXSpN6pUqZKkZapzJmGCEUzmVCutTGNRlSWqgU99cU/Gttbuel22KWdbPWm1DIzKYkjMdbGbS3OJEM0vLt6kb9ql8/dEtpfOel9NjfR9S9ntuYVvU6i/Xv9ls+/y1sfZ/JPF/M6z/P8nl/H5z/P63/P9X/P9n/P93/P+3/P/X/P/H/P/+f/H/P//HwD5/KfH/CgB8AAA==?bg=grid" target="_blank">手绘风格 + 网格背景</a></h4>
+    <ul>
+      <li>网格背景便于对齐和比例参考</li>
+      <li>支持白色、黑色、透明、网格四种背景</li>
+      <li>导出时可自由选择背景类型</li>
+      <li>网格背景仅在预览和导出时显示，不影响SVG本身的透明背景</li>
+    </ul>
+  </div>
+</div>
+
+<p align="center"><em>💡 点击标题即可在线编辑对应图表，可自由切换风格和主题</em></p>
 
 ---
 

@@ -5,36 +5,45 @@ import { getExportBgColor } from './ui/theme';
 const fontDataCache = {};
 
 // ── 小赖字体 (Xiaolai SC) 子集嵌入 ────────────────────────────
-const XIAOLAI_CSS_URL = 'https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css';
+const XIAOLAI_CSS_URLS = [
+  'https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css',
+  'https://unpkg.com/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css',
+];
 let _xiaolaiRules = null;
 
 /**
- * 获取小赖字体的 CSS 规则
+ * 获取小赖字体的 CSS 规则（支持多 CDN 回退）
  */
 async function fetchXiaolaiRules() {
   if (_xiaolaiRules !== null) return _xiaolaiRules;
-  try {
-    const resp = await fetch(XIAOLAI_CSS_URL, { cache: 'force-cache' });
-    if (!resp.ok) { _xiaolaiRules = []; return []; }
-    const css = await resp.text();
-    const rules = [];
-    const re = /@font-face\s*\{([^}]+)\}/g;
-    let m;
-    while ((m = re.exec(css)) !== null) {
-      const block = m[1];
-      const srcM = block.match(/src:[^;]*url\(['"]?([^'")\s]+)['"]?\)/i);
-      const ucrM = block.match(/unicode-range:\s*([^;]+)/i);
-      if (srcM && ucrM) {
-        const absUrl = new URL(srcM[1], XIAOLAI_CSS_URL).href;
-        rules.push({ url: absUrl, unicodeRange: ucrM[1].trim() });
+
+  for (const cssUrl of XIAOLAI_CSS_URLS) {
+    try {
+      const resp = await fetch(cssUrl, { cache: 'force-cache' });
+      if (!resp.ok) continue;
+      const css = await resp.text();
+      const rules = [];
+      const re = /@font-face\s*\{([^}]+)\}/g;
+      let m;
+      while ((m = re.exec(css)) !== null) {
+        const block = m[1];
+        const srcM = block.match(/src:[^;]*url\(['"]?([^'")\s]+)['"]?\)/i);
+        const ucrM = block.match(/unicode-range:\s*([^;]+)/i);
+        if (srcM && ucrM) {
+          // 使用成功的 CDN URL 作为基准解析相对路径
+          const absUrl = new URL(srcM[1], cssUrl).href;
+          rules.push({ url: absUrl, unicodeRange: ucrM[1].trim() });
+        }
       }
+      _xiaolaiRules = rules;
+      return rules;
+    } catch (e) {
+      continue;
     }
-    _xiaolaiRules = rules;
-    return rules;
-  } catch (e) {
-    _xiaolaiRules = [];
-    return [];
   }
+
+  // 所有 CDN 都失败，不缓存失败结果，允许下次重试
+  return [];
 }
 
 /**
@@ -102,10 +111,36 @@ async function buildXiaolaiCssForSvg(svgEl) {
 }
 
 /**
- * 获取字体文件并转换为 Base64
+ * 获取字体文件并转换为 Base64（支持 CDN 回退）
  */
 async function fetchFontAsBase64(url) {
   if (fontDataCache[url]) return fontDataCache[url];
+
+  // 尝试原始 URL
+  const result = await tryFetchFont(url);
+  if (result) {
+    fontDataCache[url] = result;
+    return result;
+  }
+
+  // 如果是 jsdelivr URL，尝试 unpkg 回退
+  if (url.includes('cdn.jsdelivr.net')) {
+    const altUrl = url.replace('https://cdn.jsdelivr.net/npm/', 'https://unpkg.com/');
+    const altResult = await tryFetchFont(altUrl);
+    if (altResult) {
+      fontDataCache[url] = altResult;
+      return altResult;
+    }
+  }
+
+  console.warn('Font fetch failed for all sources:', url);
+  return null;
+}
+
+/**
+ * 尝试从单个 URL 获取字体并转换为 Base64
+ */
+async function tryFetchFont(url) {
   try {
     const resp = await fetch(url, { mode: 'cors', cache: 'force-cache' });
     if (!resp.ok) { console.warn('Font fetch failed:', url, resp.status); return null; }
@@ -118,7 +153,6 @@ async function fetchFontAsBase64(url) {
       : url.endsWith('.woff') ? 'font/woff'
       : url.endsWith('.ttf') ? 'font/ttf' : 'font/truetype';
     const dataUri = 'data:' + mime + ';base64,' + b64;
-    fontDataCache[url] = dataUri;
     return dataUri;
   } catch (e) {
     console.warn('Font fetch error:', url, e.message);
@@ -166,19 +200,30 @@ async function buildInlineFontCss() {
  *   并将 "Xiaolai SC" 注入 font-family，确保字符能被正确渲染
  */
 export async function inlineFontsIntoSvg(svgEl, applyBg = true) {
-  const clone = svgEl.cloneNode(true);
-  const images = clone.querySelectorAll('image');
-  for (let i = images.length - 1; i >= 0; i--) images[i].parentNode.removeChild(images[i]);
+  const clone = svgEl.cloneNode(true) as SVGElement;
 
-  const styleEls = clone.querySelectorAll('style');
-  for (const s of styleEls) {
-    s.textContent = s.textContent.replace(/url\(['"]?(https?:\/\/[^'")]+)['"]?\)/g, '');
+  // 1. 移除所有外部图像元素
+  const images = clone.querySelectorAll('image');
+  for (let i = images.length - 1; i >= 0; i--) {
+    const img = images[i];
+    if (img.parentNode) img.parentNode.removeChild(img);
   }
 
-  // 并行构建：手绘字体（始终嵌入以支持 SVG） + 小赖 CJK 字体（始终检测）
+  // 2. ✓ 保留原有 style，只清理外部引用（@import 和 http URL）
+  const styleEls = Array.from(clone.querySelectorAll('style'));
+  for (const s of styleEls) {
+    let css = s.textContent;
+    // 删除 @import 语句
+    css = css.replace(/@import\s+[^;]+;/g, '');
+    // 删除外部 URL (http:// 和 https://)，但保留 data: URI
+    css = css.replace(/url\(['"]?https?:\/\/[^'")\s]+['"]?\)/g, '');
+    s.textContent = css;
+  }
+
+  // 3. 构建内联字体
   const [fontCss, xiaolaiCss] = await Promise.all([
     buildInlineFontCss(),
-    buildXiaolaiCssForSvg(svgEl),
+    buildXiaolaiCssForSvg(clone),
   ]);
 
   let combinedCss = [fontCss, xiaolaiCss].filter(Boolean).join('\n');
@@ -191,30 +236,15 @@ export async function inlineFontsIntoSvg(svgEl, applyBg = true) {
     }
   }
 
+  // 4. ✓ 在开头插入 @font-face 声明
   if (combinedCss) {
     const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
     styleEl.textContent = combinedCss;
     clone.insertBefore(styleEl, clone.firstChild);
   }
 
-  // 如果嵌入了小赖字体，将其注入到 SVG 所有 font-family 声明中
-  // 放在英文字体之后、sans-serif 之前，使 CJK 字符自动 fallback 到它
-  if (xiaolaiCss) {
-    for (const s of clone.querySelectorAll('style')) {
-      s.textContent = s.textContent.replace(
-        /font-family:([^;}"]+)/g,
-        (match, families) => {
-          if (families.includes('Xiaolai')) return match; // 避免重复
-          const updated = families.trimEnd().replace(
-            /,?\s*sans-serif\b/,
-            ',"Xiaolai SC",sans-serif',
-          );
-          // 若没有 sans-serif，直接追加
-          return 'font-family:' + (updated.includes('Xiaolai') ? updated : families.trimEnd() + ',"Xiaolai SC"');
-        },
-      );
-    }
-  }
+  // ✓ 保留所有 class 属性和其他属性，不做额外清理
+  // 这样 SVG 元素可以继续应用原有的样式规则
 
   return clone;
 }
@@ -238,15 +268,6 @@ export function svgToPngBlob(svgEl: SVGElement, scale?: number): Promise<Blob> {
   }
   return new Promise<Blob>((resolve, reject) => {
     inlineFontsIntoSvg(svgEl).then(cloned => {
-      const images = cloned.querySelectorAll('image');
-      for (let i = images.length - 1; i >= 0; i--) images[i].parentNode.removeChild(images[i]);
-
-      const styleEls = cloned.querySelectorAll('style');
-      styleEls.forEach(el => {
-        el.textContent = el.textContent.replace(/url\(['"]?(https?:\/\/[^'")]+)['"]?\)/g, '');
-      });
-
-      const svgData = new XMLSerializer().serializeToString(cloned);
       // 使用自然 SVG 尺寸（不受父级缩放/平移变换影响）
       let width, height;
       try {
@@ -262,10 +283,29 @@ export function svgToPngBlob(svgEl: SVGElement, scale?: number): Promise<Blob> {
         width = bbox.width || 800;
         height = bbox.height || 600;
       }
+
+      // 手写模式下增加 5% 的宽度余量，避免字体宽度差异导致的文本截断
+      if (state.handDrawn) {
+        // 同时修改SVG的width和viewBox，确保不会拉伸变形
+        width = width * 1.05;
+        // 更新克隆的SVG的宽度属性
+        cloned.setAttribute('width', width.toString());
+        cloned.setAttribute('height', height.toString());
+        // 如果有viewBox，也更新viewBox的宽度
+        try {
+          const vb = cloned.viewBox.baseVal;
+          if (vb && vb.width > 0) {
+            cloned.setAttribute('viewBox', `${vb.x} ${vb.y} ${width} ${vb.height}`);
+          }
+        } catch (e) {}
+      }
+
+      const svgData = new XMLSerializer().serializeToString(cloned);
       const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(svgBlob);
       const img = new Image();
-      img.crossOrigin = 'anonymous';
+      // 不设置 crossOrigin，因为 blob: URL 是同源的
+      // img.crossOrigin 留为默认值
 
       img.onload = () => {
         const bgColor = getExportBgColor();

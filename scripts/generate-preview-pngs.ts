@@ -11,6 +11,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Get port from command line arguments, default to 8766
+const port = process.argv[2] ? parseInt(process.argv[2], 10) : 8766;
+
 interface DiagramDef {
   name: string;
   width: number;
@@ -24,14 +27,14 @@ function encodeForEmbed(code: string): string {
   return compressed.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
 }
 
-const BASE_URL = 'http://localhost:8766/MermZen';
+const BASE_URL = `http://localhost:${port}`;
 const ASSETS_DIR = path.join(__dirname, '..', 'assets');
 
 const DIAGRAMS: DiagramDef[] = [
   {
     name: 'preview-flowchart',
-    width: 700,
-    height: 600,
+    width: 800,
+    height: 1000,
     code: `graph TD
     A([开始]) --> B[用户输入账号 / 密码]
     B --> C{账号是否存在?}
@@ -48,8 +51,8 @@ const DIAGRAMS: DiagramDef[] = [
   },
   {
     name: 'preview-flowchart-en',
-    width: 700,
-    height: 600,
+    width: 800,
+    height: 1000,
     code: `graph TD
     A([Start]) --> B[User enters credentials]
     B --> C{Account exists?}
@@ -65,69 +68,95 @@ const DIAGRAMS: DiagramDef[] = [
     J --> K([End])`,
   },
   {
-    name: 'preview-class',
-    width: 700,
-    height: 500,
-    code: `classDiagram
-    class User {
-        +int id
-        +string username
-        +string email
-        +login() bool
-    }
-    class Order {
-        +int id
-        +datetime createdAt
-        +decimal total
-        +submit() void
-    }
-    class OrderItem {
-        +int quantity
-        +decimal price
-    }
-    class Product {
-        +int id
-        +string name
-        +decimal price
-    }
-    User "1" --> "0..*" Order : 下单
-    Order "1" *-- "1..*" OrderItem : 包含
-    OrderItem "*..*" --> "1" Product : 引用`,
+    name: 'preview-architecture',
+    width: 900,
+    height: 800,
+    code: `graph TD
+    subgraph 客户端层
+        A[用户端 Web]
+        B[管理后台]
+        C[移动APP]
+    end
+
+    subgraph 接入层
+        D[CDN 静态资源]
+        E[API 网关]
+        F[WAF 防火墙]
+    end
+
+    subgraph 业务服务层
+        G[用户服务]
+        H[订单服务]
+        I[支付服务]
+        J[商品服务]
+        K[消息服务]
+    end
+
+    subgraph 数据层
+        L[(MySQL 主库)]
+        M[(MySQL 从库)]
+        N[(Redis 缓存)]
+        O[(MongoDB 日志)]
+        P[(Elasticsearch 搜索)]
+    end
+
+    A & B & C --> D
+    D --> E
+    E --> F
+    F --> G & H & I & J & K
+    G & H & I & J --> L
+    L --> M
+    G & H & J --> N
+    K --> O
+    J --> P`,
   },
   {
-    name: 'preview-class-en',
-    width: 700,
-    height: 500,
-    code: `classDiagram
-    class User {
-        +int id
-        +string username
-        +string email
-        +login() bool
-    }
-    class Order {
-        +int id
-        +datetime createdAt
-        +decimal total
-        +submit() void
-    }
-    class OrderItem {
-        +int quantity
-        +decimal price
-    }
-    class Product {
-        +int id
-        +string name
-        +decimal price
-    }
-    User "1" --> "0..*" Order : places
-    Order "1" *-- "1..*" OrderItem : contains
-    OrderItem "*..*" --> "1" Product : references`,
+    name: 'preview-architecture-en',
+    width: 900,
+    height: 800,
+    code: `graph TD
+    subgraph Client Layer
+        A[User Web]
+        B[Admin Dashboard]
+        C[Mobile APP]
+    end
+
+    subgraph Edge Layer
+        D[CDN Static]
+        E[API Gateway]
+        F[WAF Firewall]
+    end
+
+    subgraph Service Layer
+        G[User Service]
+        H[Order Service]
+        I[Payment Service]
+        J[Product Service]
+        K[Message Service]
+    end
+
+    subgraph Data Layer
+        L[(MySQL Master)]
+        M[(MySQL Slave)]
+        N[(Redis Cache)]
+        O[(MongoDB Logs)]
+        P[(Elasticsearch Search)]
+    end
+
+    A & B & C --> D
+    D --> E
+    E --> F
+    F --> G & H & I & J & K
+    G & H & I & J --> L
+    L --> M
+    G & H & J --> N
+    K --> O
+    J --> P`,
   },
   {
     name: 'preview-sequence',
-    width: 1000,
-    height: 600,
+    width: 1200,
+    height: 800,
     code: `sequenceDiagram
     actor 用户
     participant 浏览器
@@ -153,8 +182,8 @@ const DIAGRAMS: DiagramDef[] = [
   },
   {
     name: 'preview-sequence-en',
-    width: 1000,
-    height: 600,
+    width: 1200,
+    height: 800,
     code: `sequenceDiagram
     actor User
     participant Browser
@@ -190,35 +219,105 @@ async function generatePNGs(): Promise<void> {
 
     // Use deviceScaleFactor: 2 for high-DPI screenshots
     const context = await browser.newContext({
-      viewport: { width: width + 100, height: height + 100 },
+      viewport: { width: 1400, height: 1200 },
       deviceScaleFactor: 2,
     });
     const page = await context.newPage();
 
     const encoded = encodeForEmbed(code);
-    const url = `${BASE_URL}/embed.html#${encoded}`;
+    const url = `${BASE_URL}/MermZen/embed.html#${encoded}`;
 
-    await page.goto(url);
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
 
     try {
+      // Wait for SVG to be rendered
       await page.waitForSelector('#diagram svg', { timeout: 10000 });
-      await page.waitForTimeout(1000);
+      // Enable hand-drawn style with correct project fonts (Xiaolai SC for Chinese, Kalam for English)
+      await page.evaluate(() => {
+        // @ts-ignore
+        if (window.mermaid) {
+          // @ts-ignore
+          window.mermaid.setConfig({
+            theme: 'default',
+            handDrawn: true,
+            themeVariables: {
+              fontFamily: '"Kalam", "Xiaolai SC", cursive'
+            }
+          });
+        }
+        // Add custom font style to enforce correct fonts
+        const style = document.createElement('style');
+        style.textContent = `
+          * {
+            font-family: 'Kalam', 'Xiaolai SC', cursive !important;
+          }
+        `;
+        document.head.appendChild(style);
+      });
+      // Wait for all fonts to load completely
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+        // Extra wait for custom handwritten fonts to be applied
+        await new Promise(resolve => setTimeout(resolve, 3000));
+      });
     } catch {
       console.error(`  ✗ Timeout waiting for SVG: ${name}`);
       await page.close();
+      await context.close();
       continue;
     }
 
+    // Get SVG element
     const svgElement = await page.$('#diagram svg');
     if (!svgElement) {
       console.error(`  ✗ No SVG found for ${name}`);
       await page.close();
+      await context.close();
       continue;
     }
 
+    // Get SVG bounding box and scroll into view
+    const svgBox = await svgElement.boundingBox();
+    if (!svgBox) {
+      console.error(`  ✗ Could not get SVG bounding box for ${name}`);
+      await page.close();
+      await context.close();
+      continue;
+    }
+
+    // Add padding around the SVG
+    const padding = 20;
+    const svgWidth = Math.ceil(svgBox.width) + padding * 2;
+    const svgHeight = Math.ceil(svgBox.height) + padding * 2;
+
+    // Set viewport to fit the SVG with padding
+    await page.setViewportSize({
+      width: Math.min(svgWidth, 2400),
+      height: Math.min(svgHeight, 1600)
+    });
+
+    // Scroll SVG into center view
+    await page.evaluate(() => {
+      const svg = document.querySelector('#diagram svg');
+      if (svg) {
+        svg.scrollIntoView({ behavior: 'instant', block: 'center', inline: 'center' });
+      }
+    });
+
+    // Wait for stabilization
+    await page.waitForTimeout(500);
+
     const outPath = path.join(ASSETS_DIR, `${name}.png`);
-    await svgElement.screenshot({ path: outPath });
-    console.log(`  ✓ Saved ${name}.png`);
+
+    // Take screenshot of the SVG element with padding
+    await svgElement.screenshot({
+      path: outPath,
+      type: 'png',
+      padding: 20
+    });
+
+    console.log(`  ✓ Saved ${name}.png (${svgWidth}x${svgHeight})`);
+
     await page.close();
     await context.close();
   }

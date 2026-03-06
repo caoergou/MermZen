@@ -61,8 +61,10 @@ if (!encoded) {
       look: look as any,
       handDrawnSeed: 42,
       securityLevel: 'loose',
-      fontFamily,
-      fontSize,
+      themeVariables: {
+        fontFamily: `${fontFamily}, "Xiaolai SC", cursive`,
+        fontSize: `${fontSize}px`,
+      },
     });
 
     const el = document.getElementById('diagram');
