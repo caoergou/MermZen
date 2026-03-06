@@ -28,36 +28,88 @@
     <p>A series of beginner-friendly tutorials. Each article includes detailed syntax explanations, real-world examples, and practical quick reference tables - perfect for learning Mermaid in 5 minutes.</p>
 
     <ul class="post-list">
+<!-- POST_LIST_START -->
       <li>
-        <a href="flowchart.html">How to draw Flowcharts in Mermaid</a>
-        <span class="post-date">2026-03-04</span>
-        <p>In-depth explanation of flowchart node shapes, connection types, subgraphs, and conditional logic. Example: user login workflow with rejection paths and error handling.</p>
+        <a href="architecture.html">How to Draw Architecture Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid architecture diagram syntax including component definitions, interface descriptions, and deployment patterns with microservices architecture example.</p>
       </li>
       <li>
-        <a href="sequence.html">How to draw Sequence Diagrams in Mermaid</a>
-        <span class="post-date">2026-03-04</span>
-        <p>Learn about participants, message arrows, loops, conditions, and parallel execution. Example: HTTP login API call chain with Redis caching and error handling.</p>
+        <a href="block.html">How to Draw Block Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid block diagram syntax including component definition, connection relationships, nested structures with complete system architecture example.</p>
       </li>
       <li>
-        <a href="gantt.html">How to draw Gantt Charts in Mermaid</a>
-        <span class="post-date">2026-03-04</span>
-        <p>Master task dependencies, critical path marking, milestones, and working day configuration. Example: product iteration plan with week exclusion and progress tracking.</p>
+        <a href="gitgraph.html">How to Draw Git Graphs in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid Git graph syntax including branch creation, commits, merging, and tagging with complete product development workflow example.</p>
       </li>
       <li>
-        <a href="class.html">How to draw Class Diagrams in Mermaid</a>
-        <span class="post-date">2026-03-04</span>
-        <p>Understanding class definitions, properties, methods, inheritance, associations, and multiplicity notation. Example: e-commerce order management domain model.</p>
+        <a href="mindmap.html">How to Draw Mindmaps in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid mindmap syntax including node hierarchy, branch structures, and theme settings with complete project management example.</p>
       </li>
       <li>
-        <a href="pie.html">How to draw Pie Charts in Mermaid</a>
-        <span class="post-date">2026-03-04</span>
-        <p>The simplest Mermaid diagram type - just 3 lines of code. Perfect for visualizing proportions and percentages. Examples: website traffic sources and development time allocation.</p>
+        <a href="requirement.html">How to Draw Requirement Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid requirement diagram syntax including requirement definition, relationships, and verification methods with complete software project requirements management example.</p>
       </li>
+      <li>
+        <a href="timeline.html">How to Draw Timeline Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid timeline diagram syntax including phase division, event description, and timeline visualization with complete product development planning example.</p>
+      </li>
+      <li>
+        <a href="journey.html">How to Draw User Journey Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-05</span>
+        <p>Comprehensive guide to Mermaid user journey diagram syntax including phase division, touchpoints, and emotional curves with complete e-commerce shopping flow example.</p>
+      </li>
+      <li>
+        <a href="class.html">How to Draw Class Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-04</span>
+        <p>Learn how to create class diagrams in Mermaid, including inheritance, associations, composition, and multiplicity notation.</p>
+      </li>
+      <li>
+        <a href="flowchart.html">How to Draw Flowcharts in Mermaid</a>
+        <span class="post-date">2026-03-04</span>
+        <p>Complete guide to Mermaid flowchart syntax including node shapes, connector types, subgraphs, and conditional logic with practical examples.</p>
+      </li>
+      <li>
+        <a href="gantt.html">How to Draw Gantt Charts in Mermaid</a>
+        <span class="post-date">2026-03-04</span>
+        <p>Complete tutorial on Gantt charts in Mermaid, covering task dependencies, critical path marking, milestones, and weekend/holiday exclusion.</p>
+      </li>
+      <li>
+        <a href="pie.html">How to Draw Pie Charts in Mermaid</a>
+        <span class="post-date">2026-03-04</span>
+        <p>Learn how to create pie charts in Mermaid. The simplest diagram type - just three lines of code.</p>
+      </li>
+      <li>
+        <a href="sequence.html">How to Draw Sequence Diagrams in Mermaid</a>
+        <span class="post-date">2026-03-04</span>
+        <p>A practical guide to Mermaid sequence diagrams covering participants, message types, loops, conditional logic, and parallel execution with API integration examples.</p>
+      </li>
+    <!-- POST_LIST_END -->
     </ul>
   </main>
 
   <footer class="blog-footer">
     <p>Write and preview Mermaid diagrams in <a href="../../index.html">MermZen</a> — export SVG/PNG, share via URL</p>
   </footer>
+  <script>
+    (function () {
+      // Auto dark theme detection
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

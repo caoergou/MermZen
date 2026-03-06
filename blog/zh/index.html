@@ -28,15 +28,46 @@
     <p>面向 Mermaid 新手的系列教程，每篇包含详细的语法讲解、完整的场景示例和实用的速查表，5分钟即可快速上手。</p>
 
     <ul class="post-list">
+<!-- POST_LIST_START -->
       <li>
-        <a href="flowchart.html">如何用 Mermaid 画流程图</a>
-        <span class="post-date">2026-03-04</span>
-        <p>深入讲解流程图的节点形状、连线类型、子图分组、条件判断语法，附用户登录流程的完整实战示例。</p>
+        <a href="gitgraph.html">如何用 Mermaid 画 Git 图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid Git 图的分支创建、提交、合并、标签等语法，附版本控制流程的完整实战示例。</p>
       </li>
       <li>
-        <a href="sequence.html">如何用 Mermaid 画时序图</a>
+        <a href="architecture.html">如何用 Mermaid 画架构图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid 架构图的组件定义、接口描述、部署模式等语法，附微服务架构的完整实战示例。</p>
+      </li>
+      <li>
+        <a href="block.html">如何用 Mermaid 画块图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid 块图的组件定义、连接关系、嵌套结构等语法，附系统架构的完整实战示例。</p>
+      </li>
+      <li>
+        <a href="timeline.html">如何用 Mermaid 画时间线图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid 时间线图的阶段划分、事件描述、时间轴展示等语法，附产品开发规划的完整实战示例。</p>
+      </li>
+      <li>
+        <a href="mindmap.html">如何用 Mermaid 画思维导图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid 思维导图的节点层级、分支结构、主题设置等语法，附项目管理思路的完整实战示例。</p>
+      </li>
+      <li>
+        <a href="requirement.html">如何用 Mermaid 画需求图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid 需求图的需求定义、关系描述、验证方法等语法，附软件项目需求管理的完整实战示例。</p>
+      </li>
+      <li>
+        <a href="journey.html">如何用 Mermaid 画用户旅程图</a>
+        <span class="post-date">2026-03-05</span>
+        <p>深入讲解 Mermaid 用户旅程图的阶段划分、触点定义、情感曲线等语法，附电商购物流程的完整实战示例。</p>
+      </li>
+      <li>
+        <a href="pie.html">如何用 Mermaid 画饼图</a>
         <span class="post-date">2026-03-04</span>
-        <p>学习时序图的参与者声明、消息样式、循环/条件结构，以 HTTP 登录接口为例展示完整的 API 调用链路。</p>
+        <p>三行代码生成 Mermaid 饼图，快速可视化数据占比，含语法说明与实用示例。</p>
       </li>
       <li>
         <a href="gantt.html">如何用 Mermaid 画甘特图</a>
@@ -46,18 +77,39 @@
       <li>
         <a href="class.html">如何用 Mermaid 画类图</a>
         <span class="post-date">2026-03-04</span>
-        <p>理解类图的类定义、属性/方法、继承/关联关系、多重性标注，以电商订单模型为例讲解面向对象设计。</p>
+        <p>用 Mermaid 类图描述面向对象模型，掌握类、属性、方法、继承、组合等关系语法，含完整示例。</p>
       </li>
       <li>
-        <a href="pie.html">如何用 Mermaid 画饼图</a>
+        <a href="flowchart.html">如何用 Mermaid 画流程图</a>
         <span class="post-date">2026-03-04</span>
-        <p>最简单的图表类型，三行代码即可生成饼图，适合展示比例和占比数据，附网站流量来源和开发时间分配示例。</p>
+        <p>深入讲解 Mermaid 流程图的节点形状、连线类型、子图分组、条件判断语法，附用户登录流程的完整实战示例。</p>
       </li>
+      <li>
+        <a href="sequence.html">如何用 Mermaid 画时序图</a>
+        <span class="post-date">2026-03-04</span>
+        <p>学习时序图的参与者声明、消息样式、循环/条件结构，以 HTTP 登录接口为例展示完整的 API 调用链路。</p>
+      </li>
+    <!-- POST_LIST_END -->
     </ul>
   </main>
 
   <footer class="blog-footer">
     <p>在 <a href="../../index.html">MermZen</a> 中实时编辑与预览 Mermaid 图表 · 导出 SVG/PNG · 链接即分享</p>
   </footer>
+  <script>
+    (function () {
+      // Auto dark theme detection
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
