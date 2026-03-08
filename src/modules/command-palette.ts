@@ -1,14 +1,14 @@
-import { state, HAND_FONTS, saveHandDrawnPrefs } from './store';
+import { state, HAND_FONTS } from './store';
 import { dom } from './dom';
 import { showToast, openHelp } from './utils';
 import { STRINGS } from './i18n';
 import { EXAMPLES_ZH, EXAMPLES_EN } from './examples';
-import { initMermaid, renderDiagram } from './render';
 import { downloadPng, downloadSvg, copyPng, copyShareLink, copyEmbedCode } from './export';
 import { formatCode } from './editor';
 import { closeAllMenus } from './ui/menu';
 import { resetView } from './ui/zoom';
 import { applyUiTheme, switchTheme, switchPreviewBg } from './ui/theme';
+import { actions } from './actions';
 
 const cmdOverlay = document.getElementById('cmd-palette-overlay');
 const cmdInput   = document.getElementById('cmd-palette-input') as HTMLInputElement;
@@ -37,13 +37,7 @@ function getCmdCommands() {
     { group: s.cmdExport, label: s.menuCopyPng, icon: 'copy', kbd: 'Ctrl+Shift+C', action() { copyPng().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
     { group: s.cmdShare, label: s.menuShareLink, icon: 'share', action() { copyShareLink().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
     { group: s.cmdView, label: s.menuToggleDarkLight, icon: 'theme', action() { const isDark = document.documentElement.getAttribute('data-theme') === 'dark'; applyUiTheme(!isDark); } },
-    { group: s.cmdView, label: s.menuHanddrawn, icon: 'pencil', action() {
-      state.handDrawn = !state.handDrawn;
-      if (dom.handDrawnBtn) { dom.handDrawnBtn.classList.toggle('active', state.handDrawn); dom.handDrawnBtn.setAttribute('aria-pressed', state.handDrawn ? 'true' : 'false'); }
-      if (dom.handDrawnToggleQuick) { dom.handDrawnToggleQuick.classList.toggle('active', state.handDrawn); dom.handDrawnToggleQuick.setAttribute('aria-pressed', state.handDrawn ? 'true' : 'false'); }
-      saveHandDrawnPrefs();
-      initMermaid(); renderDiagram();
-    }},
+    { group: s.cmdView, label: s.menuHanddrawn, icon: 'pencil', action() { actions.toggleHandDrawn(); } },
     { group: s.cmdView, label: s.menuResetZoom, icon: 'zoom', action: resetView },
     { group: s.cmdShare, label: s.menuEmbedCode, icon: 'share', action() { copyEmbedCode().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
     { group: s.cmdHelp, label: s.menuShortcuts, icon: 'help', action: openHelp },
@@ -65,7 +59,7 @@ function getCmdCommands() {
       group: s.cmdTheme,
       label: s.cmdThemePrefix + t.charAt(0).toUpperCase() + t.slice(1),
       icon: 'theme',
-      action() { switchTheme(t); initMermaid(); renderDiagram(); },
+      action() { switchTheme(t); },
     });
   });
 
@@ -74,7 +68,7 @@ function getCmdCommands() {
       group: s.cmdHanddrawn,
       label: s.cmdHandFontPrefix + HAND_FONTS[key].label,
       icon: 'pencil',
-      action() { state.handDrawnFont = key; saveHandDrawnPrefs(); initMermaid(); renderDiagram(); },
+      action() { actions.setHandDrawnFont(key as 'kalam' | 'virgil' | 'caveat'); },
     });
   });
 
@@ -82,7 +76,7 @@ function getCmdCommands() {
     group: s.cmdHanddrawn,
     label: s.menuReshuffle,
     icon: 'pencil',
-    action() { state.handDrawnSeed = Math.floor(Math.random() * 10000); initMermaid(); renderDiagram(); },
+    action() { actions.reshuffleHandDrawn(); },
   });
 
   cmds.push({

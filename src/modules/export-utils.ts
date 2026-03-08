@@ -194,10 +194,7 @@ async function fetchWoff2UrlFromCss(cssUrl) {
  */
 async function buildInlineFontCss() {
   const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
-  let fontUrl = preset.url;
-  if (!fontUrl && preset.cssUrl) {
-    fontUrl = await fetchWoff2UrlFromCss(preset.cssUrl);
-  }
+  const fontUrl = preset.url;
   if (!fontUrl) return '';
   try {
     const dataUri = await fetchFontAsBase64(fontUrl);
@@ -306,7 +303,8 @@ export function svgToPngBlob(svgEl: SVGElement, scale?: number): Promise<Blob> {
         cloned.setAttribute('height', height.toString());
         // 如果有viewBox，也更新viewBox的宽度
         try {
-          const vb = cloned.viewBox.baseVal;
+          const svgEl = cloned as SVGSVGElement;
+          const vb = svgEl.viewBox?.baseVal;
           if (vb && vb.width > 0) {
             cloned.setAttribute('viewBox', `${vb.x} ${vb.y} ${width} ${vb.height}`);
           }

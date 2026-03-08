@@ -1,5 +1,7 @@
 import './styles/fonts.css';
 import { state } from './modules/store';
+import { initStateFromStorage } from './modules/state';
+import { initEffects, syncAllUI } from './modules/effects';
 import { updateEditorStatus, setRenderStatus, closeHelp, showToast } from './modules/utils';
 import { applyUiTheme, initPreviewPills, switchPreviewBg, switchTheme, syncHandDrawnUI } from './modules/ui/theme';
 import { applyI18n, syncLanguageUI } from './modules/i18n';
@@ -20,6 +22,11 @@ import { dom } from './modules/dom';
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 applyUiTheme(prefersDark.matches);
 
+// ── 初始化状态管理和副作用系统 ────────────────────────────────────────
+initStateFromStorage();
+initEffects();
+syncAllUI();
+
 // ── 初始化各个 UI 模块 ──────────────────────────────────────────────
 initMenu();
 initContextMenu();
@@ -27,7 +34,6 @@ initLayout();
 initZoom();
 initPreviewPills();
 initMobileUI();
-syncHandDrawnUI();
 
 // 帮助弹窗：关闭按钮、确定按钮、重新引导、点击遮罩关闭
 const helpModal = document.getElementById('help-modal');
@@ -156,7 +162,8 @@ async function bootstrap() {
         dom.tourNext.style.display = 'none';
         document.querySelectorAll('[data-tour-lang]').forEach(btn => {
           btn.addEventListener('click', () => {
-            state.currentLang = btn.getAttribute('data-tour-lang');
+            const lang = btn.getAttribute('data-tour-lang') as 'zh' | 'en' | null;
+            if (lang) state.currentLang = lang;
             localStorage.setItem('mermzen-lang', state.currentLang);
             applyI18n();
             state.tourActive = false;

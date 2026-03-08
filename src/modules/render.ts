@@ -51,23 +51,15 @@ let _lastMermaidConfig = null;
  * 按需懒加载手绘字体（Kalam / Caveat / Virgil）。
  * 首次渲染手绘图时注入 @font-face，后续调用直接跳过。
  */
-function ensureHandDrawnFont(fontKey) {
+function ensureHandDrawnFont(fontKey: string) {
   if (_injectedFonts.has(fontKey)) return;
   const preset = HAND_FONTS[fontKey];
-  if (!preset) return;
+  if (!preset || !preset.url) return;
 
-  if (preset.url) {
-    // woff2 直链（Virgil）：注入 @font-face
-    const style = document.createElement('style');
-    style.textContent = `@font-face{font-family:'${preset.label}';src:url('${preset.url}')format('woff2');font-display:swap;}`;
-    document.head.appendChild(style);
-  } else if (preset.cssUrl) {
-    // Google Fonts CSS（Caveat 等）：注入 <link>
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = preset.cssUrl;
-    document.head.appendChild(link);
-  }
+  // 注入 @font-face
+  const style = document.createElement('style');
+  style.textContent = `@font-face{font-family:'${preset.label}';src:url('${preset.url}')format('woff2');font-display:swap;}`;
+  document.head.appendChild(style);
   _injectedFonts.add(fontKey);
 }
 
@@ -167,6 +159,8 @@ export async function renderDiagram() {
     document.documentElement.style.removeProperty('--mermaid-font');
   }
 
+  // 确保手绘字体已加载
+  // 所有字体已通过 src/styles/fonts.css 全局预加载
   if (state.handDrawn && !noHandDrawn) {
     const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
     ensureHandDrawnFont(state.handDrawnFont);

@@ -1,10 +1,7 @@
 import { dom } from '../dom';
-import { state, saveHandDrawnPrefs } from '../store';
-import { initMermaid, renderDiagram } from '../render';
+import { state } from '../store';
+import { actions } from '../actions';
 import { openHelp as openHelpUtil } from '../utils';
-import { updateHash } from '../export';
-import { getCode } from '../editor';
-import { STRINGS } from '../i18n';
 
 // ── UI 主题管理 ───────────────────────────────────────────────
 
@@ -31,15 +28,11 @@ export function toggleUiTheme() {
 }
 
 /**
- * 切换手绘风格开关，并更新 UI、保存偏好、重新渲染
+ * 切换手绘风格开关
+ * 副作用（UI 同步、保存偏好、重新渲染、URL 更新）由 effects.ts 自动处理
  */
 export function toggleHandDrawn() {
-  state.handDrawn = !state.handDrawn;
-  syncHandDrawnUI();
-  saveHandDrawnPrefs();
-  initMermaid();
-  renderDiagram();
-  updateHash(getCode());
+  actions.toggleHandDrawn();
 }
 
 /**
@@ -58,42 +51,20 @@ export function syncHandDrawnUI() {
 
 /**
  * 切换 Mermaid 图表主题
+ * 副作用（UI 同步、重新渲染、URL 更新）由 effects.ts 自动处理
  * @param {string} t - 主题名称 (default, forest, dark, neutral)
  */
 export function switchTheme(t) {
-  state.currentTheme = t;
-  const label = document.getElementById('theme-dropdown-label');
-  if (label) {
-    const s = STRINGS[state.currentLang];
-    label.textContent = s['theme' + t.charAt(0).toUpperCase() + t.slice(1)];
-  }
-  document.querySelectorAll('.theme-dropdown__panel button').forEach(b => {
-    b.classList.toggle('active', b.getAttribute('data-theme') === t);
-  });
-  if (dom.themeSelect) (dom.themeSelect as HTMLSelectElement | HTMLInputElement).value = t;
-  dom.menubar.querySelectorAll('[data-theme-pick]').forEach(b => {
-    b.classList.toggle('active', b.getAttribute('data-theme-pick') === t);
-  });
+  actions.setTheme(t);
 }
 
 /**
  * 切换预览区域背景
+ * 副作用（UI 同步、URL 更新）由 effects.ts 自动处理
  * @param {string} value - 背景类型 (white, black, checker, grid)
  */
 export function switchPreviewBg(value) {
-  state.previewBg = value;
-  dom.previewViewport.classList.remove('bg-white', 'bg-black', 'bg-checker', 'bg-grid');
-  dom.previewViewport.classList.add('bg-' + value);
-  const swatch = document.getElementById('bg-dropdown-swatch');
-  if (swatch) {
-    swatch.className = 'bg-pill__swatch bg-pill__swatch--' + value;
-  }
-  document.querySelectorAll('.bg-dropdown__panel button').forEach(b => {
-    b.classList.toggle('active', b.getAttribute('data-bg') === value);
-  });
-  dom.menubar.querySelectorAll('[data-bg-menu]').forEach(b => {
-    b.classList.toggle('active', b.getAttribute('data-bg-menu') === value);
-  });
+  actions.setPreviewBg(value);
 }
 
 /**
@@ -140,9 +111,32 @@ function positionDropdown(trigger: HTMLElement, panel: HTMLElement) {
 
 /**
  * 绑定预览区上方的 Mermaid 主题与背景色下拉框、以及工具栏快捷切换按钮
+ * 副作用由 effects.ts 自动处理
  */
 export function initPreviewPills() {
-  switchPreviewBg(state.previewBg);
+  // 背景下拉框
+  const bgDropdown = document.getElementById('bg-dropdown');
+  const bgTrigger = document.getElementById('bg-dropdown-trigger');
+  const bgPanel = document.getElementById('bg-dropdown-panel');
+  if (bgTrigger && bgPanel) {
+    bgTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasOpen = bgDropdown.classList.contains('open');
+      bgDropdown.classList.toggle('open');
+      if (!wasOpen) {
+        positionDropdown(bgTrigger, bgPanel);
+      }
+    });
+    bgPanel.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.getAttribute('data-bg');
+        if (v) {
+          switchPreviewBg(v);
+          bgDropdown.classList.remove('open');
+        }
+      });
+    });
+  }
 
   // 主题下拉框
   const themeDropdown = document.getElementById('theme-dropdown');
@@ -162,35 +156,7 @@ export function initPreviewPills() {
         const t = btn.getAttribute('data-theme');
         if (t) {
           switchTheme(t);
-          initMermaid();
-          renderDiagram();
-          updateHash(getCode());
           themeDropdown.classList.remove('open');
-        }
-      });
-    });
-  }
-
-  // 背景下拉框
-  const bgDropdown = document.getElementById('bg-dropdown');
-  const bgTrigger = document.getElementById('bg-dropdown-trigger');
-  const bgPanel = document.getElementById('bg-dropdown-panel');
-  if (bgTrigger && bgPanel) {
-    bgTrigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const wasOpen = bgDropdown.classList.contains('open');
-      bgDropdown.classList.toggle('open');
-      if (!wasOpen) {
-        positionDropdown(bgTrigger, bgPanel);
-      }
-    });
-    bgPanel.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const v = btn.getAttribute('data-bg');
-        if (v) {
-          switchPreviewBg(v);
-          updateHash(getCode());
-          bgDropdown.classList.remove('open');
         }
       });
     });

@@ -1,15 +1,15 @@
-import { state, saveHandDrawnPrefs } from '../store';
+import { state } from '../store';
 import { dom } from '../dom';
 import { EXAMPLES_ZH, EXAMPLES_EN } from '../examples';
-import { copyPng, downloadSvg, downloadPng, copyShareLink, copyEmbedCode, updateHash } from '../export';
-import { showToast, btnSuccess } from '../utils';
-import { getCode, formatCode } from '../editor';
-import { initMermaid, renderDiagram } from '../render';
+import { copyPng, downloadSvg, downloadPng, copyShareLink, copyEmbedCode } from '../export';
+import { showToast } from '../utils';
+import { formatCode } from '../editor';
 import { STRINGS, switchLanguage, syncLanguageUI } from '../i18n';
 import { openHelp, switchTheme, switchPreviewBg, toggleHandDrawn, toggleUiTheme } from './theme';
 import { resetView as zoomResetView } from './zoom';
 import { openCmdPalette } from '../command-palette';
 import { startTour } from '../tour';
+import { actions } from '../actions';
 
 // 修正 closeAllMenus 的位置，之前在 core.js，现在应该在 menu.js 中定义或者 theme.js
 // 根据之前的拆分，closeAllMenus 被放到了 theme.js (虽然逻辑上它属于 menu，但为了兼容性先检查一下)
@@ -155,28 +155,26 @@ export function initMenu() {
   const menuRestartTour = document.getElementById('btn-restart-tour-menu');
   if (menuRestartTour) menuRestartTour.addEventListener('click', () => { closeAllMenus(); startTour(); });
 
+  // 主题选择（副作用由 effects.ts 自动处理）
   dom.menubar.querySelectorAll('[data-theme-pick]').forEach(btn => {
     btn.addEventListener('click', () => {
       switchTheme(btn.getAttribute('data-theme-pick'));
-      initMermaid();
-      renderDiagram();
-      updateHash(getCode());
       closeAllMenus();
     });
   });
 
+  // 背景选择（副作用由 effects.ts 自动处理）
   dom.menubar.querySelectorAll('[data-bg-menu]').forEach(btn => {
     btn.addEventListener('click', () => {
       switchPreviewBg(btn.getAttribute('data-bg-menu'));
-      updateHash(getCode());
       closeAllMenus();
     });
   });
 
+  // 手绘风格开关（副作用由 effects.ts 自动处理）
   if (dom.handDrawnBtn) {
     dom.handDrawnBtn.addEventListener('click', () => {
       toggleHandDrawn();
-      updateHash(getCode());
       closeAllMenus();
     });
   }
@@ -184,57 +182,44 @@ export function initMenu() {
     dom.uiThemeToggle.addEventListener('click', () => { toggleUiTheme(); closeAllMenus(); });
   }
 
+  // 手绘字体选择（副作用由 effects.ts 自动处理）
   dom.menubar.querySelectorAll('[data-hd-font]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const font = btn.getAttribute('data-hd-font');
+      const font = btn.getAttribute('data-hd-font') as 'kalam' | 'virgil' | 'caveat' | null;
       if (font) {
-        state.handDrawnFont = font;
-        dom.menubar.querySelectorAll('[data-hd-font]').forEach(b => b.classList.toggle('active', b.getAttribute('data-hd-font') === font));
-        saveHandDrawnPrefs();
-        initMermaid();
-        renderDiagram();
+        actions.setHandDrawnFont(font);
         closeAllMenus();
       }
     });
   });
 
+  // 手绘字号选择（副作用由 effects.ts 自动处理）
   dom.menubar.querySelectorAll('[data-hd-size]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const size = btn.getAttribute('data-hd-size');
+      const size = btn.getAttribute('data-hd-size') as 'small' | 'medium' | 'large' | null;
       if (size) {
-        state.handDrawnFontSize = size;
-        dom.menubar.querySelectorAll('[data-hd-size]').forEach(b => b.classList.toggle('active', b.getAttribute('data-hd-size') === size));
-        saveHandDrawnPrefs();
-        initMermaid();
-        renderDiagram();
-        updateHash(getCode());
+        actions.setHandDrawnFontSize(size);
         closeAllMenus();
       }
     });
   });
 
+  // 手绘随机种子模式（副作用由 effects.ts 自动处理）
   dom.menubar.querySelectorAll('[data-hd-seed]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const seed = btn.getAttribute('data-hd-seed');
+      const seed = btn.getAttribute('data-hd-seed') as 'fixed' | 'random' | null;
       if (seed) {
-        state.handDrawnSeedMode = seed;
-        dom.menubar.querySelectorAll('[data-hd-seed]').forEach(b => b.classList.toggle('active', b.getAttribute('data-hd-seed') === seed));
-        saveHandDrawnPrefs();
-        initMermaid();
-        renderDiagram();
-        updateHash(getCode());
+        actions.setHandDrawnSeedMode(seed);
         closeAllMenus();
       }
     });
   });
 
+  // 刷新手绘种子（副作用由 effects.ts 自动处理）
   const btnReshuffleSeed = document.getElementById('btn-reshuffle-seed');
   if (btnReshuffleSeed) {
     btnReshuffleSeed.addEventListener('click', () => {
-      state.handDrawnSeed = Math.floor(Math.random() * 10000);
-      initMermaid();
-      renderDiagram();
-      updateHash(getCode());
+      actions.reshuffleHandDrawn();
       closeAllMenus();
     });
   }

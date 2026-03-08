@@ -1,4 +1,5 @@
 import { state } from './store';
+import { actions } from './actions';
 import { updateEditorStatus as updateEditorStatusUtil } from './utils';
 import { renderExampleDropdown } from './ui/menu';
 
@@ -339,13 +340,10 @@ export function applyI18n() {
 
 /**
  * 切换语言
+ * 副作用（localStorage 保存、UI 同步、i18n 应用）由 effects.ts 自动处理
  */
 export function switchLanguage(lang: 'zh' | 'en') {
-  state.currentLang = lang;
-  localStorage.setItem('mermzen-lang', lang);
-  syncLanguageUI();
-  applyI18n();
-  renderExampleDropdown();
+  actions.setLang(lang);
 }
 
 /**

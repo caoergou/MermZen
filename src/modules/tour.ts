@@ -49,7 +49,8 @@ function showLangPicker() {
 
   dom.tourTooltip.querySelectorAll('.lang-pick').forEach(btn => {
     btn.addEventListener('click', () => {
-      state.currentLang = btn.getAttribute('data-lang');
+      const lang = btn.getAttribute('data-lang') as 'zh' | 'en' | null;
+      if (lang) state.currentLang = lang;
       localStorage.setItem('mermzen-lang', state.currentLang);
       applyI18n();
       updateEditorStatus();
