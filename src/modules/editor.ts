@@ -2,6 +2,7 @@ import { basicSetup, EditorView } from "codemirror";
 import { EditorState, Compartment } from "@codemirror/state";
 import { linter, lintGutter, setDiagnostics } from "@codemirror/lint";
 import { keymap } from "@codemirror/view";
+import { autocompletion } from "@codemirror/autocomplete";
 import { mermaid as mermaidLang } from "codemirror-lang-mermaid";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { LanguageSupport } from "@codemirror/language";
@@ -10,6 +11,7 @@ import { state } from './store';
 import { dom } from './dom';
 import { formatMermaidCode } from './formatter';
 import { mermaidExtHighlight } from './mermaid-highlight-ext';
+import { mermaidCompletion } from './mermaid-completion';
 
 // 语言支持 Compartment，用于动态切换
 const languageCompartment = new Compartment();
@@ -156,6 +158,11 @@ export function createEditor(initialCode, onDocChange, onReady?: () => void) {
     buildEditorTheme(true),
     lintGutter(),
     linter(() => currentDiagnostics, { delay: 0 }),
+    autocompletion({
+      override: [mermaidCompletion],
+      maxRenderedOptions: 50,
+      activateOnTyping: true,
+    }),
     keymap.of([{
       key: 'Tab',
       run(view) {
