@@ -6,9 +6,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+  pull-requests: write
 
 concurrency:
   group: pages
@@ -23,6 +24,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,6 +41,59 @@ jobs:
 
       - name: Build app and generate all assets
         run: npm run build:all
+
+      - name: Check for preview image changes
+        id: check_changes
+        run: |
+          # Check if there are any changes in assets/ directory
+          if git diff --quiet assets/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in preview images"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in preview images:"
+            git diff --stat assets/
+          fi
+
+      - name: Create PR for updated preview images
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create a new branch
+          BRANCH_NAME="update-preview-images-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH_NAME"
+
+          # Stage and commit changes
+          git add assets/
+          git commit -m "chore: update preview images [skip ci]"
+
+          # Push the branch
+          git push origin "$BRANCH_NAME"
+
+          # Create PR using gh CLI
+          gh pr create \
+            --title "chore: update preview images" \
+            --body "$(cat <<'EOF'
+          ## Summary
+          This PR updates the preview images in the `assets/` directory.
+
+          The images were automatically regenerated during the CI build process.
+
+          ## Changes
+          $(git diff origin/main --stat assets/)
+
+          ---
+
+          This PR was automatically created by the CI workflow.
+          EOF
+          )" \
+          --base main \
+          --label "automated"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate sitemap and robots.txt
         run: |
