@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mermaid Cheat Sheet - MermZen</title>
+  <meta name="description" content="Complete Mermaid diagram syntax cheat sheet covering all chart types including flowcharts, sequence diagrams, class diagrams, Gantt charts, and more.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://eric.run.place/MermZen/blog/cheat-sheet.html">
+  <link rel="icon" type="image/svg+xml" href="../logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="blog.css">
+  <style>
+    body {
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      background: var(--bg-primary, #ffffff);
+      color: var(--text-primary, #333333);
+      line-height: 1.75;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-header {
+      background: var(--toolbar-bg, #f8f8f8);
+      border-bottom: 1px solid var(--border-color, #e5e5e5);
+      padding: 0 24px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .blog-header a {
+      color: var(--text-secondary, #717171);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .blog-header a:hover { color: var(--accent, #007acc); }
+    .blog-header .blog-logo {
+      font-weight: 700;
+      color: var(--text-primary, #333);
+      font-size: 14px;
+    }
+    .blog-header__spacer { flex: 1; }
+    .lang-toggle-btn {
+      background: var(--bg-secondary, #f3f3f3);
+      border: 1px solid var(--border-color, #e5e5e5);
+      border-radius: 4px;
+      color: var(--text-secondary, #717171);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 8px;
+      font-family: inherit;
+    }
+    .main-content {
+      flex: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 16px;
+      color: var(--text-primary, #333);
+    }
+    .subtitle {
+      color: var(--text-secondary, #717171);
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+    .language-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .lang-card {
+      background: var(--bg-secondary, #f3f3f3);
+      border: 1px solid var(--border-color, #e5e5e5);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .lang-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border-color: var(--accent, #007acc);
+    }
+    .lang-card h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--accent, #007acc);
+    }
+    .lang-card p {
+      color: var(--text-secondary, #717171);
+      margin: 0;
+      font-size: 14px;
+    }
+    .blog-footer {
+      border-top: 1px solid var(--border-color, #e5e5e5);
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text-secondary, #717171);
+    }
+    .blog-footer a { color: var(--accent, #007acc); text-decoration: none; }
+    @media (max-width: 600px) {
+      .main-content { padding: 28px 16px; }
+      h1 { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="blog-header">
+    <a href="../index.html">← Back to Editor</a>
+    <span class="blog-logo">MermZen</span>
+    <a href="zh/index.html">All Tutorials</a>
+    <div class="blog-header__spacer"></div>
+  </header>
+
+  <main class="main-content">
+    <h1>Mermaid Cheat Sheet</h1>
+    <p class="subtitle">Complete syntax reference for all Mermaid diagram types</p>
+    
+    <div class="language-cards">
+      <a href="zh/cheat-sheet.html" class="lang-card">
+        <h2>中文</h2>
+        <p>Mermaid 图表速查表（简体中文）</p>
+      </a>
+      <a href="en/cheat-sheet.html" class="lang-card">
+        <h2>English</h2>
+        <p>Mermaid Diagram Cheat Sheet</p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <p>Write and preview Mermaid diagrams in <a href="../index.html">MermZen</a> — export SVG/PNG, share via URL</p>
+  </footer>
+
+  <script>
+    (function() {
+      // Auto-detect language preference
+      var userLang = navigator.language || navigator.userLanguage;
+      if (userLang && userLang.toLowerCase().startsWith('zh')) {
+        window.location.href = 'zh/cheat-sheet.html';
+      }
+    })();
+  </script>
+</body>
+</html>
