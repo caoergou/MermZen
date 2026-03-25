@@ -1,7 +1,7 @@
 import mermaid from 'mermaid';
 import { state, HAND_FONTS, getHandDrawnFontFamily, getHandDrawnFontSizePx, resolveHandDrawnSeed } from './store';
 import { dom } from './dom';
-import { escapeHtml, setRenderStatus } from './utils';
+import { escapeHtml, setRenderStatus, extractErrorLine, getFriendlyHint } from './utils';
 import { STRINGS } from './i18n';
 import { getCode, clearDiagnostics, pushDiagnosticFromError, scrollToLine } from './editor';
 
@@ -188,42 +188,20 @@ export async function renderDiagram() {
   }
 }
 
-// ── 错误处理 ───────────────────────────────────────────────────
-
-function extractErrorLine(err) {
-  const msg = err.message || String(err);
-  const lineMatch = msg.match(/line\s+(\d+)/i);
-  if (lineMatch) return parseInt(lineMatch[1], 10);
-  if (err.hash && err.hash.line != null) return err.hash.line + 1;
-  return null;
-}
-
-function getFriendlyHint(msg, lang) {
-  const lower = msg.toLowerCase();
-  if (lang === 'zh') {
-    if (/expecting/i.test(msg) && /got.*eof/i.test(msg)) return '代码可能不完整，请检查是否有未闭合的括号或缺少 end 关键字';
-    if (/unknown diagram type/i.test(msg)) return '未知的图表类型，支持的类型包括：graph, sequenceDiagram, classDiagram, gantt, pie, mindmap 等';
-    if (/expecting.*['"](-->|---|===)/i.test(msg) || /invalid arrow/i.test(lower)) return '箭头语法错误，常见格式：-->, ---, ===>, -.->，请检查连接线格式';
-    if (/unterminated/i.test(msg) || /unclosed/i.test(lower)) return '存在未闭合的引号、括号或代码块';
-    if (/participant/i.test(msg)) return '时序图参与者声明有误，格式：participant 名称';
-    if (/subgraph/i.test(msg)) return 'subgraph 块语法有误，确保每个 subgraph 都有对应的 end';
-    return '请检查语法是否正确，可参考示例下拉菜单中的模板';
-  }
-  if (/expecting/i.test(msg) && /got.*eof/i.test(msg)) return 'Code appears incomplete. Check for unclosed brackets or missing "end" keywords.';
-  if (/unknown diagram type/i.test(msg)) return 'Unknown diagram type. Supported types: graph, sequenceDiagram, classDiagram, gantt, pie, mindmap, etc.';
-  if (/expecting.*['"](-->|---|===)/i.test(msg) || /invalid arrow/i.test(lower)) return 'Arrow syntax error. Common formats: -->, ---, ===>, -.->';
-  if (/unterminated/i.test(msg) || /unclosed/i.test(lower)) return 'Unterminated string, bracket, or code block detected.';
-  if (/participant/i.test(msg)) return 'Participant declaration error. Format: participant Name';
-  if (/subgraph/i.test(msg)) return 'Subgraph syntax error. Each subgraph needs a matching "end".';
-  return 'Check your syntax. See Help for example templates.';
-}
-
 function handleRenderError(err, code) {
   const msg = err.message || String(err);
   const errLine = extractErrorLine(err);
   const s = STRINGS[state.currentLang];
+
+  console.warn('[MermZen] Render error:', {
+    message: msg,
+    line: errLine,
+    code: code.slice(0, 200) + (code.length > 200 ? '...' : ''),
+    error: err
+  });
+
   const lineHint = errLine
-    ? '<button class="error-banner__line error-banner__goto" data-line="' + errLine + '">' + s.errorLine.replace('{n}', errLine) + '</button>'
+    ? '<button class="error-banner__line error-banner__goto" data-line="' + errLine + '">' + s.errorLine.replace('{n}', String(errLine)) + '</button>'
     : '';
   const friendlyHint = getFriendlyHint(msg, state.currentLang);
   dom.preview.innerHTML =

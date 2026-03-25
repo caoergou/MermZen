@@ -32,6 +32,10 @@ const unsubscribers: (() => void)[] = [];
 let renderTimer: ReturnType<typeof setTimeout> | null = null;
 let hashTimer: ReturnType<typeof setTimeout> | null = null;
 
+// 防抖延迟常量
+const RENDER_DEBOUNCE_MS = 150;
+const HASH_DEBOUNCE_MS = 500;
+
 // ═══════════════════════════════════════════════════════════════════════
 // UI 同步副作用
 // ═══════════════════════════════════════════════════════════════════════
@@ -122,29 +126,22 @@ async function scheduleRender() {
     if (_initMermaid) _initMermaid();
     if (_renderDiagram) await _renderDiagram();
     renderTimer = null;
-  }, 50);
+  }, RENDER_DEBOUNCE_MS);
 }
 
-/**
- * 安排 URL Hash 更新（防抖）
- */
 async function scheduleHashUpdate() {
   await getRenderFunctions();
   if (hashTimer) clearTimeout(hashTimer);
   hashTimer = setTimeout(() => {
     if (_updateHash) _updateHash(getCode());
     hashTimer = null;
-  }, 100);
+  }, HASH_DEBOUNCE_MS);
 }
 
 // ═══════════════════════════════════════════════════════════════════════
 // 初始化副作用系统
 // ═══════════════════════════════════════════════════════════════════════
 
-/**
- * 初始化副作用系统
- * 在应用启动时调用一次
- */
 export function initEffects() {
   // 手绘风格开关变化
   unsubscribers.push(

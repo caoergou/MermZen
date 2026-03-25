@@ -1,8 +1,8 @@
 import { state, HAND_FONTS } from './store';
 import { getExportBgColor } from './ui/theme';
 
-// ── SVG 字体内联逻辑 ───────────────────────────────────────────────
-const fontDataCache = {};
+const fontDataCache = new Map<string, string>();
+const MAX_CACHE_SIZE = 50;
 
 // ── 小赖字体 (Xiaolai SC) 子集嵌入 ────────────────────────────
 const XIAOLAI_CSS_URLS = [
@@ -115,25 +115,24 @@ async function buildXiaolaiCssForSvg(svgEl) {
  * 获取字体文件并转换为 Base64（支持 CDN 回退）
  */
 async function fetchFontAsBase64(url) {
-  if (fontDataCache[url]) return fontDataCache[url];
+  if (fontDataCache.has(url)) return fontDataCache.get(url);
 
-  // 尝试原始 URL
   const result = await tryFetchFont(url);
   if (result) {
-    fontDataCache[url] = result;
+    if (fontDataCache.size >= MAX_CACHE_SIZE) {
+      const firstKey = fontDataCache.keys().next().value;
+      fontDataCache.delete(firstKey);
+    }
+    fontDataCache.set(url, result);
     return result;
   }
 
-  // CDN 回退：根据原始 URL 的来源，换其他 CDN 重试
   const fallbacks: string[] = [];
   if (url.includes('cdn.jsdelivr.net/npm/')) {
-    // jsdelivr: cdn.jsdelivr.net/npm/@scope/pkg@ver/path  →  unpkg / npmmirror
     fallbacks.push(url.replace('https://cdn.jsdelivr.net/npm/', 'https://unpkg.com/'));
-    // npmmirror: registry.npmmirror.com/@scope/pkg/ver/files/path
     const npmmirrorUrl = url.replace('https://cdn.jsdelivr.net/npm/', 'https://registry.npmmirror.com/').replace(/@(\d)/, '/$1');
     fallbacks.push(npmmirrorUrl);
   } else if (url.includes('registry.npmmirror.com/')) {
-    // npmmirror → jsdelivr
     const jsdUrl = url.replace('https://registry.npmmirror.com/', 'https://cdn.jsdelivr.net/npm/').replace(/\/(\d[^/]*)\/files\//, '@$1/');
     fallbacks.push(jsdUrl);
     fallbacks.push(url.replace('https://registry.npmmirror.com/', 'https://unpkg.com/').replace(/\/(\d[^/]*)\/files\//, '@$1/'));
@@ -141,7 +140,11 @@ async function fetchFontAsBase64(url) {
   for (const altUrl of fallbacks) {
     const altResult = await tryFetchFont(altUrl);
     if (altResult) {
-      fontDataCache[url] = altResult;
+      if (fontDataCache.size >= MAX_CACHE_SIZE) {
+        const firstKey = fontDataCache.keys().next().value;
+        fontDataCache.delete(firstKey);
+      }
+      fontDataCache.set(url, altResult);
       return altResult;
     }
   }

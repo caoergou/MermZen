@@ -12,6 +12,7 @@ import { dom } from './dom';
 import { formatMermaidCode } from './formatter';
 import { mermaidExtHighlight } from './mermaid-highlight-ext';
 import { mermaidCompletion } from './mermaid-completion';
+import { extractErrorLine } from './utils';
 
 // 语言支持 Compartment，用于动态切换
 const languageCompartment = new Compartment();
@@ -35,22 +36,18 @@ export function clearDiagnostics() {
   state.editorView.dispatch(setDiagnostics(state.editorView.state, []));
 }
 
-function extractLineFromError(err) {
-  const msg = err.message || String(err);
-  const lineMatch = msg.match(/line\s+(\d+)/i);
-  if (lineMatch) return parseInt(lineMatch[1], 10);
-  if (err.hash && err.hash.line != null) return err.hash.line + 1;
-  return null;
-}
-
-/**
- * 从错误对象推送诊断信息到编辑器
- */
 export function pushDiagnosticFromError(msg, errObj) {
   if (!state.editorView) return;
-  const lineNum = errObj ? extractLineFromError(errObj) : null;
+  const lineNum = errObj ? extractErrorLine(errObj) : null;
   const lineMatchFallback = typeof msg === 'string' ? msg.match(/line\s+(\d+)/i) : null;
   const line = lineNum || (lineMatchFallback ? parseInt(lineMatchFallback[1], 10) : null);
+
+  console.warn('[MermZen] Syntax error:', {
+    message: msg,
+    line: line,
+    error: errObj
+  });
+
   let from = 0, to = 1;
   if (line) {
     try {
