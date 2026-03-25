@@ -1,6 +1,6 @@
 ---
 title: How to Draw User Journey Diagrams in Mermaid
-description: Comprehensive guide to Mermaid user journey diagram syntax including phase division, touchpoints, and emotional curves with complete e-commerce shopping flow example.
+description: Comprehensive guide to Mermaid user journey diagram syntax including phase division, touchpoints, emotional curves with practical pain point analysis and real-world applications.
 date: 2026-03-05
 slug: journey
 ---
@@ -9,9 +9,36 @@ slug: journey
 
 <span class="post-meta">2026-03-05 · MermZen Tutorial
 
-User journey diagrams visualize the process of users interacting with products or services, showing user behaviors, emotions, and pain points. They are ideal for user experience design, product optimization, and service design. Mermaid uses `journey` keyword for user journey diagrams.
+User Journey Maps are **core tools in UX design** for visualizing the complete process of user-product interaction. Their core value lies in:
+
+- **Identifying Pain Points**: Discovering breakpoints and high-friction areas in user experience
+- **Quantifying Emotions**: Rating user emotional state at each touchpoint (1-5 scale)
+- **Driving Optimization**: Providing data support for product iterations
+
+Mermaid uses the `journey` keyword for user journey diagrams.
 
 <iframe src="https://eric.run.place/MermZen/embed.html#eJyrVipTsjLSUUpWslLKyi8tykutjMlTUFBQKMksyUlVCC1OLVLwgogruGQmphcl5iqEgKSUagEtyROq" width="100%" height="600" frameborder="0"></iframe>
+
+## The Rating System: Why 1-5?
+
+Emotional scoring is the core value of Journey diagrams. Understanding the rating basis is crucial:
+
+| Score | Emotional State | Typical Manifestation | Design Insight |
+|-------|-----------------|------------------------|----------------|
+| **5** | Delighted | Smooth flow, exceeds expectations, has surprises | **Maintain advantage**, can be highlighted in marketing |
+| **4** | Satisfied | Normal flow, no obvious obstacles | Normal level, continue monitoring |
+| **3** | Neutral | Acceptable but has room for improvement | **Optimization candidate**, check competitor approaches |
+| **2** | Annoyed | Complex flow, long wait times, needs improvement | **Priority optimization**, affects conversion rate |
+| **1** | Frustrated | Flow broken, serious issues, user churn | **Urgent fix**, may cause abandonment |
+
+### Where Do Scores Come From?
+
+In real projects, ratings should come from:
+
+1. **User Interviews**: Directly asking users about their experience
+2. **Survey Research**: NPS (Net Promoter Score) surveys
+3. **Behavioral Data**: Page duration, bounce rate, conversion funnel
+4. **Customer Support Tickets**: Complaint types and frequency statistics
 
 ## Declaring a Chart
 
@@ -21,107 +48,144 @@ Use `journey` keyword:
 journey
     title User Journey Diagram Title
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslLKyi8tykutjMlTUFBQKMksyUlVCC1OLVLwgogruGQmphcl5iqEgKSUagEtyROq" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
-## Basic Journey Definition
+## Pain Point Identification Example
 
-Create simple user journey:
+This example shows **how to identify pain points through Journey diagrams**:
 
 ```
 journey
-    title Basic User Journey
+    title Shopping Journey: Pain Point Perspective
     section Discovery
       Search Engine : 5: User
-      Social Media Recommendation : 3: User
-    section Visit
-      Homepage Browsing : 4: User
-      Product List Page : 5: User
-    section Purchase
-      Product Detail Page : 4: User
-      Add to Cart : 5: User
-      Checkout : 4: User
-    section Completion
-      Order Confirmation : 5: User
-      Payment Success : 5: User
-```
-<a href="https://eric.run.place/MermZen/#eJxlkM1OAzEMhF9llDMnfi650S0SQiBWVHDiEjlma9jEVeItqhDvjloRKMvNsuebsf3hts6fnjhy3r3qVDLvnjMAmNjIWIQqhMfKBTfH08pkohlLqaRbLt9tYMWh0BpXeZDM8LjwB_pnrCRhxB1HCXhg0pQ4x3Dw8jg7FreIJ6lijb_WxJswMBZF36vkAR7nfyP6onEiw61UQ7_XzrZoxv1UaB0qz8ElW5CxoTP3yxhhii4U-39dt2Z608nmWEvsNG1G3peNuC-RCzrNL1JSe8PMtQ-7xNmwmoi41l-B-_wCzGiLig" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
-
-## Emotional Curves
-
-Add user emotion ratings:
-
-```
-journey
-    title Emotional Curve Journey
-    section Discovery Phase
-      Search Engine Search : 5: User
-      Ad Click : 3: User
-      Product Comparison : 4: User
-    section Consideration Phase
+      Ad Click : 2: User
+      Social Media Recommendation : 4: User
+    section Consideration
       Product Detail Reading : 5: User
       User Review Viewing : 4: User
       Price Comparison : 3: User
-    section Purchase Phase
+    section Purchase
       Add to Cart : 5: User
-      Fill Address : 3: User
-      Payment : 4: User
-    section Post-Purchase Phase
+      Fill Address : 2: User
+      Select Payment Method : 3: User
+    section Delivery
       Order Confirmation : 5: User
-      Receipt : 4: User
-      Evaluation : 3: User
+      Logistics Tracking : 4: User
+      Confirm Receipt : 5: User
 ```
-<a href="https://eric.run.place/MermZen/#eJx1kDFPwzAQhf_Kk2dYaFm8VWkYWIiCYGKx7KM96tjV2UkVIf47CiFSQ8Lm03u-9937VJ3SdzfKKq0-YiuB-rcAAJmzJ5RNzByD8Sha6QiP15ZEdhCx52RjR9KjOppEowg8kxF7RBkOHGiaNO41XhLJ5No5FJ7tCRqbuVJJdK3NKGJzNsIpBmhsrz0TQBFDYkdifqYZxLRkT9mwR03GcTgsMYY3auqYLnhluoym7V8itjTn2azxVK3YAWKOsnMOOaIwkpf5D-z94BBKaaUK0zcU8n_3VzHl2_XQJ3EkQ0HvLM3YzyK7Jkt8XmwHys74dvr0i6S-vgEi1q-5" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
-## Full Example: E-Commerce Shopping Flow
+<iframe src="https://eric.run.place/MermZen/embed.html#eJx1UctOwlAQ3fsV9xt8bPgdwwJjIBFcuCtikUeAQouAojwCFDC0LApYWvBnOnOHlb_glWJitd7VTc5jzpy5SFxfxaM3R0y8VCx1GWVcG2NuRdaM5yfYkPm4-OE-8sYTv7Uhl8UXhfQs6bW9Ihk9T8UScQaVKi_Pd80lGos9wBgqbW71wa2jWvb_LMLOIgf7Awnsd6gWvpzvHQEf_4L5YOutBzCteRsVy2MqKYJ0GiB9JyApQ61qIIG31kFNkznCjLxrymQ6IQkO25p3nrPCzpC3i39GCCeBdV00NdpmBHwSnsCaeXawAyh0QR76VdJmFFZA7xWyLWjP4VkKKWAn5bE4Qc30nCY-2OBW_h2P2pIsPTCejD6U6rxnkDEIW13cd5GmVYfepiFL-zrf9qf6Ey2_G78" width="100%" height="600" frameborder="0"></iframe>
+
+### Pain Point Analysis
+
+| Low-Score Touchpoint | Score | Possible Reasons | Optimization Direction |
+|----------------------|-------|------------------|------------------------|
+| Ad Click | 2 | Ad content doesn't match landing page, slow redirect | Improve ad targeting, speed up landing page |
+| Fill Address | 2 | Many form fields, no autofill, manual input required | Add address suggestions, auto-location, one-click fill |
+| Select Payment | 3 | Few payment options, complex interface | Simplify payment flow, add mainstream payment methods |
+
+**Key Insight**: `Fill Address` scores only 2, it's a **critical breakpoint in the conversion funnel**, should be prioritized.
+
+## Before & After Optimization Comparison
+
+Journey diagrams can visually show optimization effects:
+
+### Before: Address Filling Flow
 
 ```
 journey
-    title E-Commerce User Shopping Journey
+    title Before Optimization: Address Filling
+    section Fill Address
+      Select Province : 3: User
+      Select City : 3: User
+      Enter Detailed Address : 2: User
+      Manually Enter Zip Code : 2: User
+```
+
+<iframe src="https://eric.run.place/MermZen/embed.html#eJzLyi8tykut5FIAgpLMkpxUhSd7Zjztmfa0s_f9nllP52x4Orfh6cLVT9tmPtva-HxFN1hhcWpySWZ-ngJEAqIILKGg8LKh81n3yudzGp_s3qtgpWBspfB8yopnHdtRpJ_O73u6owmL9It9k5-2Ln2xftnz3W0QY4GKjNAUPevsftq1AqL0ZdO653umISsCAAJiaZM" width="100%" height="400" frameborder="0"></iframe>
+
+**Problem**: Average score ~2.5, multiple steps requiring manual operation.
+
+### After: Address Autofill
+
+```
+journey
+    title After Optimization: Address Autofill
+    section Fill Address
+      Auto-detect City : 5: User
+      Address Suggestion Input : 4: User
+      Zip Code Auto-fill : 5: User
+```
+
+<iframe src="https://eric.run.place/MermZen/embed.html#eJzLyi8tykut5FIAgpLMkpxUhSd7ZjztmfZ0Qt_7PbOeztnwdG7Di_ZVT7tWPF24-mlrK1hhcWpySWZ-ngJIqG0mRBFYQkEBqnbdrCd7e5_O73u6o0nBSsHUSuH5lBXPOrZDFUGNbZzyrHnzi32Tn7YuBSoyQVP0smnd8z3TkO1GNgkAJvVfLA" width="100%" height="400" frameborder="0"></iframe>
+
+**Result**: Score improved to 4.7, steps reduced from 4 to 3, user completion rate significantly increased.
+
+## Full Example: E-Commerce User Journey
+
+```
+journey
+    title E-Commerce User Journey: Emotional Curve Insights
     section Need Recognition
       Recognize Need : 4: User
       Define Requirements : 5: User
       Product Research : 4: User
     section Information Gathering
-      Search Engine Search : 5: User
-      Browse E-Commerce Platform : 4: User
-      View Product Reviews : 5: User
-      Price Comparison : 3: User
+      Search Products : 5: User
+      Browse Details : 4: User
+      Compare Reviews : 5: User
+      Compare Prices : 3: User
     section Purchase Decision
-      Product Detail Page : 4: User
-      User Review Analysis : 5: User
-      Customer Service Consultation : 3: User
-    section Purchase Process
       Add to Cart : 5: User
-      Cart Checkout : 4: User
-      Fill Address : 3: User
-      Payment : 5: User
+      Fill Address : 2: User
+      Select Payment : 3: User
+      Confirm Order : 4: User
     section Delivery Experience
-      Order Confirmation : 5: User
-      Shipment Notification : 4: User
-      Logistics Tracking : 5: User
-      Receipt : 5: User
-    section Post-Purchase Experience
-      Product Usage : 4: User
-      Problem Feedback : 3: User
-      Review Sharing : 4: User
-      Repurchase : 5: User
+      Payment Success : 5: User
+      Logistics Tracking : 4: User
+      Confirm Receipt : 5: User
 ```
-<a href="https://eric.run.place/MermZen/#eJyFkk9vm0AQxb_KiHNzSdMLtxQ7UasqRSbpqZfN8gxTwy6dWew4Vb97helGDhDltpqZfe83f_4k-yS9_JDYJE1--V4cjj8dEVHg0IDWF5lvW4gFPSiEitp3HbuKvp7XKmxg7-gOKGkD6yvHQ2DMUgw9Y6xI6So9ycX8Clt2oA1-9yxo4YJSSp9eF-Xiy94G2kBhxNZTmQjxxW29tOb0vjWhhrCrokgxfl27ajAsotDE6rP4g75qPm9MGGTn7D8YhzO2PeOwCM8WlPm2M8LqHaX0cQk-78XWRkErWNazEUaHFYLhhnJTYc5yWtHIQNfONEflBZas1-DbYZmQ_YjltG_COLL3wHLxFqpR7LosKXjKjIQFpyGa1bA734c57g03zSAgUJ36EuXmOFzCVDUCrdDwHnKk9VMHYTiL-PO7lJChqy3HQ5ihFTV3J_k7H3jLNpZNEL_5ijWwVboXY3fD5c-kNrDg7k3Q3Gu4eBnfnDZu9kEXd5qLf2zQ0g1QPhq7mw_q_8KL2sjIdzXNd9H9BTH5-w8srkDv" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+
+<iframe src="https://eric.run.place/MermZen/embed.html#eJx1kc1OwkAUhfc-xTyDPxtex7DAGEgUF-5AoSmgQsKgKGgpQaAQOqj9EZDwMnPvTFe-gpM2NQbq7CbfnHPvOXOSuzjLpi_3iDr5TP40TQR1oaUJOkbdx4eyGNe-v57wuowlAzvvYrlB5wWYESrO08f5TC5Lgm4B364k00CfhoAQLNXD-zxiJEUOUyRyjV-074Rp_-KjLSx6VFgeX46gWdxRx4P5xsQiQ-oFHS22bXSF01cRIt22Lbp1OdIlG6pICUsBWyCjkpX4yk9SMxqBg8R1pDPjizloH2J2HxtWe1B-VUBULLkeJniCOQXtEbpzeC4ovL-Fg0IFaxZSxlftncGqJtOW9kDafbht_V_TcqDUfN0MJjdxktAQ9QZUjaT2Kxa6Rekb8nOS9HfUk84omv1X_QOU2R_1" width="100%" height="600" frameborder="0"></iframe>
+
+### Key Insights
+
+From the emotional curve, we can clearly see:
+
+- **High Points** (5): Search products, compare reviews, add to cart, payment success, confirm receipt
+- **Low Points** (2-3): Fill address, select payment, compare prices
+
+**Action Recommendations**:
+1. **Priority**: Optimize address filling (introduce autofill)
+2. **Secondary**: Simplify payment selection, add price comparison tools
+3. **Monitor**: Continuously track emotional changes in price comparison
 
 ## Quick Reference
 
-| Syntax | Function |
-|--------|----------|
-| `journey` | Declare user journey diagram |
-| `title Title` | Set chart title |
-| `section Phase Name` | Divide journey phases |
-| `Touchpoint : Rating: Role` | Define user touchpoints and emotions |
-| `5` / `4` / `3` / `2` / `1` | Emotion ratings (5 highest, 1 lowest) |
-| `%% comment` | Line comment |
+| Syntax | Function | Example |
+|--------|----------|---------|
+| `journey` | Declare user journey | `journey` |
+| `title Title` | Set chart title | `title User Journey` |
+| `section Phase Name` | Divide journey phases | `section Purchase Phase` |
+| `Touchpoint : Score: Role` | Define touchpoints and emotions | `Search : 5: User` |
+| `%% comment` | Line comment | `%% This is a comment` |
 
-## Next Step
+## Real-World Application Scenarios
 
-After mastering user journey diagrams, you can continue learning other Mermaid diagram types or check our [Mermaid Cheat Sheet](../cheat-sheet.html) for complete syntax reference.
+| Scenario | How to Use Journey Diagrams |
+|----------|------------------------------|
+| **Product Reviews** | Show user paths, discuss optimization priorities |
+| **Team Alignment** | Let engineering, design, operations understand user perspective |
+| **Competitor Analysis** | Compare experience across touchpoints |
+| **A/B Testing** | Compare emotional curves before and after |
+| **OKR Setting** | Set experience optimization goals based on pain points |
+
+## Next Steps
+
+After mastering user journey diagrams, you can:
+- Combine with [Sequence Diagrams](sequence.html) to analyze system interactions
+- Use [Flowcharts](flowchart.html) to map business processes
+- Check our [Mermaid Cheat Sheet](../cheat-sheet.html) for complete syntax reference
 
 ---
 

@@ -9,16 +9,16 @@ slug: block
 
 <span class="post-meta">2026-03-05 · MermZen Tutorial
 
-Block diagrams visualize complex system component structures, hierarchical relationships, and connections. They are ideal for system architecture design, network topology, and industrial flow diagrams. Mermaid uses `blockBeta` keyword for block diagrams.
+Block diagrams visualize complex system component structures, hierarchical relationships, and connections. They are ideal for system architecture design, network topology, and industrial flow diagrams. Mermaid uses `block-beta` keyword for block diagrams.
 
 <iframe src="https://eric.run.place/MermZen/embed.html#eJyrVipTsjLSUUpWslJKyslPznZKLUmMyVNQUFAoySzJSVVwAgkquGQmphcl5iqEgMSUagHDVxFl" width="100%" height="600" frameborder="0"></iframe>
 
 ## Declaring a Chart
 
-Use `blockBeta` keyword:
+Use `block-beta` keyword:
 
 ```
-blockBeta
+block-beta
     title Block Diagram Title
 ```
 <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKyslPznZKLUmMyVNQUFAoySzJSVVwAgkquGQmphcl5iqEgMSUagHDVxFl" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
@@ -28,7 +28,7 @@ blockBeta
 Create simple blocks and connections:
 
 ```
-blockBeta
+block-beta
     title Basic Block Diagram
     block "Block A"
     block "Block B"
@@ -45,7 +45,7 @@ blockBeta
 Create complex nested structures with sub-blocks:
 
 ```
-blockBeta
+block-beta
     title Nested Block Diagram
     block "System" {
         block "Subsystem 1" {
@@ -67,7 +67,7 @@ blockBeta
 ## Full Example: Network Topology
 
 ```
-blockBeta
+block-beta
     title Company Network Topology
     block "Headquarters Network" {
         block "Core Switch"
@@ -104,7 +104,7 @@ blockBeta
 
 | Syntax | Function |
 |--------|----------|
-| `blockBeta` | Declare block diagram |
+| `block-beta` | Declare block diagram |
 | `title Title` | Set chart title |
 | `block "Name"` | Define block |
 | `block "Name" { ... }` | Define block with sub-blocks |

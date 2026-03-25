@@ -9,16 +9,16 @@ slug: block
 
 <span class="post-meta">2026-03-05 · MermZen 教程
 
-块图用于可视化复杂系统的组件结构、层次关系和连接方式，适合系统架构设计、网络拓扑、工业流程图等场景。Mermaid 使用 `blockBeta` 关键字声明块图。
+块图用于可视化复杂系统的组件结构、层次关系和连接方式，适合系统架构设计、网络拓扑、工业流程图等场景。Mermaid 使用 `block-beta` 关键字声明块图。
 
 <iframe src="https://eric.run.place/MermZen/embed.html#eJyrVipTsjLSUUpWslJKyslPznZKLUmMyVNQUFAoySzJSVV4Onf609n7ni1of7lohlItAHbLEwo" width="100%" height="600" frameborder="0"></iframe>
 
 ## 声明图表
 
-使用 `blockBeta` 关键字：
+使用 `block-beta` 关键字：
 
 ```
-blockBeta
+block-beta
     title 块图标题
 ```
 <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKyslPznZKLUmMyVNQUFAoySzJSVV4Onf609n7ni1of7lohlItAHbLEwo" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
@@ -28,7 +28,7 @@ blockBeta
 创建简单的块和连接：
 
 ```
-blockBeta
+block-beta
     title 基本块图
     block "块 A"
     block "块 B"
@@ -45,7 +45,7 @@ blockBeta
 创建包含子块的复杂嵌套结构：
 
 ```
-blockBeta
+block-beta
     title 嵌套块图
     block "系统" {
         block "子系统 1" {
@@ -67,7 +67,7 @@ blockBeta
 ## 完整示例：网络拓扑图
 
 ```
-blockBeta
+block-beta
     title 公司网络拓扑
     block "总部网络" {
         block "核心交换机"
@@ -104,7 +104,7 @@ blockBeta
 
 | 语法 | 功能 |
 |------|------|
-| `blockBeta` | 声明块图 |
+| `block-beta` | 声明块图 |
 | `title 标题` | 设置图表标题 |
 | `block "名称"` | 定义块 |
 | `block "名称" { ... }` | 定义包含子块的块 |
