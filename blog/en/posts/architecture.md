@@ -9,16 +9,16 @@ slug: architecture
 
 <span class="post-meta">2026-03-05 · MermZen Tutorial
 
-Architecture diagrams visualize system architectures, component relationships, and deployment patterns. They are ideal for system design, architecture reviews, and technical documentation. Mermaid uses `architectureBeta` keyword for architecture diagrams.
+Architecture diagrams visualize system architectures, component relationships, and deployment patterns. They are ideal for system design, architecture reviews, and technical documentation. Mermaid uses `architecture-beta` keyword for architecture diagrams.
 
 <iframe src="https://eric.run.place/MermZen/embed.html#eJyrVipTsjLSUUpWslJKLErOyCxJTS4pLUp1Si1JjMlTUFBQKMksyUlVCK4sLknNVXBEUqLgkpmYXpSYq1QLABsCF9g" width="100%" height="600" frameborder="0"></iframe>
 
 ## Declaring a Chart
 
-Use `architectureBeta` keyword:
+Use `architecture-beta` keyword:
 
 ```
-architectureBeta
+architecture-beta
     title System Architecture Diagram
 ```
 <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKLErOyCxJTS4pLUp1Si1JjMlTUFBQKMksyUlVCK4sLknNVXBEUqLgkpmYXpSYq1QLABsCF9g" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
@@ -28,7 +28,7 @@ architectureBeta
 Define system components including services, databases, external systems:
 
 ```
-architectureBeta
+architecture-beta
     title Basic Architecture Components
     container "Frontend Application" {
         component "User Interface"
@@ -51,7 +51,7 @@ architectureBeta
 Define connections and dependencies between components:
 
 ```
-architectureBeta
+architecture-beta
     title Component Relationship Diagram
     container "Frontend Application" {
         component "User Interface"
@@ -79,7 +79,7 @@ architectureBeta
 ## Full Example: Microservices Architecture
 
 ```
-architectureBeta
+architecture-beta
     title E-Commerce System Microservices Architecture
     container "User Interface Layer" {
         component "Web Interface"
@@ -136,7 +136,7 @@ architectureBeta
 
 | Syntax | Function |
 |--------|----------|
-| `architectureBeta` | Declare architecture diagram |
+| `architecture-beta` | Declare architecture diagram |
 | `title Title` | Set chart title |
 | `container "Name" { ... }` | Define container component |
 | `component "Name"` | Define internal component |

@@ -9,16 +9,16 @@ slug: architecture
 
 <span class="post-meta">2026-03-05 · MermZen 教程
 
-架构图用于可视化系统架构、组件关系、部署模式等，适合系统设计、架构评审、技术文档等场景。Mermaid 使用 `architectureBeta` 关键字声明架构图。
+架构图用于可视化系统架构、组件关系、部署模式等，适合系统设计、架构评审、技术文档等场景。Mermaid 使用 `architecture-beta` 关键字声明架构图。
 
 <iframe src="https://eric.run.place/MermZen/embed.html#eJyrVipTsjLSUUpWslJKLErOyCxJTS4pLUp1Si1JjMlTUFBQKMksyUlVeL559_Pd85_N2_ZsXsvT2fuUagFLzxiR" width="100%" height="600" frameborder="0"></iframe>
 
 ## 声明图表
 
-使用 `architectureBeta` 关键字：
+使用 `architecture-beta` 关键字：
 
 ```
-architectureBeta
+architecture-beta
     title 系统架构图
 ```
 <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKLErOyCxJTS4pLUp1Si1JjMlTUFBQKMksyUlVeL559_Pd85_N2_ZsXsvT2fuUagFLzxiR" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
@@ -28,7 +28,7 @@ architectureBeta
 定义系统组件，包括服务、数据库、外部系统等：
 
 ```
-architectureBeta
+architecture-beta
     title 基础架构组件
     container "前端应用" {
         component "用户界面"
@@ -51,7 +51,7 @@ architectureBeta
 定义组件之间的连接和依赖关系：
 
 ```
-architectureBeta
+architecture-beta
     title 组件关系图
     container "前端应用" {
         component "用户界面"
@@ -79,7 +79,7 @@ architectureBeta
 ## 完整示例：微服务架构
 
 ```
-architectureBeta
+architecture-beta
     title 电商系统微服务架构
     container "用户界面层" {
         component "Web 端"
@@ -136,7 +136,7 @@ architectureBeta
 
 | 语法 | 功能 |
 |------|------|
-| `architectureBeta` | 声明架构图 |
+| `architecture-beta` | 声明架构图 |
 | `title 标题` | 设置图表标题 |
 | `container "名称" { ... }` | 定义容器组件 |
 | `component "名称"` | 定义内部组件 |
