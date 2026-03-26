@@ -80,3 +80,77 @@ export function openHelp(): void {
 export function closeHelp(): void {
   if (dom.helpModal) dom.helpModal.classList.remove('open');
 }
+
+// ═══════════════════════════════════════════════════════════════════════
+// 快捷键格式化工具函数
+// ═══════════════════════════════════════════════════════════════════════
+
+/**
+ * 检测是否为 Mac 系统
+ */
+export function isMac(): boolean {
+  return navigator.platform.toLowerCase().includes('mac');
+}
+
+/**
+ * 格式化快捷键显示
+ * @param shortcut 标准格式快捷键 (如 "Ctrl+Shift+C", "Alt+F")
+ * @returns 根据系统返回对应的快捷键显示字符串
+ *
+ * 示例:
+ * - formatShortcut('Ctrl+K') -> Mac: '⌘K', 其他: 'Ctrl+K'
+ * - formatShortcut('Ctrl+Shift+C') -> Mac: '⌘⇧C', 其他: 'Ctrl+Shift+C'
+ * - formatShortcut('Alt+1') -> Mac: '⌥1', 其他: 'Alt+1'
+ */
+export function formatShortcut(shortcut: string): string {
+  const mac = isMac();
+
+  return shortcut
+    .replace(/Ctrl\+/g, mac ? '⌘' : 'Ctrl+')
+    .replace(/Shift\+/g, mac ? '⇧' : 'Shift+')
+    .replace(/Alt\+/g, mac ? '⌥' : 'Alt+');
+}
+
+/**
+ * 格式化快捷键为 HTML <kbd> 元素
+ * @param shortcut 标准格式快捷键
+ * @returns 包含 <kbd> 标签的 HTML 字符串
+ *
+ * 示例:
+ * - formatShortcutKbd('Ctrl+K') -> Mac: '<kbd>⌘</kbd><kbd>K</kbd>', 其他: '<kbd>Ctrl</kbd>+<kbd>K</kbd>'
+ */
+export function formatShortcutKbd(shortcut: string): string {
+  const formatted = formatShortcut(shortcut);
+  const mac = isMac();
+
+  // 对于 Mac，直接用单个 kbd 包裹每个键
+  if (mac) {
+    // 将 ⌘⇧C 这样的字符串拆分为单独的键
+    const keys = formatted.split(/(?=[⌘⇧⌥])/g).filter(k => k);
+    return keys.map(k => `<kbd>${k}</kbd>`).join('');
+  }
+
+  // 对于 Windows/Linux，用 <kbd> 包裹每个键，用 + 连接
+  return formatted.split('+').map(k => `<kbd>${k.trim()}</kbd>`).join('+');
+}
+
+/**
+ * 更新页面上所有动态快捷键显示
+ * 查找带有 data-shortcut 属性的元素并更新其内容
+ */
+export function updateShortcutDisplays(): void {
+  // 更新菜单中的快捷键
+  const shortcutElements = document.querySelectorAll('[data-shortcut]');
+  shortcutElements.forEach(el => {
+    const shortcut = el.getAttribute('data-shortcut');
+    if (shortcut) {
+      el.innerHTML = formatShortcutKbd(shortcut);
+    }
+  });
+
+  // 更新按钮 title 中的快捷键提示
+  const btnCmdPaletteQuick = document.getElementById('btn-cmd-palette-quick');
+  if (btnCmdPaletteQuick) {
+    btnCmdPaletteQuick.title = `命令面板 (${formatShortcut('Ctrl+K')})`;
+  }
+}

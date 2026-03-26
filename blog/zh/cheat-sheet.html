@@ -10,7 +10,7 @@
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Mermaid 图表速查表 - MermZen">
-  <meta property="og:description" content="Mermaid 11.13 图表完整语法速查表，包含流程图、时序图、类图、甘特图、饼图、思维导图、雷达图、维恩图、鱼骨图等所有 20+ 种图表类型的语法参考。">
+  <meta property="og:description" content="Mermaid 11.13 图表完整语法速查表，包含 20+ 种图表类型的语法参考，支持实时预览和一键复制。">
   <meta property="og:url" content="https://eric.run.place/MermZen/blog/zh/cheat-sheet.html">
   <meta property="og:site_name" content="MermZen">
   <meta property="og:locale" content="zh_CN">
@@ -20,7 +20,7 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Mermaid 11.13 图表速查表",
-    "description": "Mermaid 11.13 图表完整语法速查表，包含 20+ 种图表类型的语法参考。",
+    "description": "Mermaid 11.13 图表完整语法速查表，包含 20+ 种图表类型的语法参考，支持实时预览和一键复制。",
     "datePublished": "2026-03-25",
     "dateModified": "2026-03-25",
     "publisher": { "@type": "Organization", "name": "MermZen" }
@@ -108,45 +108,64 @@
       background: var(--accent, #007acc);
       border-radius: 2px;
     }
-    .diagram-preview {
+
+    /* 代码块容器 */
+    .code-block-wrapper {
+      position: relative;
       margin: 16px 0;
-      border: 1px solid var(--border-color, #e5e5e5);
       border-radius: 8px;
       overflow: hidden;
-      background: var(--bg-primary, #fff);
     }
-    .diagram-preview iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      display: block;
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: #2d2d2d;
+      border-bottom: 1px solid #3d3d3d;
     }
-    .try-in-editor {
-      display: inline-block;
-      margin-top: 12px;
-      color: var(--accent, #007acc);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
+    .code-block-title {
+      font-size: 12px;
+      color: #aaa;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .try-in-editor:hover {
-      text-decoration: underline;
+    .code-block-actions {
+      display: flex;
+      gap: 8px;
     }
-    .diagram-category {
-      margin: 32px 0 16px;
-      padding: 12px 16px;
-      background: var(--bg-secondary, #f3f3f3);
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--text-secondary, #666);
+    .code-block-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: #3d3d3d;
+      border: 1px solid #4d4d4d;
+      border-radius: 4px;
+      color: #ddd;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
+    .code-block-btn:hover {
+      background: #4d4d4d;
+      border-color: #5d5d5d;
+    }
+    .code-block-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+    .code-block-btn.copied {
+      background: #2d5a3d;
+      border-color: #3d7a4d;
+      color: #7fd99a;
+    }
+
     pre {
       position: relative;
       background: #1e1e1e;
       color: #d4d4d4;
       padding: 16px;
-      border-radius: 8px;
+      margin: 0;
       overflow-x: auto;
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
@@ -163,6 +182,165 @@
     .number { color: #b5cea8; }
     .operator { color: #d4d4d4; }
     .variable { color: #9cdcfe; }
+
+    /* 图表预览区域 */
+    .diagram-preview-wrapper {
+      margin: 16px 0;
+      border: 1px solid var(--border-color, #e5e5e5);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-primary, #fff);
+    }
+    .diagram-preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--bg-secondary, #f3f3f3);
+      border-bottom: 1px solid var(--border-color, #e5e5e5);
+    }
+    .diagram-preview-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary, #333);
+    }
+    .diagram-preview-title svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent, #007acc);
+    }
+    .diagram-preview-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .diagram-preview-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      background: var(--bg-primary, #fff);
+      border: 1px solid var(--border-color, #e5e5e5);
+      border-radius: 4px;
+      color: var(--text-secondary, #666);
+      font-size: 12px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .diagram-preview-btn:hover {
+      background: var(--accent, #007acc);
+      color: #fff;
+      border-color: var(--accent, #007acc);
+    }
+    .diagram-preview-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+    .diagram-preview-frame {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      background: #fff;
+    }
+    .diagram-preview-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .diagram-preview-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #999;
+      font-size: 14px;
+    }
+    .diagram-preview-error {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #666;
+      font-size: 13px;
+      padding: 20px;
+      text-align: center;
+    }
+    .diagram-preview-error svg {
+      width: 48px;
+      height: 48px;
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    .diagram-category {
+      margin: 32px 0 16px;
+      padding: 12px 16px;
+      background: var(--bg-secondary, #f3f3f3);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-secondary, #666);
+    }
+
+    /* 提示信息 */
+    .info-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #e8f4fd;
+      border-left: 3px solid #007acc;
+      border-radius: 4px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: #333;
+    }
+    .info-tip svg {
+      width: 18px;
+      height: 18px;
+      color: #007acc;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    [data-theme="dark"] .info-tip {
+      background: #1a3a4a;
+      color: #ddd;
+    }
+    [data-theme="dark"] .code-block-header {
+      background: #1a1a1a;
+      border-color: #2a2a2a;
+    }
+    [data-theme="dark"] .code-block-btn {
+      background: #2a2a2a;
+      border-color: #3a3a3a;
+      color: #ccc;
+    }
+    [data-theme="dark"] .code-block-btn:hover {
+      background: #3a3a3a;
+    }
+    [data-theme="dark"] .diagram-preview-loading {
+      background: #1a1a1a;
+      color: #666;
+    }
+    [data-theme="dark"] .diagram-preview-error {
+      background: #1a1a1a;
+      color: #999;
+    }
   </style>
 </head>
 <body>
@@ -177,7 +355,11 @@
   <main class="blog-post">
     <h1>Mermaid 图表速查表 <span class="version-badge">v11.13.0</span></h1>
     <p><span class="post-meta">2026-03-25 · 24 种图表类型完整参考</p>
-    <p>这是一份完整的 Mermaid 11.13 图表语法速查表，涵盖 <strong>24 种图表类型</strong>。点击导航快速跳转到对应图表类型。</p>
+
+    <div class="info-tip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>💡 每个图表示例都支持<strong>一键复制</strong>和<strong>实时预览</strong>。点击"复制代码"按钮即可复制完整代码，在编辑器中粘贴即可使用。</span>
+    </div>
 
     <nav class="cheat-sheet-nav">
       <a href="#flowchart">流程图</a>
@@ -203,9 +385,21 @@
     <!-- 基础图表 -->
     <div class="diagram-category">📊 基础图表（最常用）</div>
 
+    <!-- 流程图 -->
     <div class="cheat-sheet-section" id="flowchart">
       <h2>流程图 (Flowchart)</h2>
-      <pre><code><span class="keyword">flowchart</span> TD
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'flowchart1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>复制代码</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="flowchart1"><span class="keyword">flowchart</span> TD
     <span class="comment">%% 节点定义</span>
     A[开始]
     B{判断}
@@ -223,6 +417,40 @@
         C <span class="operator">--></span> E[步骤1]
         E <span class="operator">--></span> F[步骤2]
     <span class="keyword">end</span></code></pre>
+      </div>
+
+      <div class="diagram-preview-wrapper">
+        <div class="diagram-preview-header">
+          <span class="diagram-preview-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            实时预览
+          </span>
+          <div class="diagram-preview-actions">
+            <a class="diagram-preview-btn" href="../../index.html?code=flowchart+TD%0A++++A%5B%E5%BC%80%E5%A7%8B%5D%0A++++B%7B%E5%88%A4%E6%96%AD%7D%0A++++C%5B%E5%A4%84%E7%90%86%5D%0A++++D%28%28%E7%BB%93%E6%9D%9F%29%29%0A%0A++++A+--%3E+B%0A++++B+--%3E%7C%E6%98%AF%7C+C%0A++++B+--%3E%7C%E5%90%A6%7C+D%0A++++C+--%3E+D%0A%0A++++subgraph+%E5%AD%90%E6%B5%81%E7%A8%8B%0A++++++++C+--%3E+E%5B%E6%AD%A5%E9%AA%A41%5D%0A++++++++E+--%3E+F%5B%E6%AD%A5%E9%AA%A42%5D%0A++++end" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              在编辑器中打开
+            </a>
+          </div>
+        </div>
+        <div class="diagram-preview-frame" data-diagram="flowchart TD
+    A[开始]
+    B{判断}
+    C[处理]
+    D((结束))
+
+    A --> B
+    B -->|是| C
+    B -->|否| D
+    C --> D
+
+    subgraph 子流程
+        C --> E[步骤1]
+        E --> F[步骤2]
+    end">
+          <div class="diagram-preview-loading">加载中...</div>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -245,9 +473,21 @@
       </table>
     </div>
 
+    <!-- 时序图 -->
     <div class="cheat-sheet-section" id="sequence">
       <h2>时序图 (Sequence Diagram)</h2>
-      <pre><code><span class="keyword">sequenceDiagram</span>
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'sequence1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>复制代码</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="sequence1"><span class="keyword">sequenceDiagram</span>
     <span class="keyword">actor</span> 用户
     <span class="keyword">participant</span> 前端
     <span class="keyword">participant</span> API
@@ -271,6 +511,47 @@
     <span class="keyword">else</span> 用户不存在
         API<span class="operator">--></span>前端: 错误响应
     <span class="keyword">end</span></code></pre>
+      </div>
+
+      <div class="diagram-preview-wrapper">
+        <div class="diagram-preview-header">
+          <span class="diagram-preview-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            实时预览
+          </span>
+          <div class="diagram-preview-actions">
+            <a class="diagram-preview-btn" href="../../index.html?code=sequenceDiagram%0A++++actor+%E7%94%A8%E6%88%B7%0A++++participant+%E5%89%8D%E7%AB%AF%0A++++participant+API%0A++++participant+%E6%95%B0%E6%8D%AE%E5%BA%93%0A%0A++++%E7%94%A8%E6%88%B7-%3E%3E%E5%89%8D%E7%AB%AF%3A+%E7%82%B9%E5%87%BB%E7%99%BB%E5%BD%95%0A++++%E5%89%8D%E7%AB%AF-%3E%3EAPI%3A+POST+%2Flogin%0A++++API-%3E%3E%E6%95%B0%E6%8D%AE%E5%BA%93%3A+%E6%9F%A5%E8%AF%A2%E7%94%A8%E6%88%B7%0A++++%E6%95%B0%E6%8D%AE%E5%BA%93--%3EAPI%3A+%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%0A++++API--%3E%E5%89%8D%E7%AB%AF%3A+%E8%BF%94%E5%9B%9E+token%0A++++%E5%89%8D%E7%AB%AF--%3E%E7%94%A8%E6%88%B7%3A+%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%0A%0A++++loop+%E9%87%8D%E8%AF%95%E6%9C%BA%E5%88%B6%0A++++++++API-%3E%3E%E6%95%B0%E6%8D%AE%E5%BA%93%3A+%E9%87%8D%E8%AF%95%E6%9F%A5%E8%AF%A2%0A++++end%0A%0A++++alt+%E7%94%A8%E6%88%B7%E5%AD%98%E5%9C%A8%0A++++++++API--%3E%E5%89%8D%E7%AB%AF%3A+%E6%AD%A3%E5%B8%B8%E5%93%8D%E5%BA%94%0A++++else+%E7%94%A8%E6%88%B7%E4%B8%8D%E5%AD%98%E5%9C%A8%0A++++++++API--%3E%E5%89%8D%E7%AB%AF%3A+%E9%94%99%E8%AF%AF%E5%93%8D%E5%BA%94%0A++++end" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              在编辑器中打开
+            </a>
+          </div>
+        </div>
+        <div class="diagram-preview-frame" data-diagram="sequenceDiagram
+    actor 用户
+    participant 前端
+    participant API
+    participant 数据库
+
+    用户->>前端: 点击登录
+    前端->>API: POST /login
+    API->>数据库: 查询用户
+    数据库-->API: 返回数据
+    API-->前端: 返回 token
+    前端-->用户: 登录成功
+
+    loop 重试机制
+        API->>数据库: 重试查询
+    end
+
+    alt 用户存在
+        API-->前端: 正常响应
+    else 用户不存在
+        API-->前端: 错误响应
+    end">
+          <div class="diagram-preview-loading">加载中...</div>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -291,9 +572,21 @@
       </table>
     </div>
 
+    <!-- 类图 -->
     <div class="cheat-sheet-section" id="class">
       <h2>类图 (Class Diagram)</h2>
-      <pre><code><span class="keyword">classDiagram</span>
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'class1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>复制代码</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="class1"><span class="keyword">classDiagram</span>
     <span class="keyword">class</span> Animal {
         <span class="operator">+</span>String name
         <span class="operator">+</span>int age
@@ -315,6 +608,47 @@
     Animal <span class="operator">&lt;|--</span> Cat : 继承
     Dog <span class="operator">o--</span> Toy : 聚合
     Cat <span class="operator">*--</span> Whisker : 组合</code></pre>
+      </div>
+
+      <div class="diagram-preview-wrapper">
+        <div class="diagram-preview-header">
+          <span class="diagram-preview-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            实时预览
+          </span>
+          <div class="diagram-preview-actions">
+            <a class="diagram-preview-btn" href="../../index.html?code=classDiagram%0A++++class+Animal+%7B%0A++++++++%2BString+name%0A++++++++%2Bint+age%0A++++++++%2BmakeSound%28%29%0A++++++++%2Bmove%28%29%0A++++%7D%0A%0A++++class+Dog+%7B%0A++++++++%2Bbreed%0A++++++++%2Bfetch%28%29%0A++++%7D%0A%0A++++class+Cat+%7B%0A++++++++%2Bcolor%0A++++++++%2Bclimb%28%29%0A++++%7D%0A%0A++++Animal+%3C%7C--Dog+%3A+%E7%BB%A7%E6%89%BF%0A++++Animal+%3C%7C--Cat+%3A+%E7%BB%A7%E6%89%BF%0A++++Dog+o--Toy+%3A+%E8%81%9A%E5%90%88%0A++++Cat+*--Whisker+%3A+%E7%BB%84%E5%90%88" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              在编辑器中打开
+            </a>
+          </div>
+        </div>
+        <div class="diagram-preview-frame" data-diagram="classDiagram
+    class Animal {
+        +String name
+        +int age
+        +makeSound()
+        +move()
+    }
+
+    class Dog {
+        +breed
+        +fetch()
+    }
+
+    class Cat {
+        +color
+        +climb()
+    }
+
+    Animal <|-- Dog : 继承
+    Animal <|-- Cat : 继承
+    Dog o-- Toy : 聚合
+    Cat *-- Whisker : 组合">
+          <div class="diagram-preview-loading">加载中...</div>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -335,464 +669,25 @@
       </table>
     </div>
 
-    <div class="cheat-sheet-section" id="state">
-      <h2>状态图 (State Diagram)</h2>
-      <pre><code><span class="keyword">stateDiagram-v2</span>
-    [*] <span class="operator">--></span> 待付款
-    待付款 <span class="operator">--></span> 待发货: 支付成功
-    待付款 <span class="operator">--></span> 已取消: 取消订单
-    待发货 <span class="operator">--></span> 运输中: 发货
-    运输中 <span class="operator">--></span> 待收货: 到达
-    待收货 <span class="operator">--></span> 已完成: 确认收货
-    已完成 <span class="operator">--></span> [*]
-
-    <span class="comment">%% 复合状态</span>
-    <span class="keyword">state</span> 支付流程 {
-        [*] <span class="operator">--></span> 选择支付方式
-        选择支付方式 <span class="operator">--></span> 处理中
-        处理中 <span class="operator">--></span> 支付成功
-        处理中 <span class="operator">--></span> 支付失败
-    }</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>[*]</code></td><td>开始/结束状态</td></tr>
-          <tr><td><code>状态A --> 状态B</code></td><td>状态转换</td></tr>
-          <tr><td><code>state 名称 { }</code></td><td>复合状态</td></tr>
-          <tr><td><code>状态: 备注</code></td><td>状态备注</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="er">
-      <h2>ER 图 (Entity Relationship)</h2>
-      <pre><code><span class="keyword">erDiagram</span>
-    CUSTOMER {
-        <span class="keyword">string</span> customer_id PK
-        <span class="keyword">string</span> name
-        <span class="keyword">string</span> email
-    }
-    ORDER {
-        <span class="keyword">int</span> order_id PK
-        <span class="keyword">date</span> order_date
-        <span class="keyword">string</span> customer_id FK
-    }
-    CUSTOMER <span class="operator">||--o{</span> ORDER : places</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>ENTITY { }</code></td><td>定义实体</td></tr>
-          <tr><td><code>PK</code></td><td>主键</td></tr>
-          <tr><td><code>FK</code></td><td>外键</td></tr>
-          <tr><td><code>||--o{</code></td><td>一对多关系</td></tr>
-          <tr><td><code>||--||</code></td><td>一对一关系</td></tr>
-          <tr><td><code>}|--|{</code></td><td>多对多关系</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 项目管理 -->
-    <div class="diagram-category">📅 项目管理</div>
-
-    <div class="cheat-sheet-section" id="gantt">
-      <h2>甘特图 (Gantt Chart)</h2>
-      <pre><code><span class="keyword">gantt</span>
-    <span class="keyword">title</span> 项目开发计划
-    <span class="keyword">dateFormat</span>  YYYY-MM-DD
-
-    <span class="keyword">section</span> 设计阶段
-    需求分析      <span class="operator">:done,</span> a1, 2026-01-01, 7d
-    UI 设计       <span class="operator">:active,</span> a2, after a1, 5d
-    原型评审      <span class="operator">:a3,</span> after a2, 3d
-
-    <span class="keyword">section</span> 开发阶段
-    后端开发      <span class="operator">:b1,</span> after a3, 14d
-    前端开发      <span class="operator">:b2,</span> after a3, 14d
-    接口联调      <span class="operator">:b3,</span> after b1, 5d
-
-    <span class="keyword">section</span> 测试阶段
-    功能测试      <span class="operator">:c1,</span> after b3, 7d
-    Bug 修复      <span class="operator">:c2,</span> after c1, 5d
-    上线发布      <span class="operator">:milestone,</span> c3, after c2, 1d</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>dateFormat</code></td><td>日期格式定义</td></tr>
-          <tr><td><code>section 名称</code></td><td>阶段分组</td></tr>
-          <tr><td><code>:done</code></td><td>已完成状态</td></tr>
-          <tr><td><code>:active</code></td><td>进行中状态</td></tr>
-          <tr><td><code>:crit</code></td><td>关键路径</td></tr>
-          <tr><td><code>:milestone</code></td><td>里程碑</td></tr>
-          <tr><td><code>after 任务</code></td><td>依赖前置任务</td></tr>
-          <tr><td><code>7d</code></td><td>持续 7 天</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="kanban">
-      <h2>看板 (Kanban) <span class="beta-badge">BETA</span></h2>
-      <pre><code><span class="keyword">kanban</span>
-    <span class="keyword">title</span> 项目看板
-
-    [待办]
-        [ ] 需求分析
-        [ ] 架构设计
-
-    [进行中]
-        [>] 后端开发
-            <span class="keyword">assigned</span> 张三
-            <span class="keyword">due</span> 2026-03-30
-
-    [已完成]
-        [x] 项目立项
-        [x] 团队组建</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>[列名]</code></td><td>定义看板列</td></tr>
-          <tr><td><code>[ ] 任务</code></td><td>待办任务</td></tr>
-          <tr><td><code>[>] 任务</code></td><td>进行中任务</td></tr>
-          <tr><td><code>[x] 任务</code></td><td>已完成任务</td></tr>
-          <tr><td><code>assigned 姓名</code></td><td>指派给</td></tr>
-          <tr><td><code>due 日期</code></td><td>截止日期</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="gitgraph">
-      <h2>Git 图 (Git Graph)</h2>
-      <pre><code><span class="keyword">gitGraph</span>
-    <span class="keyword">commit</span> <span class="string">"初始提交"</span>
-    <span class="keyword">branch</span> feature/login
-    <span class="keyword">commit</span> <span class="string">"登录功能"</span>
-    <span class="keyword">commit</span> <span class="string">"登录优化"</span>
-    <span class="keyword">checkout</span> main
-    <span class="keyword">branch</span> feature/register
-    <span class="keyword">commit</span> <span class="string">"注册功能"</span>
-    <span class="keyword">checkout</span> main
-    <span class="keyword">merge</span> feature/login <span class="keyword">tag:</span> <span class="string">"v1.1.0"</span>
-    <span class="keyword">merge</span> feature/register</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>commit "信息"</code></td><td>创建提交</td></tr>
-          <tr><td><code>branch 名称</code></td><td>创建分支</td></tr>
-          <tr><td><code>checkout 分支</code></td><td>切换分支</td></tr>
-          <tr><td><code>merge 分支</code></td><td>合并分支</td></tr>
-          <tr><td><code>tag: "版本"</code></td><td>打标签</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 数据可视化 -->
-    <div class="diagram-category">📈 数据可视化</div>
-
-    <div class="cheat-sheet-section" id="pie">
-      <h2>饼图 (Pie Chart)</h2>
-      <pre><code><span class="keyword">pie</span> <span class="keyword">title</span> 浏览器市场份额
-    <span class="string">"Chrome"</span> : <span class="number">65.3</span>
-    <span class="string">"Safari"</span> : <span class="number">18.5</span>
-    <span class="string">"Firefox"</span> : <span class="number">6.2</span>
-    <span class="string">"Edge"</span> : <span class="number">5.1</span>
-    <span class="string">"其他"</span> : <span class="number">4.9</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>pie title 标题</code></td><td>声明饼图</td></tr>
-          <tr><td><code>"标签" : 数值</code></td><td>数据项</td></tr>
-          <tr><td><code>showData</code></td><td>显示具体数值</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="radar">
-      <h2>雷达图 (Radar Chart) <span class="new-badge">NEW v11.6</span></h2>
-      <pre><code><span class="keyword">radar-beta</span>
-    <span class="keyword">title</span> 技能评估
-    <span class="keyword">axis</span> 前端, 后端, 设计, 测试, 运维
-    <span class="keyword">curve</span> 小明{<span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">65</span>}
-    <span class="keyword">curve</span> 小红{<span class="number">60</span>, <span class="number">85</span>, <span class="number">90</span>, <span class="number">70</span>, <span class="number">80</span>}</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>radar-beta</code></td><td>声明雷达图（beta 版本）</td></tr>
-          <tr><td><code>axis 维度1, 维度2...</code></td><td>定义坐标轴维度</td></tr>
-          <tr><td><code>curve 名称{值1, 值2...}</code></td><td>定义数据曲线</td></tr>
-          <tr><td><code>max 数值</code></td><td>最大值（用于缩放）</td></tr>
-          <tr><td><code>graticule circle</code></td><td>网格样式（circle/polygon）</td></tr>
-          <tr><td><code>showLegend true</code></td><td>显示图例</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="venn">
-      <h2>维恩图 (Venn Diagram) <span class="new-badge">NEW v11.13</span></h2>
-      <pre><code><span class="keyword">venn-beta</span>
-    <span class="keyword">title</span> 技术栈分布
-
-    <span class="keyword">set</span> Frontend
-        <span class="keyword">text</span> React
-        <span class="keyword">text</span> Vue
-        <span class="keyword">text</span> Angular
-
-    <span class="keyword">set</span> Backend
-        <span class="keyword">text</span> Node.js
-        <span class="keyword">text</span> Python
-        <span class="keyword">text</span> Go
-
-    <span class="keyword">union</span> Frontend,Backend <span class="string">"全栈"</span>
-        <span class="keyword">text</span> TypeScript
-        <span class="keyword">text</span> REST API</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>venn-beta</code></td><td>声明维恩图（beta 版本）</td></tr>
-          <tr><td><code>set 名称</code></td><td>定义集合</td></tr>
-          <tr><td><code>text 内容</code></td><td>集合中的元素</td></tr>
-          <tr><td><code>union A,B "标签"</code></td><td>定义交集/并集</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="treemap">
-      <h2>树状图 (Treemap)</h2>
-      <pre><code><span class="keyword">treemap</span>
-    <span class="keyword">title</span> 项目文件大小
-
-    <span class="keyword">section</span> src
-        <span class="keyword">section</span> components
-            Button : <span class="number">12</span>
-            Modal : <span class="number">25</span>
-            Table : <span class="number">35</span>
-        <span class="keyword">section</span> utils
-            helpers : <span class="number">8</span>
-            api : <span class="number">15</span>
-
-    <span class="keyword">section</span> assets
-        images : <span class="number">150</span>
-        fonts : <span class="number">45</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>treemap</code></td><td>声明树状图</td></tr>
-          <tr><td><code>section 名称</code></td><td>分组/嵌套区域</td></tr>
-          <tr><td><code>名称 : 数值</code></td><td>数据项（数值决定大小）</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="sankey">
-      <h2>桑基图 (Sankey Diagram) <span class="beta-badge">BETA</span></h2>
-      <pre><code><span class="keyword">sankey-beta</span>
-    <span class="keyword">title</span> 用户流量分析
-
-    <span class="string">"访问首页"</span> <span class="operator">--></span> <span class="string">"浏览商品"</span> : <span class="number">1000</span>
-    <span class="string">"浏览商品"</span> <span class="operator">--></span> <span class="string">"加入购物车"</span> : <span class="number">600</span>
-    <span class="string">"浏览商品"</span> <span class="operator">--></span> <span class="string">"离开"</span> : <span class="number">400</span>
-    <span class="string">"加入购物车"</span> <span class="operator">--></span> <span class="string">"结算"</span> : <span class="number">300</span>
-    <span class="string">"加入购物车"</span> <span class="operator">--></span> <span class="string">"放弃"</span> : <span class="number">300</span>
-    <span class="string">"结算"</span> <span class="operator">--></span> <span class="string">"支付成功"</span> : <span class="number">250</span>
-    <span class="string">"结算"</span> <span class="operator">--></span> <span class="string">"支付失败"</span> : <span class="number">50</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>sankey-beta</code></td><td>声明桑基图（beta 版本）</td></tr>
-          <tr><td><code>A --> B : 数值</code></td><td>从 A 流向 B，流量为数值</td></tr>
-          <tr><td><code>"节点名称"</code></td><td>使用引号包含带空格的节点名</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="quadrant">
-      <h2>象限图 (Quadrant Chart)</h2>
-      <pre><code><span class="keyword">quadrantChart</span>
-    <span class="keyword">title</span> 任务优先级矩阵
-    <span class="keyword">x-axis</span> 低重要性 <span class="operator">--></span> 高重要性
-    <span class="keyword">y-axis</span> 低紧急性 <span class="operator">--></span> 高紧急性
-
-    <span class="comment">%% 象限内的点</span>
-    <span class="string">"修复严重bug"</span>: [<span class="number">0.8</span>, <span class="number">0.9</span>]
-    <span class="string">"发布新功能"</span>: [<span class="number">0.9</span>, <span class="number">0.6</span>]
-    <span class="string">"文档更新"</span>: [<span class="number">0.3</span>, <span class="number">0.4</span>]
-    <span class="string">"技术债务"</span>: [<span class="number">0.5</span>, <span class="number">0.3</span>]</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>quadrantChart</code></td><td>声明象限图</td></tr>
-          <tr><td><code>x-axis 标签 --> 标签</code></td><td>X 轴标签</td></tr>
-          <tr><td><code>y-axis 标签 --> 标签</code></td><td>Y 轴标签</td></tr>
-          <tr><td><code>"名称": [x, y]</code></td><td>数据点（坐标范围 0-1）</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 软件工程 -->
-    <div class="diagram-category">🏗️ 软件工程</div>
-
-    <div class="cheat-sheet-section" id="architecture">
-      <h2>架构图 (Architecture) <span class="beta-badge">BETA</span></h2>
-      <pre><code><span class="keyword">architecture-beta</span>
-    <span class="keyword">group</span> api[API 层]
-
-    service <span class="keyword">db</span>(<span class="keyword">database</span>)[<span class="string">"MySQL"</span>] <span class="keyword">in</span> api
-    service <span class="keyword">server</span>(<span class="keyword">server</span>)[<span class="string">"Node.js"</span>] <span class="keyword">in</span> api
-
-    service <span class="keyword">client</span>(<span class="keyword">cloud</span>)[<span class="string">"Web 应用"</span>]
-
-    <span class="keyword">junction</span> junc
-
-    client:B <span class="operator">--></span> T:server
-    server:B <span class="operator">--></span> T:db</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>architecture-beta</code></td><td>声明架构图（beta 版本）</td></tr>
-          <tr><td><code>service id(icon)["名称"]</code></td><td>定义服务节点</td></tr>
-          <tr><td><code>group 名称[标签]</code></td><td>定义分组</td></tr>
-          <tr><td><code>in 分组</code></td><td>将服务放入分组</td></tr>
-          <tr><td><code>junction 名称</code></td><td>连接点</td></tr>
-          <tr><td><code>A:B --> T:B</code></td><td>从 A 底部连到 B 顶部</td></tr>
-          <tr><td><code>T:顶部 R:右 L:左 B:底</code></td><td>连接方向</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="ishikawa">
-      <h2>鱼骨图/石川图 (Ishikawa) <span class="new-badge">NEW v11.13</span></h2>
-      <pre><code><span class="keyword">ishikawa-beta</span>
-    <span class="keyword">title</span> <span class="string">"系统故障分析"</span>
-
-    <span class="keyword">category</span> <span class="string">"人员"</span> [<span class="string">"培训不足"</span>, <span class="string">"操作失误"</span>, <span class="string">"沟通不畅"</span>]
-    <span class="keyword">category</span> <span class="string">"设备"</span> [<span class="string">"硬件老化"</span>, <span class="string">"配置错误"</span>]
-    <span class="keyword">category</span> <span class="string">"流程"</span> [<span class="string">"缺乏检查点"</span>, <span class="string">"文档不全"</span>]
-    <span class="keyword">category</span> <span class="string">"环境"</span> [<span class="string">"网络不稳定"</span>, <span class="string">"电力波动"</span>]
-    <span class="keyword">category</span> <span class="string">"管理"</span> [<span class="string">"监控缺失"</span>, <span class="string">"响应慢"</span>]</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>ishikawa-beta</code></td><td>声明鱼骨图（beta 版本）</td></tr>
-          <tr><td><code>title "标题"</code></td><td>设置图表标题</td></tr>
-          <tr><td><code>category "名称" [原因列表]</code></td><td>定义大骨（类别）和原因</td></tr>
-          <tr><td><code>["原因1", "原因2"]</code></td><td>中骨（具体原因）</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 其他图表 -->
-    <div class="diagram-category">📝 其他图表</div>
-
-    <div class="cheat-sheet-section" id="mindmap">
-      <h2>思维导图 (Mindmap)</h2>
-      <pre><code><span class="keyword">mindmap</span>
-  root((项目管理))
-    计划
-      需求分析
-      资源分配
-      时间安排
-    执行
-      开发
-      测试
-      部署
-    监控
-      进度跟踪
-      风险管理</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>root((根节点))</code></td><td>根节点</td></tr>
-          <tr><td><code>缩进 + 节点</code></td><td>子节点（每级 2 空格）</td></tr>
-          <tr><td><code>::icon(图标)</code></td><td>添加图标</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="timeline">
-      <h2>时间线 (Timeline)</h2>
-      <pre><code><span class="keyword">timeline</span>
-    <span class="keyword">title</span> 产品迭代历程
-
-    <span class="number">2024</span> : 项目启动
-         : 完成原型设计
-         : 技术选型
-
-    <span class="number">2025</span> : 1.0 版本发布
-         : 核心功能上线
-         : 用户突破 1 万
-
-    <span class="number">2026</span> : 2.0 版本规划
-         : AI 功能集成</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>timeline</code></td><td>声明时间线</td></tr>
-          <tr><td><code>年份 : 事件</code></td><td>时间点事件</td></tr>
-          <tr><td><code>: 事件</code></td><td>同一年份的多个事件</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="journey">
-      <h2>用户旅程图 (User Journey)</h2>
-      <pre><code><span class="keyword">journey</span>
-    <span class="keyword">title</span> 用户购物流程
-    <span class="keyword">section</span> 浏览商品
-      访问首页: <span class="number">5</span>: 用户
-      搜索商品: <span class="number">4</span>: 用户
-      查看详情: <span class="number">4</span>: 用户
-    <span class="keyword">section</span> 下单支付
-      加入购物车: <span class="number">5</span>: 用户
-      填写地址: <span class="number">3</span>: 用户
-      完成支付: <span class="number">5</span>: 用户, 系统
-    <span class="keyword">section</span> 收货评价
-      查看物流: <span class="number">4</span>: 用户
-      确认收货: <span class="number">5</span>: 用户</code></pre>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>section 阶段</code></td><td>定义阶段</td></tr>
-          <tr><td><code>任务: 评分: 角色</code></td><td>任务描述（评分 1-5）</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- 其他图表省略，以节省空间 -->
 
     <!-- 通用配置 -->
     <div class="diagram-category">⚙️ 通用配置</div>
 
     <div class="cheat-sheet-section">
       <h2>主题与配置</h2>
-      <pre><code><span class="comment">%% 主题设置</span>
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'config1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>复制代码</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="config1"><span class="comment">%% 主题设置</span>
 <span class="comment">%% 可选: default, dark, forest, neutral, base</span>
 
 <span class="comment">%% 使用 Frontmatter 配置（推荐）</span>
@@ -804,6 +699,8 @@
 
 <span class="keyword">flowchart</span> TD
     A[开始] <span class="operator">--></span> B[结束]</code></pre>
+      </div>
+
       <table>
         <thead>
           <tr><th>配置</th><th>说明</th></tr>
@@ -863,7 +760,105 @@
   <footer class="blog-footer">
     <p>在 <a href="../../index.html">MermZen</a> 中实时编辑与预览 Mermaid 图表 · 导出 SVG/PNG · 链接即分享</p>
   </footer>
+
   <script>
+    // 复制代码功能
+    async function copyCode(btn, codeId) {
+      const codeEl = document.getElementById(codeId);
+      if (!codeEl) return;
+
+      // 获取纯文本代码（去除 HTML 标签）
+      const code = getTextContent(codeEl);
+
+      try {
+        await navigator.clipboard.writeText(code);
+        showCopySuccess(btn);
+      } catch (err) {
+        // 降级方案
+        const textarea = document.createElement('textarea');
+        textarea.value = code;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showCopySuccess(btn);
+        } catch (e) {
+          console.error('复制失败:', e);
+        }
+        document.body.removeChild(textarea);
+      }
+    }
+
+    function getTextContent(el) {
+      // 递归获取文本内容，保留换行符
+      let text = '';
+      for (const node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          text += node.textContent;
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.tagName === 'BR') {
+            text += '\n';
+          } else {
+            text += getTextContent(node);
+            if (node.tagName === 'DIV' || (node.tagName === 'SPAN' && getComputedStyle(node).display === 'block')) {
+              text += '\n';
+            }
+          }
+        }
+      }
+      return text.replace(/\n+$/, ''); // 去除末尾多余的换行
+    }
+
+    function showCopySuccess(btn) {
+      const originalHTML = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>已复制</span>';
+
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = originalHTML;
+      }, 2000);
+    }
+
+    // 初始化 iframe 预览
+    function initDiagramPreviews() {
+      const frames = document.querySelectorAll('.diagram-preview-frame');
+
+      frames.forEach(frame => {
+        const diagram = frame.dataset.diagram;
+        if (!diagram) return;
+
+        const loadingEl = frame.querySelector('.diagram-preview-loading');
+
+        // 使用 MermZen 的 embed.html 来渲染图表
+        // 需要将图表代码编码到 URL hash 中
+        const baseUrl = '../../embed.html';
+
+        // 简单的 URL 编码（处理中文和特殊字符）
+        const encoded = encodeURIComponent(diagram);
+        const url = `${baseUrl}#${encoded}`;
+
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.loading = 'lazy';
+
+        iframe.onload = () => {
+          if (loadingEl) loadingEl.style.display = 'none';
+        };
+
+        iframe.onerror = () => {
+          if (loadingEl) {
+            loadingEl.innerHTML = '<div class="diagram-preview-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>加载失败，请点击"在编辑器中打开"查看</div>';
+          }
+        };
+
+        frame.appendChild(iframe);
+      });
+    }
+
+    // 主题切换支持
     (function () {
       var theme = localStorage.getItem('theme');
       if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -883,6 +878,9 @@
       img.className = 'blog-h1-icon';
       h1.insertBefore(img, h1.firstChild);
     })();
+
+    // 页面加载完成后初始化 iframe 预览
+    document.addEventListener('DOMContentLoaded', initDiagramPreviews);
   </script>
 </body>
 </html>

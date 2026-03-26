@@ -1,7 +1,21 @@
 import { state } from './store';
 import { actions } from './actions';
-import { updateEditorStatus as updateEditorStatusUtil } from './utils';
+import { updateEditorStatus as updateEditorStatusUtil, formatShortcut } from './utils';
 import { renderExampleDropdown } from './ui/menu';
+
+/**
+ * 格式化引导步骤文本，替换快捷键占位符
+ */
+function formatTourStep(body: string): string {
+  const shortcuts: Record<string, string> = {
+    '{cmdShiftF}': formatShortcut('Ctrl+Shift+F'),
+    '{cmdK}': formatShortcut('Ctrl+K'),
+    '{alt14}': formatShortcut('Alt+1~4'),
+    '{altFEVH}': [formatShortcut('Alt+F'), formatShortcut('Alt+E'), formatShortcut('Alt+V'), formatShortcut('Alt+H')].join('/'),
+  };
+
+  return body.replace(/\{(cmdShiftF|cmdK|alt14|altFEVH)\}/g, (match) => shortcuts[match] || match);
+}
 
 export const STRINGS = {
   zh: {
@@ -52,11 +66,11 @@ export const STRINGS = {
     tourLangTitle: '选择语言',
     tourLangBody: '请选择您偏好的界面语言。\nPlease choose your preferred language.',
     tourSteps: [
-      { title: '代码编辑器', body: '在这里输入 Mermaid 代码，支持语法高亮、实时错误提示和自动格式化（Ctrl+Shift+F）。输入后图表会自动渲染。' },
+      { title: '代码编辑器', body: '在这里输入 Mermaid 代码，支持语法高亮、实时错误提示和自动格式化（{cmdShiftF}）。输入后图表会自动渲染。' },
       { title: '示例模板', body: '点击这里快速加载预置的图表模板——流程图、时序图、甘特图、ER 图等，一键填充代码开始编辑。' },
-      { title: '实时预览', body: '图表实时渲染在这里。上方可直接切换 5 种主题和 4 种背景（Alt+1~4），下方可缩放和拖拽平移。' },
-      { title: '菜单栏', body: '四大功能区：文件（导出/分享）、编辑（手绘风格/字体/字号）、视图（主题/背景/深色模式）、帮助（快捷键）。按 Alt+F/E/V/H 快速打开。' },
-      { title: '命令面板', body: '按 Ctrl+K 打开命令面板，搜索并快速执行任意操作：导出图片、切换主题、加载示例、格式化代码等。' },
+      { title: '实时预览', body: '图表实时渲染在这里。上方可直接切换 5 种主题和 4 种背景（{alt14}），下方可缩放和拖拽平移。' },
+      { title: '菜单栏', body: '四大功能区：文件（导出/分享）、编辑（手绘风格/字体/字号）、视图（主题/背景/深色模式）、帮助（快捷键）。按 {altFEVH} 快速打开。' },
+      { title: '命令面板', body: '按 {cmdK} 打开命令面板，搜索并快速执行任意操作：导出图片、切换主题、加载示例、格式化代码等。' },
     ],
     shortcutSave: '保存图表 (选择格式)',
     shortcutCopyPng: '复制 PNG',
@@ -177,11 +191,11 @@ export const STRINGS = {
     tourLangTitle: 'Choose Language',
     tourLangBody: 'Please choose your preferred language.',
     tourSteps: [
-      { title: 'Code Editor', body: 'Write Mermaid code with syntax highlighting, real-time error hints, and auto-format (Ctrl+Shift+F). Diagrams render automatically as you type.' },
+      { title: 'Code Editor', body: 'Write Mermaid code with syntax highlighting, real-time error hints, and auto-format ({cmdShiftF}). Diagrams render automatically as you type.' },
       { title: 'Examples', body: 'Click here to load preset diagram templates — flowcharts, sequence diagrams, Gantt charts, ER diagrams, and more.' },
-      { title: 'Live Preview', body: 'Diagrams render here in real time. Switch between 5 themes and 4 backgrounds (Alt+1~4) above. Zoom and pan below.' },
-      { title: 'Menu Bar', body: 'Four sections: File (export/share), Edit (hand-drawn style/fonts), View (themes/backgrounds/dark mode), Help (shortcuts). Press Alt+F/E/V/H to open.' },
-      { title: 'Command Palette', body: 'Press Ctrl+K to open the command palette. Search and run any action: export, switch themes, load examples, format code, and more.' },
+      { title: 'Live Preview', body: 'Diagrams render here in real time. Switch between 5 themes and 4 backgrounds ({alt14}) above. Zoom and pan below.' },
+      { title: 'Menu Bar', body: 'Four sections: File (export/share), Edit (hand-drawn style/fonts), View (themes/backgrounds/dark mode), Help (shortcuts). Press {altFEVH} to open.' },
+      { title: 'Command Palette', body: 'Press {cmdK} to open the command palette. Search and run any action: export, switch themes, load examples, format code, and more.' },
     ],
     shortcutSave: 'Save Diagram (choose format)',
     shortcutCopyPng: 'Copy PNG',

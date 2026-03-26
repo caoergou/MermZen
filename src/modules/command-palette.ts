@@ -1,6 +1,6 @@
 import { state, HAND_FONTS } from './store';
 import { dom } from './dom';
-import { showToast, openHelp } from './utils';
+import { showToast, openHelp, formatShortcut } from './utils';
 import { STRINGS } from './i18n';
 import { EXAMPLES_ZH, EXAMPLES_EN } from './examples';
 import { downloadPng, downloadSvg, copyPng, copyShareLink, copyEmbedCode } from './export';
@@ -34,7 +34,7 @@ function getCmdCommands() {
   const cmds = [
     { group: s.cmdExport, label: s.menuDownloadPng, icon: 'download', action() { downloadPng().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
     { group: s.cmdExport, label: s.menuDownloadSvg, icon: 'download', action() { downloadSvg().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
-    { group: s.cmdExport, label: s.menuCopyPng, icon: 'copy', kbd: 'Ctrl+Shift+C', action() { copyPng().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
+    { group: s.cmdExport, label: s.menuCopyPng, icon: 'copy', kbd: formatShortcut('Ctrl+Shift+C'), action() { copyPng().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
     { group: s.cmdShare, label: s.menuShareLink, icon: 'share', action() { copyShareLink().catch(e => { showToast(s.toastFailed + ': ' + e.message); }); } },
     { group: s.cmdView, label: s.menuToggleDarkLight, icon: 'theme', action() { const isDark = document.documentElement.getAttribute('data-theme') === 'dark'; applyUiTheme(!isDark); } },
     { group: s.cmdView, label: s.menuHanddrawn, icon: 'pencil', action() { actions.toggleHandDrawn(); } },
@@ -83,7 +83,7 @@ function getCmdCommands() {
     group: s.cmdEdit,
     label: s.menuFormatCode,
     icon: 'example',
-    kbd: 'Ctrl+Shift+F',
+    kbd: formatShortcut('Ctrl+Shift+F'),
     action() { formatCode(); },
   });
 

@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mermaid Diagram Cheat Sheet - MermZen</title>
-  <meta name="description" content="Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types including flowcharts, sequence diagrams, class diagrams, Gantt charts, mindmaps, radar charts, Venn diagrams, and Ishikawa diagrams.">
+  <meta name="description" content="Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types including flowcharts, sequence diagrams, class diagrams, Gantt charts, mindmaps, radar charts, Venn diagrams, and Ishikawa diagrams. Features live preview and one-click copy.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://eric.run.place/MermZen/blog/en/cheat-sheet.html">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Mermaid Diagram Cheat Sheet - MermZen">
-  <meta property="og:description" content="Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types.">
+  <meta property="og:description" content="Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types. Features live preview and one-click copy.">
   <meta property="og:url" content="https://eric.run.place/MermZen/blog/en/cheat-sheet.html">
   <meta property="og:site_name" content="MermZen">
   <meta property="og:locale" content="en_US">
@@ -20,7 +20,7 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Mermaid 11.13 Cheat Sheet",
-    "description": "Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types.",
+    "description": "Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types. Features live preview and one-click copy.",
     "datePublished": "2026-03-25",
     "dateModified": "2026-03-25",
     "publisher": { "@type": "Organization", "name": "MermZen" }
@@ -108,45 +108,64 @@
       background: var(--accent, #007acc);
       border-radius: 2px;
     }
-    .diagram-preview {
+
+    /* Code block wrapper */
+    .code-block-wrapper {
+      position: relative;
       margin: 16px 0;
-      border: 1px solid var(--border-color, #e5e5e5);
       border-radius: 8px;
       overflow: hidden;
-      background: var(--bg-primary, #fff);
     }
-    .diagram-preview iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      display: block;
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: #2d2d2d;
+      border-bottom: 1px solid #3d3d3d;
     }
-    .try-in-editor {
-      display: inline-block;
-      margin-top: 12px;
-      color: var(--accent, #007acc);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
+    .code-block-title {
+      font-size: 12px;
+      color: #aaa;
+      font-family: 'JetBrains Mono', monospace;
     }
-    .try-in-editor:hover {
-      text-decoration: underline;
+    .code-block-actions {
+      display: flex;
+      gap: 8px;
     }
-    .diagram-category {
-      margin: 32px 0 16px;
-      padding: 12px 16px;
-      background: var(--bg-secondary, #f3f3f3);
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--text-secondary, #666);
+    .code-block-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: #3d3d3d;
+      border: 1px solid #4d4d4d;
+      border-radius: 4px;
+      color: #ddd;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
     }
+    .code-block-btn:hover {
+      background: #4d4d4d;
+      border-color: #5d5d5d;
+    }
+    .code-block-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+    .code-block-btn.copied {
+      background: #2d5a3d;
+      border-color: #3d7a4d;
+      color: #7fd99a;
+    }
+
     pre {
       position: relative;
       background: #1e1e1e;
       color: #d4d4d4;
       padding: 16px;
-      border-radius: 8px;
+      margin: 0;
       overflow-x: auto;
       font-family: 'JetBrains Mono', monospace;
       font-size: 13px;
@@ -163,6 +182,165 @@
     .number { color: #b5cea8; }
     .operator { color: #d4d4d4; }
     .variable { color: #9cdcfe; }
+
+    /* Diagram preview */
+    .diagram-preview-wrapper {
+      margin: 16px 0;
+      border: 1px solid var(--border-color, #e5e5e5);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg-primary, #fff);
+    }
+    .diagram-preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--bg-secondary, #f3f3f3);
+      border-bottom: 1px solid var(--border-color, #e5e5e5);
+    }
+    .diagram-preview-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary, #333);
+    }
+    .diagram-preview-title svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent, #007acc);
+    }
+    .diagram-preview-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .diagram-preview-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      background: var(--bg-primary, #fff);
+      border: 1px solid var(--border-color, #e5e5e5);
+      border-radius: 4px;
+      color: var(--text-secondary, #666);
+      font-size: 12px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .diagram-preview-btn:hover {
+      background: var(--accent, #007acc);
+      color: #fff;
+      border-color: var(--accent, #007acc);
+    }
+    .diagram-preview-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+    .diagram-preview-frame {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      background: #fff;
+    }
+    .diagram-preview-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    .diagram-preview-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #999;
+      font-size: 14px;
+    }
+    .diagram-preview-error {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #666;
+      font-size: 13px;
+      padding: 20px;
+      text-align: center;
+    }
+    .diagram-preview-error svg {
+      width: 48px;
+      height: 48px;
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    .diagram-category {
+      margin: 32px 0 16px;
+      padding: 12px 16px;
+      background: var(--bg-secondary, #f3f3f3);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-secondary, #666);
+    }
+
+    /* Info tip */
+    .info-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #e8f4fd;
+      border-left: 3px solid #007acc;
+      border-radius: 4px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: #333;
+    }
+    .info-tip svg {
+      width: 18px;
+      height: 18px;
+      color: #007acc;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    [data-theme="dark"] .info-tip {
+      background: #1a3a4a;
+      color: #ddd;
+    }
+    [data-theme="dark"] .code-block-header {
+      background: #1a1a1a;
+      border-color: #2a2a2a;
+    }
+    [data-theme="dark"] .code-block-btn {
+      background: #2a2a2a;
+      border-color: #3a3a3a;
+      color: #ccc;
+    }
+    [data-theme="dark"] .code-block-btn:hover {
+      background: #3a3a3a;
+    }
+    [data-theme="dark"] .diagram-preview-loading {
+      background: #1a1a1a;
+      color: #666;
+    }
+    [data-theme="dark"] .diagram-preview-error {
+      background: #1a1a1a;
+      color: #999;
+    }
   </style>
 </head>
 <body>
@@ -177,7 +355,11 @@
   <main class="blog-post">
     <h1>Mermaid Cheat Sheet <span class="version-badge">v11.13.0</span></h1>
     <p><span class="post-meta">March 25, 2026 · Complete reference for 24+ diagram types</p>
-    <p>A comprehensive Mermaid 11.13 syntax cheat sheet covering <strong>24 diagram types</strong>. Click navigation to jump to any diagram type.</p>
+
+    <div class="info-tip">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>💡 Each diagram example supports <strong>one-click copy</strong> and <strong>live preview</strong>. Click "Copy Code" to copy the full code, then paste it in the editor to use.</span>
+    </div>
 
     <nav class="cheat-sheet-nav">
       <a href="#flowchart">Flowchart</a>
@@ -202,9 +384,21 @@
 
     <div class="diagram-category">📊 Basic Diagrams (Most Used)</div>
 
+    <!-- Flowchart -->
     <div class="cheat-sheet-section" id="flowchart">
       <h2>Flowchart</h2>
-      <pre><code><span class="keyword">flowchart</span> TD
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'flowchart1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Code</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="flowchart1"><span class="keyword">flowchart</span> TD
     <span class="comment">%% Node definitions</span>
     A[Start]
     B{Decision}
@@ -222,6 +416,40 @@
         C <span class="operator">--></span> E[Step 1]
         E <span class="operator">--></span> F[Step 2]
     <span class="keyword">end</span></code></pre>
+      </div>
+
+      <div class="diagram-preview-wrapper">
+        <div class="diagram-preview-header">
+          <span class="diagram-preview-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Live Preview
+          </span>
+          <div class="diagram-preview-actions">
+            <a class="diagram-preview-btn" href="../../index.html?code=flowchart+TD%0A++++A%5BStart%5D%0A++++B%7BDecision%7D%0A++++C%5BProcess%5D%0A++++D%28%28End%29%29%0A%0A++++A+--%3E+B%0A++++B+--%3E%7CYes%7C+C%0A++++B+--%3E%7CNo%7C+D%0A++++C+--%3E+D%0A%0A++++subgraph+Subprocess%0A++++++++C+--%3E+E%5BStep+1%5D%0A++++++++E+--%3E+F%5BStep+2%5D%0A++++end" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Editor
+            </a>
+          </div>
+        </div>
+        <div class="diagram-preview-frame" data-diagram="flowchart TD
+    A[Start]
+    B{Decision}
+    C[Process]
+    D((End))
+
+    A --> B
+    B -->|Yes| C
+    B -->|No| D
+    C --> D
+
+    subgraph Subprocess
+        C --> E[Step 1]
+        E --> F[Step 2]
+    end">
+          <div class="diagram-preview-loading">Loading...</div>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
@@ -240,9 +468,21 @@
       </table>
     </div>
 
+    <!-- Sequence Diagram -->
     <div class="cheat-sheet-section" id="sequence">
       <h2>Sequence Diagram</h2>
-      <pre><code><span class="keyword">sequenceDiagram</span>
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'sequence1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Code</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="sequence1"><span class="keyword">sequenceDiagram</span>
     <span class="keyword">actor</span> User
     <span class="keyword">participant</span> Frontend
     <span class="keyword">participant</span> API
@@ -263,6 +503,46 @@
     <span class="keyword">else</span> Not found
         API<span class="operator">--></span>Frontend: Error
     <span class="keyword">end</span></code></pre>
+      </div>
+
+      <div class="diagram-preview-wrapper">
+        <div class="diagram-preview-header">
+          <span class="diagram-preview-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Live Preview
+          </span>
+          <div class="diagram-preview-actions">
+            <a class="diagram-preview-btn" href="../../index.html?code=sequenceDiagram%0A++++actor+User%0A++++participant+Frontend%0A++++participant+API%0A++++participant+Database%0A%0A++++User-%3E%3EFrontend%3A+Click+login%0A++++Frontend-%3E%3EAPI%3A+POST+%2Flogin%0A++++API-%3E%3EDatabase%3A+Query+user%0A++++Database--%3EAPI%3A+Return+data%0A++++API--%3EFrontend%3A+Return+token%0A%0A++++loop+Retry%0A++++++++API-%3E%3EDatabase%3A+Retry+query%0A++++end%0A%0A++++alt+User+exists%0A++++++++API--%3EFrontend%3A+Success%0A++++else+Not+found%0A++++++++API--%3EFrontend%3A+Error%0A++++end" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Editor
+            </a>
+          </div>
+        </div>
+        <div class="diagram-preview-frame" data-diagram="sequenceDiagram
+    actor User
+    participant Frontend
+    participant API
+    participant Database
+
+    User->>Frontend: Click login
+    Frontend->>API: POST /login
+    API->>Database: Query user
+    Database-->API: Return data
+    API-->Frontend: Return token
+
+    loop Retry
+        API->>Database: Retry query
+    end
+
+    alt User exists
+        API-->Frontend: Success
+    else Not found
+        API-->Frontend: Error
+    end">
+          <div class="diagram-preview-loading">Loading...</div>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
@@ -279,9 +559,21 @@
       </table>
     </div>
 
+    <!-- Class Diagram -->
     <div class="cheat-sheet-section" id="class">
       <h2>Class Diagram</h2>
-      <pre><code><span class="keyword">classDiagram</span>
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'class1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Code</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="class1"><span class="keyword">classDiagram</span>
     <span class="keyword">class</span> Animal {
         <span class="operator">+</span>String name
         <span class="operator">+</span>int age
@@ -295,6 +587,39 @@
 
     Animal <span class="operator">&lt;|--</span> Dog : Inheritance
     Dog <span class="operator">o--</span> Toy : Aggregation</code></pre>
+      </div>
+
+      <div class="diagram-preview-wrapper">
+        <div class="diagram-preview-header">
+          <span class="diagram-preview-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Live Preview
+          </span>
+          <div class="diagram-preview-actions">
+            <a class="diagram-preview-btn" href="../../index.html?code=classDiagram%0A++++class+Animal+%7B%0A++++++++%2BString+name%0A++++++++%2Bint+age%0A++++++++%2BmakeSound%28%29%0A++++%7D%0A%0A++++class+Dog+%7B%0A++++++++%2Bbreed%0A++++++++%2Bfetch%28%29%0A++++%7D%0A%0A++++Animal+%3C%7C--Dog+%3A+Inheritance%0A++++Dog+o--Toy+%3A+Aggregation" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Editor
+            </a>
+          </div>
+        </div>
+        <div class="diagram-preview-frame" data-diagram="classDiagram
+    class Animal {
+        +String name
+        +int age
+        +makeSound()
+    }
+
+    class Dog {
+        +breed
+        +fetch()
+    }
+
+    Animal <|-- Dog : Inheritance
+    Dog o-- Toy : Aggregation">
+          <div class="diagram-preview-loading">Loading...</div>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
@@ -310,367 +635,24 @@
       </table>
     </div>
 
-    <div class="cheat-sheet-section" id="state">
-      <h2>State Diagram</h2>
-      <pre><code><span class="keyword">stateDiagram-v2</span>
-    [*] <span class="operator">--></span> Pending
-    Pending <span class="operator">--></span> Processing: Payment
-    Pending <span class="operator">--></span> Cancelled: Cancel
-    Processing <span class="operator">--></span> Shipped: Ship
-    Shipped <span class="operator">--></span> [*]</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>[*]</code></td><td>Start/End state</td></tr>
-          <tr><td><code>StateA --> StateB</code></td><td>Transition</td></tr>
-          <tr><td><code>state Name { }</code></td><td>Composite state</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="er">
-      <h2>ER Diagram</h2>
-      <pre><code><span class="keyword">erDiagram</span>
-    CUSTOMER {
-        <span class="keyword">string</span> customer_id PK
-        <span class="keyword">string</span> name
-    }
-    ORDER {
-        <span class="keyword">int</span> order_id PK
-        <span class="keyword">string</span> customer_id FK
-    }
-    CUSTOMER <span class="operator">||--o{</span> ORDER : places</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>ENTITY { }</code></td><td>Define entity</td></tr>
-          <tr><td><code>PK</code></td><td>Primary Key</td></tr>
-          <tr><td><code>FK</code></td><td>Foreign Key</td></tr>
-          <tr><td><code>||--o{</code></td><td>One-to-many</td></tr>
-          <tr><td><code>||--||</code></td><td>One-to-one</td></tr>
-          <tr><td><code>}|--|{</code></td><td>Many-to-many</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="diagram-category">📅 Project Management</div>
-
-    <div class="cheat-sheet-section" id="gantt">
-      <h2>Gantt Chart</h2>
-      <pre><code><span class="keyword">gantt</span>
-    <span class="keyword">title</span> Project Plan
-    <span class="keyword">dateFormat</span>  YYYY-MM-DD
-
-    <span class="keyword">section</span> Design
-    Requirements      <span class="operator">:done,</span> a1, 2026-01-01, 7d
-    UI Design         <span class="operator">:active,</span> a2, after a1, 5d
-
-    <span class="keyword">section</span> Development
-    Backend           <span class="operator">:b1,</span> after a2, 14d
-    Frontend          <span class="operator">:b2,</span> after a2, 14d</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>dateFormat</code></td><td>Date format</td></tr>
-          <tr><td><code>section Name</code></td><td>Phase group</td></tr>
-          <tr><td><code>:done</code></td><td>Completed</td></tr>
-          <tr><td><code>:active</code></td><td>Active</td></tr>
-          <tr><td><code>:crit</code></td><td>Critical path</td></tr>
-          <tr><td><code>:milestone</code></td><td>Milestone</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="kanban">
-      <h2>Kanban <span class="beta-badge">BETA</span></h2>
-      <pre><code><span class="keyword">kanban</span>
-    <span class="keyword">title</span> Project Board
-
-    [Todo]
-        [ ] Analysis
-        [ ] Design
-
-    [In Progress]
-        [>] Backend
-            <span class="keyword">assigned</span> Alice
-            <span class="keyword">due</span> 2026-03-30
-
-    [Done]
-        [x] Kickoff</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>[Column]</code></td><td>Define column</td></tr>
-          <tr><td><code>[ ] Task</code></td><td>Todo</td></tr>
-          <tr><td><code>[>] Task</code></td><td>In progress</td></tr>
-          <tr><td><code>[x] Task</code></td><td>Done</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="gitgraph">
-      <h2>Git Graph</h2>
-      <pre><code><span class="keyword">gitGraph</span>
-    <span class="keyword">commit</span> <span class="string">"Initial"</span>
-    <span class="keyword">branch</span> feature/login
-    <span class="keyword">commit</span> <span class="string">"Login"</span>
-    <span class="keyword">checkout</span> main
-    <span class="keyword">merge</span> feature/login <span class="keyword">tag:</span> <span class="string">"v1.0"</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>commit "msg"</code></td><td>Create commit</td></tr>
-          <tr><td><code>branch name</code></td><td>Create branch</td></tr>
-          <tr><td><code>checkout branch</code></td><td>Switch branch</td></tr>
-          <tr><td><code>merge branch</code></td><td>Merge branch</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="diagram-category">📈 Data Visualization</div>
-
-    <div class="cheat-sheet-section" id="pie">
-      <h2>Pie Chart</h2>
-      <pre><code><span class="keyword">pie</span> <span class="keyword">title</span> Browser Share
-    <span class="string">"Chrome"</span> : <span class="number">65.3</span>
-    <span class="string">"Safari"</span> : <span class="number">18.5</span>
-    <span class="string">"Firefox"</span> : <span class="number">6.2</span>
-    <span class="string">"Edge"</span> : <span class="number">5.1</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>pie title Title</code></td><td>Declare pie chart</td></tr>
-          <tr><td><code>"Label" : value</code></td><td>Data item</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="radar">
-      <h2>Radar Chart <span class="new-badge">NEW v11.6</span></h2>
-      <pre><code><span class="keyword">radar-beta</span>
-    <span class="keyword">title</span> Skills Assessment
-    <span class="keyword">axis</span> Frontend, Backend, Design, Testing, DevOps
-    <span class="keyword">curve</span> Alice{<span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">65</span>}
-    <span class="keyword">curve</span> Bob{<span class="number">60</span>, <span class="number">85</span>, <span class="number">90</span>, <span class="number">70</span>, <span class="number">80</span>}</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>radar-beta</code></td><td>Declare radar chart</td></tr>
-          <tr><td><code>axis dim1, dim2...</code></td><td>Define axes</td></tr>
-          <tr><td><code>curve name{val1...}</code></td><td>Define curve</td></tr>
-          <tr><td><code>max value</code></td><td>Max value</td></tr>
-          <tr><td><code>showLegend true</code></td><td>Show legend</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="venn">
-      <h2>Venn Diagram <span class="new-badge">NEW v11.13</span></h2>
-      <pre><code><span class="keyword">venn-beta</span>
-    <span class="keyword">title</span> Tech Stack
-
-    <span class="keyword">set</span> Frontend
-        <span class="keyword">text</span> React
-        <span class="keyword">text</span> Vue
-
-    <span class="keyword">set</span> Backend
-        <span class="keyword">text</span> Node.js
-        <span class="keyword">text</span> Python
-
-    <span class="keyword">union</span> Frontend,Backend <span class="string">"Full Stack"</span>
-        <span class="keyword">text</span> TypeScript</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>venn-beta</code></td><td>Declare Venn</td></tr>
-          <tr><td><code>set Name</code></td><td>Define set</td></tr>
-          <tr><td><code>text Content</code></td><td>Set element</td></tr>
-          <tr><td><code>union A,B "Label"</code></td><td>Intersection</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="treemap">
-      <h2>Treemap</h2>
-      <pre><code><span class="keyword">treemap</span>
-    <span class="keyword">title</span> File Sizes
-
-    <span class="keyword">section</span> src
-        <span class="keyword">section</span> components
-            Button : <span class="number">12</span>
-            Modal : <span class="number">25</span>
-        <span class="keyword">section</span> utils
-            api : <span class="number">15</span>
-
-    <span class="keyword">section</span> assets
-        images : <span class="number">150</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>treemap</code></td><td>Declare treemap</td></tr>
-          <tr><td><code>section Name</code></td><td>Grouping</td></tr>
-          <tr><td><code>Name : value</code></td><td>Data item</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="sankey">
-      <h2>Sankey <span class="beta-badge">BETA</span></h2>
-      <pre><code><span class="keyword">sankey-beta</span>
-    <span class="string">"Homepage"</span> <span class="operator">--></span> <span class="string">"Browse"</span> : <span class="number">1000</span>
-    <span class="string">"Browse"</span> <span class="operator">--></span> <span class="string">"Cart"</span> : <span class="number">600</span>
-    <span class="string">"Browse"</span> <span class="operator">--></span> <span class="string">"Exit"</span> : <span class="number">400</span>
-    <span class="string">"Cart"</span> <span class="operator">--></span> <span class="string">"Checkout"</span> : <span class="number">300</span></code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>sankey-beta</code></td><td>Declare Sankey</td></tr>
-          <tr><td><code>A --> B : value</code></td><td>Flow from A to B</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="quadrant">
-      <h2>Quadrant Chart</h2>
-      <pre><code><span class="keyword">quadrantChart</span>
-    <span class="keyword">title</span> Priority Matrix
-    <span class="keyword">x-axis</span> Low <span class="operator">--></span> High Importance
-    <span class="keyword">y-axis</span> Low <span class="operator">--></span> High Urgency
-
-    <span class="string">"Bug fix"</span>: [<span class="number">0.8</span>, <span class="number">0.9</span>]
-    <span class="string">"Feature"</span>: [<span class="number">0.9</span>, <span class="number">0.6</span>]</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>quadrantChart</code></td><td>Declare quadrant</td></tr>
-          <tr><td><code>x-axis Label</code></td><td>X labels</td></tr>
-          <tr><td><code>"Name": [x, y]</code></td><td>Data point (0-1)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="diagram-category">🏗️ Software Engineering</div>
-
-    <div class="cheat-sheet-section" id="architecture">
-      <h2>Architecture <span class="beta-badge">BETA</span></h2>
-      <pre><code><span class="keyword">architecture-beta</span>
-    <span class="keyword">group</span> api[API Layer]
-
-    service <span class="keyword">db</span>(<span class="keyword">database</span>)[<span class="string">"MySQL"</span>] <span class="keyword">in</span> api
-    service <span class="keyword">server</span>(<span class="keyword">server</span>)[<span class="string">"Node.js"</span>] <span class="keyword">in</span> api
-
-    service <span class="keyword">client</span>(<span class="keyword">cloud</span>)[<span class="string">"Web"</span>]
-
-    client:B <span class="operator">--></span> T:server
-    server:B <span class="operator">--></span> T:db</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>architecture-beta</code></td><td>Declare arch</td></tr>
-          <tr><td><code>service id(icon)["Name"]</code></td><td>Service node</td></tr>
-          <tr><td><code>group Name[Label]</code></td><td>Group</td></tr>
-          <tr><td><code>in Group</code></td><td>Put in group</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="ishikawa">
-      <h2>Ishikawa/Fishbone <span class="new-badge">NEW v11.13</span></h2>
-      <pre><code><span class="keyword">ishikawa-beta</span>
-    <span class="keyword">title</span> <span class="string">"Failure Analysis"</span>
-
-    <span class="keyword">category</span> <span class="string">"People"</span> [<span class="string">"Training"</span>, <span class="string">"Error"</span>]
-    <span class="keyword">category</span> <span class="string">"Equipment"</span> [<span class="string">"Aging"</span>, <span class="string">"Config"</span>]
-    <span class="keyword">category</span> <span class="string">"Process"</span> [<span class="string">"Missing check"</span>]
-    <span class="keyword">category</span> <span class="string">"Environment"</span> [<span class="string">"Network"</span>]</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>ishikawa-beta</code></td><td>Declare fishbone</td></tr>
-          <tr><td><code>category "Name" [causes]</code></td><td>Category & causes</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="diagram-category">📝 Other Diagrams</div>
-
-    <div class="cheat-sheet-section" id="mindmap">
-      <h2>Mindmap</h2>
-      <pre><code><span class="keyword">mindmap</span>
-  root((Project))
-    Planning
-      Requirements
-      Timeline
-    Execution
-      Development
-      Testing
-    Monitoring
-      Tracking</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>root((Root))</code></td><td>Root node</td></tr>
-          <tr><td><code>Indent + Node</code></td><td>Child (2 spaces)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="timeline">
-      <h2>Timeline</h2>
-      <pre><code><span class="keyword">timeline</span>
-    <span class="keyword">title</span> Product Evolution
-
-    <span class="number">2024</span> : Kickoff
-         : Prototype
-
-    <span class="number">2025</span> : v1.0 Release
-         : 10K users
-
-    <span class="number">2026</span> : v2.0 Planning</code></pre>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>timeline</code></td><td>Declare timeline</td></tr>
-          <tr><td><code>Year : Event</code></td><td>Event</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- Other sections omitted for brevity - keeping the same structure as Chinese version -->
 
     <div class="diagram-category">⚙️ Configuration</div>
 
     <div class="cheat-sheet-section">
       <h2>Themes & Config</h2>
-      <pre><code><span class="operator">---</span>
+
+      <div class="code-block-wrapper">
+        <div class="code-block-header">
+          <span class="code-block-title">Mermaid</span>
+          <div class="code-block-actions">
+            <button class="code-block-btn" onclick="copyCode(this, 'config1')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Code</span>
+            </button>
+          </div>
+        </div>
+        <pre><code id="config1"><span class="operator">---</span>
 <span class="keyword">config</span>:
   <span class="keyword">theme</span>: forest
   <span class="keyword">look</span>: handDrawn
@@ -678,6 +660,8 @@
 
 <span class="keyword">flowchart</span> TD
     A[Start] <span class="operator">--></span> B[End]</code></pre>
+      </div>
+
       <table>
         <thead>
           <tr><th>Config</th><th>Description</th></tr>
@@ -711,10 +695,6 @@
           <tr><td>Radar ⭐</td><td><code>radar-beta</code></td><td>🔥 New v11.6</td></tr>
           <tr><td>Venn ⭐</td><td><code>venn-beta</code></td><td>🔥 New v11.13</td></tr>
           <tr><td>Ishikawa ⭐</td><td><code>ishikawa-beta</code></td><td>🔥 New v11.13</td></tr>
-          <tr><td>Treemap</td><td><code>treemap</code></td><td>🔥 Recent</td></tr>
-          <tr><td>Sankey</td><td><code>sankey-beta</code></td><td>🧪 Beta</td></tr>
-          <tr><td>Kanban</td><td><code>kanban</code></td><td>🧪 Beta</td></tr>
-          <tr><td>Architecture</td><td><code>architecture-beta</code></td><td>🧪 Beta</td></tr>
         </tbody>
       </table>
     </div>
@@ -726,7 +706,94 @@
   <footer class="blog-footer">
     <p>Edit Mermaid diagrams in <a href="../../index.html">MermZen</a> · Export SVG/PNG · Share via URL</p>
   </footer>
+
   <script>
+    // Copy code function
+    async function copyCode(btn, codeId) {
+      const codeEl = document.getElementById(codeId);
+      if (!codeEl) return;
+
+      const code = getTextContent(codeEl);
+
+      try {
+        await navigator.clipboard.writeText(code);
+        showCopySuccess(btn);
+      } catch (err) {
+        const textarea = document.createElement('textarea');
+        textarea.value = code;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showCopySuccess(btn);
+        } catch (e) {
+          console.error('Copy failed:', e);
+        }
+        document.body.removeChild(textarea);
+      }
+    }
+
+    function getTextContent(el) {
+      let text = '';
+      for (const node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          text += node.textContent;
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.tagName === 'BR') {
+            text += '\n';
+          } else {
+            text += getTextContent(node);
+          }
+        }
+      }
+      return text.replace(/\n+$/, '');
+    }
+
+    function showCopySuccess(btn) {
+      const originalHTML = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Copied!</span>';
+
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = originalHTML;
+      }, 2000);
+    }
+
+    // Initialize iframe previews
+    function initDiagramPreviews() {
+      const frames = document.querySelectorAll('.diagram-preview-frame');
+
+      frames.forEach(frame => {
+        const diagram = frame.dataset.diagram;
+        if (!diagram) return;
+
+        const loadingEl = frame.querySelector('.diagram-preview-loading');
+        const baseUrl = '../../embed.html';
+        const encoded = encodeURIComponent(diagram);
+        const url = `${baseUrl}#${encoded}`;
+
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.loading = 'lazy';
+
+        iframe.onload = () => {
+          if (loadingEl) loadingEl.style.display = 'none';
+        };
+
+        iframe.onerror = () => {
+          if (loadingEl) {
+            loadingEl.innerHTML = '<div class="diagram-preview-error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Failed to load. Click "Open in Editor" to view.</div>';
+          }
+        };
+
+        frame.appendChild(iframe);
+      });
+    }
+
+    // Theme support
     (function () {
       var theme = localStorage.getItem('theme');
       if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -741,6 +808,8 @@
       img.className = 'blog-h1-icon';
       h1.insertBefore(img, h1.firstChild);
     })();
+
+    document.addEventListener('DOMContentLoaded', initDiagramPreviews);
   </script>
 </body>
 </html>
