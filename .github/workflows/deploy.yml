@@ -39,6 +39,13 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install chromium
 
+      - name: Install Chinese fonts for screenshot rendering
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
+          fc-list :lang=zh | head -5
+          echo "✅ Chinese fonts installed"
+
       - name: Build app and generate all assets
         run: npm run build:all
 

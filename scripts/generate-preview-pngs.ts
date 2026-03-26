@@ -265,12 +265,16 @@ async function generatePNGs(): Promise<void> {
         `;
         document.head.appendChild(style);
       });
-      // Wait for all fonts to load completely
-      await page.evaluate(async () => {
-        await document.fonts.ready;
-        // Extra wait for custom handwritten fonts to be applied
-        await new Promise(resolve => setTimeout(resolve, 3000));
-      });
+    // Wait for all fonts to load completely (especially Chinese fonts)
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      // Explicitly load Chinese fonts with fallbacks
+      try { await document.fonts.load('16px "Xiaolai SC"'); } catch (e) {}
+      try { await document.fonts.load('16px "Noto Sans CJK SC"'); } catch (e) {}
+      try { await document.fonts.load('16px "Noto Sans CJK TC"'); } catch (e) {}
+      // Extra wait for custom handwritten fonts to be applied
+      await new Promise(resolve => setTimeout(resolve, 3000));
+    });
     } catch {
       console.error(`  ✗ Timeout waiting for SVG: ${name}`);
       await page.close();
@@ -320,11 +324,10 @@ async function generatePNGs(): Promise<void> {
 
     const outPath = path.join(ASSETS_DIR, `${name}.png`);
 
-    // Take screenshot of the SVG element with padding
+    // Take screenshot of the SVG element
     await svgElement.screenshot({
       path: outPath,
-      type: 'png',
-      padding: 20
+      type: 'png'
     });
 
     console.log(`  ✓ Saved ${name}.png (${svgWidth}x${svgHeight})`);

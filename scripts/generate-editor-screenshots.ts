@@ -89,8 +89,26 @@ async function generateScreenshots(): Promise<void> {
       await page.waitForTimeout(500);
     }
 
-    // Wait a bit for fonts to load
+    // Wait for fonts to load completely (especially Chinese fonts)
     await page.waitForTimeout(2000);
+    try {
+      await page.evaluate(async () => {
+        // Wait for all fonts to be ready
+        await document.fonts.ready;
+        // Try to load Chinese fonts explicitly
+        try {
+          await document.fonts.load('16px "Xiaolai SC"');
+          await document.fonts.load('16px "Noto Sans CJK SC"');
+          await document.fonts.load('16px sans-serif');
+        } catch (e) {
+          // Ignore font load errors
+        }
+        // Extra wait for font rendering to stabilize
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      });
+    } catch (e) {
+      console.warn(`  ⚠ Font load wait failed for ${name}:`, e);
+    }
 
     // Cancel any text selection to avoid "全选" state in screenshot
     await page.evaluate(() => {
