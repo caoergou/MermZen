@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mermaid 图表速查表 - MermZen</title>
-  <meta name="description" content="Mermaid 图表完整语法速查表，包含流程图、时序图、类图、甘特图、饼图、思维导图等所有图表类型的语法参考。">
+  <meta name="description" content="Mermaid 11.13 图表完整语法速查表，包含流程图、时序图、类图、甘特图、饼图、思维导图、雷达图、维恩图、鱼骨图等所有 20+ 种图表类型的语法参考。">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://eric.run.place/MermZen/blog/zh/cheat-sheet.html">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Mermaid 图表速查表 - MermZen">
-  <meta property="og:description" content="Mermaid 图表完整语法速查表，包含流程图、时序图、类图、甘特图、饼图、思维导图等所有图表类型的语法参考。">
+  <meta property="og:description" content="Mermaid 11.13 图表完整语法速查表，包含流程图、时序图、类图、甘特图、饼图、思维导图、雷达图、维恩图、鱼骨图等所有 20+ 种图表类型的语法参考。">
   <meta property="og:url" content="https://eric.run.place/MermZen/blog/zh/cheat-sheet.html">
   <meta property="og:site_name" content="MermZen">
   <meta property="og:locale" content="zh_CN">
@@ -19,9 +19,10 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Mermaid 图表速查表",
-    "description": "Mermaid 图表完整语法速查表，包含流程图、时序图、类图、甘特图、饼图、思维导图等所有图表类型的语法参考。",
-    "datePublished": "2026-03-05",
+    "headline": "Mermaid 11.13 图表速查表",
+    "description": "Mermaid 11.13 图表完整语法速查表，包含 20+ 种图表类型的语法参考。",
+    "datePublished": "2026-03-25",
+    "dateModified": "2026-03-25",
     "publisher": { "@type": "Organization", "name": "MermZen" }
   }
   </script>
@@ -33,6 +34,39 @@
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../blog.css">
   <style>
+    .version-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+    .new-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .beta-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
     .cheat-sheet-nav {
       display: flex;
       flex-wrap: wrap;
@@ -50,6 +84,7 @@
       color: var(--text-primary, #333);
       text-decoration: none;
       font-size: 13px;
+      transition: all 0.2s;
     }
     .cheat-sheet-nav a:hover {
       background: var(--accent, #007acc);
@@ -63,6 +98,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .cheat-sheet-section h2::before {
       content: '';
@@ -96,6 +132,37 @@
     .try-in-editor:hover {
       text-decoration: underline;
     }
+    .diagram-category {
+      margin: 32px 0 16px;
+      padding: 12px 16px;
+      background: var(--bg-secondary, #f3f3f3);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-secondary, #666);
+    }
+    pre {
+      position: relative;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    pre code {
+      font-family: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .keyword { color: #569cd6; }
+    .string { color: #ce9178; }
+    .comment { color: #6a9955; }
+    .number { color: #b5cea8; }
+    .operator { color: #d4d4d4; }
+    .variable { color: #9cdcfe; }
   </style>
 </head>
 <body>
@@ -108,47 +175,54 @@
   </header>
 
   <main class="blog-post">
-    <h1>Mermaid 图表速查表</h1>
-    <p><span class="post-meta">2026-03-05 · 完整语法参考</p>
-    <p>这是一份完整的 Mermaid 图表语法速查表，涵盖所有支持的图表类型。点击导航快速跳转到对应图表类型。</p>
+    <h1>Mermaid 图表速查表 <span class="version-badge">v11.13.0</span></h1>
+    <p><span class="post-meta">2026-03-25 · 24 种图表类型完整参考</p>
+    <p>这是一份完整的 Mermaid 11.13 图表语法速查表，涵盖 <strong>24 种图表类型</strong>。点击导航快速跳转到对应图表类型。</p>
 
     <nav class="cheat-sheet-nav">
       <a href="#flowchart">流程图</a>
       <a href="#sequence">时序图</a>
       <a href="#class">类图</a>
+      <a href="#state">状态图</a>
+      <a href="#er">ER 图</a>
       <a href="#gantt">甘特图</a>
       <a href="#pie">饼图</a>
       <a href="#mindmap">思维导图</a>
-      <a href="#journey">用户旅程图</a>
       <a href="#gitgraph">Git 图</a>
-      <a href="#er">ER 图</a>
-      <a href="#state">状态图</a>
+      <a href="#radar">雷达图 <span class="new-badge">NEW</span></a>
+      <a href="#venn">维恩图 <span class="new-badge">NEW</span></a>
+      <a href="#ishikawa">鱼骨图 <span class="new-badge">NEW</span></a>
+      <a href="#treemap">树状图</a>
+      <a href="#sankey">桑基图</a>
+      <a href="#kanban">看板</a>
+      <a href="#architecture">架构图</a>
+      <a href="#timeline">时间线</a>
+      <a href="#quadrant">象限图</a>
     </nav>
+
+    <!-- 基础图表 -->
+    <div class="diagram-category">📊 基础图表（最常用）</div>
 
     <div class="cheat-sheet-section" id="flowchart">
       <h2>流程图 (Flowchart)</h2>
-      <pre><code>flowchart TD
-    %% 节点定义
+      <pre><code><span class="keyword">flowchart</span> TD
+    <span class="comment">%% 节点定义</span>
     A[开始]
     B{判断}
     C[处理]
     D((结束))
 
-    %% 连线
-    A --> B
-    B -->|是| C
-    B -->|否| D
-    C --> D
+    <span class="comment">%% 连线</span>
+    A <span class="operator">--></span> B
+    B <span class="operator">-->|</span>是<span class="operator">|</span> C
+    B <span class="operator">-->|</span>否<span class="operator">|</span> D
+    C <span class="operator">--></span> D
 
-    %% 子图
-    subgraph 子流程
-        C --> E[步骤1]
-        E --> F[步骤2]
-    end</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" title="流程图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+    <span class="comment">%% 子图</span>
+    <span class="keyword">subgraph</span> 子流程
+        C <span class="operator">--></span> E[步骤1]
+        E <span class="operator">--></span> F[步骤2]
+    <span class="keyword">end</span></code></pre>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -173,34 +247,30 @@
 
     <div class="cheat-sheet-section" id="sequence">
       <h2>时序图 (Sequence Diagram)</h2>
-      <pre><code>sequenceDiagram
-    actor 用户
-    participant 前端
-    participant API
-    participant 数据库
+      <pre><code><span class="keyword">sequenceDiagram</span>
+    <span class="keyword">actor</span> 用户
+    <span class="keyword">participant</span> 前端
+    <span class="keyword">participant</span> API
+    <span class="keyword">participant</span> 数据库
 
-    用户->>前端: 点击登录
-    前端->>API: POST /login
-    API->>数据库: 查询用户
-    数据库-->>API: 返回数据
-    API-->>前端: 返回 token
-    前端-->>用户: 登录成功
+    用户<span class="operator">->></span>前端: 点击登录
+    前端<span class="operator">->></span>API: POST /login
+    API<span class="operator">->></span>数据库: 查询用户
+    数据库<span class="operator">--></span>API: 返回数据
+    API<span class="operator">--></span>前端: 返回 token
+    前端<span class="operator">--></span>用户: 登录成功
 
-    %% 循环
-    loop 重试机制
-        API->>数据库: 重试查询
-    end
+    <span class="comment">%% 循环</span>
+    <span class="keyword">loop</span> 重试机制
+        API<span class="operator">->></span>数据库: 重试查询
+    <span class="keyword">end</span>
 
-    %% 条件
-    alt 用户存在
-        API-->>前端: 正常响应
-    else 用户不存在
-        API-->>前端: 错误响应
-    end</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXDPLFF4OnvfswXtLxfNUKoFAGesEeQ" title="时序图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXDPLFF4OnvfswXtLxfNUKoFAGesEeQ" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+    <span class="comment">%% 条件</span>
+    <span class="keyword">alt</span> 用户存在
+        API<span class="operator">--></span>前端: 正常响应
+    <span class="keyword">else</span> 用户不存在
+        API<span class="operator">--></span>前端: 错误响应
+    <span class="keyword">end</span></code></pre>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -223,32 +293,28 @@
 
     <div class="cheat-sheet-section" id="class">
       <h2>类图 (Class Diagram)</h2>
-      <pre><code>classDiagram
-    class Animal {
-        +String name
-        +int age
-        +makeSound()
-        +move()
+      <pre><code><span class="keyword">classDiagram</span>
+    <span class="keyword">class</span> Animal {
+        <span class="operator">+</span>String name
+        <span class="operator">+</span>int age
+        <span class="operator">+</span>makeSound()
+        <span class="operator">+</span>move()
     }
 
-    class Dog {
-        +breed
-        +fetch()
+    <span class="keyword">class</span> Dog {
+        <span class="operator">+</span>breed
+        <span class="operator">+</span>fetch()
     }
 
-    class Cat {
-        +color
-        +climb()
+    <span class="keyword">class</span> Cat {
+        <span class="operator">+</span>color
+        <span class="operator">+</span>climb()
     }
 
-    Animal <|-- Dog : 继承
-    Animal <|-- Cat : 继承
-    Dog o-- Toy : 聚合
-    Cat *-- Whisker : 组合</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqzUjMSCzOKElMyknMS47JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="类图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqzUjMSCzOKElMyknMS47JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+    Animal <span class="operator">&lt;|--</span> Dog : 继承
+    Animal <span class="operator">&lt;|--</span> Cat : 继承
+    Dog <span class="operator">o--</span> Toy : 聚合
+    Cat <span class="operator">*--</span> Whisker : 组合</code></pre>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -269,30 +335,89 @@
       </table>
     </div>
 
+    <div class="cheat-sheet-section" id="state">
+      <h2>状态图 (State Diagram)</h2>
+      <pre><code><span class="keyword">stateDiagram-v2</span>
+    [*] <span class="operator">--></span> 待付款
+    待付款 <span class="operator">--></span> 待发货: 支付成功
+    待付款 <span class="operator">--></span> 已取消: 取消订单
+    待发货 <span class="operator">--></span> 运输中: 发货
+    运输中 <span class="operator">--></span> 待收货: 到达
+    待收货 <span class="operator">--></span> 已完成: 确认收货
+    已完成 <span class="operator">--></span> [*]
+
+    <span class="comment">%% 复合状态</span>
+    <span class="keyword">state</span> 支付流程 {
+        [*] <span class="operator">--></span> 选择支付方式
+        选择支付方式 <span class="operator">--></span> 处理中
+        处理中 <span class="operator">--></span> 支付成功
+        处理中 <span class="operator">--></span> 支付失败
+    }</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>[*]</code></td><td>开始/结束状态</td></tr>
+          <tr><td><code>状态A --> 状态B</code></td><td>状态转换</td></tr>
+          <tr><td><code>state 名称 { }</code></td><td>复合状态</td></tr>
+          <tr><td><code>状态: 备注</code></td><td>状态备注</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="er">
+      <h2>ER 图 (Entity Relationship)</h2>
+      <pre><code><span class="keyword">erDiagram</span>
+    CUSTOMER {
+        <span class="keyword">string</span> customer_id PK
+        <span class="keyword">string</span> name
+        <span class="keyword">string</span> email
+    }
+    ORDER {
+        <span class="keyword">int</span> order_id PK
+        <span class="keyword">date</span> order_date
+        <span class="keyword">string</span> customer_id FK
+    }
+    CUSTOMER <span class="operator">||--o{</span> ORDER : places</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>ENTITY { }</code></td><td>定义实体</td></tr>
+          <tr><td><code>PK</code></td><td>主键</td></tr>
+          <tr><td><code>FK</code></td><td>外键</td></tr>
+          <tr><td><code>||--o{</code></td><td>一对多关系</td></tr>
+          <tr><td><code>||--||</code></td><td>一对一关系</td></tr>
+          <tr><td><code>}|--|{</code></td><td>多对多关系</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 项目管理 -->
+    <div class="diagram-category">📅 项目管理</div>
+
     <div class="cheat-sheet-section" id="gantt">
       <h2>甘特图 (Gantt Chart)</h2>
-      <pre><code>gantt
-    title 项目开发计划
-    dateFormat  YYYY-MM-DD
+      <pre><code><span class="keyword">gantt</span>
+    <span class="keyword">title</span> 项目开发计划
+    <span class="keyword">dateFormat</span>  YYYY-MM-DD
 
-    section 设计阶段
-    需求分析      :done, a1, 2026-01-01, 7d
-    UI 设计       :active, a2, after a1, 5d
-    原型评审      :a3, after a2, 3d
+    <span class="keyword">section</span> 设计阶段
+    需求分析      <span class="operator">:done,</span> a1, 2026-01-01, 7d
+    UI 设计       <span class="operator">:active,</span> a2, after a1, 5d
+    原型评审      <span class="operator">:a3,</span> after a2, 3d
 
-    section 开发阶段
-    后端开发      :b1, after a3, 14d
-    前端开发      :b2, after a3, 14d
-    接口联调      :b3, after b1, 5d
+    <span class="keyword">section</span> 开发阶段
+    后端开发      <span class="operator">:b1,</span> after a3, 14d
+    前端开发      <span class="operator">:b2,</span> after a3, 14d
+    接口联调      <span class="operator">:b3,</span> after b1, 5d
 
-    section 测试阶段
-    功能测试      :c1, after b3, 7d
-    Bug 修复      :c2, after c1, 5d
-    上线发布      :milestone, c3, after c2, 1d</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIpVYk55SmpBYrlKemZqfmpRRDhItTk0sy8_MVnuxY-7Rr4Yv1CxUMjnqq1QIA1u4mkA" title="甘特图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIpVYk55SmpBYrlKemZqfmpRRDhItTk0sy8_MVnuxY-7Rr4Yv1CxUMjnqq1QIA1u4mkA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+    <span class="keyword">section</span> 测试阶段
+    功能测试      <span class="operator">:c1,</span> after b3, 7d
+    Bug 修复      <span class="operator">:c2,</span> after c1, 5d
+    上线发布      <span class="operator">:milestone,</span> c3, after c2, 1d</code></pre>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -310,18 +435,76 @@
       </table>
     </div>
 
+    <div class="cheat-sheet-section" id="kanban">
+      <h2>看板 (Kanban) <span class="beta-badge">BETA</span></h2>
+      <pre><code><span class="keyword">kanban</span>
+    <span class="keyword">title</span> 项目看板
+
+    [待办]
+        [ ] 需求分析
+        [ ] 架构设计
+
+    [进行中]
+        [>] 后端开发
+            <span class="keyword">assigned</span> 张三
+            <span class="keyword">due</span> 2026-03-30
+
+    [已完成]
+        [x] 项目立项
+        [x] 团队组建</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>[列名]</code></td><td>定义看板列</td></tr>
+          <tr><td><code>[ ] 任务</code></td><td>待办任务</td></tr>
+          <tr><td><code>[>] 任务</code></td><td>进行中任务</td></tr>
+          <tr><td><code>[x] 任务</code></td><td>已完成任务</td></tr>
+          <tr><td><code>assigned 姓名</code></td><td>指派给</td></tr>
+          <tr><td><code>due 日期</code></td><td>截止日期</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="gitgraph">
+      <h2>Git 图 (Git Graph)</h2>
+      <pre><code><span class="keyword">gitGraph</span>
+    <span class="keyword">commit</span> <span class="string">"初始提交"</span>
+    <span class="keyword">branch</span> feature/login
+    <span class="keyword">commit</span> <span class="string">"登录功能"</span>
+    <span class="keyword">commit</span> <span class="string">"登录优化"</span>
+    <span class="keyword">checkout</span> main
+    <span class="keyword">branch</span> feature/register
+    <span class="keyword">commit</span> <span class="string">"注册功能"</span>
+    <span class="keyword">checkout</span> main
+    <span class="keyword">merge</span> feature/login <span class="keyword">tag:</span> <span class="string">"v1.1.0"</span>
+    <span class="keyword">merge</span> feature/register</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>commit "信息"</code></td><td>创建提交</td></tr>
+          <tr><td><code>branch 名称</code></td><td>创建分支</td></tr>
+          <tr><td><code>checkout 分支</code></td><td>切换分支</td></tr>
+          <tr><td><code>merge 分支</code></td><td>合并分支</td></tr>
+          <tr><td><code>tag: "版本"</code></td><td>打标签</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 数据可视化 -->
+    <div class="diagram-category">📈 数据可视化</div>
+
     <div class="cheat-sheet-section" id="pie">
       <h2>饼图 (Pie Chart)</h2>
-      <pre><code>pie title 浏览器市场份额
-    "Chrome" : 65.3
-    "Safari" : 18.5
-    "Firefox" : 6.2
-    "Edge" : 5.1
-    "其他" : 4.9</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqTi0sTc1LTnXJTEwvSsyNyVNQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" title="饼图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqTi0sTc1LTnXJTEwvSsyNyVNQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+      <pre><code><span class="keyword">pie</span> <span class="keyword">title</span> 浏览器市场份额
+    <span class="string">"Chrome"</span> : <span class="number">65.3</span>
+    <span class="string">"Safari"</span> : <span class="number">18.5</span>
+    <span class="string">"Firefox"</span> : <span class="number">6.2</span>
+    <span class="string">"Edge"</span> : <span class="number">5.1</span>
+    <span class="string">"其他"</span> : <span class="number">4.9</span></code></pre>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -334,9 +517,199 @@
       </table>
     </div>
 
+    <div class="cheat-sheet-section" id="radar">
+      <h2>雷达图 (Radar Chart) <span class="new-badge">NEW v11.6</span></h2>
+      <pre><code><span class="keyword">radar-beta</span>
+    <span class="keyword">title</span> 技能评估
+    <span class="keyword">axis</span> 前端, 后端, 设计, 测试, 运维
+    <span class="keyword">curve</span> 小明{<span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">65</span>}
+    <span class="keyword">curve</span> 小红{<span class="number">60</span>, <span class="number">85</span>, <span class="number">90</span>, <span class="number">70</span>, <span class="number">80</span>}</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>radar-beta</code></td><td>声明雷达图（beta 版本）</td></tr>
+          <tr><td><code>axis 维度1, 维度2...</code></td><td>定义坐标轴维度</td></tr>
+          <tr><td><code>curve 名称{值1, 值2...}</code></td><td>定义数据曲线</td></tr>
+          <tr><td><code>max 数值</code></td><td>最大值（用于缩放）</td></tr>
+          <tr><td><code>graticule circle</code></td><td>网格样式（circle/polygon）</td></tr>
+          <tr><td><code>showLegend true</code></td><td>显示图例</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="venn">
+      <h2>维恩图 (Venn Diagram) <span class="new-badge">NEW v11.13</span></h2>
+      <pre><code><span class="keyword">venn-beta</span>
+    <span class="keyword">title</span> 技术栈分布
+
+    <span class="keyword">set</span> Frontend
+        <span class="keyword">text</span> React
+        <span class="keyword">text</span> Vue
+        <span class="keyword">text</span> Angular
+
+    <span class="keyword">set</span> Backend
+        <span class="keyword">text</span> Node.js
+        <span class="keyword">text</span> Python
+        <span class="keyword">text</span> Go
+
+    <span class="keyword">union</span> Frontend,Backend <span class="string">"全栈"</span>
+        <span class="keyword">text</span> TypeScript
+        <span class="keyword">text</span> REST API</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>venn-beta</code></td><td>声明维恩图（beta 版本）</td></tr>
+          <tr><td><code>set 名称</code></td><td>定义集合</td></tr>
+          <tr><td><code>text 内容</code></td><td>集合中的元素</td></tr>
+          <tr><td><code>union A,B "标签"</code></td><td>定义交集/并集</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="treemap">
+      <h2>树状图 (Treemap)</h2>
+      <pre><code><span class="keyword">treemap</span>
+    <span class="keyword">title</span> 项目文件大小
+
+    <span class="keyword">section</span> src
+        <span class="keyword">section</span> components
+            Button : <span class="number">12</span>
+            Modal : <span class="number">25</span>
+            Table : <span class="number">35</span>
+        <span class="keyword">section</span> utils
+            helpers : <span class="number">8</span>
+            api : <span class="number">15</span>
+
+    <span class="keyword">section</span> assets
+        images : <span class="number">150</span>
+        fonts : <span class="number">45</span></code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>treemap</code></td><td>声明树状图</td></tr>
+          <tr><td><code>section 名称</code></td><td>分组/嵌套区域</td></tr>
+          <tr><td><code>名称 : 数值</code></td><td>数据项（数值决定大小）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="sankey">
+      <h2>桑基图 (Sankey Diagram) <span class="beta-badge">BETA</span></h2>
+      <pre><code><span class="keyword">sankey-beta</span>
+    <span class="keyword">title</span> 用户流量分析
+
+    <span class="string">"访问首页"</span> <span class="operator">--></span> <span class="string">"浏览商品"</span> : <span class="number">1000</span>
+    <span class="string">"浏览商品"</span> <span class="operator">--></span> <span class="string">"加入购物车"</span> : <span class="number">600</span>
+    <span class="string">"浏览商品"</span> <span class="operator">--></span> <span class="string">"离开"</span> : <span class="number">400</span>
+    <span class="string">"加入购物车"</span> <span class="operator">--></span> <span class="string">"结算"</span> : <span class="number">300</span>
+    <span class="string">"加入购物车"</span> <span class="operator">--></span> <span class="string">"放弃"</span> : <span class="number">300</span>
+    <span class="string">"结算"</span> <span class="operator">--></span> <span class="string">"支付成功"</span> : <span class="number">250</span>
+    <span class="string">"结算"</span> <span class="operator">--></span> <span class="string">"支付失败"</span> : <span class="number">50</span></code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>sankey-beta</code></td><td>声明桑基图（beta 版本）</td></tr>
+          <tr><td><code>A --> B : 数值</code></td><td>从 A 流向 B，流量为数值</td></tr>
+          <tr><td><code>"节点名称"</code></td><td>使用引号包含带空格的节点名</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="quadrant">
+      <h2>象限图 (Quadrant Chart)</h2>
+      <pre><code><span class="keyword">quadrantChart</span>
+    <span class="keyword">title</span> 任务优先级矩阵
+    <span class="keyword">x-axis</span> 低重要性 <span class="operator">--></span> 高重要性
+    <span class="keyword">y-axis</span> 低紧急性 <span class="operator">--></span> 高紧急性
+
+    <span class="comment">%% 象限内的点</span>
+    <span class="string">"修复严重bug"</span>: [<span class="number">0.8</span>, <span class="number">0.9</span>]
+    <span class="string">"发布新功能"</span>: [<span class="number">0.9</span>, <span class="number">0.6</span>]
+    <span class="string">"文档更新"</span>: [<span class="number">0.3</span>, <span class="number">0.4</span>]
+    <span class="string">"技术债务"</span>: [<span class="number">0.5</span>, <span class="number">0.3</span>]</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>quadrantChart</code></td><td>声明象限图</td></tr>
+          <tr><td><code>x-axis 标签 --> 标签</code></td><td>X 轴标签</td></tr>
+          <tr><td><code>y-axis 标签 --> 标签</code></td><td>Y 轴标签</td></tr>
+          <tr><td><code>"名称": [x, y]</code></td><td>数据点（坐标范围 0-1）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 软件工程 -->
+    <div class="diagram-category">🏗️ 软件工程</div>
+
+    <div class="cheat-sheet-section" id="architecture">
+      <h2>架构图 (Architecture) <span class="beta-badge">BETA</span></h2>
+      <pre><code><span class="keyword">architecture-beta</span>
+    <span class="keyword">group</span> api[API 层]
+
+    service <span class="keyword">db</span>(<span class="keyword">database</span>)[<span class="string">"MySQL"</span>] <span class="keyword">in</span> api
+    service <span class="keyword">server</span>(<span class="keyword">server</span>)[<span class="string">"Node.js"</span>] <span class="keyword">in</span> api
+
+    service <span class="keyword">client</span>(<span class="keyword">cloud</span>)[<span class="string">"Web 应用"</span>]
+
+    <span class="keyword">junction</span> junc
+
+    client:B <span class="operator">--></span> T:server
+    server:B <span class="operator">--></span> T:db</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>architecture-beta</code></td><td>声明架构图（beta 版本）</td></tr>
+          <tr><td><code>service id(icon)["名称"]</code></td><td>定义服务节点</td></tr>
+          <tr><td><code>group 名称[标签]</code></td><td>定义分组</td></tr>
+          <tr><td><code>in 分组</code></td><td>将服务放入分组</td></tr>
+          <tr><td><code>junction 名称</code></td><td>连接点</td></tr>
+          <tr><td><code>A:B --> T:B</code></td><td>从 A 底部连到 B 顶部</td></tr>
+          <tr><td><code>T:顶部 R:右 L:左 B:底</code></td><td>连接方向</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="ishikawa">
+      <h2>鱼骨图/石川图 (Ishikawa) <span class="new-badge">NEW v11.13</span></h2>
+      <pre><code><span class="keyword">ishikawa-beta</span>
+    <span class="keyword">title</span> <span class="string">"系统故障分析"</span>
+
+    <span class="keyword">category</span> <span class="string">"人员"</span> [<span class="string">"培训不足"</span>, <span class="string">"操作失误"</span>, <span class="string">"沟通不畅"</span>]
+    <span class="keyword">category</span> <span class="string">"设备"</span> [<span class="string">"硬件老化"</span>, <span class="string">"配置错误"</span>]
+    <span class="keyword">category</span> <span class="string">"流程"</span> [<span class="string">"缺乏检查点"</span>, <span class="string">"文档不全"</span>]
+    <span class="keyword">category</span> <span class="string">"环境"</span> [<span class="string">"网络不稳定"</span>, <span class="string">"电力波动"</span>]
+    <span class="keyword">category</span> <span class="string">"管理"</span> [<span class="string">"监控缺失"</span>, <span class="string">"响应慢"</span>]</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>ishikawa-beta</code></td><td>声明鱼骨图（beta 版本）</td></tr>
+          <tr><td><code>title "标题"</code></td><td>设置图表标题</td></tr>
+          <tr><td><code>category "名称" [原因列表]</code></td><td>定义大骨（类别）和原因</td></tr>
+          <tr><td><code>["原因1", "原因2"]</code></td><td>中骨（具体原因）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 其他图表 -->
+    <div class="diagram-category">📝 其他图表</div>
+
     <div class="cheat-sheet-section" id="mindmap">
       <h2>思维导图 (Mindmap)</h2>
-      <pre><code>mindmap
+      <pre><code><span class="keyword">mindmap</span>
   root((项目管理))
     计划
       需求分析
@@ -349,10 +722,6 @@
     监控
       进度跟踪
       风险管理</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" title="思维导图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -365,25 +734,48 @@
       </table>
     </div>
 
+    <div class="cheat-sheet-section" id="timeline">
+      <h2>时间线 (Timeline)</h2>
+      <pre><code><span class="keyword">timeline</span>
+    <span class="keyword">title</span> 产品迭代历程
+
+    <span class="number">2024</span> : 项目启动
+         : 完成原型设计
+         : 技术选型
+
+    <span class="number">2025</span> : 1.0 版本发布
+         : 核心功能上线
+         : 用户突破 1 万
+
+    <span class="number">2026</span> : 2.0 版本规划
+         : AI 功能集成</code></pre>
+      <table>
+        <thead>
+          <tr><th>语法</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>timeline</code></td><td>声明时间线</td></tr>
+          <tr><td><code>年份 : 事件</code></td><td>时间点事件</td></tr>
+          <tr><td><code>: 事件</code></td><td>同一年份的多个事件</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="cheat-sheet-section" id="journey">
       <h2>用户旅程图 (User Journey)</h2>
-      <pre><code>journey
-    title 用户购物流程
-    section 浏览商品
-      访问首页: 5: 用户
-      搜索商品: 4: 用户
-      查看详情: 4: 用户
-    section 下单支付
-      加入购物车: 5: 用户
-      填写地址: 3: 用户
-      完成支付: 5: 用户, 系统
-    section 收货评价
-      查看物流: 4: 用户
-      确认收货: 5: 用户</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" title="用户旅程图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+      <pre><code><span class="keyword">journey</span>
+    <span class="keyword">title</span> 用户购物流程
+    <span class="keyword">section</span> 浏览商品
+      访问首页: <span class="number">5</span>: 用户
+      搜索商品: <span class="number">4</span>: 用户
+      查看详情: <span class="number">4</span>: 用户
+    <span class="keyword">section</span> 下单支付
+      加入购物车: <span class="number">5</span>: 用户
+      填写地址: <span class="number">3</span>: 用户
+      完成支付: <span class="number">5</span>: 用户, 系统
+    <span class="keyword">section</span> 收货评价
+      查看物流: <span class="number">4</span>: 用户
+      确认收货: <span class="number">5</span>: 用户</code></pre>
       <table>
         <thead>
           <tr><th>语法</th><th>说明</th></tr>
@@ -395,131 +787,77 @@
       </table>
     </div>
 
-    <div class="cheat-sheet-section" id="gitgraph">
-      <h2>Git 图 (Git Graph)</h2>
-      <pre><code>gitGraph
-    commit "初始提交"
-    branch feature/login
-    commit "登录功能"
-    commit "登录优化"
-    checkout main
-    branch feature/register
-    commit "注册功能"
-    checkout main
-    merge feature/login tag: "v1.1.0"
-    merge feature/register</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXCMfjZt57OFbbEQrpPG0zltL5ZPgghqQgSdq1_0b3y6d1EthOuiAVL0dO8iTai8q0b0syVrn85pi4UKuEVHP1074fmK7qe7-kFmQw13j9Z4NnXDs951T3dN1oSKedg9W9D-bPOKZ9OnP90xJ1apFgBJ3Uqf" title="Git 图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXCMfjZt57OFbbEQrpPG0zltL5ZPgghqQgSdq1_0b3y6d1EthOuiAVL0dO8iTai8q0b0syVrn85pi4UKuEVHP1074fmK7qe7-kFmQw13j9Z4NnXDs951T3dN1oSKedg9W9D-bPOKZ9OnP90xJ1apFgBJ3Uqf" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>gitGraph</code></td><td>声明 Git 图</td></tr>
-          <tr><td><code>commit "信息"</code></td><td>创建提交</td></tr>
-          <tr><td><code>branch 名称</code></td><td>创建分支</td></tr>
-          <tr><td><code>checkout 分支</code></td><td>切换分支</td></tr>
-          <tr><td><code>merge 分支</code></td><td>合并分支</td></tr>
-          <tr><td><code>tag: "版本"</code></td><td>打标签</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- 通用配置 -->
+    <div class="diagram-category">⚙️ 通用配置</div>
 
-    <div class="cheat-sheet-section" id="er">
-      <h2>ER 图 (Entity Relationship)</h2>
-      <pre><code>erDiagram
-    CUSTOMER {
-        string customer_id PK
-        string name
-        string email
-    }
-    ORDER {
-        int order_id PK
-        date order_date
-        string customer_id FK
-    }
-    CUSTOMER ||--o{ ORDER : places</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="ER 图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
-      <table>
-        <thead>
-          <tr><th>语法</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>ENTITY { }</code></td><td>定义实体</td></tr>
-          <tr><td><code>PK</code></td><td>主键</td></tr>
-          <tr><td><code>FK</code></td><td>外键</td></tr>
-          <tr><td><code>||--o{</code></td><td>一对多关系</td></tr>
-          <tr><td><code>||--||</code></td><td>一对一关系</td></tr>
-          <tr><td><code>}|--|{</code></td><td>多对多关系</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="cheat-sheet-section">
+      <h2>主题与配置</h2>
+      <pre><code><span class="comment">%% 主题设置</span>
+<span class="comment">%% 可选: default, dark, forest, neutral, base</span>
 
-    <div class="cheat-sheet-section" id="state">
-      <h2>状态图 (State Diagram)</h2>
-      <pre><code>stateDiagram-v2
-    [*] --> 待付款
-    待付款 --> 待发货: 支付成功
-    待付款 --> 已取消: 取消订单
-    待发货 --> 运输中: 发货
-    运输中 --> 待收货: 到达
-    待收货 --> 已完成: 确认收货
-    已完成 --> [*]</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="状态图示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<span class="comment">%% 使用 Frontmatter 配置（推荐）</span>
+<span class="operator">---</span>
+<span class="keyword">config</span>:
+  <span class="keyword">theme</span>: forest
+  <span class="keyword">look</span>: handDrawn
+<span class="operator">---</span>
+
+<span class="keyword">flowchart</span> TD
+    A[开始] <span class="operator">--></span> B[结束]</code></pre>
       <table>
         <thead>
-          <tr><th>语法</th><th>说明</th></tr>
+          <tr><th>配置</th><th>说明</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>[*]</code></td><td>开始/结束状态</td></tr>
-          <tr><td><code>状态A --> 状态B</code></td><td>状态转换</td></tr>
-          <tr><td><code>state 名称 { }</code></td><td>复合状态</td></tr>
-          <tr><td><code>状态: 备注</code></td><td>状态备注</td></tr>
+          <tr><td><code>theme default</code></td><td>默认主题</td></tr>
+          <tr><td><code>theme dark</code></td><td>深色主题</td></tr>
+          <tr><td><code>theme forest</code></td><td>森林主题</td></tr>
+          <tr><td><code>theme neutral</code></td><td>中性主题</td></tr>
+          <tr><td><code>theme base</code></td><td>基础主题（可自定义）</td></tr>
+          <tr><td><code>look: handDrawn</code></td><td>手绘风格</td></tr>
+          <tr><td><code>look: classic</code></td><td>经典风格</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="cheat-sheet-section">
-      <h2>通用指令</h2>
-      <pre><code>%% 这是注释
-
-%% 主题设置
-theme default
-theme dark
-theme forest
-theme neutral
-theme base
-
-%% 手绘风格
-%% 在 MermZen 编辑器中切换</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="通用指令示例" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+      <h2>完整图表类型清单</h2>
       <table>
         <thead>
-          <tr><th>语法</th><th>说明</th></tr>
+          <tr><th>图表类型</th><th>语法关键词</th><th>版本</th><th>状态</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>%% 注释</code></td><td>行注释</td></tr>
-          <tr><td><code>title 标题</code></td><td>设置图表标题</td></tr>
-          <tr><td><code>theme 主题</code></td><td>设置主题</td></tr>
-          <tr><td><code>subgraph 名称</code></td><td>子图分组</td></tr>
-          <tr><td><code>direction LR/TD</code></td><td>子图方向</td></tr>
+          <tr><td>流程图</td><td><code>flowchart</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>时序图</td><td><code>sequenceDiagram</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>类图</td><td><code>classDiagram</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>状态图</td><td><code>stateDiagram-v2</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>ER 图</td><td><code>erDiagram</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>甘特图</td><td><code>gantt</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>饼图</td><td><code>pie</code></td><td>全版本</td><td>✅ 稳定</td></tr>
+          <tr><td>思维导图</td><td><code>mindmap</code></td><td>v9+</td><td>✅ 稳定</td></tr>
+          <tr><td>Git 图</td><td><code>gitGraph</code></td><td>v9+</td><td>✅ 稳定</td></tr>
+          <tr><td>用户旅程</td><td><code>journey</code></td><td>v8+</td><td>✅ 稳定</td></tr>
+          <tr><td>时间线</td><td><code>timeline</code></td><td>v10+</td><td>✅ 稳定</td></tr>
+          <tr><td>象限图</td><td><code>quadrantChart</code></td><td>v10+</td><td>✅ 稳定</td></tr>
+          <tr><td>需求图</td><td><code>requirementDiagram</code></td><td>v10+</td><td>✅ 稳定</td></tr>
+          <tr><td>雷达图 ⭐</td><td><code>radar-beta</code></td><td>v11.6+</td><td>🔥 新增</td></tr>
+          <tr><td>维恩图 ⭐</td><td><code>venn-beta</code></td><td>v11.13+</td><td>🔥 新增</td></tr>
+          <tr><td>鱼骨图 ⭐</td><td><code>ishikawa-beta</code></td><td>v11.13+</td><td>🔥 新增</td></tr>
+          <tr><td>树状图</td><td><code>treemap</code></td><td>v11+</td><td>🔥 较新</td></tr>
+          <tr><td>桑基图</td><td><code>sankey-beta</code></td><td>v10+</td><td>🧪 Beta</td></tr>
+          <tr><td>看板</td><td><code>kanban</code></td><td>v11+</td><td>🧪 Beta</td></tr>
+          <tr><td>架构图</td><td><code>architecture-beta</code></td><td>v11+</td><td>🧪 Beta</td></tr>
+          <tr><td>块图</td><td><code>block-beta</code></td><td>v11+</td><td>🧪 Beta</td></tr>
+          <tr><td>C4 架构</td><td><code>C4Context</code></td><td>v10+</td><td>⚠️ 实验性</td></tr>
+          <tr><td>XY 图表</td><td><code>xyChart-beta</code></td><td>v10+</td><td>🧪 Beta</td></tr>
+          <tr><td>数据包</td><td><code>packet-beta</code></td><td>v10+</td><td>🧪 Beta</td></tr>
+          <tr><td>ZenUML</td><td><code>zenuml</code></td><td>v10+</td><td>✅ 稳定</td></tr>
         </tbody>
       </table>
     </div>
 
     <hr>
-    <p>💡 <strong>提示</strong>：在 <a href="https://eric.run.place/MermZen/" target="_blank">MermZen 编辑器</a> 中，你可以实时预览所有图表效果，并导出 SVG/PNG 格式。</p>
+    <p>💡 <strong>提示</strong>：在 <a href="https://eric.run.place/MermZen/" target="_blank">MermZen 编辑器</a> 中，你可以实时预览所有图表效果，并导出 SVG/PNG 格式。本速查表基于 <strong>Mermaid 11.13.0</strong> 版本。</p>
   </main>
 
   <footer class="blog-footer">

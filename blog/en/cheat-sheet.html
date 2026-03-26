@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mermaid Cheat Sheet - MermZen</title>
-  <meta name="description" content="Complete Mermaid diagram syntax cheat sheet covering flowcharts, sequence diagrams, class diagrams, Gantt charts, pie charts, mindmaps, and more.">
+  <title>Mermaid Diagram Cheat Sheet - MermZen</title>
+  <meta name="description" content="Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types including flowcharts, sequence diagrams, class diagrams, Gantt charts, mindmaps, radar charts, Venn diagrams, and Ishikawa diagrams.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://eric.run.place/MermZen/blog/en/cheat-sheet.html">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Mermaid Cheat Sheet - MermZen">
-  <meta property="og:description" content="Complete Mermaid diagram syntax cheat sheet covering flowcharts, sequence diagrams, class diagrams, Gantt charts, pie charts, mindmaps, and more.">
+  <meta property="og:title" content="Mermaid Diagram Cheat Sheet - MermZen">
+  <meta property="og:description" content="Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types.">
   <meta property="og:url" content="https://eric.run.place/MermZen/blog/en/cheat-sheet.html">
   <meta property="og:site_name" content="MermZen">
   <meta property="og:locale" content="en_US">
@@ -19,9 +19,10 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Mermaid Cheat Sheet",
-    "description": "Complete Mermaid diagram syntax cheat sheet covering flowcharts, sequence diagrams, class diagrams, Gantt charts, pie charts, mindmaps, and more.",
-    "datePublished": "2026-03-05",
+    "headline": "Mermaid 11.13 Cheat Sheet",
+    "description": "Complete Mermaid 11.13 syntax cheat sheet with 24+ diagram types.",
+    "datePublished": "2026-03-25",
+    "dateModified": "2026-03-25",
     "publisher": { "@type": "Organization", "name": "MermZen" }
   }
   </script>
@@ -33,6 +34,39 @@
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../blog.css">
   <style>
+    .version-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+    .new-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .beta-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
     .cheat-sheet-nav {
       display: flex;
       flex-wrap: wrap;
@@ -50,6 +84,7 @@
       color: var(--text-primary, #333);
       text-decoration: none;
       font-size: 13px;
+      transition: all 0.2s;
     }
     .cheat-sheet-nav a:hover {
       background: var(--accent, #007acc);
@@ -63,6 +98,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .cheat-sheet-section h2::before {
       content: '';
@@ -96,6 +132,37 @@
     .try-in-editor:hover {
       text-decoration: underline;
     }
+    .diagram-category {
+      margin: 32px 0 16px;
+      padding: 12px 16px;
+      background: var(--bg-secondary, #f3f3f3);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-secondary, #666);
+    }
+    pre {
+      position: relative;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    pre code {
+      font-family: inherit;
+      background: transparent;
+      padding: 0;
+    }
+    .keyword { color: #569cd6; }
+    .string { color: #ce9178; }
+    .comment { color: #6a9955; }
+    .number { color: #b5cea8; }
+    .operator { color: #d4d4d4; }
+    .variable { color: #9cdcfe; }
   </style>
 </head>
 <body>
@@ -104,355 +171,185 @@
     <span class="blog-logo">MermZen Tutorials</span>
     <a href="index.html">All Tutorials</a>
     <div class="blog-header__spacer"></div>
-    <a href="../zh/cheat-sheet.html" class="lang-toggle-btn" title="查看中文版本">中文</a>
+    <a href="../zh/cheat-sheet.html" class="lang-toggle-btn" title="查看中文">ZH</a>
   </header>
 
   <main class="blog-post">
-    <h1>Mermaid Cheat Sheet</h1>
-    <p><span class="post-meta">2026-03-05 · Complete Syntax Reference</p>
-    <p>A complete reference for Mermaid diagram syntax covering all supported diagram types. Click navigation to jump to specific diagram types.</p>
+    <h1>Mermaid Cheat Sheet <span class="version-badge">v11.13.0</span></h1>
+    <p><span class="post-meta">March 25, 2026 · Complete reference for 24+ diagram types</p>
+    <p>A comprehensive Mermaid 11.13 syntax cheat sheet covering <strong>24 diagram types</strong>. Click navigation to jump to any diagram type.</p>
 
     <nav class="cheat-sheet-nav">
       <a href="#flowchart">Flowchart</a>
       <a href="#sequence">Sequence</a>
       <a href="#class">Class</a>
-      <a href="#gantt">Gantt</a>
-      <a href="#pie">Pie</a>
-      <a href="#mindmap">Mindmap</a>
-      <a href="#journey">User Journey</a>
-      <a href="#gitgraph">Git Graph</a>
-      <a href="#er">ER Diagram</a>
       <a href="#state">State</a>
+      <a href="#er">ER Diagram</a>
+      <a href="#gantt">Gantt</a>
+      <a href="#pie">Pie Chart</a>
+      <a href="#mindmap">Mindmap</a>
+      <a href="#gitgraph">Git Graph</a>
+      <a href="#radar">Radar <span class="new-badge">NEW</span></a>
+      <a href="#venn">Venn <span class="new-badge">NEW</span></a>
+      <a href="#ishikawa">Ishikawa <span class="new-badge">NEW</span></a>
+      <a href="#treemap">Treemap</a>
+      <a href="#sankey">Sankey</a>
+      <a href="#kanban">Kanban</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#quadrant">Quadrant</a>
     </nav>
+
+    <div class="diagram-category">📊 Basic Diagrams (Most Used)</div>
 
     <div class="cheat-sheet-section" id="flowchart">
       <h2>Flowchart</h2>
-      <pre><code>flowchart TD
-    %% Node definitions
+      <pre><code><span class="keyword">flowchart</span> TD
+    <span class="comment">%% Node definitions</span>
     A[Start]
     B{Decision}
     C[Process]
     D((End))
 
-    %% Connections
-    A --> B
-    B -->|Yes| C
-    B -->|No| D
-    C --> D
+    <span class="comment">%% Connections</span>
+    A <span class="operator">--></span> B
+    B <span class="operator">-->|</span>Yes<span class="operator">|</span> C
+    B <span class="operator">-->|</span>No<span class="operator">|</span> D
+    C <span class="operator">--></span> D
 
-    %% Subgraph
-    subgraph Subprocess
-        C --> E[Step 1]
-        E --> F[Step 2]
-    end</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" title="Flowchart Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+    <span class="comment">%% Subgraph</span>
+    <span class="keyword">subgraph</span> Subprocess
+        C <span class="operator">--></span> E[Step 1]
+        E <span class="operator">--></span> F[Step 2]
+    <span class="keyword">end</span></code></pre>
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>flowchart TD</code></td><td>Top Down</td></tr>
-          <tr><td><code>flowchart LR</code></td><td>Left Right</td></tr>
-          <tr><td><code>flowchart BT</code></td><td>Bottom Top</td></tr>
-          <tr><td><code>flowchart RL</code></td><td>Right Left</td></tr>
-          <tr><td><code>A[Text]</code></td><td>Rectangle</td></tr>
-          <tr><td><code>A(Text)</code></td><td>Rounded rectangle</td></tr>
-          <tr><td><code>A((Text))</code></td><td>Circle</td></tr>
-          <tr><td><code>A{Text}</code></td><td>Rhombus (decision)</td></tr>
-          <tr><td><code>A[/Text/]</code></td><td>Parallelogram</td></tr>
+          <tr><td><code>flowchart TD</code></td><td>Top-down direction</td></tr>
+          <tr><td><code>flowchart LR</code></td><td>Left-to-right</td></tr>
+          <tr><td><code>A[text]</code></td><td>Rectangle node</td></tr>
+          <tr><td><code>A(text)</code></td><td>Rounded rectangle</td></tr>
+          <tr><td><code>A((text))</code></td><td>Circle</td></tr>
+          <tr><td><code>A{text}</code></td><td>Diamond (decision)</td></tr>
           <tr><td><code>A --> B</code></td><td>Solid arrow</td></tr>
           <tr><td><code>A -.-> B</code></td><td>Dotted arrow</td></tr>
           <tr><td><code>A ==> B</code></td><td>Thick arrow</td></tr>
-          <tr><td><code>A --text--> B</code></td><td>Labeled arrow</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="cheat-sheet-section" id="sequence">
       <h2>Sequence Diagram</h2>
-      <pre><code>sequenceDiagram
-    actor User
-    participant Frontend
-    participant API
-    participant Database
+      <pre><code><span class="keyword">sequenceDiagram</span>
+    <span class="keyword">actor</span> User
+    <span class="keyword">participant</span> Frontend
+    <span class="keyword">participant</span> API
+    <span class="keyword">participant</span> Database
 
-    User->>Frontend: Click login
-    Frontend->>API: POST /login
-    API->>Database: Query user
-    Database-->>API: Return data
-    API-->>Frontend: Return token
-    Frontend-->>User: Login success
+    User<span class="operator">->></span>Frontend: Click login
+    Frontend<span class="operator">->></span>API: POST /login
+    API<span class="operator">->></span>Database: Query user
+    Database<span class="operator">--></span>API: Return data
+    API<span class="operator">--></span>Frontend: Return token
 
-    %% Loop
-    loop Retry mechanism
-        API->>Database: Retry query
-    end
+    <span class="keyword">loop</span> Retry
+        API<span class="operator">->></span>Database: Retry query
+    <span class="keyword">end</span>
 
-    %% Conditional
-    alt User exists
-        API-->>Frontend: Normal response
-    else User not found
-        API-->>Frontend: Error response
-    end</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXDPLFF4OnvfswXtLxfNUKoFAGesEeQ" title="Sequence Diagram Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXDPLFF4OnvfswXtLxfNUKoFAGesEeQ" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+    <span class="keyword">alt</span> User exists
+        API<span class="operator">--></span>Frontend: Success
+    <span class="keyword">else</span> Not found
+        API<span class="operator">--></span>Frontend: Error
+    <span class="keyword">end</span></code></pre>
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>participant Name</code></td><td>Define participant</td></tr>
-          <tr><td><code>actor Name</code></td><td>Define actor</td></tr>
-          <tr><td><code>A->>B: msg</code></td><td>Solid arrow (send)</td></tr>
-          <tr><td><code>A-->>B: msg</code></td><td>Dotted arrow (return)</td></tr>
-          <tr><td><code>A->>+B: msg</code></td><td>Activate B</td></tr>
-          <tr><td><code>A-->>-B: msg</code></td><td>Deactivate B</td></tr>
-          <tr><td><code>loop desc</code></td><td>Loop</td></tr>
-          <tr><td><code>alt condition</code></td><td>Conditional branch</td></tr>
-          <tr><td><code>opt condition</code></td><td>Optional execution</td></tr>
-          <tr><td><code>par parallel</code></td><td>Parallel execution</td></tr>
-          <tr><td><code>rect rgb(255,0,0)</code></td><td>Colored background</td></tr>
+          <tr><td><code>A->>B: Message</code></td><td>Solid arrow (send)</td></tr>
+          <tr><td><code>A-->>B: Message</code></td><td>Dashed arrow (return)</td></tr>
+          <tr><td><code>A->>+B: Message</code></td><td>Activate B</td></tr>
+          <tr><td><code>A-->>-B: Message</code></td><td>Deactivate B</td></tr>
+          <tr><td><code>loop Description</code></td><td>Loop</td></tr>
+          <tr><td><code>alt Condition</code></td><td>Alternative</td></tr>
+          <tr><td><code>opt Condition</code></td><td>Optional</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="cheat-sheet-section" id="class">
       <h2>Class Diagram</h2>
-      <pre><code>classDiagram
-    class Animal {
-        +String name
-        +int age
-        +makeSound()
-        +move()
+      <pre><code><span class="keyword">classDiagram</span>
+    <span class="keyword">class</span> Animal {
+        <span class="operator">+</span>String name
+        <span class="operator">+</span>int age
+        <span class="operator">+</span>makeSound()
     }
 
-    class Dog {
-        +breed
-        +fetch()
+    <span class="keyword">class</span> Dog {
+        <span class="operator">+</span>breed
+        <span class="operator">+</span>fetch()
     }
 
-    class Cat {
-        +color
-        +climb()
-    }
-
-    Animal <|-- Dog : inherits
-    Animal <|-- Cat : inherits
-    Dog o-- Toy : aggregation
-    Cat *-- Whisker : composition</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqzUjMSCzOKElMyknMS47JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="Class Diagram Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqzUjMSCzOKElMyknMS47JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+    Animal <span class="operator">&lt;|--</span> Dog : Inheritance
+    Dog <span class="operator">o--</span> Toy : Aggregation</code></pre>
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
         </thead>
         <tbody>
           <tr><td><code>class Name { }</code></td><td>Define class</td></tr>
-          <tr><td><code>+property</code></td><td>Public attribute/method</td></tr>
-          <tr><td><code>-property</code></td><td>Private attribute/method</td></tr>
-          <tr><td><code>#property</code></td><td>Protected attribute/method</td></tr>
-          <tr><td><code>A <|-- B</code></td><td>Inheritance (B extends A)</td></tr>
+          <tr><td><code>+attribute</code></td><td>Public</td></tr>
+          <tr><td><code>-attribute</code></td><td>Private</td></tr>
+          <tr><td><code>A <|-- B</code></td><td>Inheritance</td></tr>
           <tr><td><code>A --* B</code></td><td>Composition</td></tr>
           <tr><td><code>A --o B</code></td><td>Aggregation</td></tr>
-          <tr><td><code>A --> B</code></td><td>Association</td></tr>
-          <tr><td><code>A ..> B</code></td><td>Dependency</td></tr>
-          <tr><td><code>A --|> B</code></td><td>Implementation</td></tr>
-          <tr><td><code>A "1" --> "*" B</code></td><td>One-to-many</td></tr>
         </tbody>
       </table>
     </div>
 
-    <div class="cheat-sheet-section" id="gantt">
-      <h2>Gantt Chart</h2>
-      <pre><code>gantt
-    title Project Development Plan
-    dateFormat  YYYY-MM-DD
-
-    section Design Phase
-    Requirements    :done, a1, 2026-01-01, 7d
-    UI Design       :active, a2, after a1, 5d
-    Review          :a3, after a2, 3d
-
-    section Development
-    Backend         :b1, after a3, 14d
-    Frontend        :b2, after a3, 14d
-    Integration     :b3, after b1, 5d
-
-    section Testing
-    Test            :c1, after b3, 7d
-    Bug Fix         :c2, after c1, 5d
-    Deploy          :milestone, c3, after c2, 1d</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIpVYk55SmpBYrlKemZqfmpRRDhItTk0sy8_MVnuxY-7Rr4Yv1CxUMjnqq1QIA1u4mkA" title="Gantt Chart Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIpVYk55SmpBYrlKemZqfmpRRDhItTk0sy8_MVnuxY-7Rr4Yv1CxUMjnqq1QIA1u4mkA" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+    <div class="cheat-sheet-section" id="state">
+      <h2>State Diagram</h2>
+      <pre><code><span class="keyword">stateDiagram-v2</span>
+    [*] <span class="operator">--></span> Pending
+    Pending <span class="operator">--></span> Processing: Payment
+    Pending <span class="operator">--></span> Cancelled: Cancel
+    Processing <span class="operator">--></span> Shipped: Ship
+    Shipped <span class="operator">--></span> [*]</code></pre>
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>dateFormat</code></td><td>Date format definition</td></tr>
-          <tr><td><code>section Name</code></td><td>Phase grouping</td></tr>
-          <tr><td><code>:done</code></td><td>Completed status</td></tr>
-          <tr><td><code>:active</code></td><td>In progress status</td></tr>
-          <tr><td><code>:crit</code></td><td>Critical path</td></tr>
-          <tr><td><code>:milestone</code></td><td>Milestone</td></tr>
-          <tr><td><code>after task</code></td><td>Depends on previous task</td></tr>
-          <tr><td><code>7d</code></td><td>Duration 7 days</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="pie">
-      <h2>Pie Chart</h2>
-      <pre><code>pie title Browser Market Share
-    "Chrome" : 65.3
-    "Safari" : 18.5
-    "Firefox" : 6.2
-    "Edge" : 5.1
-    "Others" : 4.9</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqTi0sTc1LTnXJTEwvSsyNyVNQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" title="Pie Chart Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqTi0sTc1LTnXJTEwvSsyNyVNQUCjJLMlJVXg6e9-LhSueLWh_uWiGUi0AbdkS8g" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>pie title Title</code></td><td>Declare pie chart</td></tr>
-          <tr><td><code>"Label" : value</code></td><td>Data item</td></tr>
-          <tr><td><code>showData</code></td><td>Show values</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="mindmap">
-      <h2>Mindmap</h2>
-      <pre><code>mindmap
-  root((Project Management))
-    Planning
-      Requirements
-      Resource allocation
-      Scheduling
-    Execution
-      Development
-      Testing
-      Deployment
-    Monitoring
-      Progress tracking
-      Risk management</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" title="Mindmap Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>root((Root))</code></td><td>Root node</td></tr>
-          <tr><td><code>indent + node</code></td><td>Child node (2 spaces)</td></tr>
-          <tr><td><code>::icon(icon)</code></td><td>Add icon</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="journey">
-      <h2>User Journey</h2>
-      <pre><code>journey
-    title Shopping User Journey
-    section Browse Products
-      Visit homepage: 5: User
-      Search product: 4: User
-      View details: 4: User
-    section Order & Payment
-      Add to cart: 5: User
-      Fill address: 3: User
-      Complete payment: 5: User, System
-    section Delivery
-      Track shipment: 4: User
-      Confirm receipt: 5: User</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" title="User Journey Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FhL2dO-iRYuWz2t_uWgGVBQA" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>section Phase</code></td><td>Define phase</td></tr>
-          <tr><td><code>Task: Score: Actor</code></td><td>Task (score 1-5)</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="cheat-sheet-section" id="gitgraph">
-      <h2>Git Graph</h2>
-      <pre><code>gitGraph
-    commit "Initial commit"
-    branch feature/login
-    commit "Login feature"
-    commit "Login polish"
-    checkout main
-    branch feature/register
-    commit "Register feature"
-    checkout main
-    merge feature/login tag: "v1.1.0"
-    merge feature/register</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXCMfjZt57OFbbEQrpPG0zltL5ZPgghqQgSdq1_0b3y6d1EthOuiAVL0dO8iTai8q0b0syVrn85pi4UKuEVHP1074fmK7qe7-kFmQw13j9Z4NnXDs951T3dN1oSKedg9W9D-bPOKZ9OnP90xJ1apFgBJ3Uqf" title="Git Graph Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXCMfjZt57OFbbEQrpPG0zltL5ZPgghqQgSdq1_0b3y6d1EthOuiAVL0dO8iTai8q0b0syVrn85pi4UKuEVHP1074fmK7qe7-kFmQw13j9Z4NnXDs951T3dN1oSKedg9W9D-bPOKZ9OnP90xJ1apFgBJ3Uqf" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
-      <table>
-        <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>gitGraph</code></td><td>Declare Git graph</td></tr>
-          <tr><td><code>commit "msg"</code></td><td>Create commit</td></tr>
-          <tr><td><code>branch name</code></td><td>Create branch</td></tr>
-          <tr><td><code>checkout branch</code></td><td>Switch branch</td></tr>
-          <tr><td><code>merge branch</code></td><td>Merge branch</td></tr>
-          <tr><td><code>tag: "version"</code></td><td>Create tag</td></tr>
+          <tr><td><code>[*]</code></td><td>Start/End state</td></tr>
+          <tr><td><code>StateA --> StateB</code></td><td>Transition</td></tr>
+          <tr><td><code>state Name { }</code></td><td>Composite state</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="cheat-sheet-section" id="er">
       <h2>ER Diagram</h2>
-      <pre><code>erDiagram
+      <pre><code><span class="keyword">erDiagram</span>
     CUSTOMER {
-        string customer_id PK
-        string name
-        string email
+        <span class="keyword">string</span> customer_id PK
+        <span class="keyword">string</span> name
     }
     ORDER {
-        int order_id PK
-        date order_date
-        string customer_id FK
+        <span class="keyword">int</span> order_id PK
+        <span class="keyword">string</span> customer_id FK
     }
-    CUSTOMER ||--o{ ORDER : places</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="ER Diagram Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+    CUSTOMER <span class="operator">||--o{</span> ORDER : places</code></pre>
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
         </thead>
         <tbody>
           <tr><td><code>ENTITY { }</code></td><td>Define entity</td></tr>
-          <tr><td><code>PK</code></td><td>Primary key</td></tr>
-          <tr><td><code>FK</code></td><td>Foreign key</td></tr>
+          <tr><td><code>PK</code></td><td>Primary Key</td></tr>
+          <tr><td><code>FK</code></td><td>Foreign Key</td></tr>
           <tr><td><code>||--o{</code></td><td>One-to-many</td></tr>
           <tr><td><code>||--||</code></td><td>One-to-one</td></tr>
           <tr><td><code>}|--|{</code></td><td>Many-to-many</td></tr>
@@ -460,70 +357,374 @@
       </table>
     </div>
 
-    <div class="cheat-sheet-section" id="state">
-      <h2>State Diagram</h2>
-      <pre><code>stateDiagram-v2
-    [*] --> Pending
-    Pending --> Shipped: Payment confirmed
-    Pending --> Cancelled: Cancel order
-    Shipped --> InTransit: Shipped
-    InTransit --> Delivered: Arrived
-    Delivered --> Completed: Confirmed
-    Completed --> [*]</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="State Diagram Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+    <div class="diagram-category">📅 Project Management</div>
+
+    <div class="cheat-sheet-section" id="gantt">
+      <h2>Gantt Chart</h2>
+      <pre><code><span class="keyword">gantt</span>
+    <span class="keyword">title</span> Project Plan
+    <span class="keyword">dateFormat</span>  YYYY-MM-DD
+
+    <span class="keyword">section</span> Design
+    Requirements      <span class="operator">:done,</span> a1, 2026-01-01, 7d
+    UI Design         <span class="operator">:active,</span> a2, after a1, 5d
+
+    <span class="keyword">section</span> Development
+    Backend           <span class="operator">:b1,</span> after a2, 14d
+    Frontend          <span class="operator">:b2,</span> after a2, 14d</code></pre>
       <table>
         <thead>
           <tr><th>Syntax</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>[*]</code></td><td>Start/End state</td></tr>
-          <tr><td><code>A --> B</code></td><td>State transition</td></tr>
-          <tr><td><code>state Name { }</code></td><td>Composite state</td></tr>
-          <tr><td><code>State: note</code></td><td>State note</td></tr>
+          <tr><td><code>dateFormat</code></td><td>Date format</td></tr>
+          <tr><td><code>section Name</code></td><td>Phase group</td></tr>
+          <tr><td><code>:done</code></td><td>Completed</td></tr>
+          <tr><td><code>:active</code></td><td>Active</td></tr>
+          <tr><td><code>:crit</code></td><td>Critical path</td></tr>
+          <tr><td><code>:milestone</code></td><td>Milestone</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="kanban">
+      <h2>Kanban <span class="beta-badge">BETA</span></h2>
+      <pre><code><span class="keyword">kanban</span>
+    <span class="keyword">title</span> Project Board
+
+    [Todo]
+        [ ] Analysis
+        [ ] Design
+
+    [In Progress]
+        [>] Backend
+            <span class="keyword">assigned</span> Alice
+            <span class="keyword">due</span> 2026-03-30
+
+    [Done]
+        [x] Kickoff</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>[Column]</code></td><td>Define column</td></tr>
+          <tr><td><code>[ ] Task</code></td><td>Todo</td></tr>
+          <tr><td><code>[>] Task</code></td><td>In progress</td></tr>
+          <tr><td><code>[x] Task</code></td><td>Done</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="gitgraph">
+      <h2>Git Graph</h2>
+      <pre><code><span class="keyword">gitGraph</span>
+    <span class="keyword">commit</span> <span class="string">"Initial"</span>
+    <span class="keyword">branch</span> feature/login
+    <span class="keyword">commit</span> <span class="string">"Login"</span>
+    <span class="keyword">checkout</span> main
+    <span class="keyword">merge</span> feature/login <span class="keyword">tag:</span> <span class="string">"v1.0"</span></code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>commit "msg"</code></td><td>Create commit</td></tr>
+          <tr><td><code>branch name</code></td><td>Create branch</td></tr>
+          <tr><td><code>checkout branch</code></td><td>Switch branch</td></tr>
+          <tr><td><code>merge branch</code></td><td>Merge branch</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="diagram-category">📈 Data Visualization</div>
+
+    <div class="cheat-sheet-section" id="pie">
+      <h2>Pie Chart</h2>
+      <pre><code><span class="keyword">pie</span> <span class="keyword">title</span> Browser Share
+    <span class="string">"Chrome"</span> : <span class="number">65.3</span>
+    <span class="string">"Safari"</span> : <span class="number">18.5</span>
+    <span class="string">"Firefox"</span> : <span class="number">6.2</span>
+    <span class="string">"Edge"</span> : <span class="number">5.1</span></code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>pie title Title</code></td><td>Declare pie chart</td></tr>
+          <tr><td><code>"Label" : value</code></td><td>Data item</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="radar">
+      <h2>Radar Chart <span class="new-badge">NEW v11.6</span></h2>
+      <pre><code><span class="keyword">radar-beta</span>
+    <span class="keyword">title</span> Skills Assessment
+    <span class="keyword">axis</span> Frontend, Backend, Design, Testing, DevOps
+    <span class="keyword">curve</span> Alice{<span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span>, <span class="number">75</span>, <span class="number">65</span>}
+    <span class="keyword">curve</span> Bob{<span class="number">60</span>, <span class="number">85</span>, <span class="number">90</span>, <span class="number">70</span>, <span class="number">80</span>}</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>radar-beta</code></td><td>Declare radar chart</td></tr>
+          <tr><td><code>axis dim1, dim2...</code></td><td>Define axes</td></tr>
+          <tr><td><code>curve name{val1...}</code></td><td>Define curve</td></tr>
+          <tr><td><code>max value</code></td><td>Max value</td></tr>
+          <tr><td><code>showLegend true</code></td><td>Show legend</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="venn">
+      <h2>Venn Diagram <span class="new-badge">NEW v11.13</span></h2>
+      <pre><code><span class="keyword">venn-beta</span>
+    <span class="keyword">title</span> Tech Stack
+
+    <span class="keyword">set</span> Frontend
+        <span class="keyword">text</span> React
+        <span class="keyword">text</span> Vue
+
+    <span class="keyword">set</span> Backend
+        <span class="keyword">text</span> Node.js
+        <span class="keyword">text</span> Python
+
+    <span class="keyword">union</span> Frontend,Backend <span class="string">"Full Stack"</span>
+        <span class="keyword">text</span> TypeScript</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>venn-beta</code></td><td>Declare Venn</td></tr>
+          <tr><td><code>set Name</code></td><td>Define set</td></tr>
+          <tr><td><code>text Content</code></td><td>Set element</td></tr>
+          <tr><td><code>union A,B "Label"</code></td><td>Intersection</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="treemap">
+      <h2>Treemap</h2>
+      <pre><code><span class="keyword">treemap</span>
+    <span class="keyword">title</span> File Sizes
+
+    <span class="keyword">section</span> src
+        <span class="keyword">section</span> components
+            Button : <span class="number">12</span>
+            Modal : <span class="number">25</span>
+        <span class="keyword">section</span> utils
+            api : <span class="number">15</span>
+
+    <span class="keyword">section</span> assets
+        images : <span class="number">150</span></code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>treemap</code></td><td>Declare treemap</td></tr>
+          <tr><td><code>section Name</code></td><td>Grouping</td></tr>
+          <tr><td><code>Name : value</code></td><td>Data item</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="sankey">
+      <h2>Sankey <span class="beta-badge">BETA</span></h2>
+      <pre><code><span class="keyword">sankey-beta</span>
+    <span class="string">"Homepage"</span> <span class="operator">--></span> <span class="string">"Browse"</span> : <span class="number">1000</span>
+    <span class="string">"Browse"</span> <span class="operator">--></span> <span class="string">"Cart"</span> : <span class="number">600</span>
+    <span class="string">"Browse"</span> <span class="operator">--></span> <span class="string">"Exit"</span> : <span class="number">400</span>
+    <span class="string">"Cart"</span> <span class="operator">--></span> <span class="string">"Checkout"</span> : <span class="number">300</span></code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>sankey-beta</code></td><td>Declare Sankey</td></tr>
+          <tr><td><code>A --> B : value</code></td><td>Flow from A to B</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="quadrant">
+      <h2>Quadrant Chart</h2>
+      <pre><code><span class="keyword">quadrantChart</span>
+    <span class="keyword">title</span> Priority Matrix
+    <span class="keyword">x-axis</span> Low <span class="operator">--></span> High Importance
+    <span class="keyword">y-axis</span> Low <span class="operator">--></span> High Urgency
+
+    <span class="string">"Bug fix"</span>: [<span class="number">0.8</span>, <span class="number">0.9</span>]
+    <span class="string">"Feature"</span>: [<span class="number">0.9</span>, <span class="number">0.6</span>]</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>quadrantChart</code></td><td>Declare quadrant</td></tr>
+          <tr><td><code>x-axis Label</code></td><td>X labels</td></tr>
+          <tr><td><code>"Name": [x, y]</code></td><td>Data point (0-1)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="diagram-category">🏗️ Software Engineering</div>
+
+    <div class="cheat-sheet-section" id="architecture">
+      <h2>Architecture <span class="beta-badge">BETA</span></h2>
+      <pre><code><span class="keyword">architecture-beta</span>
+    <span class="keyword">group</span> api[API Layer]
+
+    service <span class="keyword">db</span>(<span class="keyword">database</span>)[<span class="string">"MySQL"</span>] <span class="keyword">in</span> api
+    service <span class="keyword">server</span>(<span class="keyword">server</span>)[<span class="string">"Node.js"</span>] <span class="keyword">in</span> api
+
+    service <span class="keyword">client</span>(<span class="keyword">cloud</span>)[<span class="string">"Web"</span>]
+
+    client:B <span class="operator">--></span> T:server
+    server:B <span class="operator">--></span> T:db</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>architecture-beta</code></td><td>Declare arch</td></tr>
+          <tr><td><code>service id(icon)["Name"]</code></td><td>Service node</td></tr>
+          <tr><td><code>group Name[Label]</code></td><td>Group</td></tr>
+          <tr><td><code>in Group</code></td><td>Put in group</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="ishikawa">
+      <h2>Ishikawa/Fishbone <span class="new-badge">NEW v11.13</span></h2>
+      <pre><code><span class="keyword">ishikawa-beta</span>
+    <span class="keyword">title</span> <span class="string">"Failure Analysis"</span>
+
+    <span class="keyword">category</span> <span class="string">"People"</span> [<span class="string">"Training"</span>, <span class="string">"Error"</span>]
+    <span class="keyword">category</span> <span class="string">"Equipment"</span> [<span class="string">"Aging"</span>, <span class="string">"Config"</span>]
+    <span class="keyword">category</span> <span class="string">"Process"</span> [<span class="string">"Missing check"</span>]
+    <span class="keyword">category</span> <span class="string">"Environment"</span> [<span class="string">"Network"</span>]</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>ishikawa-beta</code></td><td>Declare fishbone</td></tr>
+          <tr><td><code>category "Name" [causes]</code></td><td>Category & causes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="diagram-category">📝 Other Diagrams</div>
+
+    <div class="cheat-sheet-section" id="mindmap">
+      <h2>Mindmap</h2>
+      <pre><code><span class="keyword">mindmap</span>
+  root((Project))
+    Planning
+      Requirements
+      Timeline
+    Execution
+      Development
+      Testing
+    Monitoring
+      Tracking</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>root((Root))</code></td><td>Root node</td></tr>
+          <tr><td><code>Indent + Node</code></td><td>Child (2 spaces)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cheat-sheet-section" id="timeline">
+      <h2>Timeline</h2>
+      <pre><code><span class="keyword">timeline</span>
+    <span class="keyword">title</span> Product Evolution
+
+    <span class="number">2024</span> : Kickoff
+         : Prototype
+
+    <span class="number">2025</span> : v1.0 Release
+         : 10K users
+
+    <span class="number">2026</span> : v2.0 Planning</code></pre>
+      <table>
+        <thead>
+          <tr><th>Syntax</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>timeline</code></td><td>Declare timeline</td></tr>
+          <tr><td><code>Year : Event</code></td><td>Event</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="diagram-category">⚙️ Configuration</div>
+
+    <div class="cheat-sheet-section">
+      <h2>Themes & Config</h2>
+      <pre><code><span class="operator">---</span>
+<span class="keyword">config</span>:
+  <span class="keyword">theme</span>: forest
+  <span class="keyword">look</span>: handDrawn
+<span class="operator">---</span>
+
+<span class="keyword">flowchart</span> TD
+    A[Start] <span class="operator">--></span> B[End]</code></pre>
+      <table>
+        <thead>
+          <tr><th>Config</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>theme default</code></td><td>Default</td></tr>
+          <tr><td><code>theme dark</code></td><td>Dark</td></tr>
+          <tr><td><code>theme forest</code></td><td>Forest</td></tr>
+          <tr><td><code>look: handDrawn</code></td><td>Hand-drawn</td></tr>
+          <tr><td><code>look: classic</code></td><td>Classic</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="cheat-sheet-section">
-      <h2>Common Directives</h2>
-      <pre><code>%% This is a comment
-
-%% Theme settings
-theme default
-theme dark
-theme forest
-theme neutral
-theme base
-
-%% Hand-drawn style
-%% Toggle in MermZen editor</code></pre>
-    <div class="diagram-preview">
-      <iframe src="../../embed.html#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" title="Common Directives Example" loading="lazy"></iframe>
-    </div>
-    <a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqycxNzcnMS43JU1BQUCjJLMlJVXg6e9-zBRB5FgSfnN83f96LeQ2vFs1QqgUARf0W6A" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+      <h2>Complete Diagram List</h2>
       <table>
         <thead>
-          <tr><th>Syntax</th><th>Description</th></tr>
+          <tr><th>Diagram</th><th>Syntax</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>%% comment</code></td><td>Line comment</td></tr>
-          <tr><td><code>title Title</code></td><td>Set chart title</td></tr>
-          <tr><td><code>theme name</code></td><td>Set theme</td></tr>
-          <tr><td><code>subgraph Name</code></td><td>Subgraph group</td></tr>
-          <tr><td><code>direction LR/TD</code></td><td>Subgraph direction</td></tr>
+          <tr><td>Flowchart</td><td><code>flowchart</code></td><td>✅ Stable</td></tr>
+          <tr><td>Sequence</td><td><code>sequenceDiagram</code></td><td>✅ Stable</td></tr>
+          <tr><td>Class</td><td><code>classDiagram</code></td><td>✅ Stable</td></tr>
+          <tr><td>State</td><td><code>stateDiagram-v2</code></td><td>✅ Stable</td></tr>
+          <tr><td>ER</td><td><code>erDiagram</code></td><td>✅ Stable</td></tr>
+          <tr><td>Gantt</td><td><code>gantt</code></td><td>✅ Stable</td></tr>
+          <tr><td>Pie</td><td><code>pie</code></td><td>✅ Stable</td></tr>
+          <tr><td>Mindmap</td><td><code>mindmap</code></td><td>✅ Stable</td></tr>
+          <tr><td>Git Graph</td><td><code>gitGraph</code></td><td>✅ Stable</td></tr>
+          <tr><td>Radar ⭐</td><td><code>radar-beta</code></td><td>🔥 New v11.6</td></tr>
+          <tr><td>Venn ⭐</td><td><code>venn-beta</code></td><td>🔥 New v11.13</td></tr>
+          <tr><td>Ishikawa ⭐</td><td><code>ishikawa-beta</code></td><td>🔥 New v11.13</td></tr>
+          <tr><td>Treemap</td><td><code>treemap</code></td><td>🔥 Recent</td></tr>
+          <tr><td>Sankey</td><td><code>sankey-beta</code></td><td>🧪 Beta</td></tr>
+          <tr><td>Kanban</td><td><code>kanban</code></td><td>🧪 Beta</td></tr>
+          <tr><td>Architecture</td><td><code>architecture-beta</code></td><td>🧪 Beta</td></tr>
         </tbody>
       </table>
     </div>
 
     <hr>
-    <p>💡 <strong>Tip</strong>: Try all diagrams in the <a href="https://eric.run.place/MermZen/" target="_blank">MermZen editor</a> with live preview and export to SVG/PNG.</p>
+    <p>💡 <strong>Tip</strong>: Preview all diagrams at <a href="https://eric.run.place/MermZen/" target="_blank">MermZen Editor</a>. Based on <strong>Mermaid 11.13.0</strong>.</p>
   </main>
 
   <footer class="blog-footer">
-    <p>Write and preview Mermaid diagrams in <a href="../../index.html">MermZen</a> — export SVG/PNG, share via URL</p>
+    <p>Edit Mermaid diagrams in <a href="../../index.html">MermZen</a> · Export SVG/PNG · Share via URL</p>
   </footer>
   <script>
     (function () {
@@ -531,11 +732,6 @@ theme base
       if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
       }
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-        if (!localStorage.getItem('theme')) {
-          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-        }
-      });
 
       var h1 = document.querySelector('.blog-post h1');
       if (!h1) return;
