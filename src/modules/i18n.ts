@@ -81,6 +81,7 @@ export const STRINGS = {
     errorTip: '修复代码后将自动重新渲染',
     errorDismiss: '关闭',
     placeholderMain: '在左侧输入 Mermaid 代码，图表将实时显示在这里',
+    handdrawnNonLatinWarning: '手绘模式使用 Kalam / Xiaolai 字体，暂不支持西里尔、阿拉伯等非拉丁字符。如需正确显示，请关闭手绘风格。',
 
     // 菜单翻译
     menuFile: '文件',
@@ -212,6 +213,7 @@ export const STRINGS = {
     errorTip: 'Fix the code above and it will re-render automatically',
     errorDismiss: 'Dismiss',
     placeholderMain: 'Type Mermaid code on the left, the diagram renders here in real time',
+    handdrawnNonLatinWarning: 'Hand-drawn mode uses Kalam / Xiaolai fonts, which do not support Cyrillic, Arabic, and other non-Latin scripts. Disable hand-drawn style for correct rendering.',
 
     // 菜单翻译
     menuFile: 'File',

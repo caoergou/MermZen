@@ -8,6 +8,16 @@ import { getCode, clearDiagnostics, pushDiagnosticFromError, scrollToLine } from
 // ── Mermaid 初始化 ──────────────────────────────────────────
 const NORMAL_FONT = "system-ui, -apple-system, sans-serif";
 
+/**
+ * 检测代码中是否含有手绘字体不支持的非拉丁字符
+ * （西里尔、阿拉伯、希伯来、泰文、天城文等）
+ * CJK 字符由 Xiaolai SC 覆盖，不在检测范围内。
+ */
+function hasNonCoveredScript(code: string): boolean {
+  // Cyrillic / Arabic / Hebrew / Thai / Devanagari / Bengali / Georgian / Armenian
+  return /[\u0400-\u04FF\u0600-\u06FF\u0590-\u05FF\u0E00-\u0E7F\u0900-\u097F\u0980-\u09FF\u10A0-\u10FF\u0530-\u058F]/.test(code);
+}
+
 // kalam/caveat/virgil 均通过 ensureHandDrawnFont() 按需注入
 const _injectedFonts = new Set<string>();
 let _xiaolaiLoaded = false;
@@ -50,15 +60,27 @@ let _lastMermaidConfig = null;
 /**
  * 按需懒加载手绘字体（Kalam / Caveat / Virgil）。
  * 首次渲染手绘图时注入 @font-face，后续调用直接跳过。
+ * 若字体包含 cyrillicUrl（如 Caveat），同时注入西里尔子集，
+ * 以正确支持俄语等西里尔字符的手绘渲染。
  */
 function ensureHandDrawnFont(fontKey: string) {
   if (_injectedFonts.has(fontKey)) return;
   const preset = HAND_FONTS[fontKey];
   if (!preset || !preset.url) return;
 
-  // 注入 @font-face
+  let css = `@font-face{font-family:'${preset.label}';src:url('${preset.url}')format('woff2');font-display:swap;}`;
+
+  // 若有西里尔子集，注入带 unicode-range 的 @font-face
+  // 使浏览器对西里尔字符自动选用正确的字体文件
+  if (preset.cyrillicUrl) {
+    // 主 Latin 子集限定 unicode-range
+    css = `@font-face{font-family:'${preset.label}';src:url('${preset.url}')format('woff2');font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}`;
+    // 西里尔子集
+    css += `@font-face{font-family:'${preset.label}';src:url('${preset.cyrillicUrl}')format('woff2');font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}`;
+  }
+
   const style = document.createElement('style');
-  style.textContent = `@font-face{font-family:'${preset.label}';src:url('${preset.url}')format('woff2');font-display:swap;}`;
+  style.textContent = css;
   document.head.appendChild(style);
   _injectedFonts.add(fontKey);
 }
@@ -93,6 +115,8 @@ export function initMermaid() {
  */
 export async function renderDiagram() {
   const code = getCode().trim();
+  // 每次渲染前清除上次的字体兼容性警告
+  dom.previewViewport.querySelector('.handdraw-warning-banner')?.remove();
   if (!code) {
     dom.preview.innerHTML = '<p class="placeholder">' + STRINGS[state.currentLang].placeholderMain + '</p>';
     setRenderStatus('', '');
@@ -181,6 +205,21 @@ export async function renderDiagram() {
     const id = 'mermaid-diagram-' + state.renderCounter;
     const result = await mermaid.render(id, code);
     dom.preview.innerHTML = result.svg;
+    // 清除上次的字体兼容性警告（若有）
+    dom.previewViewport.querySelector('.handdraw-warning-banner')?.remove();
+    // 手绘模式 + 非拉丁字符 + 当前字体无对应子集：在 viewport 层叠加提示横幅
+    const currentPreset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
+    if (state.handDrawn && hasNonCoveredScript(code) && !currentPreset.cyrillicUrl) {
+      const warn = document.createElement('div');
+      warn.className = 'handdraw-warning-banner';
+      warn.innerHTML =
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+          '<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>' +
+          '<line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>' +
+        '</svg>' +
+        '<span>' + STRINGS[state.currentLang].handdrawnNonLatinWarning + '</span>';
+      dom.previewViewport.appendChild(warn);
+    }
     clearDiagnostics();
     setRenderStatus('', '');
   } catch (err) {

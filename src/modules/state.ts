@@ -10,12 +10,13 @@ import { atom, computed } from 'nanostores';
 // ── 导入本地字体文件 ────────────────────────────────────────────────────────
 import kalamWoff2 from '@fontsource/kalam/files/kalam-latin-400-normal.woff2?url';
 import caveatWoff2 from '@fontsource/caveat/files/caveat-latin-400-normal.woff2?url';
+import caveatCyrillicWoff2 from '@fontsource/caveat/files/caveat-cyrillic-400-normal.woff2?url';
 
 // ── 手绘字体预设配置（顺序即菜单与命令面板中的显示顺序）──────────────────────────────────────────
 export const HAND_FONTS = {
-  kalam:   { label: 'Kalam',   family: "'Kalam'",   url: kalamWoff2 as string },
-  virgil:  { label: 'Virgil',  family: "'Virgil'",  url: '/fonts/Virgil.woff2' },
-  caveat:  { label: 'Caveat',  family: "'Caveat'",  url: caveatWoff2 as string },
+  kalam:   { label: 'Kalam',   family: "'Kalam'",   url: kalamWoff2 as string, cyrillicUrl: null as null },
+  virgil:  { label: 'Virgil',  family: "'Virgil'",  url: '/fonts/Virgil.woff2', cyrillicUrl: null as null },
+  caveat:  { label: 'Caveat',  family: "'Caveat'",  url: caveatWoff2 as string, cyrillicUrl: caveatCyrillicWoff2 as string },
 } as const;
 
 // ── 类型定义 ──────────────────────────────────────────────────────────────
