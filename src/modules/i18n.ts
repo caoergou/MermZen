@@ -1,6 +1,6 @@
 import { state } from './store';
 import { actions } from './actions';
-import { updateEditorStatus as updateEditorStatusUtil, formatShortcut } from './utils';
+import { updateEditorStatus as updateEditorStatusUtil, formatShortcut, updateShortcutDisplays } from './utils';
 import { renderExampleDropdown } from './ui/menu';
 
 /**
@@ -120,6 +120,12 @@ export const STRINGS = {
     menuChinese: '中文',
     menuEnglish: 'English',
     tooltipLanguage: '切换语言',
+    tooltipHanddrawn: '切换手绘风格',
+    tooltipDarkLight: '切换深色/浅色模式',
+    tooltipZoomOut: '缩小',
+    tooltipZoomIn: '放大',
+    tooltipZoomReset: '重置缩放',
+    tooltipMoreOptions: '更多选项',
 
     // 命令面板翻译
     cmdExport: '导出',
@@ -245,6 +251,12 @@ export const STRINGS = {
     menuChinese: '中文',
     menuEnglish: 'English',
     tooltipLanguage: 'Toggle language',
+    tooltipHanddrawn: 'Toggle hand-drawn style',
+    tooltipDarkLight: 'Toggle dark/light mode',
+    tooltipZoomOut: 'Zoom out',
+    tooltipZoomIn: 'Zoom in',
+    tooltipZoomReset: 'Reset zoom',
+    tooltipMoreOptions: 'More options',
 
     // 命令面板翻译
     cmdExport: 'Export',
@@ -340,6 +352,27 @@ export function applyI18n() {
   document.querySelectorAll('[data-i18n="cmdExec"]').forEach(el => { el.textContent = s.cmdExec; });
   document.querySelectorAll('[data-i18n="cmdClose"]').forEach(el => { el.textContent = s.cmdClose; });
 
+  // 工具栏按钮 tooltip 翻译
+  const tooltipMap: Record<string, string> = {
+    'hand-drawn-toggle-quick': s.tooltipHanddrawn,
+    'ui-theme-toggle-quick': s.tooltipDarkLight,
+    'lang-toggle-quick': s.tooltipLanguage,
+    'btn-zoom-out': s.tooltipZoomOut,
+    'btn-zoom-in': s.tooltipZoomIn,
+    'btn-zoom-reset': s.tooltipZoomReset,
+    'btn-mobile-more': s.tooltipMoreOptions,
+  };
+  for (const [id, title] of Object.entries(tooltipMap)) {
+    const el = document.getElementById(id);
+    if (el) el.title = title;
+  }
+
+  // 命令面板按钮 title（含快捷键）
+  const btnCmdPaletteQuick = document.getElementById('btn-cmd-palette-quick');
+  if (btnCmdPaletteQuick) {
+    btnCmdPaletteQuick.title = `${s.menuCommandPalette} (${formatShortcut('Ctrl+K')})`;
+  }
+
   document.getElementById('modal-title').textContent = s.modalTitle;
   const sectionH3s = document.querySelectorAll('.help-section h3');
   const sectionKeys = ['modalSectionFile', 'modalSectionEdit', 'modalSectionMenu', 'modalSectionBg'];
@@ -350,6 +383,7 @@ export function applyI18n() {
   const keys = ['shortcutSave', 'shortcutCopyPng', 'shortcutFormat', 'shortcutCmdPalette'];
   tds.forEach((td, i) => { if (keys[i]) td.textContent = s[keys[i]]; });
   updateEditorStatusUtil();
+  updateShortcutDisplays();
 }
 
 /**

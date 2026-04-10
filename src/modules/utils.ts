@@ -139,7 +139,7 @@ export function formatShortcutKbd(shortcut: string): string {
  * 查找带有 data-shortcut 属性的元素并更新其内容
  */
 export function updateShortcutDisplays(): void {
-  // 更新菜单中的快捷键
+  // 更新所有带 data-shortcut 属性的元素（菜单快捷键和工具栏快捷键）
   const shortcutElements = document.querySelectorAll('[data-shortcut]');
   shortcutElements.forEach(el => {
     const shortcut = el.getAttribute('data-shortcut');
@@ -147,10 +147,4 @@ export function updateShortcutDisplays(): void {
       el.innerHTML = formatShortcutKbd(shortcut);
     }
   });
-
-  // 更新按钮 title 中的快捷键提示
-  const btnCmdPaletteQuick = document.getElementById('btn-cmd-palette-quick');
-  if (btnCmdPaletteQuick) {
-    btnCmdPaletteQuick.title = `命令面板 (${formatShortcut('Ctrl+K')})`;
-  }
 }
