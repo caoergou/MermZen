@@ -515,7 +515,7 @@ button.success { border-color: #4caf50; color: #4caf50; }
   position: absolute; top: 0; left: 0;
   min-width: 100%; min-height: 100%; padding: 24px;
   display: flex; align-items: center; justify-content: center;
-  transform-origin: 0 0; will-change: transform; user-select: none;
+  transform-origin: 0 0; user-select: none;
 }
 .preview-container svg { display: block; max-width: none; height: auto; }
 

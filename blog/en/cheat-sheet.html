@@ -762,6 +762,14 @@
       }, 2000);
     }
 
+    // Encode diagram code as URL-safe base64 (matches embed.ts decodeCode fallback)
+    function encodeForEmbed(diagram) {
+      const bytes = new TextEncoder().encode(diagram);
+      let binary = '';
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
     // Initialize iframe previews
     function initDiagramPreviews() {
       const frames = document.querySelectorAll('.diagram-preview-frame');
@@ -772,7 +780,7 @@
 
         const loadingEl = frame.querySelector('.diagram-preview-loading');
         const baseUrl = '../../embed.html';
-        const encoded = encodeURIComponent(diagram);
+        const encoded = encodeForEmbed(diagram);
         const url = `${baseUrl}#${encoded}`;
 
         const iframe = document.createElement('iframe');
