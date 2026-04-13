@@ -121,6 +121,39 @@ export const STRINGS = {
     menuEnglish: 'English',
     tooltipLanguage: '切换语言',
 
+    // 工具栏按钮 title
+    toggleHanddrawn: '切换手绘风格',
+    toggleDarkLight: '切换深色/浅色模式',
+    toggleLanguage: '切换语言',
+    cmdPaletteTitle: '命令面板 ({shortcut})',
+    mobileMore: '更多选项',
+    loadExamples: '加载示例模板',
+    dragToResize: '拖拽调整面板大小',
+    bgWhiteTitle: '白色背景 (Alt+1)',
+    bgBlackTitle: '黑色背景 (Alt+2)',
+    bgCheckerTitle: '透明背景 (Alt+3)',
+    bgGridTitle: '网格背景 (Alt+4)',
+    zoomOut: '缩小',
+    zoomIn: '放大',
+    zoomReset: '重置缩放',
+    closeModal: '关闭',
+
+    // 手绘按钮状态
+    handDrawnNotSupported: '此图类型不支持手绘风格',
+    handDrawnTitle: '手绘风格',
+
+    // Save dialog
+    saveDialogTitle: '保存图表',
+    savePngTitle: 'PNG',
+    savePngDesc: '位图，适合嵌入文档或分享',
+    saveSvgTitle: 'SVG',
+    saveSvgDesc: '矢量图，无损缩放，适合编辑',
+
+    // Tour buttons
+    tourSkipBtn: '跳过',
+    tourNextBtn: '下一步 →',
+    tourDoneBtn: '完成 ✓',
+
     // 命令面板翻译
     cmdExport: '导出',
     cmdShare: '分享',
@@ -246,7 +279,40 @@ export const STRINGS = {
     menuEnglish: 'English',
     tooltipLanguage: 'Toggle language',
 
-    // 命令面板翻译
+    // Toolbar button titles
+    toggleHanddrawn: 'Toggle hand-drawn style',
+    toggleDarkLight: 'Toggle dark/light mode',
+    toggleLanguage: 'Toggle language',
+    cmdPaletteTitle: 'Command palette ({shortcut})',
+    mobileMore: 'More options',
+    loadExamples: 'Load example templates',
+    dragToResize: 'Drag to resize panels',
+    bgWhiteTitle: 'White background (Alt+1)',
+    bgBlackTitle: 'Black background (Alt+2)',
+    bgCheckerTitle: 'Transparent background (Alt+3)',
+    bgGridTitle: 'Grid background (Alt+4)',
+    zoomOut: 'Zoom out',
+    zoomIn: 'Zoom in',
+    zoomReset: 'Reset zoom',
+    closeModal: 'Close',
+
+    // Hand-drawn button states
+    handDrawnNotSupported: 'Hand-drawn style not supported for this diagram type',
+    handDrawnTitle: 'Hand-drawn style',
+
+    // Save dialog
+    saveDialogTitle: 'Save Diagram',
+    savePngTitle: 'PNG',
+    savePngDesc: 'Bitmap, suitable for embedding in documents or sharing',
+    saveSvgTitle: 'SVG',
+    saveSvgDesc: 'Vector graphics, lossless scaling, suitable for editing',
+
+    // Tour buttons
+    tourSkipBtn: 'Skip',
+    tourNextBtn: 'Next →',
+    tourDoneBtn: 'Done ✓',
+
+    // Command palette
     cmdExport: 'Export',
     cmdShare: 'Share',
     cmdView: 'View',
@@ -328,6 +394,83 @@ export function applyI18n() {
   if (cmdPaletteQuick) {
     cmdPaletteQuick.textContent = s.menuCommandPalette;
   }
+
+  // 工具栏按钮 title 翻译
+  const handDrawnToggle = document.getElementById('hand-drawn-toggle-quick');
+  if (handDrawnToggle) handDrawnToggle.title = s.toggleHanddrawn;
+
+  const uiThemeToggle = document.getElementById('ui-theme-toggle-quick');
+  if (uiThemeToggle) uiThemeToggle.title = s.toggleDarkLight;
+
+  const langToggle = document.getElementById('lang-toggle-quick');
+  if (langToggle) langToggle.title = s.toggleLanguage;
+
+  const btnCmdPaletteQuick = document.getElementById('btn-cmd-palette-quick');
+  if (btnCmdPaletteQuick) {
+    btnCmdPaletteQuick.title = s.cmdPaletteTitle.replace('{shortcut}', formatShortcut('Ctrl+K'));
+  }
+
+  const btnMobileMore = document.getElementById('btn-mobile-more');
+  if (btnMobileMore) btnMobileMore.title = s.mobileMore;
+
+  const exampleTrigger = document.getElementById('example-dropdown-trigger');
+  if (exampleTrigger) exampleTrigger.title = s.loadExamples;
+
+  const divider = document.getElementById('divider');
+  if (divider) divider.title = s.dragToResize;
+
+  // 背景按钮 title 翻译
+  const bgBtnWhite = document.querySelector('[data-bg="white"]');
+  if (bgBtnWhite) (bgBtnWhite as HTMLElement).title = s.bgWhiteTitle;
+
+  const bgBtnBlack = document.querySelector('[data-bg="black"]');
+  if (bgBtnBlack) (bgBtnBlack as HTMLElement).title = s.bgBlackTitle;
+
+  const bgBtnChecker = document.querySelector('[data-bg="checker"]');
+  if (bgBtnChecker) (bgBtnChecker as HTMLElement).title = s.bgCheckerTitle;
+
+  const bgBtnGrid = document.querySelector('[data-bg="grid"]');
+  if (bgBtnGrid) (bgBtnGrid as HTMLElement).title = s.bgGridTitle;
+
+  // 缩放按钮 title 翻译
+  const btnZoomOut = document.getElementById('btn-zoom-out');
+  if (btnZoomOut) btnZoomOut.title = s.zoomOut;
+
+  const btnZoomIn = document.getElementById('btn-zoom-in');
+  if (btnZoomIn) btnZoomIn.title = s.zoomIn;
+
+  const btnZoomReset = document.getElementById('btn-zoom-reset');
+  if (btnZoomReset) btnZoomReset.title = s.zoomReset;
+
+  // 弹窗关闭按钮
+  const saveDialogClose = document.getElementById('save-dialog-close');
+  if (saveDialogClose) saveDialogClose.title = s.closeModal;
+
+  const modalClose = document.getElementById('modal-close');
+  if (modalClose) modalClose.title = s.closeModal;
+
+  // Save dialog 翻译
+  const saveDialogTitle = document.getElementById('save-dialog-title');
+  if (saveDialogTitle) saveDialogTitle.textContent = s.saveDialogTitle;
+
+  const savePngTitle = document.querySelector('.save-dialog__option-title');
+  if (savePngTitle) savePngTitle.textContent = s.savePngTitle;
+
+  const savePngDesc = document.querySelector('.save-dialog__option-desc');
+  if (savePngDesc) savePngDesc.textContent = s.savePngDesc;
+
+  const saveSvgTitle = document.querySelectorAll('.save-dialog__option-title')[1];
+  if (saveSvgTitle) saveSvgTitle.textContent = s.saveSvgTitle;
+
+  const saveSvgDesc = document.querySelectorAll('.save-dialog__option-desc')[1];
+  if (saveSvgDesc) saveSvgDesc.textContent = s.saveSvgDesc;
+
+  // Tour 按钮翻译
+  const tourSkip = document.getElementById('tour-skip');
+  if (tourSkip) tourSkip.textContent = s.tourSkipBtn;
+
+  const tourNext = document.getElementById('tour-next');
+  if (tourNext) tourNext.textContent = s.tourNextBtn;
 
   // 示例下拉菜单翻译
   const exampleDropdown = document.querySelector('#example-dropdown-trigger span');

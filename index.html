@@ -338,11 +338,11 @@
       <div id="tour-step" class="tour-tooltip__step"></div>
       <div id="tour-title" class="tour-tooltip__title"></div>
       <div id="tour-body" class="tour-tooltip__body"></div>
-      <div class="tour-tooltip__footer">
+        <div class="tour-tooltip__footer">
         <div id="tour-dots" class="tour-dots"></div>
         <div style="display:flex;gap:6px">
-          <button id="tour-skip" class="tour-btn">跳过 Skip</button>
-          <button id="tour-next" class="tour-btn primary">下一步 Next →</button>
+          <button id="tour-skip" class="tour-btn" data-i18n="tourSkipBtn">跳过 Skip</button>
+          <button id="tour-next" class="tour-btn primary" data-i18n="tourNextBtn">下一步 Next →</button>
         </div>
       </div>
     </div>
@@ -353,20 +353,20 @@
     <div class="modal save-dialog__modal">
       <div class="modal__header">
         <h2 id="save-dialog-title">保存图表 · Save Diagram</h2>
-        <button id="save-dialog-close" class="btn-icon" title="关闭 Close">
+        <button id="save-dialog-close" class="btn-icon" title="关闭">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
       <div class="modal__body save-dialog__body">
         <button id="save-dialog-png" class="save-dialog__option">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          <span class="save-dialog__option-title">PNG</span>
-          <span class="save-dialog__option-desc">位图，适合嵌入文档或分享</span>
+          <span class="save-dialog__option-title" data-i18n="savePngTitle">PNG</span>
+          <span class="save-dialog__option-desc" data-i18n="savePngDesc">位图，适合嵌入文档或分享</span>
         </button>
         <button id="save-dialog-svg" class="save-dialog__option">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
-          <span class="save-dialog__option-title">SVG</span>
-          <span class="save-dialog__option-desc">矢量图，无损缩放，适合编辑</span>
+          <span class="save-dialog__option-title" data-i18n="saveSvgTitle">SVG</span>
+          <span class="save-dialog__option-desc" data-i18n="saveSvgDesc">矢量图，无损缩放，适合编辑</span>
         </button>
       </div>
     </div>
@@ -377,7 +377,7 @@
     <div class="modal">
       <div class="modal__header">
         <h2 id="modal-title">快捷键 · Shortcuts</h2>
-        <button id="modal-close" class="btn-icon" title="关闭 Close">
+        <button id="modal-close" class="btn-icon" title="关闭">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>

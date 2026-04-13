@@ -22,30 +22,34 @@ function ensureXiaolaiFont() {
   if (_xiaolaiLoaded) return;
   _xiaolaiLoaded = true;
 
-  const injectLink = (url: string) => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = url;
-    document.head.appendChild(link);
+  // 使用 link preload 策略，比 fetch HEAD 更高效
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'font';
+  link.type = 'font/woff2';
+  link.crossOrigin = 'anonymous';
+  link.href = XIAOLAI_CSS_CANDIDATES[0];
+  link.onload = () => {
+    // preload 完成后，注入实际的 @font-face CSS
+    const styleLink = document.createElement('link');
+    styleLink.rel = 'stylesheet';
+    styleLink.href = XIAOLAI_CSS_CANDIDATES[0];
+    document.head.appendChild(styleLink);
   };
-
-  // 并发 HEAD 请求，用 Promise.any 选出第一个成功的 CDN
-  // 若全部失败或 3s 超时，回退到列表第一项
-  const tryHead = (url: string) => fetch(url, { method: 'HEAD', cache: 'force-cache' })
-    .then(r => { if (!r.ok) throw new Error(); return url; });
-
-  const timeout = new Promise<never>((_, reject) => setTimeout(reject, 3000));
-  const race = Promise.any
-    ? Promise.any(XIAOLAI_CSS_CANDIDATES.map(tryHead))
-    : Promise.race(XIAOLAI_CSS_CANDIDATES.map(tryHead));
-
-  Promise.race([race, timeout])
-    .then((url: string) => injectLink(url))
-    .catch(() => injectLink(XIAOLAI_CSS_CANDIDATES[0]));
+  link.onerror = () => {
+    // 如果第一个 CDN 失败，尝试其他候选
+    const tryNext = (index: number) => {
+      if (index >= XIAOLAI_CSS_CANDIDATES.length) return;
+      const styleLink = document.createElement('link');
+      styleLink.rel = 'stylesheet';
+      styleLink.href = XIAOLAI_CSS_CANDIDATES[index];
+      styleLink.onerror = () => tryNext(index + 1);
+      document.head.appendChild(styleLink);
+    };
+    tryNext(1);
+  };
+  document.head.appendChild(link);
 }
-
-// 跟踪上一次的 Mermaid 配置，避免不必要的重新初始化
-let _lastMermaidConfig = null;
 
 /**
  * 按需懒加载手绘字体（Kalam / Caveat / Virgil）。
@@ -63,29 +67,36 @@ function ensureHandDrawnFont(fontKey: string) {
   _injectedFonts.add(fontKey);
 }
 
+// 跟踪上一次的 Mermaid 配置，避免不必要的重新初始化
+let _lastMermaidConfig = null;
+let _initTimeout = null;
+
 /**
- * 初始化 Mermaid 配置
+ * 初始化 Mermaid 配置（带 debounce）
  */
 export function initMermaid() {
-  const hdFont = getHandDrawnFontFamily();
-  const hdSize = getHandDrawnFontSizePx();
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: state.currentTheme as any,
-    look: state.handDrawn ? 'handDrawn' : 'classic',
-    securityLevel: 'loose',
-    handDrawnSeed: resolveHandDrawnSeed(),
-    themeVariables: {
-      fontFamily: state.handDrawn ? hdFont : NORMAL_FONT,
-      fontSize: state.handDrawn ? hdSize : '14px',
-    },
-  });
-  dom.preview.style.fontFamily = state.handDrawn ? hdFont : '';
-  if (state.handDrawn) {
-    document.documentElement.style.setProperty('--mermaid-font', hdFont);
-  } else {
-    document.documentElement.style.removeProperty('--mermaid-font');
-  }
+  clearTimeout(_initTimeout);
+  _initTimeout = setTimeout(() => {
+    const hdFont = getHandDrawnFontFamily();
+    const hdSize = getHandDrawnFontSizePx();
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: state.currentTheme as any,
+      look: state.handDrawn ? 'handDrawn' : 'classic',
+      securityLevel: 'loose',
+      handDrawnSeed: resolveHandDrawnSeed(),
+      themeVariables: {
+        fontFamily: state.handDrawn ? hdFont : NORMAL_FONT,
+        fontSize: state.handDrawn ? hdSize : '14px',
+      },
+    });
+    dom.preview.style.fontFamily = state.handDrawn ? hdFont : '';
+    if (state.handDrawn) {
+      document.documentElement.style.setProperty('--mermaid-font', hdFont);
+    } else {
+      document.documentElement.style.removeProperty('--mermaid-font');
+    }
+  }, 50);
 }
 
 /**
@@ -103,11 +114,12 @@ export async function renderDiagram() {
 
   const noHandDrawn = /^\s*(classDiagram|stateDiagram|erDiagram|gantt|pie|mindmap|timeline|architecture|block-beta|gitGraph)/i.test(code);
   if (dom.handDrawnBtn) {
+    const s = STRINGS[state.currentLang];
     if (state.handDrawn && noHandDrawn) {
-      dom.handDrawnBtn.title = '此图类型不支持手绘风格 / Not supported for this diagram type';
+      dom.handDrawnBtn.title = s.handDrawnNotSupported;
       dom.handDrawnBtn.style.opacity = '0.5';
     } else {
-      dom.handDrawnBtn.title = '手绘风格 (Hand-drawn style)';
+      dom.handDrawnBtn.title = s.handDrawnTitle;
       dom.handDrawnBtn.style.opacity = '';
     }
   }
@@ -125,17 +137,11 @@ export async function renderDiagram() {
   };
 
   // 仅在配置发生变化时重新初始化 Mermaid
-  let needsReinit = !_lastMermaidConfig;
-  if (_lastMermaidConfig) {
-    if (
-      _lastMermaidConfig.theme !== currentConfig.theme ||
-      _lastMermaidConfig.look !== currentConfig.look ||
-      _lastMermaidConfig.fontFamily !== currentConfig.fontFamily ||
-      _lastMermaidConfig.fontSize !== currentConfig.fontSize
-    ) {
-      needsReinit = true;
-    }
-  }
+  const needsReinit = !_lastMermaidConfig || 
+    _lastMermaidConfig.theme !== currentConfig.theme ||
+    _lastMermaidConfig.look !== currentConfig.look ||
+    _lastMermaidConfig.fontFamily !== currentConfig.fontFamily ||
+    _lastMermaidConfig.fontSize !== currentConfig.fontSize;
 
   if (needsReinit) {
     mermaid.initialize({

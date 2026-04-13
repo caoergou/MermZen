@@ -22,7 +22,6 @@ import {
   $handDrawnFontFamily,
   $handDrawnFontSizePx,
   HAND_FONTS,
-  saveHandDrawnPrefsToStorage,
 } from './state';
 
 import type { FontKey, SeedMode, FontSize, PreviewBg, Lang, Theme } from './state';
@@ -92,15 +91,6 @@ export { HAND_FONTS };
 // ═══════════════════════════════════════════════════════════════════════
 // 兼容函数
 // ═══════════════════════════════════════════════════════════════════════
-
-/**
- * 保存手绘风格偏好设置到本地存储
- *
- * @deprecated 现在由 effects.ts 自动处理，此函数保留为空函数以保持兼容
- */
-export function saveHandDrawnPrefs() {
-  saveHandDrawnPrefsToStorage();
-}
 
 /**
  * 获取当前手绘字体的 CSS font-family 字符串
