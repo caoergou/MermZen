@@ -822,6 +822,14 @@
       }, 2000);
     }
 
+    // 将图表代码编码为 URL 安全的 base64（兼容 embed.ts 的 decodeCode 解码逻辑）
+    function encodeForEmbed(diagram) {
+      const bytes = new TextEncoder().encode(diagram);
+      let binary = '';
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
     // 初始化 iframe 预览
     function initDiagramPreviews() {
       const frames = document.querySelectorAll('.diagram-preview-frame');
@@ -831,13 +839,9 @@
         if (!diagram) return;
 
         const loadingEl = frame.querySelector('.diagram-preview-loading');
-
-        // 使用 MermZen 的 embed.html 来渲染图表
-        // 需要将图表代码编码到 URL hash 中
         const baseUrl = '../../embed.html';
 
-        // 简单的 URL 编码（处理中文和特殊字符）
-        const encoded = encodeURIComponent(diagram);
+        const encoded = encodeForEmbed(diagram);
         const url = `${baseUrl}#${encoded}`;
 
         const iframe = document.createElement('iframe');

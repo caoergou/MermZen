@@ -515,7 +515,7 @@ button.success { border-color: #4caf50; color: #4caf50; }
   position: absolute; top: 0; left: 0;
   min-width: 100%; min-height: 100%; padding: 24px;
   display: flex; align-items: center; justify-content: center;
-  transform-origin: 0 0; will-change: transform; user-select: none;
+  transform-origin: 0 0; user-select: none;
 }
 .preview-container svg { display: block; max-width: none; height: auto; }
 
@@ -565,6 +565,18 @@ button.success { border-color: #4caf50; color: #4caf50; }
   overflow: auto; max-height: 180px; border-bottom: 1px solid var(--border-color);
 }
 .error-banner__tip { padding: 8px 14px; font-size: 11px; color: var(--text-secondary); }
+
+.handdraw-warning-banner {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: flex-start; gap: 7px;
+  padding: 8px 12px; max-width: 420px; width: max-content;
+  border-radius: 5px; border: 1px solid #d97706;
+  background: rgba(255,248,235,0.96); color: #92400e;
+  font-size: 12px; line-height: 1.5; z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+[data-theme="dark"] .handdraw-warning-banner { color: #fcd34d; background: rgba(40,30,10,0.95); border-color: #b45309; }
+.handdraw-warning-banner svg { flex-shrink: 0; margin-top: 1px; }
 
 .placeholder {
   color: var(--text-secondary); font-size: 13px; text-align: center;
