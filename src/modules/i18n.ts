@@ -512,12 +512,6 @@ export function applyI18n() {
     if (el) el.title = title;
   }
 
-  // 命令面板按钮 title（含快捷键）
-  const btnCmdPaletteQuick = document.getElementById('btn-cmd-palette-quick');
-  if (btnCmdPaletteQuick) {
-    btnCmdPaletteQuick.title = `${s.menuCommandPalette} (${formatShortcut('Ctrl+K')})`;
-  }
-
   document.getElementById('modal-title').textContent = s.modalTitle;
   const sectionH3s = document.querySelectorAll('.help-section h3');
   const sectionKeys = ['modalSectionFile', 'modalSectionEdit', 'modalSectionMenu', 'modalSectionBg'];
