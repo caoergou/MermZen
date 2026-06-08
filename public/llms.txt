@@ -1,0 +1,144 @@
+# MermZen
+
+Clean, ad-free online Mermaid diagram editor. No backend, no login, no ads.
+
+URL: https://eric.run.place/MermZen/
+
+## TL;DR for AI agents
+
+To embed or share any Mermaid diagram, just URL-encode the Mermaid source and pass it as `?text=`.
+No compression, no base64, no libraries needed.
+
+```
+Editor:   https://eric.run.place/MermZen/?text=<url-encoded mermaid>
+Embed:    https://eric.run.place/MermZen/embed.html?text=<url-encoded mermaid>
+```
+
+Example — the diagram `graph TD; A-->B`:
+
+```
+https://eric.run.place/MermZen/embed.html?text=graph%20TD%3B%20A--%3EB
+```
+
+Drop that URL into an `<iframe>` and you have a live, pannable, zoomable diagram:
+
+```html
+<iframe src="https://eric.run.place/MermZen/embed.html?text=graph%20TD%3B%20A--%3EB"
+        width="100%" height="500" style="border:none"></iframe>
+```
+
+## Opening / embedding a diagram via URL
+
+There are two endpoints:
+
+- `/` — the full editor (with code panel, themes, export)
+- `/embed.html` — a minimal, transparent, pannable/zoomable view, designed for `<iframe>`
+
+Both accept the same parameters.
+
+### 1. Plain text (recommended — simplest, AI-friendly)
+
+Pass the Mermaid source directly, URL-encoded. Aliases: `text`, `mermaid`, `diagram`.
+
+```
+/embed.html?text=sequenceDiagram%0AAlice->>Bob:%20Hi
+```
+
+Optional style query params (all optional):
+
+| Param      | Values                                            | Default     |
+|------------|---------------------------------------------------|-------------|
+| `theme`    | `default`, `dark`, `forest`, `neutral`, `base`    | `default`   |
+| `look`     | `handDrawn`, `classic`                            | `handDrawn` |
+| `bg`       | `transparent`, `grid`, or any CSS color           | `transparent` |
+| `font`     | `kalam`, `caveat`, `virgil`                       | `kalam`     |
+| `fontSize` | integer px                                        | `16`        |
+
+```
+/embed.html?text=graph%20LR%3BA--%3EB&theme=dark&look=classic&bg=grid
+```
+
+### 2. postMessage (dynamic embeds)
+
+The embed frame can be driven at runtime — no reload needed:
+
+```js
+const frame = document.querySelector('iframe');
+frame.contentWindow.postMessage({
+  type: 'mermzen:render',
+  code: 'graph TD; A-->B',
+  options: { theme: 'dark', look: 'classic' }
+}, '*');
+```
+
+The frame posts messages back to the parent:
+
+- `{ type: 'mermzen:ready' }` — frame loaded and listening
+- `{ type: 'mermzen:rendered', width, height }` — render succeeded; use `height` to auto-size the iframe
+- `{ type: 'mermzen:error', error }` — render failed
+
+Auto-resize example:
+
+```js
+window.addEventListener('message', (e) => {
+  if (e.data?.type === 'mermzen:rendered') {
+    document.querySelector('iframe').style.height = e.data.height + 'px';
+  }
+});
+```
+
+### 3. Compressed payload (compact, used by the Share button)
+
+For long diagrams or to bundle settings into one short token, encode a JSON payload as
+**pako deflate + base64** (URL-safe: `+`→`-`, `/`→`_`, strip `=` padding) and pass it as
+`?code=` or as the hash (`#`):
+
+```
+https://eric.run.place/MermZen/?code={encoded}
+https://eric.run.place/MermZen/#{encoded}
+```
+
+Payload format (v2):
+
+```json
+{ "v": 2, "c": "graph TD\nA-->B", "t": "dark", "hd": false, "hdf": "virgil", "hds": "large", "hdm": "random", "bg": "grid" }
+```
+
+Fields: `c` code (required); `t` theme; `hd` hand-drawn (false = classic); `hdf` font;
+`hds` font size (`small`/`medium`/`large`); `hdm` seed mode; `bg` background.
+
+JavaScript (with pako):
+```js
+const payload = { v: 2, c: "graph TD\nA-->B", t: "dark" };
+const bytes = new TextEncoder().encode(JSON.stringify(payload));
+const compressed = pako.deflate(bytes);
+let binary = '';
+for (let i = 0; i < compressed.length; i++) binary += String.fromCharCode(compressed[i]);
+const encoded = btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const url = `https://eric.run.place/MermZen/#${encoded}`;
+```
+
+Python (zlib matches pako.deflate):
+```python
+import zlib, base64
+def encode_code(code: str) -> str:
+    b64 = base64.b64encode(zlib.compress(code.encode('utf-8'))).decode()
+    return b64.replace('+', '-').replace('/', '_').rstrip('=')
+url = "https://eric.run.place/MermZen/?code=" + encode_code(mermaid_code)
+```
+
+Decoding precedence in the embed: `?text=` wins; otherwise `#hash`/`?code=` is tried as a
+compressed payload, and if that fails it is treated as URL-encoded plain text.
+
+## Supported diagram types
+
+flowchart, sequenceDiagram, classDiagram, stateDiagram-v2, erDiagram, gantt, pie, mindmap, architecture-beta, gitGraph, block-beta
+
+## Features
+
+- Live preview with 300ms debounce
+- Export as SVG or PNG (2x resolution)
+- 5 themes: default, dark, forest, neutral, base
+- Hand-drawn style toggle
+- Shareable URL via `?text=`, `?code=`, or `#hash`
+- Embeddable `<iframe>` with postMessage API and auto-resize
