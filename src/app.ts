@@ -8,7 +8,7 @@ import { applyI18n, syncLanguageUI } from './modules/i18n';
 import { DEFAULT_CODE } from './modules/examples';
 import { createEditor, scheduleLint, formatCode } from './modules/editor';
 import { initMermaid, renderDiagram } from './modules/render';
-import { getQueryCode, getHashCode, getHashState, getQueryState, updateHash, downloadPng, downloadSvg, copyPng } from './modules/export';
+import { getQueryCode, getHashCode, getHashState, getQueryState, getPlainTextState, updateHash, downloadPng, downloadSvg, copyPng } from './modules/export';
 import { startTour } from './modules/tour';
 import { initMenu } from './modules/ui/menu';
 import { initContextMenu } from './modules/ui/context-menu';
@@ -107,7 +107,7 @@ async function bootstrap() {
     syncLanguageUI(); // 同步语言按钮 UI 状态
   }
 
-  const urlState = getHashState() || getQueryState();
+  const urlState = getPlainTextState() || getHashState() || getQueryState();
   if (urlState && urlState.settings) {
     const s = urlState.settings;
     if (s.t) state.currentTheme = s.t;

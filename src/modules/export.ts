@@ -203,6 +203,26 @@ export function decodeCode(encoded: string): string | null {
 }
 
 /**
+ * 获取 URL 查询参数中的纯文本代码（?text= / ?mermaid= / ?diagram=）
+ * 这是对 AI 与手写最友好的方式：直接 URL 编码 mermaid 源码即可，无需压缩。
+ */
+export function getPlainTextState(): { code: string; settings: any } | null {
+  try {
+    const params = new URLSearchParams(location.search);
+    const code = params.get('text') || params.get('mermaid') || params.get('diagram');
+    if (!code) return null;
+    const settings: any = {};
+    if (params.get('theme')) settings.t = params.get('theme');
+    if (params.get('look') === 'classic') settings.hd = false;
+    if (params.get('font')) settings.hdf = params.get('font');
+    if (params.get('bg')) settings.bg = params.get('bg');
+    return { code, settings };
+  } catch (e) {
+    return null;
+  }
+}
+
+/**
  * 获取 URL 查询参数中的状态
  */
 export function getQueryState(): { code: string; settings: any } | null {

@@ -483,6 +483,8 @@ button.success { border-color: #4caf50; color: #4caf50; }
 .preview-viewport {
   flex: 1; overflow: hidden; position: relative;
   transition: background 0.2s, background-color 0.2s; cursor: grab;
+  /* 让触摸手势（拖拽/捏合）交给我们的 pointer 处理，而非浏览器滚动缩放 */
+  touch-action: none;
 }
 .preview-viewport:active { cursor: grabbing; }
 .preview-viewport.bg-white { background: #ffffff; }
@@ -1022,5 +1024,17 @@ kbd {
     padding: 6px 10px;
     font-size: 12px;
     height: 32px;
+  }
+}
+
+/* ── 桌面端整体放大 ~20%，获得更舒适的视觉比例 ──────────────────────────
+   px 体系无法靠 root font-size 缩放，这里用 zoom 整体缩放；
+   并用 calc(.../1.2) 抵消 100vw/100vh 被一并放大导致的溢出。
+   仅在桌面端生效，移动端保持原始尺寸单独适配。 */
+@media (min-width: 769px) {
+  body {
+    zoom: 1.2;
+    width: calc(100vw / 1.2);
+    height: calc(100vh / 1.2);
   }
 }
