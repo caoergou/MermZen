@@ -27,9 +27,12 @@
   </script>
 
   <link rel="icon" type="image/svg+xml" href="../../logo.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=LXGW+WenKai+TC&display=swap">
+  <!-- 字体：国内可达的 npmmirror 镜像（替代 Google Fonts，避免国内加载超时导致排版崩坏）-->
+  <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+  <link rel="dns-prefetch" href="https://registry.npmmirror.com">
+  <link rel="stylesheet" href="https://registry.npmmirror.com/@fontsource/outfit/5.2.8/files/index.css">
+  <link rel="stylesheet" href="https://registry.npmmirror.com/@fontsource/jetbrains-mono/5.2.8/files/index.css">
+  <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-webfont/1.7.0/files/style.css">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../blog.css">
 </head>
@@ -66,24 +69,24 @@
 <p>创建简单的提交和分支：</p>
 <pre><code>gitGraph
     title 基本 Git 图
-    commit "初始提交"
-    commit "功能 A"
-    branch feature-branch-1
-    commit "完成功能 1"
-    commit "修复 bug 1"
+    commit &quot;初始提交&quot;
+    commit &quot;功能 A&quot;
+    branch 功能分支1
+    commit &quot;完成功能 1&quot;
+    commit &quot;修复 bug 1&quot;
     checkout main
-    branch feature-branch-2
-    commit "完成功能 2"
+    branch 功能分支2
+    commit &quot;完成功能 2&quot;
 </code></pre>
 <p><div class="diagram-preview">
   <iframe
-    src="../../embed.html#eJyFjcsKwjAURH9luGtdNMvuVLD4D9mkITYX8yjxpgjiv7uohVJBlzNnHk-aqFU7stTSwNIVM3qdAEBYgsPR3NmiY8EK2RwjCzRdEgub8DE0bfDZGanF4bCQvphkPa6zv59ls2mdchyDE7fE0HwP8wN9HVbEO3vLVRANpx9f6t-X0kSvN3YUWj4"
+    src="../../embed.html#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXg6f9ezOWsU3DNLFJ7O3geRSc7Pzc0sUYhRetox9-ny7mf9E57sWhKjhC7ZNf9F814FR5hEUlFiXnKGAkT4aUfbsynrDdG1rOt51jEBqtEQw8Qn-9c9XdKrkFSajiSZkZqcnV9aopCbmJmH0yIjfBYZxSgp1QIAx1huZQ"
     title="图表预览（手绘风格）"
     loading="lazy"
     scrolling="no"
   ></iframe>
 </div>
-<a href="https://eric.run.place/MermZen/#eJyFjcsKwjAURH9luGtdNMvuVLD4D9mkITYX8yjxpgjiv7uohVJBlzNnHk-aqFU7stTSwNIVM3qdAEBYgsPR3NmiY8EK2RwjCzRdEgub8DE0bfDZGanF4bCQvphkPa6zv59ls2mdchyDE7fE0HwP8wN9HVbEO3vLVRANpx9f6t-X0kSvN3YUWj4" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a></p>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXg6f9ezOWsU3DNLFJ7O3geRSc7Pzc0sUYhRetox9-ny7mf9E57sWhKjhC7ZNf9F814FR5hEUlFiXnKGAkT4aUfbsynrDdG1rOt51jEBqtEQw8Qn-9c9XdKrkFSajiSZkZqcnV9aopCbmJmH0yIjfBYZxSgp1QIAx1huZQ" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a></p>
 <h2>分支合并</h2>
 <p>演示分支合并操作：</p>
 <pre><code>gitGraph

@@ -4,30 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MermZen — 开箱即用的 Mermaid 图表编辑器</title>
-  <meta name="description" content="MermZen 是一款开箱即用的 Mermaid 图表编辑器。打开即写，实时渲染，零干扰。名字源于 Mermaid（图表语法）+ Zen（禅），追求极简设计与轻量体验。">
-  <meta name="keywords" content="mermaid, mermaid editor, mermaid online, mermaid to image, mermzen, flowchart, diagram editor, svg export, png export, hand-drawn diagram, no ads, zero dependency, 流程图, 图表编辑器, 无广告">
+  <meta name="description" content="MermZen 是一款开箱即用的免费在线 Mermaid 图表编辑器：打开即写、实时渲染、零干扰。独家支持手绘风格与中文手写字体，一键导出 PNG/SVG，链接即可分享，适合 PPT 配图、博客插图与技术笔记。">
+  <meta name="keywords" content="mermaid, mermaid editor, mermaid online, mermaid to image, mermzen, flowchart, diagram editor, svg export, png export, hand-drawn diagram, no ads, zero dependency, Mermaid 在线编辑器, 在线流程图, 图表编辑器, 免费图表工具, 手绘风格, 中文手写体, 时序图, 甘特图, 思维导图, ER 图, 类图, PPT 配图, 无广告">
   <meta name="author" content="MermZen">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://eric.run.place/MermZen/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://eric.run.place/MermZen/?lang=zh">
+  <link rel="alternate" hreflang="en" href="https://eric.run.place/MermZen/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://eric.run.place/MermZen/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="MermZen — 开箱即用的 Mermaid 图表编辑器">
-  <meta property="og:description" content="零配置、无广告的 Mermaid 在线编辑器。实时预览、一键导出 PNG/SVG、手绘风格支持。无需登录，即刻使用。">
+  <meta property="og:description" content="零配置、无广告的免费 Mermaid 在线编辑器。实时预览、一键导出 PNG/SVG，独家支持手绘风格与中文手写字体。无需登录，即刻使用。">
   <meta property="og:url" content="https://eric.run.place/MermZen/">
   <meta property="og:site_name" content="MermZen">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:locale:alternate" content="en_US">
-  <meta property="og:image" content="https://eric.run.place/MermZen/assets/editor-en.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="MermZen Editor - Clean Mermaid Diagram Editor with live preview">
+  <meta property="og:image" content="https://eric.run.place/MermZen/assets/editor-zh.png">
+  <meta property="og:image:width" content="2560">
+  <meta property="og:image:height" content="1440">
+  <meta property="og:image:alt" content="MermZen 编辑器 — 简洁的 Mermaid 在线图表编辑器，支持实时预览与手绘风格">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="MermZen — 开箱即用的 Mermaid 图表编辑器">
-  <meta name="twitter:description" content="零配置、无广告的 Mermaid 在线编辑器。实时预览、一键导出、手绘风格支持。">
-  <meta name="twitter:image" content="https://eric.run.place/MermZen/assets/editor-en.png">
+  <meta name="twitter:description" content="零配置、无广告的免费 Mermaid 在线编辑器。实时预览、一键导出，支持手绘风格与中文手写字体。">
+  <meta name="twitter:image" content="https://eric.run.place/MermZen/assets/editor-zh.png">
 
   <!-- Schema.org WebApplication -->
   <script type="application/ld+json">
@@ -57,15 +60,16 @@
       "Share diagrams via URL",
       "Embed diagrams in other websites"
     ],
-    "screenshot": "https://eric.run.place/MermZen/assets/editor-en.png"
+    "screenshot": "https://eric.run.place/MermZen/assets/editor-zh.png"
   }
   </script>
 
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="apple-touch-icon" href="logo.svg">
 
-  <!-- 关键资源预连接 -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <!-- 关键资源预连接：中文手绘字体（小赖）首选 npmmirror，国内可达 -->
+  <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+  <link rel="dns-prefetch" href="https://registry.npmmirror.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
   <!-- 小赖（中文手绘字体）按需异步加载，仅首次渲染手绘图时触发 -->
@@ -74,6 +78,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- 静态首屏内容：供不执行 JS 的搜索引擎爬虫（尤其百度）收录；JS 加载后被编辑器界面覆盖 -->
+  <noscript>
+    <div style="max-width:780px;margin:0 auto;padding:40px 24px;font-family:system-ui,-apple-system,sans-serif;line-height:1.8;color:#333">
+      <h1>MermZen — 免费在线 Mermaid 图表编辑器</h1>
+      <p>MermZen 是一款开箱即用的 Mermaid 在线图表编辑器：打开即写、实时预览，零配置、无广告、无需登录。独家支持<strong>手绘风格</strong>与<strong>中文手写字体</strong>，特别适合制作 PPT 配图、博客插图与技术笔记。</p>
+      <h2>支持的图表类型</h2>
+      <p>流程图、时序图、类图、甘特图、饼图、思维导图、ER 图、状态图、架构图、Git 图、块图，共 11 种 Mermaid 图表，实时渲染。</p>
+      <h2>主要功能</h2>
+      <ul>
+        <li>实时预览，边写代码边看图</li>
+        <li>一键导出 PNG / SVG，PNG 支持高清 2 倍分辨率</li>
+        <li>手绘风格搭配中文手写体（小赖字体），导出自动内嵌字体，到处显示一致</li>
+        <li>5 种主题、深色 / 浅色模式自由切换</li>
+        <li>链接分享：图表内容编码进 URL，无需服务器、无需账号、永不失效</li>
+        <li>可嵌入 iframe，方便对接 AI / LLM 生成的图表</li>
+      </ul>
+      <p>完整的在线编辑功能需要启用 JavaScript。你也可以先阅读 <a href="blog/zh/index.html">Mermaid 中文教程</a>。</p>
+    </div>
+  </noscript>
   <header class="toolbar">
     <h1 class="toolbar__title">
       <img src="logo.svg" alt="" class="toolbar__logo">

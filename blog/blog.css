@@ -4,7 +4,7 @@
 body {
   background-color: var(--bg-primary, #ffffff);
   color: var(--text-primary, #333333);
-  font-family: 'Outfit', 'LXGW WenKai TC', system-ui, -apple-system, sans-serif;
+  font-family: 'Outfit', 'LXGW WenKai Screen', system-ui, -apple-system, sans-serif;
   line-height: 1.75;
   margin: 0;
   padding: 0;
