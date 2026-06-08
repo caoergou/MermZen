@@ -32,33 +32,22 @@ function ensureXiaolaiFont() {
   if (_xiaolaiLoaded) return;
   _xiaolaiLoaded = true;
 
-  // 使用 link preload 策略，比 fetch HEAD 更高效
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'font';
-  link.type = 'font/woff2';
-  link.crossOrigin = 'anonymous';
-  link.href = XIAOLAI_CSS_CANDIDATES[0];
-  link.onload = () => {
-    // preload 完成后，注入实际的 @font-face CSS
-    const styleLink = document.createElement('link');
-    styleLink.rel = 'stylesheet';
-    styleLink.href = XIAOLAI_CSS_CANDIDATES[0];
-    document.head.appendChild(styleLink);
-  };
-  link.onerror = () => {
-    // 如果第一个 CDN 失败，尝试其他候选
-    const tryNext = (index: number) => {
-      if (index >= XIAOLAI_CSS_CANDIDATES.length) return;
-      const styleLink = document.createElement('link');
-      styleLink.rel = 'stylesheet';
-      styleLink.href = XIAOLAI_CSS_CANDIDATES[index];
-      styleLink.onerror = () => tryNext(index + 1);
-      document.head.appendChild(styleLink);
+  // XIAOLAI_CSS_CANDIDATES[0] 是一个 CSS 文件（result.css），不是 woff2，
+  // 因此不能用 <link rel="preload" as="font">（类型不匹配会被浏览器丢弃并告警）。
+  // 直接以 stylesheet 注入，失败时按候选顺序回退到下一个 CDN。
+  const tryLoad = (index: number) => {
+    if (index >= XIAOLAI_CSS_CANDIDATES.length) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.crossOrigin = 'anonymous';
+    link.href = XIAOLAI_CSS_CANDIDATES[index];
+    link.onerror = () => {
+      link.remove();
+      tryLoad(index + 1);
     };
-    tryNext(1);
+    document.head.appendChild(link);
   };
-  document.head.appendChild(link);
+  tryLoad(0);
 }
 
 /**

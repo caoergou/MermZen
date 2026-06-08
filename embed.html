@@ -8,13 +8,12 @@
   <meta name="robots" content="noindex, follow">
   <link rel="canonical" href="https://eric.run.place/MermZen/embed.html">
 
-  <!-- Preconnect for fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css">
+  <!-- 字体：国内可达的 npmmirror 镜像（小赖中文手绘）；Kalam 拉丁手绘内联 @font-face -->
+  <link rel="preconnect" href="https://registry.npmmirror.com" crossorigin>
+  <link rel="dns-prefetch" href="https://registry.npmmirror.com">
+  <link rel="stylesheet" href="https://registry.npmmirror.com/@chinese-fonts/xiaolai/3.0.0/files/dist/Xiaolai/result.css">
   <style>
+    @font-face { font-family: 'Kalam'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://registry.npmmirror.com/@fontsource/kalam/5.2.8/files/files/kalam-latin-400-normal.woff2') format('woff2'); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: transparent; overflow: hidden; min-height: 100vh; }
     #container { width: 100%; height: 100vh; overflow: hidden; position: relative; }
