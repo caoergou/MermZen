@@ -107,7 +107,7 @@ MermZen 回归本质：基于 CodeMirror 6，支持语法高亮、自动补全�
 - 导出 SVG 或 PNG（2× 分辨率）
 - 复制 PNG 到剪贴板
 - URL 分享——图表编码在 hash 中，无需服务器
-- iframe 嵌入——通过 `embed.html` 嵌入任何网页
+- iframe 嵌入——把 Mermaid 文本 URL 编码后放进 `?text=` 即可（见下方 [嵌入](#嵌入)）
 
 **外观**
 - 手绘风格（含中文手写字体）
@@ -116,6 +116,72 @@ MermZen 回归本质：基于 CodeMirror 6，支持语法高亮、自动补全�
 **引导**
 - 内置示例模板
 - 交互式新手教程
+
+---
+
+## 嵌入
+
+用一个普通 `<iframe>` 指向 `embed.html` 即可把任意图表嵌入网页、博客或文档。
+嵌入页背景透明，可平移、可缩放，且无任何运行时依赖。
+
+### 直接把文字丢进去（最简单，对 AI 友好）
+
+将 Mermaid 源码 URL 编码后作为 `?text=` 传入——无需压缩、无需构建、无需安装：
+
+```html
+<iframe
+  src="https://eric.run.place/MermZen/embed.html?text=graph%20TD%3B%20A--%3EB"
+  width="100%" height="400" style="border:none"></iframe>
+```
+
+`?mermaid=`、`?diagram=` 是等价别名。可选样式参数：`theme`
+（`default`/`dark`/`forest`/`neutral`/`base`）、`look`（`handDrawn`/`classic`）、
+`bg`（`transparent`/`grid`/CSS 颜色）、`font`、`fontSize`。
+
+```
+embed.html?text=<编码后的文本>&theme=dark&look=classic&bg=grid
+```
+
+用代码构造 URL：
+
+```js
+const url = "https://eric.run.place/MermZen/embed.html?text=" +
+  encodeURIComponent("graph TD; A-->B");
+```
+
+```python
+import urllib.parse
+url = "https://eric.run.place/MermZen/embed.html?text=" + \
+    urllib.parse.quote("graph TD; A-->B")
+```
+
+### 用 postMessage 动态控制
+
+无需重新加载即可重渲染，并让 iframe 自适应高度：
+
+```js
+const frame = document.querySelector('iframe');
+frame.contentWindow.postMessage({
+  type: 'mermzen:render',
+  code: 'graph TD; A-->B',
+  options: { theme: 'dark', look: 'classic' }
+}, '*');
+
+window.addEventListener('message', (e) => {
+  if (e.data?.type === 'mermzen:rendered') {
+    frame.style.height = e.data.height + 'px'; // 自适应高度
+  }
+});
+```
+
+嵌入页会回传 `mermzen:ready`、`mermzen:rendered`（`{ width, height }`）
+和 `mermzen:error`（`{ error }`）。
+
+### 紧凑分享链接
+
+对于较长的图表，或想把样式设置打包进一个短 token，「复制嵌入代码」/ 分享
+功能会生成压缩后的 `#hash`（pako deflate + base64）。完整格式见
+[`public/llms.txt`](public/llms.txt)。
 
 ---
 

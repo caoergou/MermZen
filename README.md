@@ -110,7 +110,7 @@ MermZen fills that gap: a CodeMirror 6 editor with Mermaid-aware syntax highligh
 - Export SVG or PNG (PNG rendered at 2× resolution)
 - Copy PNG directly to clipboard
 - Shareable URL — diagram state encoded in the URL hash, no server needed
-- Embeddable iframe via `embed.html` — paste `<iframe src="…/embed.html#code">` into any page for a live, hand-drawn diagram with zero dependencies
+- Embeddable iframe via `embed.html` — just URL-encode the Mermaid text into `?text=` and drop it in an `<iframe>` (see [Embedding](#embedding) below)
 
 **Appearance**
 
@@ -121,6 +121,74 @@ MermZen fills that gap: a CodeMirror 6 editor with Mermaid-aware syntax highligh
 
 - Built-in example templates
 - Interactive tour for first-time users
+
+---
+
+## Embedding
+
+Embed any diagram in a page, blog, or doc with a plain `<iframe>` pointed at
+`embed.html`. The frame is transparent, pannable, zoomable, and ships with no
+runtime dependencies.
+
+### Just drop the text in (simplest, AI-friendly)
+
+URL-encode the Mermaid source and pass it as `?text=` — no compression, no
+build step, nothing to install:
+
+```html
+<iframe
+  src="https://eric.run.place/MermZen/embed.html?text=graph%20TD%3B%20A--%3EB"
+  width="100%" height="400" style="border:none"></iframe>
+```
+
+Aliases `?mermaid=` and `?diagram=` work too. Optional style params:
+`theme` (`default`/`dark`/`forest`/`neutral`/`base`), `look`
+(`handDrawn`/`classic`), `bg` (`transparent`/`grid`/CSS color), `font`, `fontSize`.
+
+```
+embed.html?text=<encoded>&theme=dark&look=classic&bg=grid
+```
+
+Building the URL in code:
+
+```js
+const url = "https://eric.run.place/MermZen/embed.html?text=" +
+  encodeURIComponent("graph TD; A-->B");
+```
+
+```python
+import urllib.parse
+url = "https://eric.run.place/MermZen/embed.html?text=" + \
+    urllib.parse.quote("graph TD; A-->B")
+```
+
+### Drive it at runtime with postMessage
+
+Re-render without reloading, and auto-resize the iframe to fit:
+
+```js
+const frame = document.querySelector('iframe');
+frame.contentWindow.postMessage({
+  type: 'mermzen:render',
+  code: 'graph TD; A-->B',
+  options: { theme: 'dark', look: 'classic' }
+}, '*');
+
+window.addEventListener('message', (e) => {
+  if (e.data?.type === 'mermzen:rendered') {
+    frame.style.height = e.data.height + 'px'; // auto-resize
+  }
+});
+```
+
+The frame posts back `mermzen:ready`, `mermzen:rendered` (`{ width, height }`)
+and `mermzen:error` (`{ error }`).
+
+### Compact share links
+
+For long diagrams or to bundle settings into one short token, the **Copy embed
+code** / share actions produce a compressed `#hash` payload (pako deflate +
+base64). See [`public/llms.txt`](public/llms.txt) for the full format.
 
 ---
 
