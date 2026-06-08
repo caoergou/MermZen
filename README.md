@@ -4,9 +4,9 @@
   <img src="logo.svg" alt="MermZen Logo" width="160" height="160" />
 </p>
 
-[![Deploy to GitHub Pages](https://github.com/caoergou/mermzen/actions/workflows/deploy.yml/badge.svg)](https://github.com/caoergou/mermzen/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/caoergou/MermZen/actions/workflows/deploy.yml/badge.svg)](https://github.com/caoergou/MermZen/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/caoergou/mermzen)](https://github.com/caoergou/mermzen/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/caoergou/MermZen)](https://github.com/caoergou/MermZen/stargazers)
 
 **MermZen** is an out-of-the-box Mermaid diagram editor. Open it, write syntax, see your diagram — that's the whole experience. No setup, no friction, just the diagram.
 
@@ -23,9 +23,9 @@ The name blends **Mermaid** (the diagram syntax) and **Zen** (simplicity). Desig
 ### Editor Interface
 
 <p align="center">
-  <a href="assets/editor-en.png"><img src="assets/editor-en.png" alt="MermZen editor in light mode" width="46%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy" /></a>
+  <a href="https://eric.run.place/MermZen/" target="_blank"><img src="assets/editor-en.png" alt="MermZen editor in light mode" width="46%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy" /></a>
   &nbsp;
-  <a href="assets/editor-en-dark.png"><img src="assets/editor-en-dark.png" alt="MermZen editor in dark mode" width="46%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy" /></a>
+  <a href="https://eric.run.place/MermZen/" target="_blank"><img src="assets/editor-en-dark.png" alt="MermZen editor in dark mode" width="46%" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy" /></a>
 </p>
 
 ### Feature Showcase
@@ -34,10 +34,10 @@ MermZen supports a rich set of themes and style combinations to easily meet diff
 
 <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 40px;">
   <div style="flex: 1; text-align: center;">
-    <img src="assets/preview-flowchart-en.png" alt="Hand-drawn style + Default theme" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy">
+    <a href="https://eric.run.place/MermZen/#eJxNjl9LwzAUR7_KJU8bOBD3NnCyrn_sFBE7H0bsQ0yuNqxL5CZuQrvvLktb7fM9v3Nuw45scXPFJFuwTxJfFWzjNwMAsJrwwgvy5RRmsyVE_NUhARqP5EASKjRei9qVHR4Fat2spLTfxgP-aOfd3bm7ri_X9sm2EPOisidAIkv9NO4CY3KHroWkeRbOnSwpOIpaq0GW_MlSnhtJeEDj4UPoGkK716ZBmzWp0LWD5S3MB0H237jnj1buQfRfz6_hoE05xi6daBwOu5xnaJCERyjQOW0NbO0eh2ke2hv-gkoTSg_eghKuereCVM9sAvMw4YlR5ZSdfwEosXhl" target="_blank"><img src="assets/preview-flowchart-en.png" alt="Hand-drawn style + Default theme" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy"></a>
   </div>
   <div style="flex: 1;">
-    <h4>🎨 <a href="https://eric.run.place/MermZen/#H4sIAAAAAAAAA4WQTU/DMBCF_8qtc6iCBxR0oUFBhQMHDp0KdO3SapteiLQla0pE_fetLg7jYZ3yOO/znPNwePmW5VKpVKkeSFrRzJmCGE0wmVCutTOtWhWWqsUd9cU/Gtvbudl20KWdbPWG1DIzKYkjMdbGbS3OJEM0vLt6kb9ql8/dEtpfOel9NjfR9S9ntuYVvU6i/Xv9ls+/y1sfZ/JPF/M6z/P8nl/H5z/P63/P9X/P9n/P93/P+3/P/X/P/H/P/+f/H/P//HwD5/KfH/CgB8AAA==" target="_blank">Hand-drawn Style + Default Theme</a></h4>
+    <h4>🎨 <a href="https://eric.run.place/MermZen/#eJxNjl9LwzAUR7_KJU8bOBD3NnCyrn_sFBE7H0bsQ0yuNqxL5CZuQrvvLktb7fM9v3Nuw45scXPFJFuwTxJfFWzjNwMAsJrwwgvy5RRmsyVE_NUhARqP5EASKjRei9qVHR4Fat2spLTfxgP-aOfd3bm7ri_X9sm2EPOisidAIkv9NO4CY3KHroWkeRbOnSwpOIpaq0GW_MlSnhtJeEDj4UPoGkK716ZBmzWp0LWD5S3MB0H237jnj1buQfRfz6_hoE05xi6daBwOu5xnaJCERyjQOW0NbO0eh2ke2hv-gkoTSg_eghKuereCVM9sAvMw4YlR5ZSdfwEosXhl" target="_blank">Hand-drawn Style + Default Theme</a></h4>
     <ul>
       <li>Smooth hand-drawn lines with built-in design sense</li>
       <li>Built-in Chinese and English handwriting font support</li>
@@ -49,7 +49,7 @@ MermZen supports a rich set of themes and style combinations to easily meet diff
 
 <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 40px;">
   <div style="flex: 1;">
-    <h4>🌲 <a href="https://eric.run.place/MermZen/#H4sIAAAAAAAAA52QQQ6DMBBE7/kVJ0xBBG0gVJBAgcOHDgU6dOk1TatEmxKlpCR9O9K2DcTBnfI43vOe83Bo11LpZqVQo15IatnMkYIYjTCZUK61M41aFZaqxR31xT8a29u52XbQpZ1s9YbUMjMpiSMx1sZtLc4kQzS8u3qRv2qXz90S2l856X02N9H1L2e25hW9TqL9e/2Wz7/LWx9n8k8X8zrP8/yeX8fnP8/rf8/1f8/2f8/3f8/7f8/9f8/8f8//5/8f8//8fAPn8p8f8KAHwAA?theme=forest&handDrawn=false" target="_blank">Standard Style + Forest Theme</a></h4>
+    <h4>🌲 <a href="https://eric.run.place/MermZen/#eJx1kstugzAQRX9l5AUiUrrpkkUlwiMvSGhplYXbxQATQCJQ2U4iVPXfK3CqEpJ6Y917RnPHI3-xE7MepyxlFssFfhbw6r7XAADymGjDqUqqFQTYktCoOzZ_kyRgR8nHnznjdnYoa3BRFkmDIhswh4dNUlYEdhRdbKqzUZaX5TROcrnjbiBWqMp00M_jdrSEOSo6Yzvwfb6zffBLQWesqn-TYhKnMr0Jm-tnXeig7YJvRXaXLHmE7aFb0S1b8Ug02TG9x9Y8JCkxpxG7ndVFheNBA26GbfwcQIhSkZgMGoe_KK7wREOy4eYLZaUEB9Piimy5GTZ13rgzCJpcDlHETa9CqcpUEoq0W113Tcbj2mDADAxw4OHhCS6_yO2Fp4XXC18LvxdzMGABBizBgBUYsNbw2u4KAw2CXoTXVbpio811L7ZaaBKxKVPMYvtGkFRsyoqMWXusJH3_AL-200U" target="_blank">Standard Style + Forest Theme</a></h4>
     <ul>
       <li>Professional and clean standard line style</li>
       <li>Forest green theme, eye-friendly and beautiful</li>
@@ -58,16 +58,16 @@ MermZen supports a rich set of themes and style combinations to easily meet diff
     </ul>
   </div>
   <div style="flex: 1; text-align: center;">
-    <img src="assets/preview-architecture-en.png" alt="Standard style + Forest theme" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); filter: hue-rotate(80deg) saturate(0.7);" loading="lazy">
+    <a href="https://eric.run.place/MermZen/#eJx1kstugzAQRX9l5AUiUrrpkkUlwiMvSGhplYXbxQATQCJQ2U4iVPXfK3CqEpJ6Y917RnPHI3-xE7MepyxlFssFfhbw6r7XAADymGjDqUqqFQTYktCoOzZ_kyRgR8nHnznjdnYoa3BRFkmDIhswh4dNUlYEdhRdbKqzUZaX5TROcrnjbiBWqMp00M_jdrSEOSo6Yzvwfb6zffBLQWesqn-TYhKnMr0Jm-tnXeig7YJvRXaXLHmE7aFb0S1b8Ug02TG9x9Y8JCkxpxG7ndVFheNBA26GbfwcQIhSkZgMGoe_KK7wREOy4eYLZaUEB9Piimy5GTZ13rgzCJpcDlHETa9CqcpUEoq0W113Tcbj2mDADAxw4OHhCS6_yO2Fp4XXC18LvxdzMGABBizBgBUYsNbw2u4KAw2CXoTXVbpio811L7ZaaBKxKVPMYvtGkFRsyoqMWXusJH3_AL-200U" target="_blank"><img src="assets/preview-architecture-en.png" alt="Standard style + Forest theme" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); filter: hue-rotate(80deg) saturate(0.7);" loading="lazy"></a>
   </div>
 </div>
 
 <div style="display: flex; align-items: center; gap: 24px; margin-bottom: 20px;">
   <div style="flex: 1; text-align: center;">
-    <img src="assets/preview-sequence-en.png" alt="Hand-drawn style + Grid background" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy">
+    <a href="https://eric.run.place/MermZen/#eJx9kl9LwzAUxb_KIQ-iaHEOQQhYmbPq8M_q2uGLILG9dsGazJvUoeJ3l7abTjZ9Ctz7yzknh3yIVyG7OyITUjh6qchkdKJVwer5zgDAVLHXmZ4q4zF2xKvTY7aztYtePIByzZEQv65DRpRrtzq-ektuLttx7RmE4dxEIjKeGBlTTsZrVTpsoLSFNi0-54Iw7MUDiXiYpNhVU727xPTiQRCGjbXEWZS29-8flS5l5YiNeqaWbJhgIXaqdFkxIbOV8djsbC3LNZElkugy6qeoZXB7Ho0iLBQPj1q8Ab816-eBKbOct2tVesTKuZnlHJllpsy3m5XoSZTCkXPaGuntExkc5L_R5eK6nQ6GF9hGWqM_3KKxIAzHDVir167wFhO7qIJKR7hlawpM5_H-iDW47o_-rnRdtP3OHsZGVX5iWb9T_k-4ZGJnIGY7_0xkcrEjHgohRcE6F59f9DDjOg" target="_blank"><img src="assets/preview-sequence-en.png" alt="Hand-drawn style + Grid background" style="max-width: 400px; width: 80%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);" loading="lazy"></a>
   </div>
   <div style="flex: 1;">
-    <h4>🧩 <a href="https://eric.run.place/MermZen/#H4sIAAAAAAAAA61TTY/TMBD9K5RXQQgJCQA0gEC6oBqL1ddNlTpLqk90xYbEtluyrEiv99xO2kS7dOGFjJmff9+bN39swYbXSpN6pUqZKkZapzJmGCEUzmVCutTGNRlSWqgU99cU/Gttbuel22KWdbPWm1DIzKYkjMdbGbS3OJEM0vLt6kb9ql8/dEtpfOel9NjfR9S9ntuYVvU6i/Xv9ls+/y1sfZ/JPF/M6z/P8nl/H5z/P63/P9X/P9n/P93/P+3/P/X/P/H/P/+f/H/P//HwD5/KfH/CgB8AAA==" target="_blank">Hand-drawn Style + Grid Background</a></h4>
+    <h4>🧩 <a href="https://eric.run.place/MermZen/#eJx9kl9LwzAUxb_KIQ-iaHEOQQhYmbPq8M_q2uGLILG9dsGazJvUoeJ3l7abTjZ9Ctz7yzknh3yIVyG7OyITUjh6qchkdKJVwer5zgDAVLHXmZ4q4zF2xKvTY7aztYtePIByzZEQv65DRpRrtzq-ektuLttx7RmE4dxEIjKeGBlTTsZrVTpsoLSFNi0-54Iw7MUDiXiYpNhVU727xPTiQRCGjbXEWZS29-8flS5l5YiNeqaWbJhgIXaqdFkxIbOV8djsbC3LNZElkugy6qeoZXB7Ho0iLBQPj1q8Ab816-eBKbOct2tVesTKuZnlHJllpsy3m5XoSZTCkXPaGuntExkc5L_R5eK6nQ6GF9hGWqM_3KKxIAzHDVir167wFhO7qIJKR7hlawpM5_H-iDW47o_-rnRdtP3OHsZGVX5iWb9T_k-4ZGJnIGY7_0xkcrEjHgohRcE6F59f9DDjOg" target="_blank">Hand-drawn Style + Grid Background</a></h4>
     <ul>
       <li>Grid background for easy alignment and proportional reference</li>
       <li>Supports four background types: white, black, transparent, grid</li>
