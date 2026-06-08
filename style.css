@@ -483,6 +483,8 @@ button.success { border-color: #4caf50; color: #4caf50; }
 .preview-viewport {
   flex: 1; overflow: hidden; position: relative;
   transition: background 0.2s, background-color 0.2s; cursor: grab;
+  /* 让触摸手势（拖拽/捏合）交给我们的 pointer 处理，而非浏览器滚动缩放 */
+  touch-action: none;
 }
 .preview-viewport:active { cursor: grabbing; }
 .preview-viewport.bg-white { background: #ffffff; }
