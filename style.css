@@ -133,6 +133,16 @@ body {
 .toolbar-btn:hover { background: var(--btn-hover); color: var(--text-primary); }
 .toolbar-btn.active { color: var(--accent); }
 
+/* ── Author link ─────────────────────────────────────────────────── */
+.toolbar__author {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 0 8px; width: auto; height: 28px;
+  text-decoration: none; font-size: 12px; font-family: var(--font-mono, monospace);
+  color: var(--text-secondary); opacity: 0.7;
+}
+.toolbar__author:hover { opacity: 1; color: var(--accent); background: var(--btn-hover); }
+.toolbar__author-text { white-space: nowrap; }
+
 /* ── Ctrl+K search trigger ───────────────────────────────────────── */
 .btn-cmdk {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1004,6 +1014,8 @@ kbd {
   .menubar { display: none; }
   .btn-cmdk { display: none; }
   .toolbar__mobile-more { display: inline-flex !important; }
+  .toolbar__author-text { display: none; }
+  .toolbar__author { padding: 0 4px; }
 
   .editor-layout { flex-direction: column; }
   #divider { width: 100%; height: 4px; cursor: row-resize; }
