@@ -1,5 +1,6 @@
 import mermaid from 'mermaid';
 import { inflate, inflateRaw } from 'pako';
+import { preprocessQuadrant } from './quadrant-preprocess';
 
 /**
  * 嵌入页支持的渲染选项
@@ -136,10 +137,14 @@ async function renderDiagram(code: string, options: RenderOptions = {}): Promise
   if (!el) return;
 
   try {
+    // quadrantChart CJK 预处理：把中文 label 替换为 ASCII placeholder，
+    // 渲染后再将 SVG 里的 placeholder 还原为原始中文，绕过 mermaid 词法器的 ASCII 限制
+    const { processed: processedCode, restore: restoreCjk } = preprocessQuadrant(code);
+
     // 每次渲染使用唯一 id，避免 mermaid 复用旧节点
-    const result = await mermaid.render('mermaid-svg-' + seq, code);
+    const result = await mermaid.render('mermaid-svg-' + seq, processedCode);
     if (seq !== renderSeq) return; // 已有更新的渲染请求，丢弃旧结果
-    el.innerHTML = result.svg;
+    el.innerHTML = restoreCjk(result.svg);
     normalizeSvgSize(el);
     setupInteractions(el);
     fitToContainer(el); // 自动缩放居中，避免中文等较宽内容溢出被裁切
