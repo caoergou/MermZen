@@ -21,6 +21,7 @@ function hasNonCoveredScript(code: string): boolean {
 // kalam/caveat/virgil 均通过 ensureHandDrawnFont() 按需注入
 const _injectedFonts = new Set<string>();
 let _xiaolaiLoaded = false;
+let _xiaolaiPromise: Promise<void> | null = null;
 
 const XIAOLAI_CSS_CANDIDATES = [
   'https://registry.npmmirror.com/@chinese-fonts/xiaolai/3.0.0/files/dist/Xiaolai/result.css',
@@ -28,26 +29,36 @@ const XIAOLAI_CSS_CANDIDATES = [
   'https://unpkg.com/@chinese-fonts/xiaolai@3.0.0/dist/Xiaolai/result.css',
 ];
 
-function ensureXiaolaiFont() {
-  if (_xiaolaiLoaded) return;
-  _xiaolaiLoaded = true;
+/**
+ * 注入小赖字体 CSS，并返回一个 Promise，在 CSS 解析完成后 resolve。
+ * 返回同一个 Promise 供多次 await，避免重复注入。
+ *
+ * 必须等 CSS link 的 load 事件触发后，@font-face 规则才进入 FontFaceSet，
+ * 此时再调 document.fonts.load("Xiaolai SC") 才能真正等到字体文件下载完毕。
+ * 若直接注入 link 后立即调 fonts.load()，CSS 可能尚未解析，导致 fonts.load()
+ * 拿不到该字族并立即 resolve——字体文件还没下载，Mermaid 就已开始渲染。
+ */
+function ensureXiaolaiFont(): Promise<void> {
+  if (_xiaolaiLoaded) return Promise.resolve();
+  if (_xiaolaiPromise) return _xiaolaiPromise;
 
-  // XIAOLAI_CSS_CANDIDATES[0] 是一个 CSS 文件（result.css），不是 woff2，
-  // 因此不能用 <link rel="preload" as="font">（类型不匹配会被浏览器丢弃并告警）。
-  // 直接以 stylesheet 注入，失败时按候选顺序回退到下一个 CDN。
-  const tryLoad = (index: number) => {
-    if (index >= XIAOLAI_CSS_CANDIDATES.length) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.crossOrigin = 'anonymous';
-    link.href = XIAOLAI_CSS_CANDIDATES[index];
-    link.onerror = () => {
-      link.remove();
-      tryLoad(index + 1);
+  _xiaolaiLoaded = true;
+  _xiaolaiPromise = new Promise<void>(resolve => {
+    // XIAOLAI_CSS_CANDIDATES[0] 是 CSS 文件，不能用 <link rel="preload" as="font">。
+    // 直接以 stylesheet 注入，失败时按候选顺序回退到下一个 CDN。
+    const tryLoad = (index: number) => {
+      if (index >= XIAOLAI_CSS_CANDIDATES.length) { resolve(); return; }
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.crossOrigin = 'anonymous';
+      link.href = XIAOLAI_CSS_CANDIDATES[index];
+      link.onload = () => resolve();
+      link.onerror = () => { link.remove(); tryLoad(index + 1); };
+      document.head.appendChild(link);
     };
-    document.head.appendChild(link);
-  };
-  tryLoad(0);
+    tryLoad(0);
+  });
+  return _xiaolaiPromise;
 }
 
 /**
@@ -183,7 +194,9 @@ export async function renderDiagram() {
   if (state.handDrawn && !noHandDrawn) {
     const preset = HAND_FONTS[state.handDrawnFont] || HAND_FONTS.kalam;
     ensureHandDrawnFont(state.handDrawnFont);
-    ensureXiaolaiFont();
+    // 先等 CSS link load 事件，确保 @font-face 规则已进入 FontFaceSet，
+    // 再调 fonts.load() 才能真正等到字体文件下载完毕
+    await ensureXiaolaiFont();
     try { await document.fonts.load('16px ' + (preset.label === 'Virgil' ? 'Virgil' : preset.label)); } catch (e) {}
     try { await document.fonts.load('16px "Xiaolai SC"'); } catch (e) {}
   }
