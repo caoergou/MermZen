@@ -370,6 +370,29 @@ window.addEventListener('message', (e: MessageEvent) => {
   }
 });
 
+/**
+ * 等待字体就绪，最多等待 timeout 毫秒后超时继续。
+ * 不等字体直接渲染会导致 Mermaid 用降级字体测量文字宽度，
+ * 造成节点尺寸算错、CJK 文字显示不完整的 bug（刷新后正常因字体已缓存）。
+ */
+async function waitForFonts(timeout = 3000): Promise<void> {
+  await Promise.race([
+    document.fonts.ready,
+    new Promise<void>(resolve => setTimeout(resolve, timeout)),
+  ]);
+  // 再额外等待已知字体的实际文件加载完成
+  const remaining = timeout - 500;
+  if (remaining > 0) {
+    await Promise.race([
+      Promise.all([
+        document.fonts.load('400 16px Kalam').catch(() => {}),
+        document.fonts.load('400 16px "Xiaolai SC"').catch(() => {}),
+      ]),
+      new Promise<void>(resolve => setTimeout(resolve, remaining)),
+    ]);
+  }
+}
+
 // 初始化：解析 URL 并渲染
 const initial = parseUrl();
 if (!initial.code) {
@@ -380,6 +403,9 @@ if (!initial.code) {
     showError('No diagram code found. Pass ?text=<mermaid> in the URL or postMessage a { type: "mermzen:render", code } to this frame.');
   }
 } else {
-  renderDiagram(initial.code, initial.options);
-  notifyParent({ type: 'mermzen:ready' });
+  // 等字体就绪后再渲染，避免 Mermaid layout 阶段用降级字体量出错误的文字宽度
+  waitForFonts().then(() => {
+    renderDiagram(initial.code!, initial.options);
+    notifyParent({ type: 'mermzen:ready' });
+  });
 }
