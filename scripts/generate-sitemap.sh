@@ -28,7 +28,14 @@ while IFS= read -r -d '' f; do
   else
     urls+=("$BASE_URL/${f#./}")
   fi
-done < <(find . -maxdepth 4 -name "*.html" -print0 | sort -z)
+done < <(find . -maxdepth 4 -name "*.html" \
+  -not -path "./node_modules/*" \
+  -not -path "./dist/*" \
+  -not -path "./test-results/*" \
+  -not -path "./dogfood-output/*" \
+  -not -path "./.playwright-mcp/*" \
+  -not -path "./blog-csdn/*" \
+  -print0 | sort -z)
 
 # Write sitemap.xml
 {
