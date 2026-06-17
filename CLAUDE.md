@@ -36,6 +36,13 @@ npx playwright test test-tour.spec.js
 - **Old JS files**: The root `modules/` directory was deleted after TS migration
 - **Scripts**: Build/utility scripts are in `scripts/` directory
 - **Blog**: Static blog in `blog/` directory
+- **SEO / sitemap**: `scripts/generate-sitemap.sh` builds `sitemap.xml` by scanning the
+  repo for `*.html`. It MUST exclude `node_modules/`, `dist/` and other artifact dirs —
+  otherwise third-party demo pages (e.g. `cytoscape-fcose/demo/*.html`, `tslib/*.html`)
+  get listed in the sitemap and crawled by Google, which 404s them in Search Console
+  (only `dist/` is deployed, so those paths don't exist on the live site). When adding a
+  new build/output dir, add it to the `find ... -not -path` excludes too. See commit
+  `391a65e`. Both `sitemap.xml` and `robots.txt` are gitignored and regenerated at deploy.
 
 ## Key Files
 
