@@ -12,20 +12,15 @@ import { writeFileSync, readFileSync, mkdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { deflateSync } from 'zlib';
 
+// Resolved as a normal ESM import: works when `npm install puppeteer` was run
+// anywhere from the current directory up to an ancestor (including a project
+// root that contains this skill, e.g. after `npx skills add`).
 let puppeteer;
 try {
   puppeteer = await import('puppeteer');
 } catch {
-  try {
-    const { createRequire } = await import('module');
-    const { execSync } = await import('child_process');
-    const globalDir = execSync('npm root -g', { encoding: 'utf-8' }).trim();
-    const require = createRequire(globalDir + '/');
-    puppeteer = require('puppeteer');
-  } catch {
-    console.error('Error: puppeteer is required. Install it with: npm install puppeteer');
-    process.exit(1);
-  }
+  console.error('Error: puppeteer is required. Install it with: npm install puppeteer');
+  process.exit(1);
 }
 
 const args = process.argv.slice(2);
@@ -47,9 +42,15 @@ Options:
   --font-size <px>     Font size in pixels (default: 16)
   --bg <color>         transparent, grid, or any CSS color (default: transparent)
   --scale <n>          Device scale factor for PNG (default: 2)
-  --width <px>         Viewport width (default: 1400)
-  --height <px>        Viewport height (default: 900)
-  --base-url <url>     MermZen instance URL (default: https://eric.run.place/MermZen)`);
+  --width <px>         Minimum PNG canvas width; grows to fit large diagrams (default: 1400)
+  --height <px>        Minimum PNG canvas height; grows to fit large diagrams (default: 900)
+  --base-url <url>     MermZen instance URL (default: https://eric.run.place/MermZen)
+
+Notes:
+  --width/--height/--scale only affect PNG output; SVG always exports at its
+  natural vector size. Diagrams always render at 1:1 scale (never shrunk to
+  fit), so PNG resolution matches the diagram's true size regardless of
+  --width/--height.`);
   process.exit(0);
 }
 
@@ -105,6 +106,31 @@ if (format === 'svg') {
   if (!svg) throw new Error('SVG element not found');
   writeFileSync(output, svg, 'utf-8');
 } else {
+  // embed.html renders at natural 1:1 scale in export mode (no shrink-to-fit),
+  // but grow the viewport to the diagram's real size anyway so large diagrams
+  // never get clipped by the initial --width/--height viewport.
+  const natural = await page.evaluate(() => {
+    const svg = document.querySelector('#diagram svg');
+    if (!svg) return null;
+    return {
+      w: parseFloat(svg.style.width) || svg.getBoundingClientRect().width,
+      h: parseFloat(svg.style.height) || svg.getBoundingClientRect().height,
+    };
+  });
+  if (natural) {
+    const pad = 32;
+    const neededWidth = Math.ceil(natural.w) + pad * 2;
+    const neededHeight = Math.ceil(natural.h) + pad * 2;
+    if (neededWidth > width || neededHeight > height) {
+      await page.setViewport({
+        width: Math.max(width, neededWidth),
+        height: Math.max(height, neededHeight),
+        deviceScaleFactor: scale,
+      });
+      await new Promise(r => setTimeout(r, 200));
+    }
+  }
+
   const el = await page.$('#diagram svg');
   if (!el) throw new Error('SVG element not found');
   await el.screenshot({ path: output, type: 'png' });

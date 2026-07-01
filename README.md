@@ -259,7 +259,12 @@ node skills/mermzen-render/scripts/render.mjs \
 | `--font` | `kalam` | `kalam` or `caveat` (CJK auto-uses Xiaolai SC) |
 | `--bg` | `transparent` | CSS color, `transparent`, or `grid` |
 | `--scale` | `2` | Device scale factor for PNG |
-| `--width` | `1400` | Viewport width (px) |
-| `--height` | `900` | Viewport height (px) |
+| `--width` | `1400` | Minimum PNG canvas width (px); grows to fit large diagrams |
+| `--height` | `900` | Minimum PNG canvas height (px); grows to fit large diagrams |
 
-Run `node skills/mermzen-render/scripts/render.mjs --help` for more details.
+Diagrams always render at their true 1:1 size (never shrunk to fit), so PNG
+resolution reflects the diagram's real size regardless of `--width`/`--height`.
+SVG output is always the natural vector size — `--width`/`--height`/`--scale`
+don't apply to it. Run `node skills/mermzen-render/scripts/render.mjs --help`
+for more details. For diagram styling tips and common syntax pitfalls, see
+[skills/mermzen-render/references/](skills/mermzen-render/references/).

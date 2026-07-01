@@ -186,13 +186,24 @@ function fitToContainer(el: HTMLElement): void {
   const svg = el.querySelector('svg') as SVGSVGElement | null;
   if (!container || !svg) return;
 
+  const pad = 16; // 留出边距，避免贴边
+
+  // 导出模式（CLI/自动化截图）下始终按 1:1 自然尺寸渲染，不做适配容器的缩放。
+  // 否则大图会被缩小以适配任意 viewport，导出的 PNG 分辨率会跟着缩水。
+  if (document.body.classList.contains('export-mode')) {
+    view.scale = 1;
+    view.posX = pad;
+    view.posY = pad;
+    applyView(el);
+    return;
+  }
+
   const cw = container.clientWidth;
   const ch = container.clientHeight;
   const w = parseFloat(svg.style.width) || svg.getBoundingClientRect().width;
   const h = parseFloat(svg.style.height) || svg.getBoundingClientRect().height;
   if (!w || !h || !cw || !ch) return;
 
-  const pad = 16; // 留出边距，避免贴边
   let scale = Math.min((cw - pad * 2) / w, (ch - pad * 2) / h);
   scale = Math.max(MIN_SCALE, Math.min(scale, MAX_FIT_SCALE));
   view.scale = scale;

@@ -5,8 +5,7 @@ description: >
   and multiple themes. Use when asked to generate, render, or export a Mermaid diagram as
   an image file. Triggers: "render diagram", "mermaid to svg", "mermaid to png",
   "generate diagram", "draw flowchart", "draw sequence diagram", "export diagram".
-compatibility: Requires Node.js 18+ and Puppeteer (auto-installed on first run via npx)
-allowed-tools: Bash(node *) Bash(npx *)
+compatibility: Requires Node.js 18+ and a local Puppeteer install (npm install puppeteer)
 ---
 
 # MermZen Render
@@ -17,12 +16,18 @@ No need to clone any repository — the script uses the deployed MermZen instanc
 
 ## Prerequisites
 
-The render script requires **Node.js 18+** and **Puppeteer**. Install Puppeteer if not
-already available:
+The render script requires **Node.js 18+** and **Puppeteer**, installed locally
+(not globally — a global install won't be found by this script's module
+resolution):
 
 ```bash
-npm install -g puppeteer
+npm install puppeteer
 ```
+
+Run this from your project directory (or anywhere that's an ancestor
+directory of wherever this skill is installed) — Node resolves `puppeteer`
+by walking up from the script's location, so a local install anywhere above
+it in the directory tree works.
 
 ## Usage
 
@@ -35,6 +40,15 @@ node scripts/render.mjs --code "graph TD; A-->B-->C" --output diagram.svg
 ```bash
 node scripts/render.mjs --file diagram.mmd --output output.png --format png
 ```
+
+### Workflow: render, then look at the result
+
+Syntax-valid Mermaid can still render into something visually broken —
+clipped labels, a cramped layout, or the wrong orientation. After rendering,
+view the output image before reporting success. If rendering fails outright,
+check [references/syntax-guide.md](references/syntax-guide.md) for the likely
+cause, apply one targeted fix, and retry once before reporting the error to
+the user.
 
 ### Parameters
 
@@ -50,9 +64,15 @@ node scripts/render.mjs --file diagram.mmd --output output.png --format png
 | `--font-size`| `16`                  | Font size in pixels                                    |
 | `--bg`       | `transparent`         | CSS color, `transparent`, or `grid`                    |
 | `--scale`    | `2`                   | Device scale factor for PNG (higher = sharper)         |
-| `--width`    | `1400`                | Viewport width (px)                                    |
-| `--height`   | `900`                 | Viewport height (px)                                   |
+| `--width`    | `1400`                | Minimum PNG canvas width (px); grows to fit large diagrams |
+| `--height`   | `900`                 | Minimum PNG canvas height (px); grows to fit large diagrams |
 | `--base-url` | `https://eric.run.place/MermZen` | Override the MermZen instance URL         |
+
+`--width`/`--height`/`--scale` only affect PNG output — SVG always exports at
+its natural vector size. Diagrams always render at their true 1:1 size (never
+shrunk to fit a small canvas), so PNG resolution reflects the diagram's real
+size regardless of `--width`/`--height`; they only set a *minimum* canvas,
+useful for adding extra padding around a small diagram.
 
 Run `node scripts/render.mjs --help` for the full usage info.
 
@@ -109,15 +129,20 @@ node scripts/render.mjs \
 4. Extracts the SVG from the DOM or takes a PNG screenshot
 5. Writes the result to the output file
 
-## Diagram guide
+## References
 
-For supported diagram types, styling tips, and best practices for creating
-beautiful diagrams, see [references/diagram-guide.md](references/diagram-guide.md).
+- [references/style-guide.md](references/style-guide.md) — supported diagram
+  types, node-count thresholds, direction/layout choices, and styling tips
+  for making diagrams look good
+- [references/syntax-guide.md](references/syntax-guide.md) — reserved words,
+  quoting rules, and other syntax pitfalls that break rendering; read this
+  first if a render fails
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
-| `Cannot find module 'puppeteer'` | Run `npm install -g puppeteer` |
+| `Cannot find module 'puppeteer'` | Run `npm install puppeteer` (local, not global — see Prerequisites) |
+| Render hangs / times out with no error | Usually a Mermaid syntax error (e.g. a reserved word, unquoted special character) — check [references/syntax-guide.md](references/syntax-guide.md) |
 | Timeout / blank output | Check network connectivity (the script fetches from eric.run.place) |
 | CJK text clipped | Re-run — font CDN may have been slow on first load |
