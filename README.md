@@ -267,4 +267,5 @@ resolution reflects the diagram's real size regardless of `--width`/`--height`.
 SVG output is always the natural vector size — `--width`/`--height`/`--scale`
 don't apply to it. Run `node skills/mermzen-render/scripts/render.mjs --help`
 for more details. For diagram styling tips and common syntax pitfalls, see
-[skills/mermzen-render/references/](skills/mermzen-render/references/).
+[skills/mermzen-render/references/INDEX.md](skills/mermzen-render/references/INDEX.md)
+— one reference file per diagram type.

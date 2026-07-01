@@ -41,14 +41,21 @@ node scripts/render.mjs --code "graph TD; A-->B-->C" --output diagram.svg
 node scripts/render.mjs --file diagram.mmd --output output.png --format png
 ```
 
-### Workflow: render, then look at the result
+### Workflow
 
-Syntax-valid Mermaid can still render into something visually broken —
-clipped labels, a cramped layout, or the wrong orientation. After rendering,
-view the output image before reporting success. If rendering fails outright,
-check [references/syntax-guide.md](references/syntax-guide.md) for the likely
-cause, apply one targeted fix, and retry once before reporting the error to
-the user.
+1. Before writing Mermaid code, check
+   [references/INDEX.md](references/INDEX.md) for the file matching your
+   diagram type — it covers both styling tips and syntax pitfalls specific
+   to that type. Also check [references/version-limits.md](references/version-limits.md)
+   before using any feature you're not 100% sure is in Mermaid 11.13.0.
+2. Render, then **look at the output image** before reporting success.
+   Syntax-valid Mermaid can still render into something visually broken —
+   clipped labels, a cramped layout, a line drawn through a label, the wrong
+   orientation.
+3. If rendering fails outright, check
+   [references/general-syntax.md](references/general-syntax.md) and the
+   diagram type's own file for the likely cause, apply one targeted fix, and
+   retry once before reporting the error to the user.
 
 ### Parameters
 
@@ -131,18 +138,17 @@ node scripts/render.mjs \
 
 ## References
 
-- [references/style-guide.md](references/style-guide.md) — supported diagram
-  types, node-count thresholds, direction/layout choices, and styling tips
-  for making diagrams look good
-- [references/syntax-guide.md](references/syntax-guide.md) — reserved words,
-  quoting rules, and other syntax pitfalls that break rendering; read this
-  first if a render fails
+Reference material is split **one file per diagram type** so you only load
+what's relevant — start at [references/INDEX.md](references/INDEX.md),
+which maps each diagram type to its file and links the cross-cutting docs
+([general-syntax.md](references/general-syntax.md),
+[version-limits.md](references/version-limits.md)).
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
 | `Cannot find module 'puppeteer'` | Run `npm install puppeteer` (local, not global — see Prerequisites) |
-| Render hangs / times out with no error | Usually a Mermaid syntax error (e.g. a reserved word, unquoted special character) — check [references/syntax-guide.md](references/syntax-guide.md) |
+| Render hangs / times out with no error | Usually a Mermaid syntax error (e.g. a reserved word, unquoted special character) — check [references/general-syntax.md](references/general-syntax.md) and the diagram type's file linked from [references/INDEX.md](references/INDEX.md) |
 | Timeout / blank output | Check network connectivity (the script fetches from eric.run.place) |
 | CJK text clipped | Re-run — font CDN may have been slow on first load |

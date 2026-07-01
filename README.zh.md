@@ -255,5 +255,5 @@ node skills/mermzen-render/scripts/render.mjs \
 | `--width` | `1400` | PNG 画布最小宽度（px）；大图会自动撑大 |
 | `--height` | `900` | PNG 画布最小高度（px）；大图会自动撑大 |
 
-图表始终按真实 1:1 尺寸渲染（不会为适配小画布而被压缩），所以 PNG 分辨率取决于图表本身大小，与 `--width`/`--height` 无关；这两个参数只是设置最小画布尺寸。SVG 输出始终是矢量自然尺寸，不受 `--width`/`--height`/`--scale` 影响。运行 `node skills/mermzen-render/scripts/render.mjs --help` 查看完整用法。图表美化技巧和常见语法陷阱见 [skills/mermzen-render/references/](skills/mermzen-render/references/)。
+图表始终按真实 1:1 尺寸渲染（不会为适配小画布而被压缩），所以 PNG 分辨率取决于图表本身大小，与 `--width`/`--height` 无关；这两个参数只是设置最小画布尺寸。SVG 输出始终是矢量自然尺寸，不受 `--width`/`--height`/`--scale` 影响。运行 `node skills/mermzen-render/scripts/render.mjs --help` 查看完整用法。图表美化技巧和常见语法陷阱见 [skills/mermzen-render/references/INDEX.md](skills/mermzen-render/references/INDEX.md)——按图表类型拆分为独立文件。
 
