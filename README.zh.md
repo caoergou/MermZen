@@ -221,26 +221,23 @@ npx skills add caoergou/MermZen
 
 支持 30+ 种 Agent，包括 Claude Code、Cursor、GitHub Copilot、Gemini CLI、VS Code、OpenCode 等。完整列表见 [skills.sh](https://skills.sh)。
 
-### 直接使用（不装 Skill）
+### 快速使用（不装 Skill）
 
-也可以直接使用渲染脚本，只需要 Node.js 和 Puppeteer：
+只渲染一次的话，可以用 `npx skills use` 生成一次性提示词，无需安装：
+
+```bash
+npx skills use caoergou/MermZen@mermzen-render | claude
+npx skills use caoergou/MermZen@mermzen-render | cursor
+```
+
+或者克隆仓库后直接使用渲染脚本（需要 Puppeteer）：
 
 ```bash
 npm install puppeteer  # 首次使用需安装
-
-# Mermaid 代码 → SVG（默认手绘风格）
 node skills/mermzen-render/scripts/render.mjs \
   --code "graph TD; A-->B-->C" \
   --output diagram.svg
-
-# 从 .mmd 文件 → PNG
-node skills/mermzen-render/scripts/render.mjs \
-  --file my-diagram.mmd \
-  --output diagram.png \
-  --format png
 ```
-
-脚本通过 MermZen 的线上 embed 页面渲染——无需本地构建。
 
 ### 参数
 
@@ -250,7 +247,13 @@ node skills/mermzen-render/scripts/render.mjs \
 | `--file` | — | `.mmd` 文件路径（与 `--code` 二选一） |
 | `--output` | `./mermzen-output.<格式>` | 输出文件路径 |
 | `--format` | `svg` | `svg` 或 `png` |
+| `--theme` | (default) | `default`、`dark`、`forest`、`neutral`、`base` |
+| `--look` | `handDrawn` | `handDrawn` 或 `classic` |
+| `--font` | `kalam` | `kalam` 或 `caveat`（中文自动使用小赖字体） |
 | `--bg` | `transparent` | CSS 颜色、`transparent`、`grid` |
-| `--width` | `1400` | PNG 视口宽度（px） |
-| `--height` | `900` | PNG 视口高度（px） |
+| `--scale` | `2` | PNG 设备缩放系数 |
+| `--width` | `1400` | 视口宽度（px） |
+| `--height` | `900` | 视口高度（px） |
+
+运行 `node skills/mermzen-render/scripts/render.mjs --help` 查看完整用法。
 

@@ -38,22 +38,29 @@ node scripts/render.mjs --file diagram.mmd --output output.png --format png
 
 ### Parameters
 
-| Parameter  | Default               | Description                                          |
-|------------|-----------------------|------------------------------------------------------|
-| `--code`   | —                     | Inline Mermaid code (mutually exclusive with `--file`) |
-| `--file`   | —                     | Path to a `.mmd` file containing Mermaid code        |
-| `--output` | `./mermzen-output.<fmt>` | Output file path                                  |
-| `--format` | `svg`                 | `svg` or `png`                                       |
-| `--bg`     | `transparent`         | CSS color, `transparent`, or `grid`                  |
-| `--width`  | `1400`                | PNG viewport width (px)                              |
-| `--height` | `900`                 | PNG viewport height (px)                             |
-| `--base-url` | `https://eric.run.place/MermZen` | Override the MermZen instance URL       |
+| Parameter    | Default               | Description                                            |
+|--------------|-----------------------|--------------------------------------------------------|
+| `--code`     | —                     | Inline Mermaid code (mutually exclusive with `--file`) |
+| `--file`     | —                     | Path to a `.mmd` file containing Mermaid code          |
+| `--output`   | `./mermzen-output.<fmt>` | Output file path                                    |
+| `--format`   | `svg`                 | `svg` or `png`                                         |
+| `--theme`    | (mermaid default)     | `default`, `dark`, `forest`, `neutral`, `base`         |
+| `--look`     | `handDrawn`           | `handDrawn` or `classic`                               |
+| `--font`     | `kalam`               | `kalam` or `caveat` (CJK auto-uses Xiaolai SC)        |
+| `--font-size`| `16`                  | Font size in pixels                                    |
+| `--bg`       | `transparent`         | CSS color, `transparent`, or `grid`                    |
+| `--scale`    | `2`                   | Device scale factor for PNG (higher = sharper)         |
+| `--width`    | `1400`                | Viewport width (px)                                    |
+| `--height`   | `900`                 | Viewport height (px)                                   |
+| `--base-url` | `https://eric.run.place/MermZen` | Override the MermZen instance URL         |
 
-### Available themes and fonts
+Run `node scripts/render.mjs --help` for the full usage info.
 
-The MermZen instance renders with **hand-drawn style** by default, using:
-- **Kalam** font for Latin text
-- **Xiaolai SC** font for CJK (Chinese/Japanese/Korean) — automatic, no config needed
+### Themes, fonts, and styles
+
+- **Hand-drawn** is the default look — set `--look classic` for standard lines
+- **Kalam** font for Latin text, **Xiaolai SC** for CJK — automatic, no config needed
+- 5 color themes: `default`, `dark`, `forest`, `neutral`, `base`
 
 ### Examples
 
@@ -101,6 +108,11 @@ node scripts/render.mjs \
 3. Waits for Mermaid to render and fonts to load
 4. Extracts the SVG from the DOM or takes a PNG screenshot
 5. Writes the result to the output file
+
+## Diagram guide
+
+For supported diagram types, styling tips, and best practices for creating
+beautiful diagrams, see [references/diagram-guide.md](references/diagram-guide.md).
 
 ## Troubleshooting
 

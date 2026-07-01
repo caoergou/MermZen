@@ -228,26 +228,23 @@ npx skills add caoergou/MermZen
 
 This works with 30+ agents including Claude Code, Cursor, GitHub Copilot, Gemini CLI, VS Code, OpenCode, and more. See [skills.sh](https://skills.sh) for the full list.
 
-### Direct usage (without the skill)
+### Quick start (without installing the skill)
 
-You can also use the render script directly. It only requires Node.js and Puppeteer:
+If you just want to render a single diagram, use `npx skills use` to generate a one-shot prompt — no install needed:
+
+```bash
+npx skills use caoergou/MermZen@mermzen-render | claude
+npx skills use caoergou/MermZen@mermzen-render | cursor
+```
+
+Or clone the repo and run the render script directly (requires Puppeteer):
 
 ```bash
 npm install puppeteer  # one-time setup
-
-# Mermaid code → SVG (hand-drawn style by default)
 node skills/mermzen-render/scripts/render.mjs \
   --code "graph TD; A-->B-->C" \
   --output diagram.svg
-
-# From .mmd file → PNG
-node skills/mermzen-render/scripts/render.mjs \
-  --file my-diagram.mmd \
-  --output diagram.png \
-  --format png
 ```
-
-The script renders via MermZen's online embed page — no local build needed.
 
 ### Parameters
 
@@ -257,6 +254,12 @@ The script renders via MermZen's online embed page — no local build needed.
 | `--file` | — | Path to `.mmd` file (alternative to `--code`) |
 | `--output` | `./mermzen-output.<fmt>` | Output file path |
 | `--format` | `svg` | `svg` or `png` |
+| `--theme` | (default) | `default`, `dark`, `forest`, `neutral`, `base` |
+| `--look` | `handDrawn` | `handDrawn` or `classic` |
+| `--font` | `kalam` | `kalam` or `caveat` (CJK auto-uses Xiaolai SC) |
 | `--bg` | `transparent` | CSS color, `transparent`, or `grid` |
-| `--width` | `1400` | PNG viewport width (px) |
-| `--height` | `900` | PNG viewport height (px) |
+| `--scale` | `2` | Device scale factor for PNG |
+| `--width` | `1400` | Viewport width (px) |
+| `--height` | `900` | Viewport height (px) |
+
+Run `node skills/mermzen-render/scripts/render.mjs --help` for more details.

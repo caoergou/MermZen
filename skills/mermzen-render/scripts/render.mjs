@@ -31,12 +31,39 @@ try {
 const args = process.argv.slice(2);
 const get = (flag) => { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : undefined; };
 
+if (args.includes('--help') || args.includes('-h')) {
+  console.log(`MermZen CLI — render Mermaid diagrams with hand-drawn style
+
+Usage: node render.mjs --code "graph TD; A-->B" --output out.svg
+
+Options:
+  --code <string>      Mermaid code (mutually exclusive with --file)
+  --file <path>        Path to a .mmd file
+  --output <path>      Output file path (default: ./mermzen-output.<format>)
+  --format <fmt>       svg or png (default: svg)
+  --theme <name>       default, dark, forest, neutral, base
+  --look <style>       handDrawn or classic (default: handDrawn)
+  --font <name>        kalam, caveat (default: kalam; CJK auto-uses Xiaolai SC)
+  --font-size <px>     Font size in pixels (default: 16)
+  --bg <color>         transparent, grid, or any CSS color (default: transparent)
+  --scale <n>          Device scale factor for PNG (default: 2)
+  --width <px>         Viewport width (default: 1400)
+  --height <px>        Viewport height (default: 900)
+  --base-url <url>     MermZen instance URL (default: https://eric.run.place/MermZen)`);
+  process.exit(0);
+}
+
 const code = get('--code') || (get('--file') ? readFileSync(resolve(get('--file')), 'utf-8').trim() : null);
 if (!code) { console.error('Error: provide --code or --file'); process.exit(1); }
 
 const format = (get('--format') || 'svg').toLowerCase();
 const output = resolve(get('--output') || `mermzen-output.${format}`);
 const bg = get('--bg') || 'transparent';
+const theme = get('--theme');
+const look = get('--look');
+const font = get('--font');
+const fontSize = get('--font-size');
+const scale = parseInt(get('--scale') || '2', 10);
 const width = parseInt(get('--width') || '1400', 10);
 const height = parseInt(get('--height') || '900', 10);
 const BASE = get('--base-url') || 'https://eric.run.place/MermZen';
@@ -45,14 +72,21 @@ const BASE = get('--base-url') || 'https://eric.run.place/MermZen';
 const payload = JSON.stringify({ v: 2, c: code, ...(bg !== 'transparent' && { bg }) });
 const compressed = deflateSync(Buffer.from(payload, 'utf-8'));
 const encoded = compressed.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
-const url = `${BASE}/embed.html?export=1#${encoded}`;
+
+// Build URL with query params for style overrides
+const params = new URLSearchParams({ export: '1' });
+if (theme) params.set('theme', theme);
+if (look) params.set('look', look);
+if (font) params.set('font', font);
+if (fontSize) params.set('fontSize', fontSize);
+const url = `${BASE}/embed.html?${params}#${encoded}`;
 
 mkdirSync(dirname(output), { recursive: true });
 
 const launch = puppeteer.default?.launch ?? puppeteer.launch;
 const browser = await launch.call(puppeteer.default ?? puppeteer, { headless: true, args: ['--no-sandbox'] });
 const page = await browser.newPage();
-await page.setViewport({ width, height, deviceScaleFactor: 2 });
+await page.setViewport({ width, height, deviceScaleFactor: scale });
 
 console.log(`Rendering ${format.toUpperCase()}...`);
 await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
