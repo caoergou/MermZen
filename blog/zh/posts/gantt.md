@@ -128,10 +128,10 @@ gantt
     dateFormat YYYY-MM-DD
     section 开发
     后端开发  : be, 2026-03-01, 7d
-    前端开发  : after be, 5d
-    联调测试  : after 前端开发, 3d
+    前端开发  : fe, after be, 5d
+    联调测试  : after fe, 3d
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIFacml2Tm5yk83dPwtH8iROzphL7nq9dDRBQUrBSSUnUUjAyMzHQNjHUNDHUUzFOg6jp7UdQlppWkFoFVm0JVvGic8mJD87Ot3S_WT0WoQcano2CcolQLAA6XSH0" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIFacml2Tm5yk83dPwtH8iROzphL7nq9dDRBQUrBSSUnUUjAyMzHQNjHUNDHUUzFOg6jp7UdSlpeooJKaVpBaBdZhCVb1onPJiQ_Ozrd0v1k8FqYKoAKk1TlGqBQAo2EH9" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 `after 任务名` 表示在指定任务完成后才开始，实现依赖链。给任务指定 ID（如 `be`），方便其他任务引用。
 
@@ -168,10 +168,10 @@ gantt
     需求分析    : crit, req, 2026-03-01, 3d
     后端开发    : crit, be, after req, 5d
     前端开发    : fe, after req, 4d
-    联调测试    : crit, after be, 2d
-    上线部署    : crit, after 联调测试, 1d
+    联调测试    : crit, test, after be, 2d
+    上线部署    : crit, after test, 1d
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJUwCClMSSVLf8otzEEoVIIND19dV1cYFIFacml2Tm5yk8bd38csq6F9vXP93X8nzJrif7uiHyL-c0PNvY9LSj7dm8CSC-lUJyUWaJjkJRaqGOgpGBkZmugbGugaGOgnEKRMPTCX3PV69_uqfhaf9EZA1JqToKiWklqUUQraYw5Z29aMrTUBWaQBW-aJzyYkPzs63dL9ZPRTYXohRkuhFU5ZMdXc937X_ZvOL53k2YKpHN0VEwTFGqBQAy0nsC" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUEhJLEl1yy_KTSxRiIyMjNT19dV1cYFIFacml2Tm5yk8bd38csq6F9vXP93X8nzJrif7uiHyL-c0PNvY9LSj7dm8CSC-lUJyUWaJjkJRaqGOgpGBkZmugbGugaGOgnEKRMPTCX3PV69_uqfhaf9EZA1JqToKiWklqUUQraYw5Z29aMrTUBWaQBW-aJzyYkPzs63dL9ZPRTa3JLW4BKYBZIcRVP2THV3Pd-1_2bzi-d5NyOohKiG6DFOUagECC3Zk" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 上例中，**需求分析 → 后端开发 → 联调测试 → 上线部署** 构成关键路径（共 11 天），而前端开发可以与后端开发并行，不影响总工期。
 
@@ -222,10 +222,10 @@ gantt
 
     section 测试与上线
     功能测试        : crit,   test,   after ci,   3d
-    性能检查        : crit,           after test, 1d
-    正式上线        : milestone,      after 性能检查, 0d
+    性能检查        : crit,   perf,   after test, 1d
+    正式上线        : milestone,      after perf, 0d
 ```
-<a href="https://eric.run.place/MermZen/#eJyFkVFLwlAUx7_KYc9bzBk--BZF4IOPPSx8GdstRjpru1oQwai0UFQKEorKlkRBNOkhsND8Mt5tfotwZ5rpQ_flwjn39z___7mHXJFLSjynckluWzEozRgAAFSnWQJpYuY2iQGsdsPcR1ZpBSd9KMaWRAhch51f4ltNoWQ9b-YUCrIsy0I6LaytYYscqNmCRizYJ2SHGJqVMbBhEZXqeQNGt7b3fjzs1gP3O3AdbGIx6Jwy14HoJEHLG4QHAJPsjS-QRCkhiHFBjPEgaUhupIDVW-y-inJzZEEPQVC2KDEjnXhEIjA_M6dniUUjfEqijqjNh2E9mzUusIYr814c726AdVRUVKoXCQ90N8vPKy5HXrzmmf_6wMol5n76vSYrXyM7OYpJF9hExK6EVixYTcGoVPP77gyn_smPDqSFFN5HNehcDbv1Ybfifw2iOOHfY-t3Paqph04oscIbhXHMZLGe_Twm27bXelokp5HQUqgTm5BvbdZroIv_vmR2Cg-ixh39AFPuD8E" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyFkUFLAlEQx7_KsOc11jU8eIsk8OCxg-Fl2R1jSVfbfVoQgVRaKCoFCUVlJlEQrXQILDS_jG9dv0W4s2bpobkMzLzff_4z70AoCBFZFFQhImwrBmNJAwCA6SyNEEczs4UG8No1tx94peUeD6AQXJHAtdv87ILeagrDjayZURgkEolEIB4PRKPUwn01ndfQgj3EHTQ0K2lQw0KV6VkDJjdF5-1o1Ku79pdrt6lJRbd7wu02-BEBLWugCAAm7k4TyJIcDkihgBQUQdaI3IwBr7f4XZXkFsi87oGgpBiavk7IJwlYnJnR02gxH_8hSUfSFpfh_SJvnFONTuY8t53bIdVJUVGZXkARWC4tLiqu-l6c5un45Z6XS9z-GPebvHxF7CwUky2xYZ9d86xYsB6DSak2Hti_OPXP_uRAXtrCea-63ctRrz7qVcafQ38d7--pNT-PauqeE4aWl0mYxswO6xSfpmSn6LQel8kcmqk5STrBGfna4f0GufjvS0hH0oTDbyvrCj8" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## 最佳实践
 
@@ -250,14 +250,14 @@ gantt
     section 开发
     核心功能     : crit, active, core, after split, 5d
     次要功能     : active, minor, after split, 7d
-    代码审查     : after core, after minor, 2d
+    代码审查     : review, after core minor, 2d
     
     section 交付
-    集成测试     : crit, test, after 代码审查, 3d
-    发布准备     : after test, 1d
-    v1.0发布     : milestone, release, after 发布准备, 0d
+    集成测试     : crit, test, after review, 3d
+    发布准备     : prep, after test, 1d
+    v1.0发布     : milestone, release, after prep, 0d
 ```
-<a href="https://eric.run.place/MermZen/#eJxtkM1OwkAUhfc8xTxAa0r9S1wTdzyAy6ZzNY2lJe2ILkFMIbAQTUxMJAICulGMIURCRV6mM9S3cJy2hKqzmMzcOd-5Z-6RZhGSQXwRg5iAwsVL4PfpR5leXrF2OZiP6eg-fJ8sB7PgsymEWCOwbzsFjaADvuR8Xs7lxAuc6eYJBhedAhyDhV1RFZsLOjFsC4VPF7R-LUpf7TJ7O2cP42XL-7mjPYRtCyRUNDVLQqqi7sjKlqxk-RkLIvB92uixpkfracItmgaRkHZIwInxLP7bPPqWKLHulC6qtNEJq_PYSneEB5eWuKVuO5A4xvbbkSV77oWPlRSaQAXDsp1f1G6Svb_sVuioxzrDhBKy9UYxr_6TPZgNAv82Gtydx-otNmmGrzep7ATc1RTW-0loM3Lkv6fTKq15dFBLhYjIeGal7IYSKWNNwTD5u5i0AyZo7irwuqGEFJz5Bhe25hw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxtkF9LwlAYxr_KYddbzPUPvJbu_ACDbsb2FqO5je00gwg0Y4peqEEQJKlpdVNGiCSa-WV2jutbhJ4zwfDmwHnP83ve8zyXQiCkFVHQhbRwqtkYH9sIIYRNbAGK5-_RtEe-C6TepK1CNBuSwWP8NVr0J9FPjSkNDcOR4-U0jFRVVaVsVspk2BNc6Na5AT7KA5yBbfhszE4fdGw6Nopfb0jlls1-WwX6eU2fhotGuLyjNDIcG0TkWpotIkVWDiR5T5JTIlIMhkTTKal2aS0klU3Edy0Ti0g7weBxPmVs-wCLx2a0MybzEqm249KMu-neykbHZgAi0h0PElO-YZ-70rdu_FLcYBMqZ9qO9w87XAfoLTpFMujS9jPHPAhMyCf65crEQdmaIJr0o-k9r_AhpJUGHdXij7uNBBj8dR3Jgl1uR-pNMi6Rckj6ZQ65HriJnKFJe0FqR2YAl-ZMC3y8Kt0DCzR_3RAzkQ3h6g94Uew-" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 **依赖设计原则**：
 1. **避免循环依赖** — A 依赖 B，B 又依赖 A，会导致无法排期

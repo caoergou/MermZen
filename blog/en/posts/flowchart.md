@@ -77,9 +77,9 @@ graph TD
     B --> C{left ≤ right?}
     C -->|No| D[Return -1 not found]
     C -->|Yes| E[Calculate mid = left + right / 2]
-    E --> F{arr[mid] == target?}
+    E --> F{"arr[mid] == target?"}
     F -->|Yes| G[Return mid]
-    F -->|No| H{arr[mid] < target?}
+    F -->|No| H{"arr[mid] < target?"}
     H -->|Yes| I[left = mid + 1]
     H -->|No| J[right = mid - 1]
     I --> C
@@ -87,7 +87,7 @@ graph TD
     D --> K([End])
     G --> K
 ```
-<a href="https://eric.run.place/MermZen/#eJxdkMFOwzAQRH9l5FOr1oJGiEOFQTRJmxSJA3BBbg5W66aWgoOMw4Gk_05i0yRib7v7dma0Nfkmy2BO9mRJciM-T3iLdhptPU74qxXGZlNQeo8VT7WyShTqR6KQR8uu5zAqP1mm6SLzNyuHhnW3x64KgtsbzzycPRB2QPNcNoj4i7SV0aAL6NLiWFb6kI2pd_nVIOahKPZVIazEhzqAOW_MvCyuEPzdxM56XQtjeAtmYAxt_Fz23utBdXMx78jxtkuWDBp3_ySSQSLlLghzqWa4fCDpZbbcR_QE7YnU_8g323ETueZpwuP2E1M_2_gZOf8CsXF7Gw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxlkE1uwjAUhK8y8goEUYElqotKEkio1EXbTeV4YRETLAUHuU4XTThA79GT9SRVbH4idTlv5n1v9BrySeazMdmSOSmMOO7xFmUaAB4H7NUKY_kQQfCAJUu1skqU6kuilDtLJ2MYVewt1cGU-52li4ZN5-P3-8cHFifvhp3bPlctIvYibW00gil0ZbGrap3zfupdfrSIWSjKbV0KK3FQOag7jJHH4g6z807s7q6ajAhj2EHlHJTCClNIu8jI-f7qRl5fCnTZvtu1S_qc-3-Y5IZJmStEXbsRLm9IrqgN81V9IrgmUv8oLzZ9ETnxNGCxzvnQz9Z-Rk5_sDF9gw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## Declaring a Chart
 
