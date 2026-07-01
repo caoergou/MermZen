@@ -207,3 +207,55 @@ window.addEventListener('message', (e) => {
 
 所有依赖本地打包，运行时零 CDN 依赖。
 
+---
+
+## 命令行渲染（AI Agent / 自动化）
+
+MermZen 提供了命令行渲染脚本，通过 Playwright 将 Mermaid 代码转换为 SVG 或 PNG。任何 AI Agent 或 CI 流水线都可以调用，无需 GUI。
+
+### 安装
+
+```bash
+git clone https://github.com/caoergou/MermZen.git
+cd MermZen
+npm install
+npx playwright install chromium
+npm run build
+```
+
+### 快速开始
+
+```bash
+# Mermaid 代码 → SVG（默认手绘风格）
+npx tsx scripts/render-diagram.ts \
+  --code "graph TD; A-->B-->C" \
+  --output diagram.svg
+
+# 从 .mmd 文件 → PNG
+npx tsx scripts/render-diagram.ts \
+  --file my-diagram.mmd \
+  --output diagram.png \
+  --format png
+```
+
+### 参数
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `--code` | — | 内联 Mermaid 代码 |
+| `--file` | — | `.mmd` 文件路径（与 `--code` 二选一） |
+| `--output` | `./mermzen-output.<格式>` | 输出文件路径 |
+| `--format` | `svg` | `svg` 或 `png` |
+| `--theme` | `hand-drawn` | `hand-drawn`、`default`、`dark`、`forest`、`neutral`、`base` |
+| `--font` | `kalam` | `kalam` 或 `caveat`（中文自动回退到小赖字体） |
+| `--bg` | `transparent` | CSS 颜色、`transparent`、`grid` |
+| `--width` | `1200` | PNG 视口宽度（px） |
+| `--height` | `900` | PNG 视口高度（px） |
+| `--port` | `8766` | Vite preview 服务端口 |
+
+脚本自动检测 `--port` 端口上是否有 Vite preview 在运行。若没有，会自动启动一个，渲染完成后自动关闭。
+
+### Claude Code Skill
+
+如果你使用 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)，MermZen 内置了 Skill（`.claude/skills/mermzen-render/`）。克隆仓库后，用 `/mermzen-render` 调用，或直接让 Claude 在你请求渲染图表时自动识别。
+

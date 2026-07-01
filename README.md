@@ -213,3 +213,55 @@ base64). See [`public/llms.txt`](public/llms.txt) for the full format.
 - [pako](https://github.com/nodeca/pako) — deflate compression for shareable URLs
 
 All production dependencies are bundled locally — no CDN required at runtime.
+
+---
+
+## CLI Rendering (for AI Agents & Automation)
+
+MermZen ships a command-line rendering script that converts Mermaid code to SVG or PNG via Playwright. Any AI agent or CI pipeline can use it — no GUI needed.
+
+### Setup
+
+```bash
+git clone https://github.com/caoergou/MermZen.git
+cd MermZen
+npm install
+npx playwright install chromium
+npm run build
+```
+
+### Quick start
+
+```bash
+# Mermaid code → SVG (hand-drawn style by default)
+npx tsx scripts/render-diagram.ts \
+  --code "graph TD; A-->B-->C" \
+  --output diagram.svg
+
+# From .mmd file → PNG
+npx tsx scripts/render-diagram.ts \
+  --file my-diagram.mmd \
+  --output diagram.png \
+  --format png
+```
+
+### Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--code` | — | Inline Mermaid code |
+| `--file` | — | Path to `.mmd` file (alternative to `--code`) |
+| `--output` | `./mermzen-output.<fmt>` | Output file path |
+| `--format` | `svg` | `svg` or `png` |
+| `--theme` | `hand-drawn` | `hand-drawn`, `default`, `dark`, `forest`, `neutral`, `base` |
+| `--font` | `kalam` | `kalam` or `caveat` (CJK auto-falls back to Xiaolai SC) |
+| `--bg` | `transparent` | CSS color, `transparent`, or `grid` |
+| `--width` | `1200` | PNG viewport width (px) |
+| `--height` | `900` | PNG viewport height (px) |
+| `--port` | `8766` | Vite preview server port |
+
+The script auto-detects whether Vite preview is running on `--port`. If not, it spawns one automatically and tears it down after rendering.
+
+### Claude Code Skill
+
+If you use [Claude Code](https://docs.anthropic.com/en/docs/claude-code), MermZen includes a built-in skill at `.claude/skills/mermzen-render/`. After cloning the repo, invoke it with `/mermzen-render` or let Claude auto-detect it when you ask to render a diagram.
