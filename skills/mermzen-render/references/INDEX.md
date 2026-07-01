@@ -22,6 +22,8 @@ everything.
 | Sankey | `sankey-beta` | [diagrams/sankey.md](diagrams/sankey.md) |
 | Quadrant | `quadrantChart` | [diagrams/quadrant.md](diagrams/quadrant.md) |
 | XY Chart | `xychart-beta` | [diagrams/xychart.md](diagrams/xychart.md) |
+| User Journey | `journey` | [diagrams/journey.md](diagrams/journey.md) |
+| Requirement | `requirementDiagram` | [diagrams/requirement.md](diagrams/requirement.md) |
 
 **Not sure which diagram type fits the request?** Pick by what's being
 described: a process/decision → flowchart; a request/response exchange →

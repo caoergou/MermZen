@@ -29,6 +29,11 @@ architecture-beta
   `server`. Anything else (a specific cloud provider's icon, a queue, a load
   balancer icon) isn't available — pick the closest of the 5 and rely on the
   label text to convey the specific service.
+- **Quote CJK labels.** `group sys(cloud)[我的系统]` breaks parsing; use
+  `group sys(cloud)["我的系统"]`. This is different from flowchart, where
+  unquoted CJK works fine — confirmed by testing both.
+- `title` is **not** a valid top-level statement here — silently ignored,
+  zero visual effect. Don't bother.
 
 ## The label-crossing problem
 
@@ -54,6 +59,13 @@ Concrete mitigations:
   MermZen's pinned 11.13.0 — see [version-limits.md](../version-limits.md)).
   Layout is 100% automatic via a force-directed solver, so you cannot fix a
   bad layout by reordering declarations the way you can nudge a flowchart.
+- **Don't nest groups.** Confirmed by testing: a `group` nested inside
+  another `group` adds its own layout constraints on top of the parent's,
+  measurably increasing the odds that an edge you wrote as straight (e.g.
+  `a:B -- T:b`) ends up rendered diagonally anyway because the two services
+  land at different horizontal offsets. A diagram with 3 nested sub-groups
+  and label-crossing problems rendered perfectly clean once flattened to one
+  group with the same services and edges. Prefer one flat group.
 
 ## When to use this vs. a flowchart
 
