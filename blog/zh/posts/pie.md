@@ -38,11 +38,11 @@ slug: pie
 
 ```
 pie title 标题
-    "类别A" : 数值
-    "类别B" : 数值
-    "类别C" : 数值
+    "类别A" : 40
+    "类别B" : 35
+    "类别C" : 25
 ```
-<a href="https://eric.run.place/MermZen/#eJwryExVKMksyUlVeLag_eWiGVwKQKD0fOPupx2rHZUUrBSeTd3wtGEPsrATdmFnhDAASkcmlA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqyExVKMksyUlVeLag_eWiGTF5CgoKCjFKzzfuftqx2jFGScFKwcQAVdQJLGpsiirqDBY1MlWqBQCaTyK6" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 - `pie` — 声明饼图
 - `title 标题` — 可选，图表标题

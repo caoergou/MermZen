@@ -78,9 +78,9 @@ graph TD
     B --> C{left ≤ right?}
     C -->|否| D[返回 -1 未找到]
     C -->|是| E[计算 mid = left + right / 2]
-    E --> F{arr[mid] == target?}
+    E --> F{"arr[mid] == target?"}
     F -->|是| G[返回 mid]
-    F -->|否| H{arr[mid] < target?}
+    F -->|否| H{"arr[mid] < target?"}
     H -->|是| I[left = mid + 1]
     H -->|否| J[right = mid - 1]
     I --> C
@@ -88,7 +88,7 @@ graph TD
     D --> K([结束])
     G --> K
 ```
-<a href="https://eric.run.place/MermZen/#eJxdUUFuwjAQ_MrKpyKwmjjBAVS3KgQI9NpbkkOC44DUoipKekn4e20v0Lo-rDS7M7OjdU--yYJNyIEsSN0UX0d4j7Mz6Pf6kGbdVHmervNDmY-A0mdYmibzJTZ1DXwOH5VqhTeB5lQfW3Gmfo4WSytZ9WYOWccYD5HzckHCyhAG7RIyPkCsvWdKhhpzWQH1tYZHrNCVRZXZG3i5K-ScqQHWRlgWftZF5TyCz5MEYUPBGPfBI7Crcm0zbfqiaVJNzEEIaIumru6hNo731g1lJC4Nsye_hk___BLHb5faYMKmHMPtVInjtk8xNrLonbXDgyLY_wWxBW_mz6JKBuZwU5WPcLjFIbn8AIPgirI" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKL0osyFAIcYnJU1BQUHDUiH66p-Hp8u5YTQVdXTsFp-inHXOfLu9-2jNNISc1rcTWQEehKDM9o8Q2T9cwFqLHCazSuRokr_CocwlEgX0tRNYZJFvzdMKyGgWX6Bf7pzydPU9B11Dh2ZxVzzr3Pe3YEIus7NmM9TUKrtEv1i18vm66Qm5mioIt2FoFbYihCvoKRlANrmBb3apjlBKLiqJzM1NiFWxtFUoSi9JTS-xjlKC2uyGMdYfZDlKLLAt2mweyQTYY5nggzPGMBrvIFuw8bQVYKHggzPKKhjgWokQXrsQTElAQjhcyxwXM8daIfr578rO582M1IcLuEGGlWgBTQZOB" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## 声明图表
 

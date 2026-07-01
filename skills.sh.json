@@ -1,0 +1,10 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "groupings": [
+    {
+      "title": "Rendering",
+      "description": "Render Mermaid diagrams to SVG/PNG with hand-drawn style and CJK support.",
+      "skills": ["mermzen-render"]
+    }
+  ]
+}

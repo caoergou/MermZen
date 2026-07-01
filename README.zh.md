@@ -207,3 +207,53 @@ window.addEventListener('message', (e) => {
 
 所有依赖本地打包，运行时零 CDN 依赖。
 
+---
+
+## Agent Skill（AI Agent / 自动化）
+
+MermZen 提供了 [Agent Skill](https://agentskills.io)，任何兼容的 AI Agent 都可以用它来渲染 Mermaid 图表——无需克隆本仓库。
+
+### 安装 Skill
+
+```bash
+npx skills add caoergou/MermZen
+```
+
+支持 30+ 种 Agent，包括 Claude Code、Cursor、GitHub Copilot、Gemini CLI、VS Code、OpenCode 等。完整列表见 [skills.sh](https://skills.sh)。
+
+### 快速使用（不装 Skill）
+
+只渲染一次的话，可以用 `npx skills use` 生成一次性提示词，无需安装：
+
+```bash
+npx skills use caoergou/MermZen@mermzen-render | claude
+npx skills use caoergou/MermZen@mermzen-render | cursor
+```
+
+或者克隆仓库后直接使用渲染脚本（需要 Puppeteer）：
+
+```bash
+npm install puppeteer  # 首次使用需安装
+node skills/mermzen-render/scripts/render.mjs \
+  --code "graph TD; A-->B-->C" \
+  --output diagram.svg
+```
+
+### 参数
+
+| 参数 | 默认值 | 说明 |
+|------|--------|------|
+| `--code` | — | 内联 Mermaid 代码 |
+| `--file` | — | `.mmd` 文件路径（与 `--code` 二选一） |
+| `--output` | `./mermzen-output.<格式>` | 输出文件路径 |
+| `--format` | `svg` | `svg` 或 `png` |
+| `--theme` | (default) | `default`、`dark`、`forest`、`neutral`、`base` |
+| `--look` | `handDrawn` | `handDrawn` 或 `classic` |
+| `--font` | `kalam` | `kalam` 或 `caveat`（中文自动使用小赖字体） |
+| `--bg` | `transparent` | CSS 颜色、`transparent`、`grid` |
+| `--scale` | `2` | PNG 设备缩放系数 |
+| `--width` | `1400` | PNG 画布最小宽度（px）；大图会自动撑大 |
+| `--height` | `900` | PNG 画布最小高度（px）；大图会自动撑大 |
+
+图表始终按真实 1:1 尺寸渲染（不会为适配小画布而被压缩），所以 PNG 分辨率取决于图表本身大小，与 `--width`/`--height` 无关；这两个参数只是设置最小画布尺寸。SVG 输出始终是矢量自然尺寸，不受 `--width`/`--height`/`--scale` 影响。运行 `node skills/mermzen-render/scripts/render.mjs --help` 查看完整用法。图表美化技巧和常见语法陷阱见 [skills/mermzen-render/references/INDEX.md](skills/mermzen-render/references/INDEX.md)——按图表类型拆分为独立文件。
+

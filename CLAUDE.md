@@ -35,6 +35,7 @@ npx playwright test test-tour.spec.js
 - **Source code**: All TypeScript source is in `src/modules/`
 - **Old JS files**: The root `modules/` directory was deleted after TS migration
 - **Scripts**: Build/utility scripts are in `scripts/` directory
+- **Agent Skill**: `skills/mermzen-render/` — open-standard Agent Skill (agentskills.io), installable via `npx skills add caoergou/MermZen`
 - **Blog**: Static blog in `blog/` directory
 - **SEO / sitemap**: `scripts/generate-sitemap.sh` builds `sitemap.xml` by scanning the
   repo for `*.html`. It MUST exclude `node_modules/`, `dist/` and other artifact dirs —

@@ -213,3 +213,59 @@ base64). See [`public/llms.txt`](public/llms.txt) for the full format.
 - [pako](https://github.com/nodeca/pako) — deflate compression for shareable URLs
 
 All production dependencies are bundled locally — no CDN required at runtime.
+
+---
+
+## Agent Skill (for AI Agents & Automation)
+
+MermZen provides an [Agent Skill](https://agentskills.io) that any compatible AI agent can use to render Mermaid diagrams — no need to clone this repo.
+
+### Install the skill
+
+```bash
+npx skills add caoergou/MermZen
+```
+
+This works with 30+ agents including Claude Code, Cursor, GitHub Copilot, Gemini CLI, VS Code, OpenCode, and more. See [skills.sh](https://skills.sh) for the full list.
+
+### Quick start (without installing the skill)
+
+If you just want to render a single diagram, use `npx skills use` to generate a one-shot prompt — no install needed:
+
+```bash
+npx skills use caoergou/MermZen@mermzen-render | claude
+npx skills use caoergou/MermZen@mermzen-render | cursor
+```
+
+Or clone the repo and run the render script directly (requires Puppeteer):
+
+```bash
+npm install puppeteer  # one-time setup
+node skills/mermzen-render/scripts/render.mjs \
+  --code "graph TD; A-->B-->C" \
+  --output diagram.svg
+```
+
+### Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--code` | — | Inline Mermaid code |
+| `--file` | — | Path to `.mmd` file (alternative to `--code`) |
+| `--output` | `./mermzen-output.<fmt>` | Output file path |
+| `--format` | `svg` | `svg` or `png` |
+| `--theme` | (default) | `default`, `dark`, `forest`, `neutral`, `base` |
+| `--look` | `handDrawn` | `handDrawn` or `classic` |
+| `--font` | `kalam` | `kalam` or `caveat` (CJK auto-uses Xiaolai SC) |
+| `--bg` | `transparent` | CSS color, `transparent`, or `grid` |
+| `--scale` | `2` | Device scale factor for PNG |
+| `--width` | `1400` | Minimum PNG canvas width (px); grows to fit large diagrams |
+| `--height` | `900` | Minimum PNG canvas height (px); grows to fit large diagrams |
+
+Diagrams always render at their true 1:1 size (never shrunk to fit), so PNG
+resolution reflects the diagram's real size regardless of `--width`/`--height`.
+SVG output is always the natural vector size — `--width`/`--height`/`--scale`
+don't apply to it. Run `node skills/mermzen-render/scripts/render.mjs --help`
+for more details. For diagram styling tips and common syntax pitfalls, see
+[skills/mermzen-render/references/INDEX.md](skills/mermzen-render/references/INDEX.md)
+— one reference file per diagram type.

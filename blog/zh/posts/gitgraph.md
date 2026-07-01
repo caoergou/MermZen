@@ -32,14 +32,14 @@ gitGraph
     title 基本 Git 图
     commit "初始提交"
     commit "功能 A"
-    branch 功能分支1
+    branch "功能分支1"
     commit "完成功能 1"
     commit "修复 bug 1"
     checkout main
-    branch 功能分支2
+    branch "功能分支2"
     commit "完成功能 2"
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXg6f9ezOWsU3DNLFJ7O3geRSc7Pzc0sUYhRetox9-ny7mf9E57sWhKjhC7ZNf9F814FR5hEUlFiXnKGAkT4aUfbsynrDdG1rOt51jEBqtEQw8Qn-9c9XdKrkFSajiSZkZqcnV9aopCbmJmH0yIjfBYZxSgp1QIAx1huZQ" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXg6f9ezOWsU3DNLFJ7O3geRSc7Pzc0sUYhRetox9-ny7mf9E57sWhKjhC7ZNf9F814FR5hEUlFiXnIGXOJpR9uzKesNMbWt63nWMQGqGVP6yf51T5f0KiSVpiNJZqQmZ-eXlijkJmbm4bHMCL9lRjFKSrUAuBNwXQ" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 ## 分支合并
 
