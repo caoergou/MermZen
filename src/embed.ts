@@ -393,6 +393,11 @@ async function waitForFonts(timeout = 3000): Promise<void> {
   }
 }
 
+// Export mode: ?export=1 hides toolbar and brand for CLI/automation rendering
+if (new URLSearchParams(location.search).get('export') === '1') {
+  document.body.classList.add('export-mode');
+}
+
 // 初始化：解析 URL 并渲染
 const initial = parseUrl();
 if (!initial.code) {

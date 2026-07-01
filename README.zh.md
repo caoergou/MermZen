@@ -209,34 +209,38 @@ window.addEventListener('message', (e) => {
 
 ---
 
-## 命令行渲染（AI Agent / 自动化）
+## Agent Skill（AI Agent / 自动化）
 
-MermZen 提供了命令行渲染脚本，通过 Playwright 将 Mermaid 代码转换为 SVG 或 PNG。任何 AI Agent 或 CI 流水线都可以调用，无需 GUI。
+MermZen 提供了 [Agent Skill](https://agentskills.io)，任何兼容的 AI Agent 都可以用它来渲染 Mermaid 图表——无需克隆本仓库。
 
-### 安装
+### 安装 Skill
 
 ```bash
-git clone https://github.com/caoergou/MermZen.git
-cd MermZen
-npm install
-npx playwright install chromium
-npm run build
+npx skills add caoergou/MermZen
 ```
 
-### 快速开始
+支持 30+ 种 Agent，包括 Claude Code、Cursor、GitHub Copilot、Gemini CLI、VS Code、OpenCode 等。完整列表见 [skills.sh](https://skills.sh)。
+
+### 直接使用（不装 Skill）
+
+也可以直接使用渲染脚本，只需要 Node.js 和 Puppeteer：
 
 ```bash
+npm install puppeteer  # 首次使用需安装
+
 # Mermaid 代码 → SVG（默认手绘风格）
-npx tsx scripts/render-diagram.ts \
+node skills/mermzen-render/scripts/render.mjs \
   --code "graph TD; A-->B-->C" \
   --output diagram.svg
 
 # 从 .mmd 文件 → PNG
-npx tsx scripts/render-diagram.ts \
+node skills/mermzen-render/scripts/render.mjs \
   --file my-diagram.mmd \
   --output diagram.png \
   --format png
 ```
+
+脚本通过 MermZen 的线上 embed 页面渲染——无需本地构建。
 
 ### 参数
 
@@ -246,16 +250,7 @@ npx tsx scripts/render-diagram.ts \
 | `--file` | — | `.mmd` 文件路径（与 `--code` 二选一） |
 | `--output` | `./mermzen-output.<格式>` | 输出文件路径 |
 | `--format` | `svg` | `svg` 或 `png` |
-| `--theme` | `hand-drawn` | `hand-drawn`、`default`、`dark`、`forest`、`neutral`、`base` |
-| `--font` | `kalam` | `kalam` 或 `caveat`（中文自动回退到小赖字体） |
 | `--bg` | `transparent` | CSS 颜色、`transparent`、`grid` |
-| `--width` | `1200` | PNG 视口宽度（px） |
+| `--width` | `1400` | PNG 视口宽度（px） |
 | `--height` | `900` | PNG 视口高度（px） |
-| `--port` | `8766` | Vite preview 服务端口 |
-
-脚本自动检测 `--port` 端口上是否有 Vite preview 在运行。若没有，会自动启动一个，渲染完成后自动关闭。
-
-### Claude Code Skill
-
-如果你使用 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)，MermZen 内置了 Skill（`.claude/skills/mermzen-render/`）。克隆仓库后，用 `/mermzen-render` 调用，或直接让 Claude 在你请求渲染图表时自动识别。
 
