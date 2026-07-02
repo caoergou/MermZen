@@ -53,7 +53,7 @@ gitGraph
     commit "Fix bug B"
     commit "Release v1.0"
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzyxxL0osyIjJU1BQUCjJLMlJVXDPLFEACyqEgPhKtQBvOw-K" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+<a href="https://eric.run.place/MermZen/#eJxlybsOQEAQBdBfubm1CEodBdGqt1kMJvEKSyTi3zUq2nMuHowjjzVjdury1S69mQCgnsdRHQyLSZ3a4QXDTydNg1as21dB8ttMT1R7h_Q3pQxiN8ER-oEh7wfAlSsY" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 - **Showing File Changes**: Git graphs show commit structure, not what changed in each commit
 - **Detailed Code Review**: Use diff views for line-by-line code changes
@@ -220,7 +220,7 @@ gitGraph
     checkout main
     merge hotfix/security tag: "v1.1.1"
 ```
-<a href="https://eric.run.place/MermZen/#fVBLbsMgEL2KxbpNwDY_XyCXYINhiFFjOyIQpap69w6OsqhV1QtkPc37fpE7Gdo34shAzjGfkr1OZmnwyzFfoDFFSEpN6YPsTOGjBlOUD9wUqTtbcTU-7906zzE3hmwUjS-jAQ-gx38pVI9I56sU2L4SgSFCRUDGJjAmu7ipCWBzSXAsN0jv17SGeIGdQz0ZajQfRgzVWlSVvFWItJ2sAfvqxjU6ayX5y8FN4D7WkpvZxmWn6aY1wSYqwkYet9baVzkuXhIzpDP8mbHJ9ox8cmcHdqC7UtOaQ3wcb-BKivlz3yc-qjNOgutyTX1dWmF4zkQtFeqQwjP4p8gz2M7nVyZmCPn-AQ" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+<a href="https://eric.run.place/MermZen/#eJx9jk1LxEAQRP9KM2fdNR7npiCeBEG85dI7qSSNmQ9mekJE_O8SsgsaxWNXvyreh5mNvb0yzlgziD5mTmMbiIhUdALdoyg9Z3YqDoUeFvZpwka46L0oteYJHCQMfZ0umUcpPKA1G3nKHNxIPVhrxrEW5OuUYy-_plbE0l3X0QrRGaL0bcyNcG-xKnmWsKu7MWZYek0dK6hDQugQnKBc2h55wJ8mpDxYas3cHJrDzU59jNrLcixwNYu-761lsfRy_tFcp4DMJ5nWq5flH_NNZ7f-w6Rpjfn8ApzZj2Y" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 **Why**: Each branch adds visual complexity. Too many branches create a "spaghetti" diagram that's impossible to follow.
 
@@ -416,7 +416,7 @@ gitGraph
     checkout main
     merge feature/user-auth
 ```
-<a href="https://eric.run.place/MermZen/#ZY5NEoIwDIWv0ulaRyi0_FzAS3RT0hQYBZzauHG8u6mMK7LIZL6895K3fMlenSTIXo5zukb3mOwquNKc7igsadUFS20RfJ4LY8loxUR71JbqoIGJr8vdBduyzElYmcVltnQwcK9KNnZt01lqDCLvf_IhuhUmEdAlinihJ8azozQdwowPOUa5ggO0apmoquG_BlfnDuU_EiaE20ZJLG5ed7RgHPF4RH6-" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+<a href="https://eric.run.place/MermZen/#eJxljLEOwjAMBX_F8gxCYuwGA6xsLF2M6zamTYJcByQQ_46qTMD67t698I7NdoWMDQ7qR6NbaBMAgKtPAgchLyawN0oc4Jxt7Kf8qArnGNWhxZPlq7CDJnWlSZ_kmlOLVbvUb19TmzKLral4-Insug4WBguT5MpfFQ7CYy4OkTTVKYoN8t_F9wdia0m1" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Git Flow Workflow
 
@@ -435,7 +435,7 @@ gitGraph
     checkout main
     merge develop tag: "v1.0.0"
 ```
-<a href="https://eric.run.place/MermZen/#bY5NEoIwDEav0unawfJTEA4gl-imtCkwAmU6LS4c724QWShmkUXyvpc86EKr5EQVrWjb-9rJuRMTwfK9H4DUvSfXwd6JCFwDFyEzXImQ6yzeMGXHERlBEUhijb1UDQKpZgiDzHDzBhsnJ9URDQsMdj6GDcMAT3W8iliOCp6Yn7AB6YOD82DbfjooirxoVhHnq6I0IlyY0btCdaBuNvjvD0ZwLfz17vgo99HGfuLEy7bCs0scsYgJSp8v" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+<a href="https://eric.run.place/MermZen/#eJxtjb0OwjAMBl_F8oxK6dgZUSGxs2QJwU2t5qeK3HZAvDtCaQYq1vvu7Bcu2DYHNNiiZemSngYVAACExRF0LHBxcYV7TGPv4ppHE71nAYXXwMLabUBhnh9JBzPAkxZycdol50w9BdnEXdaTljnR0UXLYRffvqwYpTMDmTHO8vvQU7L091jRvS4ou1sOom0LCpdTVVe1Qnx_AGMfYfI" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Branch Naming Conventions
 
@@ -462,7 +462,7 @@ gitGraph
     merge feature id: "git merge"
     commit id: "git tag v1.0" type: HIGHLIGHT
 ```
-<a href="https://eric.run.place/MermZen/#hYxBCsIwEEWvMsxaxGprtRdoBZcus0nTaRs0bQmTgoh3NxorooiBCcOb__4FR8yWM1SYYaM5t3JoRQf-seYTgXAJrTbCpcnS_0mcVsLFRLHfy3rrebROQ171xmgGXWUg7lVPIDCcSys71UJNkp2lH0oITYpqSR17x3-kKfalGam7gAzZhqaaN_XBX95nMcsGxmi-EAh8HiiDYpcXez8HvN4A" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
+<a href="https://eric.run.place/MermZen/#eJyFzDELwjAQBeC_ctwsoo5ZHZKCkzhmiem1CZqkpNeCiP9dbKyIIk4H7973rjii2CzQosDWs8ymczoCALDnM8E2hZDidEyse9hTQ5mipVKyKQTP4GsB-uGfgcbyPmYTrYOGDA_5FymlmVhH9pQG_oPm2hcLxscSBcotzTNvdMpf7nOYTQvjernSCHzpSICqpNpVUh3wdgc-FWH4" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 | Git Graph Syntax | Git Command | Description |
 |------------------|-------------|-------------|

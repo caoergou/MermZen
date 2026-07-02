@@ -46,7 +46,7 @@ graph TD
     I --> J[Redirect to dashboard]
     J --> K([End])
 ```
-<a href="https://eric.run.place/MermZen/#eJxNjk1OwzAQRq8y8qqVqITorgtQ0_yQghAiZYFMFsYeiNXURmPTIiU9AAfhYpwE1Ukg63nfe9OwPVtcnDHJFuyNxHsFm_jZAAAsJ7zwgnw5hdnsEiL-6JAAjUdyIAkVGq9F7coOjwK1apZS2g_jAT-18-7q2F1Xp2t7Z1uIeVHZAyCRpX4ad4Ex-YSuhaS5F84dLCnYi1qrQZb8yVKeG0m4Q-PhVegaQrvXpkGbNanQtYOfr2-YD4bsP3LNb63cgujfnp_DTptyjJ1C0bgcdjnP0CAJj1Cgc9oa2NgtDtM8xNf8AZUmlB68BSVc9WIFqZ5ZB-ZmwhOjyik7_gJxL3n6" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxNjk1OwzAQRq8y8qqVqITorgtQ0_yQghAiZYFMFsYeiNXURmPTIiU9AAfhYpwE1Ukg63nfe9OwPVtcnDHJFuyNxHsFm_jZAAAsJ7zwgnw5hdnsEiL-6JAAjUdyIAkVGq9F7coOjwK1apZS2g_jAT-18-7q2F1Xp2t7Z1uIeVHZAyCRpX4ad4Ex-YSuhaS5F84dLCnYi1qrQZb8yVKeG0m4Q-PhVegaQrvXpkGbNanQtYOfr2-YD4bsP3LNb63cgujfnp_DTptyjJ1C0bgcdjnP0CAJj1Cgc9oa2NgtDtM8xNf8AZUmlB68BSVc9WIFqZ5ZB-ZmwhOjyik7_gJxL3n6" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Business Approval Example
 
@@ -65,7 +65,7 @@ graph TD
     G --> I([End])
     H --> I
 ```
-<a href="https://eric.run.place/MermZen/#eJxtUbtuwzAM_BVBUwM0gCKLopWhRRLn0b2b5cGWpXYKigLuYuffS1oNEAPVcJB4vOOBGuWP3OpnGeRWfny3X5_ivfJXQWf3VPsBklKELnTNSqzXL2LPRQMlYR_BD7boqcHE1vih7BJSXRlChKLIlSbb7Wf5YVy2gdOOTACV8IPW1oji9ZYFBxZMRFqdJlHRXLSJpkCA6AdXlpbuXQqM7Yb6NLpmKQWj7SSOJHUqUmQHjBhDIjTK_iOt5pin8ZFi-aal4CngPd0x9-XHaRH1XPONo1roaDmlUrQK0JEqGFLHCfrULKU56qW-z0Lk7T5u2rXINraPf9LzHOGNv4kMibMIqVll8pJJefsFgtOICA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxljkFOwzAQRa8y8qqV6AZ2XYDaOm3ZdFNYIOPFkAzFiNhmPIkUJT0A9-BknAQ1BlGJ5bz_9P_0qlXzywtVqrk6MMYXuNOPHgBgMTF7QRY7hdnsGpZm3zzVTuCNsCVgem8oic3uclRWvcYuwdfHJ1zdHHOyOiXDA6UBtNGOqRRITSRuXQoMGCOHlpI9t3dhgMJoishSkxeo0eOB_tl6XF33i4yr380i83ys_x7YmPtYoRCgCPkKfUmQuiRU23P3NL81uyDuuQOmVyrFBf-jbMbu24kpfGWnmW0zU8dvd3ln1A" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Algorithm Flow Example
 
@@ -87,14 +87,14 @@ graph TD
     D --> K([End])
     G --> K
 ```
-<a href="https://eric.run.place/MermZen/#eJxlkE1uwjAUhK8y8goEUYElqotKEkio1EXbTeV4YRETLAUHuU4XTThA79GT9SRVbH4idTlv5n1v9BrySeazMdmSOSmMOO7xFmUaAB4H7NUKY_kQQfCAJUu1skqU6kuilDtLJ2MYVewt1cGU-52li4ZN5-P3-8cHFifvhp3bPlctIvYibW00gil0ZbGrap3zfupdfrSIWSjKbV0KK3FQOag7jJHH4g6z807s7q6ajAhj2EHlHJTCClNIu8jI-f7qRl5fCnTZvtu1S_qc-3-Y5IZJmStEXbsRLm9IrqgN81V9IrgmUv8oLzZ9ETnxNGCxzvnQz9Z-Rk5_sDF9gw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxlkE1uwjAUhK8y8goEUYElqotKEkio1EXbTeV4YRETLAUHuU4XTThA79GT9SRVbH4idTlv5n1v9BrySeazMdmSOSmMOO7xFmUaAB4H7NUKY_kQQfCAJUu1skqU6kuilDtLJ2MYVewt1cGU-52li4ZN5-P3-8cHFifvhp3bPlctIvYibW00gil0ZbGrap3zfupdfrSIWSjKbV0KK3FQOag7jJHH4g6z807s7q6ajAhj2EHlHJTCClNIu8jI-f7qRl5fCnTZvtu1S_qc-3-Y5IZJmStEXbsRLm9IrqgN81V9IrgmUv8oLzZ9ETnxNGCxzvnQz9Z-Rk5_sDF9gw" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ## Declaring a Chart
 
 ```
 graph TD
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKL0osyFAIcVGqBQBEswY6" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKL0osyFAIcVGqBQBEswY6" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 Direction parameters:
 
@@ -117,7 +117,7 @@ graph TD
     F[[Subroutine]]
     G[(Database)]
 ```
-<a href="https://eric.run.place/MermZen/#eJwtjbEOwiAURX_l5U2QmJg4dtOi7q0bMrzCSyWh0CC4NP13Bzqec25yN_xhdzmhxQ7nTOsHXuodAQCuemBbKM6BTTM3MaQaHTvIbItsst-UpyVFtzdWQvQ-28DyGNyFHgs5Xxc4w-pDMEd4aD3WKadafGRzfDy1UFRooi9Lg_sf8Hkwvw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJwtjbEOwiAURX_l5U2QmJg4dtOi7q0bMrzCSyWh0CC4NP13Bzqec25yN_xhdzmhxQ7nTOsHXuodAQCuemBbKM6BTTM3MaQaHTvIbItsst-UpyVFtzdWQvQ-28DyGNyFHgs5Xxc4w-pDMEd4aD3WKadafGRzfDy1UFRooi9Lg_sf8Hkwvw" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 | Syntax | Shape | Usage |
 |--------|-------|-------|
@@ -155,7 +155,7 @@ graph LR
     A --label--> F
     A -->|label| G
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKL0osyFDwCYrJU1BQUHBU0NW1U3BCcHQVnOEcPV07BRcYz9bWTsEVoS4nMSk1B6TXDcmgGrBojYK7Ui0AIbcbvA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKL0osyFDwCYrJU1BQUHBU0NW1U3BCcHQVnOEcPV07BRcYz9bWTsEVoS4nMSk1B6TXDcmgGrBojYK7Ui0AIbcbvA" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 | Syntax | Meaning |
 |--------|---------|
@@ -223,7 +223,7 @@ graph TD
     end
     B --> C
 ```
-<a href="https://eric.run.place/MermZen/#eJxdjT0LwjAURf_KI7NdHDsIbSIiOIgfU-zwGh9toKSal1RE_O_WZij0jvcezv2IQeTrlTAiF43HRwsXdXMwhmOdCtlZciGV_xT6yuThRM9IHCrIsg2UuoihHTFrMNjeVQknd1_IzuQH8rNM6uK4hx0GeuE7uZQuI1tHzHDoG2uqmVYTsNUKA9bItLwpp12K7w-tyz_5" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxdjT0LwjAURf_KI7NdHDsIbSIiOIgfU-zwGh9toKSal1RE_O_WZij0jvcezv2IQeTrlTAiF43HRwsXdXMwhmOdCtlZciGV_xT6yuThRM9IHCrIsg2UuoihHTFrMNjeVQknd1_IzuQH8rNM6uK4hx0GeuE7uZQuI1tHzHDoG2uqmVYTsNUKA9bItLwpp12K7w-tyz_5" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### 4. Maintain Consistent Flow Direction
 
@@ -264,7 +264,7 @@ graph TD
     I --> J[Redirect to dashboard]
     J --> K([End])
 ```
-<a href="https://eric.run.place/MermZen/#eJxNjk1OwzAQRq8y8qqVqITorgtQ0_yQghAiZYFMFsYeiNXURmPTIiU9AAfhYpwE1Ukg63nfe9OwPVtcnDHJFuyNxHsFm_jZAAAsJ7zwgnw5hdnsEiL-6JAAjUdyIAkVGq9F7coOjwK1apZS2g_jAT-18-7q2F1Xp2t7Z1uIeVHZAyCRpX4ad4Ex-YSuhaS5F84dLCnYi1qrQZb8yVKeG0m4Q-PhVegaQrvXpkGbNanQtYOfr2-YD4bsP3LNb63cgujfnp_DTptyjJ1C0bgcdjnP0CAJj1Cgc9oa2NgtDtM8xNf8AZUmlB68BSVc9WIFqZ5ZB-ZmwhOjyik7_gJxL3n6" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxNjk1OwzAQRq8y8qqVqITorgtQ0_yQghAiZYFMFsYeiNXURmPTIiU9AAfhYpwE1Ukg63nfe9OwPVtcnDHJFuyNxHsFm_jZAAAsJ7zwgnw5hdnsEiL-6JAAjUdyIAkVGq9F7coOjwK1apZS2g_jAT-18-7q2F1Xp2t7Z1uIeVHZAyCRpX4ad4Ex-YSuhaS5F84dLCnYi1qrQZb8yVKeG0m4Q-PhVegaQrvXpkGbNanQtYOfr2-YD4bsP3LNb63cgujfnp_DTptyjJ1C0bgcdjnP0CAJj1Cgc9oa2NgtDtM8xNf8AZUmlB68BSVc9WIFqZ5ZB-ZmwhOjyik7_gJxL3n6" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ---
 

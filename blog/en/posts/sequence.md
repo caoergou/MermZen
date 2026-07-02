@@ -44,7 +44,7 @@ sequenceDiagram
     participant Server
     participant Database
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqTi0sTc1LTnXJTEwvSsyNyVNQUFAoSCwqyUzOLEjMK1EILU4twhQNTi0qwybukliSmJRYnKpUCwC2TiLE" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslIqTi0sTc1LTnXJTEwvSsyNyVNQUFAoSCwqyUzOLEjMK1EILU4twhQNTi0qwybukliSmJRYnKpUCwC2TiLE" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 - `sequenceDiagram` declares the diagram type
 - `participant name` controls the order of participants (left → right)
@@ -61,7 +61,7 @@ sequenceDiagram
     A--)B: Dashed async arrow
     A-xB: Solid with cross (failure)
 ```
-<a href="https://eric.run.place/MermZen/#eJxtjL0KwjAQgF_lyNSAWRwzBFr6Bq4uRzxtoObqnWkV8d1FawuC8_fzMKPx242JxhulS6EcqU14EjzvMwBA7UJoPOy4TwfggTKgCE9Q6T3HTjhzUTurjXMh1B5a1I5-ZSEdOCvZZWrXJ75Hs7fAD_1e_uDb2k7p2kEUVoXqiKkvQtY8X-APQ6g" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxtjL0KwjAQgF_lyNSAWRwzBFr6Bq4uRzxtoObqnWkV8d1FawuC8_fzMKPx242JxhulS6EcqU14EjzvMwBA7UJoPOy4TwfggTKgCE9Q6T3HTjhzUTurjXMh1B5a1I5-ZSEdOCvZZWrXJ75Hs7fAD_1e_uDb2k7p2kEUVoXqiKkvQtY8X-APQ6g" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Arrow Type Selection Guide
 
@@ -165,7 +165,7 @@ sequenceDiagram
         Server-->>Client: 401 Unauthorized
     end
 ```
-<a href="https://eric.run.place/MermZen/#eJyFTrsKAjEQ_JUltQfxtEqR5hQUCwuxu2a9LGcgbs4kF1Dx30Xio9OphnkxN5GFqieiE0pEOo_EHS0s9gFPLQMAOO8HWGYKF5jJWLQnGmeJU6X1jkKmoGBFGNKBMMFguf8Gi19VWpeKgsG_fWLTcqHoEjSBDHGy6CJkdNb8WqmlhO3mteMiwZr_duZyCnvGMR19sFcynxfi_gCNZlG6" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyFTrsKAjEQ_JUltQfxtEqR5hQUCwuxu2a9LGcgbs4kF1Dx30Xio9OphnkxN5GFqieiE0pEOo_EHS0s9gFPLQMAOO8HWGYKF5jJWLQnGmeJU6X1jkKmoGBFGNKBMMFguf8Gi19VWpeKgsG_fWLTcqHoEjSBDHGy6CJkdNb8WqmlhO3mteMiwZr_duZyCnvGMR19sFcynxfi_gCNZlG6" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ## Full Example: HTTP Login Flow
 
@@ -198,7 +198,7 @@ sequenceDiagram
         Browser-->>User: Show error message
     end
 ```
-<a href="https://eric.run.place/MermZen/#eJx9kVFP20AQhP_KyE9QxSKNoJVOqquWGkhLSBob5SVSddjbcMK5C3uXRCjyf0c-Ow4Fl8e73dlvZ2cXbAIx6AVZIAJLj2vSGf1QcsFyOdcAIDNnGLeWuH6vJDuVqZXUDt_ZbDsL3ybDhHjTVZpSruzb79FT8vt6rutCRQujqBkvkKzvlsqhMAvVdDSlMIpalMBknKQ4kSt14juxW1tiLZfUw0pauzWcl3tEKwujyK8kcBmnNeLPX6kK0arLWuG7wn-JF1IVyMxaOxz1j7tme18CSXwdn6f4gIvpeIRqssXsKp7G2FO-fK3FXvAKU90DTJnhfM-QhcOkMYWNLFRe_7_mv5hySZpYOsLPWYrUPJDG0VUyOPt03C1tzpLEKSxZq4wWO1fJSnzupL2MbNDvY_wLtaDnXZYHzSG-Q8bOMEFpFCaTRfWSC3qrCKPo1vdX2zFlDs4gl_b-zkhutqLCEmZs9KLN_V2Hw5vz6XvJ_9_laf8jdsRsWGAeDLUP4gANOiy3BpJ7s4XXYknWtm5J50H5DAJ8KvE" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJx9kVFP20AQhP_KyE9QxSKNoJVOqquWGkhLSBob5SVSddjbcMK5C3uXRCjyf0c-Ow4Fl8e73dlvZ2cXbAIx6AVZIAJLj2vSGf1QcsFyOdcAIDNnGLeWuH6vJDuVqZXUDt_ZbDsL3ybDhHjTVZpSruzb79FT8vt6rutCRQujqBkvkKzvlsqhMAvVdDSlMIpalMBknKQ4kSt14juxW1tiLZfUw0pauzWcl3tEKwujyK8kcBmnNeLPX6kK0arLWuG7wn-JF1IVyMxaOxz1j7tme18CSXwdn6f4gIvpeIRqssXsKp7G2FO-fK3FXvAKU90DTJnhfM-QhcOkMYWNLFRe_7_mv5hySZpYOsLPWYrUPJDG0VUyOPt03C1tzpLEKSxZq4wWO1fJSnzupL2MbNDvY_wLtaDnXZYHzSG-Q8bOMEFpFCaTRfWSC3qrCKPo1vdX2zFlDs4gl_b-zkhutqLCEmZs9KLN_V2Hw5vz6XvJ_9_laf8jdsRsWGAeDLUP4gANOiy3BpJ7s4XXYknWtm5J50H5DAJ8KvE" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ---
 

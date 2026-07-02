@@ -74,7 +74,7 @@ journey
       Confirm Receipt : 5: User
 ```
 
-<iframe src="https://eric.run.place/MermZen/embed.html#eJx1UctOwlAQ3fsV9xt8bPgdwwJjIBFcuCtikUeAQouAojwCFDC0LApYWvBnOnOHlb_glWJitd7VTc5jzpy5SFxfxaM3R0y8VCx1GWVcG2NuRdaM5yfYkPm4-OE-8sYTv7Uhl8UXhfQs6bW9Ihk9T8UScQaVKi_Pd80lGos9wBgqbW71wa2jWvb_LMLOIgf7Awnsd6gWvpzvHQEf_4L5YOutBzCteRsVy2MqKYJ0GiB9JyApQ61qIIG31kFNkznCjLxrymQ6IQkO25p3nrPCzpC3i39GCCeBdV00NdpmBHwSnsCaeXawAyh0QR76VdJmFFZA7xWyLWjP4VkKKWAn5bE4Qc30nCY-2OBW_h2P2pIsPTCejD6U6rxnkDEIW13cd5GmVYfepiFL-zrf9qf6Ey2_G78" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="https://eric.run.place/MermZen/embed.html#eJx1Ub1OwzAYfJVTZqZSlmwohQFREbXAxGLZR_NRx44-u6kqxLujtI1ooWy27nx__iz6opxcFbYoi4-40cDdWwCALNkTyyZ2nYQVHg5YidpIQB0lZNTU1NFm6Xl4k4ZLDJhJsrGnHqWAJY3aBndhJYEocVPiJVFH-Nah8mLXKDE5R5bRivGY04nBgja2LYMze5cS01PyaF7FkMRR96RRp9boNjZjxmzEY0HjhlZ_kgxnLNgLt3gVbg-k6TmpVrFEFdvOqKR9kutLSeqN2sYk_tR0yBGV0fzX-V68HxjKlC7sQE-bUZtdy5AxZ26i-893Ri-n6z-pow67vIu243a_7B_jSlIWm_Csxq4v9j4qDP9A6U46FF_fPk-3VA" width="100%" height="600" frameborder="0"></iframe>
 
 ### Pain Point Analysis
 
@@ -102,7 +102,7 @@ journey
       Manually Enter Zip Code : 2: User
 ```
 
-<iframe src="https://eric.run.place/MermZen/embed.html#eJzLyi8tykut5FIAgpLMkpxUhSd7Zjztmfa0s_f9nllP52x4Orfh6cLVT9tmPtva-HxFN1hhcWpySWZ-ngJEAqIILKGg8LKh81n3yudzGp_s3qtgpWBspfB8yopnHdtRpJ_O73u6owmL9It9k5-2Ln2xftnz3W0QY4GKjNAUPevsftq1AqL0ZdO653umISsCAAJiaZM" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="https://eric.run.place/MermZen/embed.html#eJxlzbsKAjEQheFXOaS2Wrt0umonCmIjNiEZZWRMlmR2YRXfXbyjtvN_hzmbzthqYLyx5pDaHKnfRgBQViGMaZcyYdEoH_nklFO0GIWQqRTMWITj_uEL-Vu9H1_iUYAVCXnFMqeOoydYDC3WhfIPqFn7_ziNShkTUsdC4f3dovp2cxdbJ9I_BxtuUKdAH2guV9SOS18" width="100%" height="400" frameborder="0"></iframe>
 
 **Problem**: Average score ~2.5, multiple steps requiring manual operation.
 
@@ -117,7 +117,7 @@ journey
       Zip Code Auto-fill : 5: User
 ```
 
-<iframe src="https://eric.run.place/MermZen/embed.html#eJzLyi8tykut5FIAgpLMkpxUhSd7ZjztmfZ0Qt_7PbOeztnwdG7Di_ZVT7tWPF24-mlrK1hhcWpySWZ-ngJIqG0mRBFYQkEBqnbdrCd7e5_O73u6o0nBSsHUSuH5lBXPOrZDFUGNbZzyrHnzi32Tn7YuBSoyQVP0smnd8z3TkO1GNgkAJvVfLA" width="100%" height="400" frameborder="0"></iframe>
+<iframe src="https://eric.run.place/MermZen/embed.html#eJxVzT0LwjAUheG_csisi-iSLRQEJwdxKS6S3JYrMSnJjVDF_y5t_MD5PLznoW5KrxbKKq0usaRA4ykAgLB4gumEEvaD8JXvZ-EYNIxziXKGKRI79r76THaasWXvP6QumOXSkZAVNCwjNDYax0zpK97NQ-l7ynNoF4Yi0Fj_y5YHNNFRjU7_v5p6vgCHnUKT" width="100%" height="400" frameborder="0"></iframe>
 
 **Result**: Score improved to 4.7, steps reduced from 4 to 3, user completion rate significantly increased.
 
@@ -146,7 +146,7 @@ journey
       Confirm Receipt : 5: User
 ```
 
-<iframe src="https://eric.run.place/MermZen/embed.html#eJx1kc1OwkAUhfc-xTyDPxtex7DAGEgUF-5AoSmgQsKgKGgpQaAQOqj9EZDwMnPvTFe-gpM2NQbq7CbfnHPvOXOSuzjLpi_3iDr5TP40TQR1oaUJOkbdx4eyGNe-v57wuowlAzvvYrlB5wWYESrO08f5TC5Lgm4B364k00CfhoAQLNXD-zxiJEUOUyRyjV-074Rp_-KjLSx6VFgeX46gWdxRx4P5xsQiQ-oFHS22bXSF01cRIt22Lbp1OdIlG6pICUsBWyCjkpX4yk9SMxqBg8R1pDPjizloH2J2HxtWe1B-VUBULLkeJniCOQXtEbpzeC4ovL-Fg0IFaxZSxlftncGqJtOW9kDafbht_V_TcqDUfN0MJjdxktAQ9QZUjaT2Kxa6Rekb8nOS9HfUk84omv1X_QOU2R_1" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="https://eric.run.place/MermZen/embed.html#eJx1kc1OwzAQhF9llTNcClxyg7SgIgRRCjcu1maaLCR2WTspBfHuKE2D-hNulmd29vP4O2qjeHIWcRRHb65Ri82rJSIKEirQ7DxxdQ1l0IuH0n1viWlWuyDOmoqSRlvQ3HopyuD7YQ_uVHoEcsrArrDSXfQqDVdf6B0xXcbb_EGfYikWlOGjEUUNGzzFdHVoStXlDQfK4GGUy-OYAWJul05rsz3fmVBCxRZDyKIf3WWNbLlRt_agKYKRyp-iJq5eGe1YW8F6JGAwpCqMTr8Yg0wb5dJsF7H4vaqu85yCo8RoOM2-larqHArfJU8O1QUqcKDUbLoGjzd3ZHYpWtOT5tD_2puikha6odnnCiqwjL8P2AUvGuYe4AjvwRXig7CnZzX8LrYY66-HyMCQ1d4bo59f2zXSlw" width="100%" height="600" frameborder="0"></iframe>
 
 ### Key Insights
 

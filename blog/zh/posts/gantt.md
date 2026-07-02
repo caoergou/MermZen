@@ -329,7 +329,7 @@ gantt
     注册页面-写CSS      : b2, after b1, 2h
     注册页面-写JS       : b3, after b2, 2h
 ```
-<a href="https://eric.run.place/MermZen/#eJxLT8wrKeFSAIKSzJKcVIVHc3sUnuze_bRr4Yv97U93LXvW3fa0o-35kl1P9nW_39PxZEfv874VL3onvN_TCdaVkliS6pZflJtYohAJBLq-vrouLmAZMFGcmlySmZ-n8HRPw9P-iWCh5zN3P9079eXCrS_nLtJ92jbTI8TXBySuYKWQaKijYGRgZKZrYKxrAGJnYNXhHBysANNhpKOQmFaSWgTRi129F1Q5SL0xXL0RdvUvNjS_WD8VocEErgGo1RCi4dnmFU_berB6IckQrt4EbgG6eiQPJME9kGSIUz2SB5LgHkiCeAAAYUGxxw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUCjJLMlJVXg0t0fhye7dT7sWvtjf_nTXsmfdbU872p4v2fVkX_f7PR1PdvQ-61vxonfC-z2dEG0piSWpbvlFuYklCpGRkZG6vr66Li4QKQhZnJpckpmfp_B0T8PT_okQseczdz_dO_Xlwq0v5y7Sfdo20yPE1wckrmClkGioo2BkYGSma2CsawBiZ2DX4hwcrADTYqSjkJhWkloE0YxDgxdUPUiDMVyDEQ4NLzY0v1g_FaHDBK7DWEfBEKrj2eYVT9t6sHojyRCuwQRhBboGJE8kwT2RZIhbA5InkuCeSAJ7QqkWAFOpvWw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 **✅ 推荐**：合理合并，关注可交付成果
 
@@ -344,7 +344,7 @@ gantt
     用户中心开发   : active, uc, after reg, 2d
     整体联调       : after uc, 1d
 ```
-<a href="https://eric.run.place/MermZen/#eJxLT8wrKeFSAIKSzJKcVIVHc1oVnk7oeD6h7cnu3U-7Fj7fNOnprmXPl-x6sq_7_Z6OZ30rXvROeL-nE6wlJbEk1S2_KDexRCESCHR9fXVdXMAyYKI4NbkkMz9P4emehqf9E8FCz2fufrp36tOu-S-a90KEgYJWCin5eak6Cjn56Zl5OgpGBkZmugbGugaGOgqGKWBtzzaveNrWg0NbUWq6jkJiWklqEcwEqK7nU1Y869j-ZMfap_ubkXQlAl1VBtRXmgzTBjbBCGrV1C1P9k5-0TjlxYZmBQiwgioDaQAaDQAFs4EC" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJU1BQUCjJLMlJVXg0p1Xh6YSO5xPanuze_bRr4fNNk57uWvZ8ya4n-7rf7-l41rfiRe-E93s6IXpSEktS3fKLchNLFCIjIyN1fX11XVwgUhCyODW5JDM_T-Hpnoan_RMhYs9n7n66d-rTrvkvmvdCxBUUFKwUUvLzUnUUcvLTM_N0FIwMjMx0DYx1DQx1FAxTIPqebV7xtK0Hh76i1HQdhcS0ktQimBEwbc-nrHjWsf3JjrVP9zcjaUtMLsksS9VRKE2G6QMbYQSzbOqWJ3snv2ic8mJDswIEWEHVgXQYpijVAgBAWYpn" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
 
 **任务粒度原则**：
 - 一个任务应该是可交付的、有意义的成果
