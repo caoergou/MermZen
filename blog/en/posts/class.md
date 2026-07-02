@@ -44,7 +44,7 @@ classDiagram
         +logout() void
     }
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzkksLnbJTEwvSsyNyVNQUFAAiyiEFqcWKVRDREBAOzOvRCEzBUkguKQoMy9dIS8xNxVTNDU3MTMHSTgnPz0zT0NTISk_H004v7REQ1OhLB9mdq1SLQB1my2H" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKzkksLnbJTEwvSsyNyVNQUFAAiyiEFqcWKVRDREBAOzOvRCEzBUkguKQoMy9dIS8xNxVTNDU3MTMHSTgnPz0zT0NTISk_H004v7REQ1OhLB9mdq1SLQB1my2H" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 - `+` - Public
 - `-` - Private
@@ -61,7 +61,7 @@ classDiagram
     Dog --> Food : Association
     User ..> Logger : Dependency
 ```
-<a href="https://eric.run.place/MermZen/#eNpVyjELwjAQBeC_cmQU08ExSKEYBKGDg24uR3qcgfauJEUp6n83xUF90-N972Fuxm3WJhhnQo85-4iccLgIlDQSB-xh-7QWvDI4OMiVUpxQAn0uy7wqfMR74Z0Oo-Y4RZUva-GTzoUb5kSM_2xtDXvVbvGcNcQfP2dKUFU1tMpcqgNPI0lHEmbzegNc7Tpn" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eNpVyjELwjAQBeC_cmQU08ExSKEYBKGDg24uR3qcgfauJEUp6n83xUF90-N972Fuxm3WJhhnQo85-4iccLgIlDQSB-xh-7QWvDI4OMiVUpxQAn0uy7wqfMR74Z0Oo-Y4RZUva-GTzoUb5kSM_2xtDXvVbvGcNcQfP2dKUFU1tMpcqgNPI0lHEmbzegNc7Tpn" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Relationship Type Selection Guide
 
@@ -86,7 +86,7 @@ classDiagram
     User "1" --> "0..*" Order : Places
     Order "1" *-- "1..*" OrderItem : Contains
 ```
-<a href="https://eric.run.place/MermZen/#eNqrVipTsjLSUUpWslJKzkksLnbJTEwvSsyNyVMAgtDi1CKFGCXDGCUFXV07IMtAT08LyPEvSgFKWCkE5CQmpxZD1ELEIIq1dHVBLCTFniWpuUANzvl5JYmZecVKtQAOqiJX" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eNqrVipTsjLSUUpWslJKzkksLnbJTEwvSsyNyVMAgtDi1CKFGCXDGCUFXV07IMtAT08LyPEvSgFKWCkE5CQmpxZD1ELEIIq1dHVBLCTFniWpuUANzvl5JYmZecVKtQAOqiJX" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ## Best Practices
 
@@ -148,7 +148,7 @@ classDiagram
     Order "1" *-- "1..*" OrderItem
     OrderItem "*" --> "1" Product
 ```
-<a href="https://eric.run.place/MermZen/#eNqdUcFqwzAM_RWh05Yupd2xh8Ggl50WSHvzRXO8YHCczlEGo_Tf69ilFZS2MF0kP8nvWc97_MXV6wtqXKF2NAxrS22gTnmIkRDYDibAPiNTzKxnsI0Aag7Wt-CpMwLdOdLmMzQmPD1Dyrl5UF7Sp859_jWxAR1MTM07i4Ympzc9k4sK364nvq3wwaa7UvkZybPlPwEnGhi95SpYLfdpDdfjFz-Uq0LfjJr_Y1kW312Ez9TpExQuFUJZvsVqMZ8X8SB8zUbmmaIsp0rMTPuLuWSHwuLMN906vRwPR9VxmiA" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eNqdUcFqwzAM_RWh05Yupd2xh8Ggl50WSHvzRXO8YHCczlEGo_Tf69ilFZS2MF0kP8nvWc97_MXV6wtqXKF2NAxrS22gTnmIkRDYDibAPiNTzKxnsI0Aag7Wt-CpMwLdOdLmMzQmPD1Dyrl5UF7Sp859_jWxAR1MTM07i4Ympzc9k4sK364nvq3wwaa7UvkZybPlPwEnGhi95SpYLfdpDdfjFz-Uq0LfjJr_Y1kW312Ez9TpExQuFUJZvsVqMZ8X8SB8zUbmmaIsp0rMTPuLuWSHwuLMN906vRwPR9VxmiA" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ---
 

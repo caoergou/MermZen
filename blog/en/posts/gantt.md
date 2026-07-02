@@ -29,7 +29,7 @@ gantt
     section Phase 1
     Task name : 2026-03-01, 5d
 ```
-<a href="https://eric.run.place/MermZen/#eJwlybEKwjAQBuBX-bm5gTSiQ-biFsjQJeBypIdW2wSaQxDx3R2yft-X3uTdQJk83bmo3goA6KqbIHwQj_qUrIgbl14Lq1zrsbMipZRMCGaaejXJutaC-OAmGDvO3F4ovAs8nHUXY0_GjgPOC_3-mhklWQ" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJwlybEKwjAQBuBX-bm5gTSiQ-biFsjQJeBypIdW2wSaQxDx3R2yft-X3uTdQJk83bmo3goA6KqbIHwQj_qUrIgbl14Lq1zrsbMipZRMCGaaejXJutaC-OAmGDvO3F4ovAs8nHUXY0_GjgPOC_3-mhklWQ" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 - `title` - Optional
 - `dateFormat` - Required (YYYY-MM-DD recommended)
@@ -46,7 +46,7 @@ gantt
     Frontend : after be, 5d
     QA       : after Frontend, 3d
 ```
-<a href="https://eric.run.place/MermZen/#eJw1y7EKwjAUheFXOWROIKaokE0J3To4BlxichXRJiVeuojvLpr2rP933mIW1kgRhRW3kJnPGQBSYOpLHQPDe-_VMCjnWnpR5HvJcDTTs0wj5eVzDPFBOQEWF5Iw2uyU7pTeSOxTI30tmX_GIlyZ6h9ul3g6oG2Nq5bokvh8AdmQMXw" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJw1y7EKwjAUheFXOWROIKaokE0J3To4BlxichXRJiVeuojvLpr2rP933mIW1kgRhRW3kJnPGQBSYOpLHQPDe-_VMCjnWnpR5HvJcDTTs0wj5eVzDPFBOQEWF5Iw2uyU7pTeSOxTI30tmX_GIlyZ6h9ul3g6oG2Nq5bokvh8AdmQMXw" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 `after id` starts a task after another completes.
 
@@ -60,7 +60,7 @@ gantt
     Pending     :         2026-03-09, 4d
     Critical    : crit,   2026-03-09, 3d
 ```
-<a href="https://eric.run.place/MermZen/#eJxdyrEKwjAUheFXOWS-gdpUwawtgkPBNeASklACbVLSSxfx3UVaFTzTD-d7iFXomoQTWgw2Md8TAHjL4ZLLZBnGGCP7XnbddrV5msfAwQPQ8DkFAlBX9UlWSlYHgvKbvCbMJQ8lLAs0rOO4BvrJhnDc5S0kH9PwTmh89pVnQrPLtkSOzo6bdCUy_UnlxfMFiPA3Yg" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxdyrEKwjAUheFXOWS-gdpUwawtgkPBNeASklACbVLSSxfx3UVaFTzTD-d7iFXomoQTWgw2Md8TAHjL4ZLLZBnGGCP7XnbddrV5msfAwQPQ8DkFAlBX9UlWSlYHgvKbvCbMJQ8lLAs0rOO4BvrJhnDc5S0kH9PwTmh89pVnQrPLtkSOzo6bdCUy_UnlxfMFiPA3Yg" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ## What is Critical Path?
 
@@ -76,7 +76,7 @@ gantt
     Integration test: crit, after be, 2d
     Deployment      : crit, after Integration test, 1d
 ```
-<a href="https://eric.run.place/MermZen/#eJxdzk8LgkAQBfCvMux5Bf9UB49lQgchugVdpt2pJF11naSIvnvaGlhzW_b3Hu8pOhGHUigRizMa5oOB_jQypZUtkWHfn5dlXpK4r5YU55WBlc05V1jAFvkC6zuWdUGO7Ki55ZZKMtwO7xhUjyVYaiSEfrjw_MjzAwmRdoElqisZDZo6mAaOJAFPTNZF5yNPbWV44mM4_cLZCDc9O1v87GVq-dvr6NAejjKhuqgew2L4WeDkf4-EQIvXG5gCYVU" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxdzk8LgkAQBfCvMux5Bf9UB49lQgchugVdpt2pJF11naSIvnvaGlhzW_b3Hu8pOhGHUigRizMa5oOB_jQypZUtkWHfn5dlXpK4r5YU55WBlc05V1jAFvkC6zuWdUGO7Ki55ZZKMtwO7xhUjyVYaiSEfrjw_MjzAwmRdoElqisZDZo6mAaOJAFPTNZF5yNPbWV44mM4_cLZCDc9O1v87GVq-dvr6NAejjKhuqgew2L4WeDkf4-EQIvXG5gCYVU" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 In this example, **Requirements → Backend dev → Integration test → Deployment** forms the critical path (11 days total). Frontend dev can run in parallel with Backend dev and doesn't affect the total duration.
 
@@ -103,7 +103,7 @@ gantt
     QA testing      : crit,   test,   after ci,   3d
     Launch          : milestone,      after test, 0d
 ```
-<a href="https://eric.run.place/MermZen/#eJxlkMFOwzAQRH9llXOC0hT1kFshqlSJHkBwCOrFsodg4dipvUlBiH9HidMWVF8i73rePOU7GZKySBOZlEkjLPPeEhGxZgPawbevsHRnXEMbCO49aFjc5PGREoyN861gquu6zna7rKriCp_S9AqBjsAHrAp7GxcBkrWzVCHoZp494dBrjxaWw3gvSTmLlIg8DuOHirxYZfkyyxcpFSqmXrbUeceOvzptm7-pXk8hEm8MPzOW6tpggHHd2BoXz2g7IxikMEQNIVkPSIk7k16AEX87a6w9a2lAR6959CjpdITnq9RqTt1vKYD77vT2kpL_5GNzcSX_IHor3-PscU2MMJXPLOn1VD2O0zMrkpezQSSca6mkVhsEnv_hxWBi5Cr5-QV7CaFF" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxlkMFOwzAQRH9llXOC0hT1kFshqlSJHkBwCOrFsodg4dipvUlBiH9HidMWVF8i73rePOU7GZKySBOZlEkjLPPeEhGxZgPawbevsHRnXEMbCO49aFjc5PGREoyN861gquu6zna7rKriCp_S9AqBjsAHrAp7GxcBkrWzVCHoZp494dBrjxaWw3gvSTmLlIg8DuOHirxYZfkyyxcpFSqmXrbUeceOvzptm7-pXk8hEm8MPzOW6tpggHHd2BoXz2g7IxikMEQNIVkPSIk7k16AEX87a6w9a2lAR6959CjpdITnq9RqTt1vKYD77vT2kpL_5GNzcSX_IHor3-PscU2MMJXPLOn1VD2O0zMrkpezQSSca6mkVhsEnv_hxWBi5Cr5-QV7CaFF" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ## Best Practices
 
@@ -120,7 +120,7 @@ gantt
     Implementation      : after Technical design, 5d
     Code review         : after Implementation, 1d
 ```
-<a href="https://eric.run.place/MermZen/#eJxdTrsKwjAU_ZVL5gT6QIesloJDF3ERXEJyrYE0adPYDuK_G5si1jMdzuveJ5kILyiRhJNW2BCuFiKUCFg734kAlwjWNKyqkjWiDNpZqHBC4_oObYDauDm5Jxwe2uNHHcHjpHEG4JENFIqs2LOsZFkeuUr5M8q71VIYUDjqdtE4iFtAn0rlGjx2vVlmxXIdfoP_IxR2a-vgFH7fgG1ru0ghV-T1BsqMVEc" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxdTrsKwjAU_ZVL5gT6QIesloJDF3ERXEJyrYE0adPYDuK_G5si1jMdzuveJ5kILyiRhJNW2BCuFiKUCFg734kAlwjWNKyqkjWiDNpZqHBC4_oObYDauDm5Jxwe2uNHHcHjpHEG4JENFIqs2LOsZFkeuUr5M8q71VIYUDjqdtE4iFtAn0rlGjx2vVlmxXIdfoP_IxR2a-vgFH7fgG1ru0ghV-T1BsqMVEc" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Use `excludes weekends` for Non-Working Days
 
@@ -133,7 +133,7 @@ gantt
     section Sprint
     Sprint 1 : 2026-03-02, 10d
 ```
-<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJUwCClMSSVLf8otzEEoVIIND19dV1cYFIpVYk55SmpBYrlKemZqfmpRRDhItTk0sy8_MUgguKMvOgpkDYCoYKVgpGBkZmugbGugZGOgqGBilKtQDwRCRq" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJyrVipTsjLSUUpWslJKT8wrKYnJUwCClMSSVLf8otzEEoVIIND19dV1cYFIpVYk55SmpBYrlKemZqfmpRRDhItTk0sy8_MUgguKMvOgpkDYCoYKVgpGBkZmugbGugZGOgqGBilKtQDwRCRq" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Use `milestone` for Key Dates
 
@@ -147,7 +147,7 @@ gantt
     Code freeze          : milestone, m2, 2026-03-20, 0d
     Production release   : milestone, m3, 2026-03-25, 0d
 ```
-<a href="https://eric.run.place/MermZen/#eJxlzjELwjAQhuG_cmROIE3RoaviVhA3wSU0n1JoEkyuDor_3UqoVnzHu3vgHuImGiNFJxpxsYH5FGjKWcYuJm-ZjlOqbdV2W1YZHfcxUNsPyBwDcpkfcB37BI_Amc4JuIOoIT-fSfKVJKPNWulaVVqSdkVuosNHzP1K85VmIfcpurG8kzDAZvzJeiFXbymeL2lRR4o" target="_blank" rel="noopener" class="try-in-editor">在 MermZen 中试试 →</a>
+<a href="https://eric.run.place/MermZen/#eJxlzjELwjAQhuG_cmROIE3RoaviVhA3wSU0n1JoEkyuDor_3UqoVnzHu3vgHuImGiNFJxpxsYH5FGjKWcYuJm-ZjlOqbdV2W1YZHfcxUNsPyBwDcpkfcB37BI_Amc4JuIOoIT-fSfKVJKPNWulaVVqSdkVuosNHzP1K85VmIfcpurG8kzDAZvzJeiFXbymeL2lRR4o" target="_blank" rel="noopener" class="try-in-editor">Try in MermZen →</a>
 
 ### Limit Tasks per Section to 5
 
